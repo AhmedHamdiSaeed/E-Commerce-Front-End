@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule , provideClientHydration } from '@angular/platform-browser';
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
@@ -16,6 +16,7 @@ import { NotFoundComponent } from './Component/not-found/not-found.component';
 import { LoadingSpinnerComponent } from './SharedComponent/loading-spinner/loading-spinner.component';
 import { AuthInterceptorService } from './Services/auth-interceptor.service';
 import { AdminBoardComponent } from './Component/admin-board/admin-board.component';
+import { ProductComponent } from './Component/product/product.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { AdminBoardComponent } from './Component/admin-board/admin-board.compone
     HeaderComponent,
     NotFoundComponent,
     LoadingSpinnerComponent,
-    AdminBoardComponent
+    AdminBoardComponent,
+    ProductComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +38,7 @@ import { AdminBoardComponent } from './Component/admin-board/admin-board.compone
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [ {provide:  HTTP_INTERCEPTORS , useClass: AuthInterceptorService , multi: true}],
+  providers: [ {provide:  HTTP_INTERCEPTORS , useClass: AuthInterceptorService , multi: true}, provideClientHydration()],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
