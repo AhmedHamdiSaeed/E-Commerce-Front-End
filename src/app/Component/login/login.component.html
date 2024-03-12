@@ -1,0 +1,33 @@
+
+<div class="container-sm">
+<div class="row justify-content-center align-items-center" style="height: 100vh;">
+  <div class="col-6">
+      
+  <div class="alert alert-danger" *ngIf="error.length > 0">
+    {{error}}
+  </div>
+
+<div *ngIf="isLoading">
+<app-loading-spinner></app-loading-spinner>
+</div>
+  <form (ngSubmit)="onSubmit(form)" #form="ngForm" *ngIf="!isLoading" >
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Email address</label>
+      <input type="email" class="form-control" id="exampleInputEmail1" name="email" required email ngModel #email="ngModel" >
+      <div id="emailHelp" class="form-text" *ngIf="!email.valid && email.touched">please enter a valid email.</div>
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Password</label>
+      <input type="password" class="form-control" id="exampleInputPassword1"  name="password" #password="ngModel" ngModel required>
+      <p class="form-text" *ngIf="!password.valid && password.touched"> please enter a valid password</p>
+    </div>
+    <!-- not empilminted yet  -->
+    <!-- <div class="mb-3 form-check">
+      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+      <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    </div> -->
+    <button type="submit" class="btn btn-primary " [disabled]="!form.valid">Submit</button>
+  </form>
+  </div>
+</div>
+</div>

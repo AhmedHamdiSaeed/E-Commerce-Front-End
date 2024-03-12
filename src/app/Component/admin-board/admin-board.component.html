@@ -1,0 +1,21 @@
+<nav class=" bg-light sidebar" [ngClass]="{'collapsed': !isExpanded}" (mouseenter)="isExpanded = true" (mouseleave)="isExpanded = false">
+    <!-- <button class="collapse-btn" (click)="toggleCollapse()"><i class="fa fa-bars"></i></button> -->
+    <div class="sidebar-sticky sidebar-content">
+        <ul class="nav flex-column gap-3"> 
+            
+             <li class="nav-item">
+                <button class="btn btn-primary" (click)="getProducts()">products</button>
+            </li> 
+            <li class="nav-item">
+              <button class="btn btn-primary" (click)="getOrders()">orders</button>
+          </li> 
+          <li class="nav-item">
+            <button class="btn btn-primary" (click)="getCategories()">categories</button>
+        </li> 
+        <li class="nav-item">
+          <button class="btn btn-primary" (click)="getUsers()">users</button>
+      </li> 
+
+        </ul>
+    </div>
+</nav>
