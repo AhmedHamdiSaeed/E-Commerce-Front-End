@@ -14,9 +14,10 @@ import { HomeComponent } from './Component/home/home.component';
 import { HeaderComponent } from './Component/header/header.component';
 import { NotFoundComponent } from './Component/not-found/not-found.component';
 import { LoadingSpinnerComponent } from './SharedComponent/loading-spinner/loading-spinner.component';
-import { AuthInterceptorService } from './Services/auth-interceptor.service';
+import { AuthInterceptorService } from './Services/auth/auth-interceptor.service';
 import { AdminBoardComponent } from './Component/admin-board/admin-board.component';
 import { ProductComponent } from './Component/product/product.component';
+import { ProductDetailsComponent } from './Component/product-details/product-details.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { ProductComponent } from './Component/product/product.component';
     NotFoundComponent,
     LoadingSpinnerComponent,
     AdminBoardComponent,
-    ProductComponent
+    ProductComponent,
+    ProductDetailsComponent
   ],
   imports: [
     BrowserModule,

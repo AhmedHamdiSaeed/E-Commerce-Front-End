@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { AuthService } from '../../Services/auth.service';
+import { AuthService } from '../../Services/auth/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,9 +11,9 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
 @ViewChild('form', { static: true }) loginForm !: NgForm ;
- 
+
 error: string = '' ;
-isLoading: boolean = false ; 
+isLoading: boolean = false ;
 constructor(private auth : AuthService,
             private router: Router){}
 
@@ -24,18 +24,18 @@ onSubmit(form : NgForm){
     console.log(form.value.email);
     this.auth.login( form.value.email ,  form.value.password).subscribe((data)=>{
       console.log(data.user.role);
-      
+
       this.isLoading = false ;
       this.router.navigate(['/category']) ;
-      
+
     } , (err) => {
       console.log(err) ;
-      
+
       this.error = err.error.message ;
     }
     )
-    
-    
+
+
   }
 }
 

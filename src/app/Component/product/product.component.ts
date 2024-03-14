@@ -1,21 +1,32 @@
-import { Component , OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ProductService } from '../../Services/product/product.service';
 import { Product } from '../../models/product';
-import {ProductService} from '../../Services/product.service';
 
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
-  styleUrl: './product.component.css'
+  styleUrls: ['./product.component.css'] // Correct property name
 })
-export class ProductComponent  implements OnInit {
+export class ProductComponent implements OnInit {
   products: Product[] = [];
+  isLoading: boolean = false;
+  error: string = "";
 
   constructor(private productService: ProductService) {}
 
   ngOnInit() {
+    this.isLoading = true;
     this.productService.getProducts()
-      .subscribe((products : any) => {
-        this.products = products;
-      });
+      .subscribe(
+        (products: any) => {
+          this.products = products;
+          this.isLoading = false;
+        },
+        (err) => {
+          console.log(err);
+          this.isLoading = false;
+          this.error = err.error.message;
+        }
+      );
   }
 }

@@ -1,36 +1,40 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Navbar</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link"  routerLinkActive="active" routerLink="/home">Home</a>
-          </li> 
-           <li class="nav-item">
-            <a class="nav-link"  routerLinkActive="active" routerLink="/category" *ngIf="isAuthed">category</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link"  routerLinkActive="active" routerLink="/register"  *ngIf="!isAuthed">register</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link"  routerLinkActive="active" routerLink="/login"  *ngIf="!isAuthed">login</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" (click)="onLogout()" style="cursor: pointer;"  *ngIf="isAuthed">logout</a>
-          </li>
-          <li class="nav-item">
-            <i class="fa-solid fa-user"></i>
-            <a class="nav-link"  style="cursor: pointer;"  *ngIf="isAuthed">{{user?.fname |uppercase}} {{user?.lname |uppercase}}</a>
-          </li>
-          
-        </ul>
-        <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
-      </div>
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="/home">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="/category" *ngIf="isAuthed">Category</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="/register" *ngIf="!isAuthed">Register</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="/login" *ngIf="!isAuthed">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="onLogout()" style="cursor: pointer;" *ngIf="isAuthed">Logout</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="/products">Products</a>
+        </li>
+        <li class="nav-item">
+          <i class="fa-solid fa-user"></i>
+          <a class="nav-link" style="cursor: pointer;" *ngIf="isAuthed">{{ user?.fname | uppercase }} {{ user?.lname | uppercase }}</a>
+        </li>
+      </ul>
+      <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
     </div>
-  </nav>
+  </div>
+</nav>
+
+

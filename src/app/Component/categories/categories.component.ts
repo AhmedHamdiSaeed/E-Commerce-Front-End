@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CategoryServicesService } from '../../Services/category-services.service';
+import { CategoryServicesService } from '../../Services/category/category-services.service';
 import { Category } from '../../models/categoryModel';
 
 @Component({
@@ -13,7 +13,7 @@ export class CategoriesComponent implements OnInit  {
   constructor(private CategoryServices: CategoryServicesService){}
 
   ngOnInit(): void {
-    
+
     this.CategoryServices.getCategory()
     .subscribe(data=>{
       this.cats = data ;
@@ -29,6 +29,6 @@ export class CategoriesComponent implements OnInit  {
   //   });
   // }
 
-  
+
 
 }

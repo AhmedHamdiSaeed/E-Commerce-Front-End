@@ -5,8 +5,9 @@ import { SignupComponent } from './Component/signup/signup.component';
 import { LoginComponent } from './Component/login/login.component';
 import { NotFoundComponent } from './Component/not-found/not-found.component';
 import { CategoriesComponent } from './Component/categories/categories.component';
-import { AuthGuardService } from './Services/auth-guard.service';
+import { AuthGuardService } from './Services/auth/auth-guard.service';
 import { ProductComponent } from './Component/product/product.component';
+import { ProductDetailsComponent } from './Component/product-details/product-details.component';
 
 const routes: Routes = [
   {path: 'home' , component:HomeComponent},
@@ -14,8 +15,8 @@ const routes: Routes = [
   {path: 'login' ,component:LoginComponent},
   {path: 'category' , component: CategoriesComponent, canActivate:[AuthGuardService]},
   { path: 'products', component: ProductComponent },
-
-  {path: '' , redirectTo: '/home' , pathMatch: 'full'},
+  { path: 'products/:id', component: ProductDetailsComponent },
+  {path: '' , redirectTo: '/products' , pathMatch: 'full'},
   {path: 'Not-Found' , component:NotFoundComponent},
   {path: '**' , redirectTo:'Not-Found'}
 ];
