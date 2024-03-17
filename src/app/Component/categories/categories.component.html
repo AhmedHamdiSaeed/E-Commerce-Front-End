@@ -1,38 +1,16 @@
-
-
-  <div class="container">
-    <div class="row m-5">
-      <div class="col">
-        <div class="card" style="width: 18rem;">
-          <img src="../../../assets/project images/The-Best-Phones-to-buy-in-2024---our-top-10-list.jpg"  class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Phones</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
+<div class="container">
+  <h1 class="text-center mt-3">Our Categories</h1>
+  <div class="row">
+    <div *ngIf="isLoading" class="col-md-12 text-center">
+      <app-loading-spinner></app-loading-spinner>
+    </div>
+    <div class="col-md-4" *ngFor="let cat of cats" [routerLink]="['/category', cat.name]">
+      <div class="card">
+        <img class="card-img-top" [src]="cat.image" [alt]="cat.name">
+        <div class="card-body">
+          <h5 class="card-title">{{ cat.name }}</h5>
         </div>
       </div>
-    
     </div>
   </div>
-
-  
-  <div *ngIf="cats"  class="container">
-    <div class="row m-5">
-      <div class="col">
-        <div class="card" style="width: 18rem;">
-          <img src="../../../assets/project images/The-Best-Phones-to-buy-in-2024---our-top-10-list.jpg"  class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Phones</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
-      </div>
-    
-    </div>
-  </div>
-
-  <!-- <button class="btn btn-primary" (click)="getData()"> get data</button> -->
-
-
+</div>

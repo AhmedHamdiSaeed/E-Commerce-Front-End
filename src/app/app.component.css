@@ -1,4 +1,7 @@
+.container-fluid {
+  margin-top: 60px;
+}
 
-.main{
-    background-color: rgb(153, 138, 138);
+.main {
+  background-color: rgb(153, 138, 138);
 }

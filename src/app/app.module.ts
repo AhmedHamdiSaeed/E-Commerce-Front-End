@@ -18,6 +18,7 @@ import { AuthInterceptorService } from './Services/auth/auth-interceptor.service
 import { AdminBoardComponent } from './Component/admin-board/admin-board.component';
 import { ProductComponent } from './Component/product/product.component';
 import { ProductDetailsComponent } from './Component/product-details/product-details.component';
+import { ProductCategoryComponent } from './product-category/product-category.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { ProductDetailsComponent } from './Component/product-details/product-det
     LoadingSpinnerComponent,
     AdminBoardComponent,
     ProductComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    ProductCategoryComponent
   ],
   imports: [
     BrowserModule,
