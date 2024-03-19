@@ -1,4 +1,4 @@
-<ng-container *ngIf="true">
+<ng-container *ngIf=" cartProducts.length > 0">
     <div class="container d-flex justify-content-center align-items-center" >
         <div class="card ">
             <h5 class="card-title">Shop Cart</h5>
@@ -30,7 +30,7 @@
     </div>
 </ng-container>
 
-<ng-container *ngIf="false">
+<ng-container *ngIf="cartProducts.length === 0">
     <div class="container d-flex justify-content-center align-items-center" style="height: 60vh;">
         <div class="card">
         <div class="text-center mt-4">

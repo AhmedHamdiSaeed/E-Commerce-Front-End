@@ -9,7 +9,6 @@ import { CartService } from '../../../Services/Cart/cart.service';
 })
 export class CartComponent {
   products: Product[] = [];
-  isLoading: boolean = false;
   cartProducts: any[] = [];
   error: string = "";
 
@@ -25,7 +24,6 @@ export class CartComponent {
     if("cart" in localStorage){
       this.cartProducts = JSON.parse(localStorage.getItem("cart")!);
     } 
-    console.log(this.cartProducts )
   }
   removeItem(i: number) {
   this.cartProducts .splice(i, 1);
