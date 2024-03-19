@@ -19,6 +19,7 @@ import { AdminBoardComponent } from './Component/admin-board/admin-board.compone
 import { ProductComponent } from './Component/product/product.component';
 import { ProductDetailsComponent } from './Component/product-details/product-details.component';
 import { ProductCategoryComponent } from './product-category/product-category.component';
+import { CartComponent } from './Component/Cart/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { ProductCategoryComponent } from './product-category/product-category.co
     AdminBoardComponent,
     ProductComponent,
     ProductDetailsComponent,
-    ProductCategoryComponent
+    ProductCategoryComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,

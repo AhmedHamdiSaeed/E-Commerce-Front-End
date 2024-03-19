@@ -10,6 +10,7 @@ import { Product } from '../../models/product';
 export class ProductComponent implements OnInit {
   products: Product[] = [];
   isLoading: boolean = false;
+  cartProducts: any[] = [];
   error: string = "";
 
   constructor(private productService: ProductService) {}
@@ -29,4 +30,21 @@ export class ProductComponent implements OnInit {
         }
       );
   }
+  //hanel add to cart
+  addToCart(product: Product) {
+    if("cart" in localStorage){
+     this.cartProducts = JSON.parse(localStorage.getItem("cart")!);
+     let isExist= this.cartProducts.find(i => i._id === product._id);
+     if(isExist){
+      alert("Product already");
+     }else{
+       this.cartProducts.push(product);
+       localStorage.setItem("cart", JSON.stringify(this.cartProducts));
+     }
+    }else{
+     this.cartProducts.push(product);
+     localStorage.setItem("cart", JSON.stringify(this.cartProducts));
+    }
+   
+   }
 }

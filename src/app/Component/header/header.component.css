@@ -1,20 +1,18 @@
-.navbar-brand {
-  font-size: 1.5rem;
-}
 
-.navbar-nav .nav-link {
-  font-size: 1.1rem;
-  margin-right: 15px;
+.active{
+  background-color: #0aad0a; 
+  color: #fff !important;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
 }
-
-.navbar-nav .nav-item:last-child .nav-link {
-  margin-right: 0;
+.nav-item{
+  padding-left: 10px;
 }
-
-.navbar-nav .nav-item .fa-user {
-  margin-right: 5px;
+.logo{
+  padding: 10px;
 }
-
-.form-control {
-  width: 300px;
+.logo i{
+ color: #0aad0a;
+ padding: 5px;
 }

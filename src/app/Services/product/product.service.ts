@@ -6,7 +6,7 @@ import { CategoryService } from '../category/category-services.service';
   providedIn: 'root',
 })
 export class ProductService {
-  private apiUrl = 'http://localhost:3000/api/v1/products';
+  private apiUrl = 'http://localhost:4000/api/v1/products';
 
   constructor(private http: HttpClient) {}
   getProducts() {
