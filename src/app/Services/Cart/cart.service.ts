@@ -8,10 +8,13 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CartService {
   private apiUrl = 'http://localhost:4000/api/v1/cart';
-
+  
   constructor(private http: HttpClient) { }
   getCarts() {
     return this.http.get(`${this.apiUrl}`);
   }
+
+
+  
 
 }

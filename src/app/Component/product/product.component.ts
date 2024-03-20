@@ -12,7 +12,7 @@ export class ProductComponent implements OnInit {
   isLoading: boolean = false;
   cartProducts: any[] = [];
   error: string = "";
-
+  successMessage: string ="";
   constructor(private productService: ProductService) {}
 
   ngOnInit() {
@@ -31,13 +31,18 @@ export class ProductComponent implements OnInit {
       );
   }
   //hanel add to cart
+  alertAppear(){
+    this.successMessage='Product added to cart!';
+    setTimeout(() => {
+      this.successMessage = ''; 
+    }, 3000);
+  }
   addToCart(product: Product) {
+  this.alertAppear();
     if("cart" in localStorage){
      this.cartProducts = JSON.parse(localStorage.getItem("cart")!);
      let isExist= this.cartProducts.find(i => i._id === product._id);
-     if(isExist){
-      alert("Product already");
-     }else{
+     if(!isExist){
        this.cartProducts.push(product);
        localStorage.setItem("cart", JSON.stringify(this.cartProducts));
      }
