@@ -12,7 +12,7 @@ import { CartComponent } from '../Cart/cart/cart.component';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  cartLength: number = 0;
+  cartlength: number = 0;
   isAuthed: boolean = false ;
   userSub !: Subscription ;
   user !: User | null ;
@@ -27,10 +27,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
   getCartProductLength(){
     this.cartService.getCartLength().subscribe((length) => {
-      this.cartLength = length;
+      this.cartlength = length;
       console.log(length)
     });
-    
   }
   
  

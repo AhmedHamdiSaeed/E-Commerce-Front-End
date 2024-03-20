@@ -32,8 +32,8 @@ export class CartComponent {
   
   removeItem(i: number) {
   this.cartProducts .splice(i, 1);
-  this. setItem();
   this.cartService.updateCartLength(this.cartProducts.length);
+  this. setItem();
   }
   increaseQuantity(product: Product) {
     product.quantity++;

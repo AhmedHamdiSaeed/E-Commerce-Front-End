@@ -9,14 +9,17 @@ import { HttpClient } from '@angular/common/http';
 export class CartService {
   private apiUrl = 'http://localhost:4000/api/v1/cart';
   
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {   this.updateCartLengthFromLocalStorage();}
   getCarts() {
     return this.http.get(`${this.apiUrl}`);
   }
   cartProducts: any[] = [];
   private cartLengthSubject = new BehaviorSubject<number>(0);
 
-
+  private updateCartLengthFromLocalStorage() {
+    const cartItems: Product[] = JSON.parse(localStorage.getItem("cart") || '[]');
+    this.updateCartLength(cartItems.length);
+  }
   addToCart(product: Product) {
     let cartProducts: Product[] = JSON.parse(localStorage.getItem("cart") || '[]');
     let isExist = cartProducts.find(i => i._id === product._id);
