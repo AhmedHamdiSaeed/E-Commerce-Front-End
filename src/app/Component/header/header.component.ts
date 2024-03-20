@@ -23,14 +23,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.isAuthed = !!user ;
       this.user = user ;
     })
-    this.getCartProduct();
+    this.getCartProductLength();
   }
-  getCartProduct(){
+  getCartProductLength(){
     this.cartService.getCartLength().subscribe((length) => {
       this.cartLength = length;
-      console.log(  this.cartLength)
+      console.log(length)
     });
-
+    
   }
   
  

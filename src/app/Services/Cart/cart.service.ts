@@ -13,7 +13,7 @@ export class CartService {
   getCarts() {
     return this.http.get(`${this.apiUrl}`);
   }
-  private cartItems: any[] = [];
+  cartProducts: any[] = [];
   private cartLengthSubject = new BehaviorSubject<number>(0);
 
 
