@@ -12,7 +12,7 @@ import { CartComponent } from '../Cart/cart/cart.component';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  cartProducts: any[] = [];
+  cartLength: number = 0;
   isAuthed: boolean = false ;
   userSub !: Subscription ;
   user !: User | null ;
@@ -26,16 +26,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.getCartProduct();
   }
   getCartProduct(){
-    if("cart" in localStorage){
-     this.cartProducts = JSON.parse(localStorage.getItem("cart")!);
-     console.log( this.cartProducts)
-     this.setItem()
-    } 
+    this.cartService.getCartLength().subscribe((length) => {
+      this.cartLength = length;
+      console.log(  this.cartLength)
+    });
 
   }
-  setItem(){
-    localStorage.setItem("cart", JSON.stringify(this.cartProducts));
-  }
+  
  
   ngOnDestroy(): void {
     this.userSub.unsubscribe() ;

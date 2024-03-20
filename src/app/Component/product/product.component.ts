@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../Services/product/product.service';
 import { Product } from '../../models/product';
+import { CartService } from '../../Services/Cart/cart.service';
 
 @Component({
   selector: 'app-product',
@@ -13,7 +14,7 @@ export class ProductComponent implements OnInit {
   cartProducts: any[] = [];
   error: string = "";
   successMessage: string ="";
-  constructor(private productService: ProductService) {}
+  constructor(private productService: ProductService,private cartService: CartService) {}
 
   ngOnInit() {
     this.isLoading = true;
@@ -38,18 +39,7 @@ export class ProductComponent implements OnInit {
     }, 3000);
   }
   addToCart(product: Product) {
-  this.alertAppear();
-    if("cart" in localStorage){
-     this.cartProducts = JSON.parse(localStorage.getItem("cart")!);
-     let isExist= this.cartProducts.find(i => i._id === product._id);
-     if(!isExist){
-       this.cartProducts.push(product);
-       localStorage.setItem("cart", JSON.stringify(this.cartProducts));
-     }
-    }else{
-     this.cartProducts.push(product);
-     localStorage.setItem("cart", JSON.stringify(this.cartProducts));
-    }
-   
+  this.alertAppear();  
+  this.cartService.addToCart(product);
    }
 }
