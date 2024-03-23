@@ -9,18 +9,18 @@ export class AdminServicesService {
   constructor( private http: HttpClient) { }
 
   getProducts(){
-   return this.http.get('http://localhost:4000/api/v1/admin/products') ;
+   return this.http.get('http://localhost:3000/api/v1/admin/products') ;
   }
 
   getOrders(){
-    return this.http.get('http://localhost:4000/api/v1/admin/orders') ;
+    return this.http.get('http://localhost:3000/api/v1/admin/orders') ;
    }
 
    getCategories(){
-    return this.http.get('http://localhost:4000/api/v1/admin/categories') ;
+    return this.http.get('http://localhost:3000/api/v1/admin/categories') ;
    }
 
    getUsers(){
-    return this.http.get('http://localhost:4000/api/v1/admin/users') ;
+    return this.http.get('http://localhost:3000/api/v1/admin/users') ;
    }
 }

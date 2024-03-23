@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../Services/product/product.service';
 import { Product } from '../../models/product';
 import { CartService } from '../../Services/Cart/cart.service';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 
 @Component({
   selector: 'app-product',
@@ -9,12 +9,13 @@ import { CartService } from '../../Services/Cart/cart.service';
   styleUrls: ['./product.component.css'] // Correct property name
 })
 export class ProductComponent implements OnInit {
+
   products: Product[] = [];
   isLoading: boolean = false;
   cartProducts: any[] = [];
   error: string = "";
   successMessage: string ="";
-  constructor(private productService: ProductService,private cartService: CartService) {}
+  constructor(private productService: ProductService,private cartService: CartService,private _Renderer2:Renderer2) {}
 
   ngOnInit() {
     this.isLoading = true;
@@ -35,11 +36,12 @@ export class ProductComponent implements OnInit {
   alertAppear(){
     this.successMessage='Product added to cart!';
     setTimeout(() => {
-      this.successMessage = ''; 
+      this.successMessage = '';
     }, 3000);
   }
   addToCart(product: Product) {
-  this.alertAppear();  
+  this.alertAppear();
   this.cartService.addToCart(product);
    }
+
 }

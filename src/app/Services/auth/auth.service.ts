@@ -19,7 +19,7 @@ export class AuthService {
   userSubject  = new BehaviorSubject<User | null>(null);
 
   register( fname: string , lname: string , email: string , password: string){
-    return  this.http.post('http://localhost:4000/api/v1/register' , {
+    return  this.http.post('http://localhost:3000/api/v1/register' , {
       "fname": fname,
       "lname": lname,
       "email":email ,
@@ -30,7 +30,7 @@ export class AuthService {
 
 
   login(email: string , password: string){
-   return  this.http.post<AuthResponseData>('http://localhost:4000/api/v1/login' , {
+   return  this.http.post<AuthResponseData>('http://localhost:3000/api/v1/login' , {
       "email": email ,
       "password": password
     }).pipe(tap((resData)=>{

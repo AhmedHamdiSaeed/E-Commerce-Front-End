@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class CartService {
-  private apiUrl = 'http://localhost:4000/api/v1/cart';
+  private apiUrl = 'http://localhost:3000/api/v1/cart';
   
   constructor(private http: HttpClient) {   this.updateCartLengthFromLocalStorage();}
   getCarts() {
