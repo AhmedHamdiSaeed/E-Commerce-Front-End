@@ -23,16 +23,15 @@ export class ProductComponent implements OnInit {
   }
 
   addProduct() {
-    this.router.navigateByUrl('/add-product'); // Assuming '/add-product' is the route for adding a new product
+    this.router.navigateByUrl('/add-product');
   }
 
   editProduct(productId: string) {
-    this.router.navigateByUrl(`/edit-product/${productId}`); // Assuming '/edit-product/:id' is the route for editing a product
+    this.router.navigateByUrl(`/edit-product/${productId}`);
   }
 
   deleteProduct(productId: string) {
     this.productService.deleteProduct(productId).subscribe(() => {
-      // Remove the deleted product from the displayed products
       this.products = this.products.filter((product: any) => product._id !== productId);
     });
   }
