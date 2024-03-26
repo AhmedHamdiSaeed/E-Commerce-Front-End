@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
-
+import {baseURL} from '../../../.././env'
 @Injectable({
   providedIn: 'root'
 })
@@ -13,7 +13,14 @@ export class AdminServices{
   // getProducts(){
   //  return this.http.get('http://localhost:3000/api/v1/admin/products') ;
   // }
+<<<<<<< HEAD
   private apiProduct : string ='http://localhost:4000/api/v1/admin/products';
+=======
+
+
+  private apiProduct : string =`${baseURL}/admin/products`;
+
+>>>>>>> 5185cb0251d1b1e6974eb166bc93f9d380bf377b
   getProducts() {
     return this.http.get<any>(this.apiProduct).pipe(
       map((res) => {
@@ -23,7 +30,13 @@ export class AdminServices{
     );
   }
   getOrders() {
+<<<<<<< HEAD
     return this.http.get<any>('http://localhost:4000/api/v1/admin/orders').pipe(
+=======
+
+    return this.http.get<any>(`${baseURL}/admin/orders`).pipe(
+
+>>>>>>> 5185cb0251d1b1e6974eb166bc93f9d380bf377b
       map((res) => {
         return res;
       })
@@ -77,7 +90,11 @@ export class AdminServices{
   //   return this.http.patch('https://api-cafebuyers.onrender.com/orders/' + id, status);
   // }
   getUsers() {
+<<<<<<< HEAD
     return this.http.get('http://localhost:4000/api/v1/admin/users');
+=======
+    return this.http.get('admin/users');
+>>>>>>> 5185cb0251d1b1e6974eb166bc93f9d380bf377b
   }
 }
 

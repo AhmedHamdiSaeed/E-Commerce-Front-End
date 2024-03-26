@@ -1,10 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import {baseURL} from '../../../.././env'
+
 @Injectable({
   providedIn: 'root',
 })
 export class CategoryService {
-  private apiUrl = 'http://localhost:4000/api/v1/category';
+  private apiUrl =  `${baseURL}/category`;
   constructor(private http: HttpClient) {}
 
   getCategories() {

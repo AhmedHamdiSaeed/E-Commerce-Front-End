@@ -1,24 +1,30 @@
+table {
+  width: 100%;
+}
 
-.custom-card {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s;
-  }
-  
-  .custom-card:hover {
-    transform: translateY(-5px);
-  }
-  
-  .alert {
-    position: fixed;
-    z-index: 3;
-    top: 5;
-    right: 0;
-    width: 300px;
-    margin: 20px; 
-    font-size: 20px;
-    text-align: center;
-    background-color: rgb(76, 162, 98);
-    color: #ffffff;
-  }
-  
-  
+.mat-mdc-form-field {
+  font-size: 17px;
+  width: 25%;
+  margin-top: 30px;
+}
+
+td,
+th {
+  width: 25%;
+}
+
+.icon {
+  display: flex;
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+}
+
+ng-container img {
+  width: 40px;
+  height: 40px;
+}

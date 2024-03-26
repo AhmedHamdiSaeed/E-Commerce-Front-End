@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../../Services/product/product.service';
 import { Product } from '../../models/product';
 import { Category } from '../../models/categoryModel';
 import { CartService } from '../../Services/Cart/cart.service';
+import { AuthService } from '../../Services/auth/auth.service';
 
 
 @Component({
@@ -12,7 +13,7 @@ import { CartService } from '../../Services/Cart/cart.service';
   styleUrls: ['./categories.component.css'],
 })
 export class CategoriesComponent implements OnInit {
-  constructor(private route: ActivatedRoute, private productService: ProductService, private cartService: CartService,) {}
+  constructor(private route: ActivatedRoute,private router: Router, private productService: ProductService, private cartService: CartService,private auth : AuthService) {}
 
   allCategories: Category[] = [];
   products: Product[] = [];
@@ -83,6 +84,10 @@ export class CategoriesComponent implements OnInit {
     }, 3000);
   }
   addToCart(product: Product) {
+  if(!this.auth.isAuthenticated()){
+    this.router.navigate(['/login']);
+    return;
+  }
   this.alertAppear();
   this.cartService.addToCart(product);
    }

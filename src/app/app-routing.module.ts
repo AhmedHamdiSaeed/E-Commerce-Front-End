@@ -10,13 +10,14 @@ import { ProductDetailsComponent } from './Component/product-details/product-det
 import { CartComponent } from './Component/Cart/cart/cart.component';
 import { HeaderComponent } from './Component/header/header.component';
 
+
 const routes: Routes = [
 
   { path: 'home', component: HomeComponent },
   { path: 'register', component: SignupComponent },
   { path: 'login', component: LoginComponent },
   { path: 'products/category', component: CategoriesComponent },
-  { path: 'products', component: ProductComponent },
+  // { path: 'products', component: ProductComponent },
   { path: 'products/:id', component: ProductDetailsComponent },
   { path: '', redirectTo: '/', pathMatch: 'full' },
   { path: 'cart', component: CartComponent },

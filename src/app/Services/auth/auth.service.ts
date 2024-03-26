@@ -5,6 +5,7 @@ import { AuthResponseData } from '../../models/authResponse';
 import { BehaviorSubject } from 'rxjs';
 import {tap} from 'rxjs/operators' ;
 import {  Router } from '@angular/router';
+import {baseURL} from '../../../.././env'
 
 
 @Injectable({
@@ -19,7 +20,7 @@ export class AuthService {
   userSubject  = new BehaviorSubject<User | null>(null);
 
   register( fname: string , lname: string , email: string , password: string){
-    return  this.http.post('http://localhost:4000/api/v1/register' , {
+    return  this.http.post( `${baseURL}/register` , {
       "fname": fname,
       "lname": lname,
       "email":email ,
@@ -31,7 +32,7 @@ export class AuthService {
 
   
   login(email: string , password: string){
-   return  this.http.post<AuthResponseData>('http://localhost:4000/api/v1/login' , {
+   return  this.http.post<AuthResponseData>( `${baseURL}/login` , {
       "email": email ,
       "password": password
     }).pipe(tap((resData)=>{
@@ -67,7 +68,10 @@ export class AuthService {
       }
     }
   }
-
+  isAuthenticated(): boolean {
+    const userData = localStorage.getItem('userData');
+    return !!userData;
+  }
   logout(){
     this.userSubject.next(null);
     localStorage.removeItem("userData")

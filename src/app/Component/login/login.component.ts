@@ -26,7 +26,7 @@ onSubmit(form : NgForm){
       console.log(data.user.role);
 
       this.isLoading = false ;
-      this.router.navigate(['/products']) ;
+      this.router.navigate(['/products/category']) ;
 
     } , (err) => {
       console.log(err) ;
