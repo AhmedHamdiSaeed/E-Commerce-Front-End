@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
+import {
+  BrowserModule,
+  provideClientHydration,
+} from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -28,6 +31,7 @@ import { ProductComponent } from './Component/product/product.component';
 import { ProductDetailsComponent } from './Component/product-details/product-details.component';
 import { CartComponent } from './Component/Cart/cart/cart.component';
 import { ContentComponent } from './Component/content/content.component';
+import { AboutUsComponent } from './Component/about-us/about-us.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +47,8 @@ import { ContentComponent } from './Component/content/content.component';
     ProductComponent,
     ProductDetailsComponent,
     CartComponent,
-    ContentComponent
+    ContentComponent,
+    AboutUsComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,9 +64,16 @@ import { ContentComponent } from './Component/content/content.component';
     MatTabsModule,
     MatSelectModule,
     MatProgressSpinnerModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
-  providers: [ {provide:  HTTP_INTERCEPTORS , useClass: AuthInterceptorService , multi: true}, provideClientHydration()],
-  bootstrap: [AppComponent]
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true,
+    },
+    provideClientHydration(),
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
