@@ -7,11 +7,9 @@
       <p>{{ product.description }}</p>
       <p>Price: {{ product.price }}</p>
       <div class="action-buttons">
-        <!-- Edit product icon -->
         <button mat-icon-button (click)="editProduct(product._id)">
           <i class="bi bi-pencil-fill"></i> <!-- Bootstrap pencil icon -->
         </button>
-        <!-- Delete product icon -->
         <button mat-icon-button (click)="deleteProduct(product._id)">
           <i class="bi bi-trash-fill"></i> <!-- Bootstrap trash icon -->
         </button>
@@ -19,5 +17,4 @@
     </div>
   </div>
 
-  <!-- Button to add a new product -->
 </div>
