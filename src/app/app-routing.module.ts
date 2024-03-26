@@ -28,7 +28,7 @@ const routes: Routes = [
   {path: 'Admin' , component: AdminBoardComponent ,  canActivate: [AuthGuardService]},
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'Not-Found', component: NotFoundComponent },
-  {path:'userProfile',component:UserProfileComponent},
+  {path:'Profile',component:UserProfileComponent},
   { path: '**', redirectTo: 'Not-Found' },
 ];
 
