@@ -1,21 +1,165 @@
-<nav class=" bg-light sidebar" [ngClass]="{'collapsed': !isExpanded}" (mouseenter)="isExpanded = true" (mouseleave)="isExpanded = false">
-    <!-- <button class="collapse-btn" (click)="toggleCollapse()"><i class="fa fa-bars"></i></button> -->
-    <div class="sidebar-sticky sidebar-content">
-        <ul class="nav flex-column gap-3"> 
-            
-             <li class="nav-item">
-                <button class="btn btn-primary" (click)="getProducts()">products</button>
-            </li> 
-            <li class="nav-item">
-              <button class="btn btn-primary" (click)="getOrders()">orders</button>
-          </li> 
-          <li class="nav-item">
-            <button class="btn btn-primary" (click)="getCategories()">categories</button>
-        </li> 
-        <li class="nav-item">
-          <button class="btn btn-primary" (click)="getUsers()">users</button>
-      </li> 
+<mat-sidenav-container>
+  <mat-sidenav mode="side" #sidenav role="navigation">
+      <div class="container">
+          <div class="navigation">
+              <ul>
+                  <li style="border-bottom: 3px solid rgb(5, 157, 13);">
+                      <a href="#">
+                          <span class="icon">
+                              <mat-icon>Shopping</mat-icon>
+                          </span>
+                          <span class="title" style="font-weight: bolder; ">Shopping SyStem</span>
+                      </a>
+                  </li>
 
-        </ul>
-    </div>
-</nav>
+                  <li>
+                      <a href="#">
+                          <span class="icon">
+                              <mat-icon>home</mat-icon>
+                          </span>
+                          <span class="title">Dashboard</span>
+                      </a>
+                  </li>
+
+                  <li>
+                      <a href="#">
+                          <span class="icon">
+                              <mat-icon>woman</mat-icon>
+                          </span>
+                          <span class="title">Customers</span>
+                      </a>
+                  </li>
+
+                  <li>
+                      <a href="#">
+                          <span class="icon">
+                              <mat-icon>man</mat-icon>
+                          </span>
+                          <span class="title">Messages</span>
+                      </a>
+                  </li>
+
+                  <li>
+                      <a href="#">
+                          <span class="icon">
+                              <mat-icon>help</mat-icon>
+                          </span>
+                          <span class="title">Help</span>
+                      </a>
+                  </li>
+
+                  <li>
+                      <a href="#">
+                          <span class="icon">
+                              <mat-icon>settings</mat-icon>
+                          </span>
+                          <span class="title">Settings</span>
+                      </a>
+                  </li>
+
+                  <li>
+                      <a href="#">
+                          <span class="icon">
+                              <mat-icon>face</mat-icon>
+                          </span>
+                          <span class="title">Password</span>
+                      </a>
+                  </li>
+
+                  <li (click)="logout()">
+                      <a href="#">
+                          <span class="icon">
+                              <mat-icon>logout</mat-icon>
+                          </span>
+                          <span class="title">Sign Out</span>
+                      </a>
+                  </li>
+              </ul>
+          </div>
+      </div>
+  </mat-sidenav>
+  <mat-sidenav-content>
+      <mat-toolbar color="basic">
+          <div fxLayoutAlign=" center">
+              <button mat-icon-button (click)="sidenav.toggle()">
+                  <mat-icon>menu</mat-icon>
+              </button>
+              <i class="fa fa-strikethrough" aria-hidden="true"></i>
+              <span style="font-size: larger;">Admin</span>
+          </div>
+          <div class="search">
+              <label>
+                  <input type="text" placeholder="Search here">
+                  <i class="fa fa-search" aria-hidden="true"></i>
+              </label>
+          </div>
+
+          <div class="user">
+              <img src="assets\home-img-1.png" alt="">
+          </div>
+      </mat-toolbar>
+      <!-- ======================= Cards ================== -->
+      <div class="cardBox">
+          <div class="card">
+              <div>
+                  <div class="numbers">{{products?.views}}</div>
+                  <div class="cardName">Daily Views</div>
+              </div>
+
+              <div class="iconBx">
+                  <i class="fa-solid fa-eye"></i>
+              </div>
+          </div>
+
+          <div class="card">
+              <div>
+                  <div class="numbers">{{products?.count}}</div>
+                  <div class="cardName">Sales</div>
+              </div>
+
+              <div class="iconBx">
+                  <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+              </div>
+          </div>
+
+          <div class="card">
+              <div>
+                  <div class="numbers">{{users?.length }}</div>
+                  <div class="cardName">Users</div>
+              </div>
+
+              <div class="iconBx">
+                  <i class="fa-sharp fa-solid fa-users"></i>
+              </div>
+          </div>
+
+          <div class="card">
+              <div>
+                  <div class="numbers">${{totalSales}}</div>
+                  <div class="cardName">Earning</div>
+              </div>
+
+              <div class="iconBx">
+              <i class="fa-solid fa-money-bill-trend-up"></i>
+              </div>
+          </div>
+      </div>
+
+      <mat-tab-group>
+          <mat-tab label="Orders State">
+              <ng-template mat-tab-label>
+                  <mat-icon>man</mat-icon>
+                  <span style="font-weight: bolder; font-size: large;">User Data</span>
+              </ng-template>
+              <app-content></app-content>
+          </mat-tab>
+          <mat-tab label="Products">
+              <ng-template mat-tab-label>
+                  <mat-icon> sort</mat-icon>
+                  <span style="font-weight: bolder; font-size: large;"> Products </span>
+              </ng-template>
+              <app-product></app-product>
+          </mat-tab>
+      </mat-tab-group>
+  </mat-sidenav-content>
+</mat-sidenav-container>

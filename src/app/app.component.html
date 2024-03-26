@@ -2,7 +2,7 @@
 <app-header ></app-header>
 <div class="container-fluid">
     <div class="row">
-         <div class="col-md-2 d-none d-md-block " *ngIf="User?.role=== 'admin'">
+         <div *ngIf="User?.role=== 'admin'">
              <app-admin-board></app-admin-board>
          </div>
          <div class="col-md-12  mt-5 ">

@@ -1,18 +1,30 @@
+/* Navbar Styling */
+.navbar {
+  background-color: #fff; /* Adjust background color */
+  padding: 10px; /* Add padding */
+}
 
-.active{
-  background-color: #0aad0a; 
+/* Active Link Styling */
+.active {
+  background-color: #0aad0a;
   color: #fff !important;
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
 }
-.nav-item{
-  padding-left: 10px;
+
+/* Navigation Links */
+.nav-item {
+  padding: 0 10px; /* Adjust padding */
 }
-.logo{
+
+/* Logo Styling */
+.logo {
   padding: 10px;
+  margin-right: 20px; /* Add margin for spacing */
 }
-.logo i{
- color: #0aad0a;
- padding: 5px;
+
+.logo i {
+  color: #0aad0a;
+  padding: 5px;
 }

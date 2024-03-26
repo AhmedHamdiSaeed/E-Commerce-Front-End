@@ -1,47 +1,53 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
-import { AdminServicesService } from '../../Services/admin/admin-services.service';
+import { Component, ElementRef, ViewChild , OnInit } from '@angular/core';
+import { AdminServices } from '../../Services/admin/admin-services.service';
+import {AuthService} from "../../Services/auth/auth.service"
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-board',
   templateUrl: './admin-board.component.html',
   styleUrl: './admin-board.component.css'
 })
-export class AdminBoardComponent {
-  isExpanded: boolean = false ;
+export class AdminBoardComponent implements OnInit {
+  products: any;
+  orderInfo = [];
+  users: any;
+  totalSales = 0;
+  constructor(
+    private router: Router,
+    private product: AdminServices,
+   private auth : AuthService
+  ) {}
+  ngOnInit(): void {
+    this.getProducts();
+    // this.getOrders();
+    this.getUser();
+    console.log(this.totalSales);
 
-
-  constructor( private adminServices : AdminServicesService) {}
-
-
-
-  getProducts(){
-    this.adminServices.getProducts().subscribe( (products)=>{
-      console.log(products);
-      console.log("pro");
-
-
-    })
+    console.log(this.orderInfo);
   }
-
-  getOrders(){
-    this.adminServices.getOrders().subscribe( (orders)=>{
-      console.log(orders);
-
-    })
+  getUser() {
+    this.product.getUsers().subscribe((res) => {
+      this.users = res;
+    });
   }
-
-  getCategories(){
-    this.adminServices.getCategories().subscribe( (cat)=>{
-      console.log(cat);
-
-    })
+  // getOrders() {
+  //   this.product.getOrders().subscribe((res) => {
+  //     this.orderInfo = res;
+  //     this.orderInfo.map((item) => {
+  //       this.totalSales += item;
+  //     });
+  //   });
+  // }
+  logout() {
+    this.auth.logout();
+    localStorage.removeItem('token');
+    this.router.navigateByUrl('/login');
   }
-
-  getUsers(){
-    this.adminServices.getUsers().subscribe( (users)=>{
-      console.log(users);
-
-    })
+  getProducts() {
+    this.product.getProducts().subscribe((res) => {
+      this.products = res;
+      console.log(res);
+    });
   }
-
 }
