@@ -6,8 +6,11 @@
       <div *ngFor="let category of allCategories"
         class="category-border border text-center text-uppercase border-2 mb-2 rounded-2">
         <!-- Ensure that getSpecificCategory method is correctly called on click -->
-        <img (click)="getSpecificCategory(category._id)" height="150" class="w-75 d-block mx-auto py-2"
-          [src]="category.image" [alt]="category.name">
+        <!-- <img (click)="getSpecificCategory(category._id)" height="150" class="w-75 d-block mx-auto py-2"
+          [src]="category.image" [alt]="category.name"> -->
+          <img (click)="getSpecificCategory(category._id)" height="150" class="w-75 d-block mx-auto py-2"
+          src="../../../assets/project images/images (1).jpg" [alt]="category.name">
+        
         <h1 class="h4 py-3 text-main">{{category.name}}</h1>
       </div>
     </div>
@@ -19,7 +22,8 @@
         <div class="col-md-4" *ngFor="let product of products">
           <!-- Display product details -->
           <div class="card mb-3 custom-card">
-            <img class="card-img-top" [src]="product.image" [alt]="product.title">
+            <!-- <img class="card-img-top" [src]="product.image" [alt]="product.title"> -->
+            <img class="card-img-top" src="../../../assets/project images/1.png" [alt]="product.title"> 
             <div class="card-body">
               <h5 class="card-title">{{ product.title }}</h5>
               <p class="card-text">{{ product.description }}</p>
