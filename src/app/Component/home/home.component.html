@@ -49,19 +49,6 @@
           </ng-container>
         </div>
       </section>
-      
-    <section class="container-fluid  category">
-    <h2>Shop Popular Categoties</h2>
-      <div *ngFor="let category of allCategories"
-
-        class="category-border border text-center text-uppercase border-2 mb-2 rounded-2">
-        <a [routerLink]="['/products/category']">
-            <img (click)="getSpecificCategory(category._id)" height="150" class="w-75 d-block mx-auto py-2"
-            [src]="category.image" [alt]="category.name">
-
-        <h1 class="h4 py-3 text-main">{{category.name}}</h1>  </a>
-      </div>
-    </section>
 
     <section class="container-fluid customer-reviews">
         <h2>Customer Reviews</h2>
