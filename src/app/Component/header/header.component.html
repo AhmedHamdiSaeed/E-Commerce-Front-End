@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top header" >
   <div class="container-fluid">
     <div class="logo">
       <i style="font-size: 25px;" class="bi bi-bag-heart"></i>
@@ -33,7 +33,16 @@
         </li>
         <li class="nav-item">
           <i class="fa-solid fa-user"></i>
-          <a class="nav-link" *ngIf="isAuthed">{{ user?.fname | uppercase }} {{ user?.lname | uppercase }}</a>
+         
+          <div class="dropdown" *ngIf="isAuthed">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              {{ user?.fname | uppercase }} {{ user?.lname | uppercase }}          
+              </button>
+            <ul class="dropdown-menu dropdown-content" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" routerLink="/userProfile" (click)="getUser()">Your Account</a></li>
+              <li><a class="dropdown-item" href="#">Your Order</a></li>
+            </ul>
+          </div>
         </li>
       </ul>
       <button routerLink="/cart" class="btn ">
