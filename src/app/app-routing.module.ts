@@ -10,6 +10,7 @@ import { ProductDetailsComponent } from './Component/product-details/product-det
 import { CartComponent } from './Component/Cart/cart/cart.component';
 import { HeaderComponent } from './Component/header/header.component';
 
+
 const routes: Routes = [
 
   { path: 'home', component: HomeComponent },
