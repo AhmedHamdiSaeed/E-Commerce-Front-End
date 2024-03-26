@@ -32,7 +32,7 @@ onSubmit(form : NgForm){
       }
       else
       {
-        this.router.navigate(['/products/category']) ;
+        this.router.navigate(['/Profile']) ;
       }
 
     } , (err) => {
