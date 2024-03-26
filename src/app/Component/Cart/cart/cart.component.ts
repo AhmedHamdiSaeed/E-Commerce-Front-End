@@ -50,6 +50,7 @@ Clear(){
   this.cartProducts = [];
   this.setItem();
   this.getTotalPrice();
+  this.cartService.updateCartLength(this.cartProducts.length);
 }
 getTotalPrice(): number {
 
