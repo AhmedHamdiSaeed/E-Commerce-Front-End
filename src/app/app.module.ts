@@ -29,6 +29,7 @@ import { ProductComponent } from './Component/product/product.component';
 import { ProductDetailsComponent } from './Component/product-details/product-details.component';
 import { CartComponent } from './Component/Cart/cart/cart.component';
 import { ContentComponent } from './Component/content/content.component';
+import { UserProfileComponent } from './Component/user-profile/user-profile.component';
 import { AboutUsComponent } from './Component/about-us/about-us.component';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { EditProductDialogComponent } from './Component/edit-product-dialog/edit-product-dialog.component';
@@ -49,7 +50,12 @@ import { EditProductDialogComponent } from './Component/edit-product-dialog/edit
     CartComponent,
     ContentComponent,
     AboutUsComponent,
+
     EditProductDialogComponent,
+
+    EditProductDialogComponent,
+    ContentComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
