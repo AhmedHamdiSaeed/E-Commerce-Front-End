@@ -22,8 +22,9 @@
         <div class="col-md-4" *ngFor="let product of products">
           <!-- Display product details -->
           <div class="card mb-3 custom-card">
-            <!-- <img class="card-img-top" [src]="product.image" [alt]="product.title"> -->
-            <img class="card-img-top" src="../../../assets/project images/1.png" [alt]="product.title"> 
+            <div class="d-flex justify-content-center align-items-center">
+              <img class="card-img-top" [src]="getImageUrl(product.image)" [alt]="product.title">
+          </div>
             <div class="card-body">
               <h5 class="card-title">{{ product.title }}</h5>
               <p class="card-text">{{ product.description }}</p>

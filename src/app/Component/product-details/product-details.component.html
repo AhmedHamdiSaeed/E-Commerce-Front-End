@@ -4,9 +4,9 @@
       <app-loading-spinner></app-loading-spinner>
     </div>
     <div class="row">
-      <div class="col-md-6">
-        <img [src]="product.image" [alt]="product.title" class="img-fluid" />
-      </div>
+      <div class="col-md-6 d-flex justify-content-center align-items-center">
+        <img class="card-img-top img-fluid" [src]="getImageUrl(product.image)" [alt]="product.title">
+    </div>
       <div class="col-md-6 product-details">
         <h2>{{ product.title }}</h2>
         <p class="lead">{{ product.description }}</p>
@@ -17,6 +17,7 @@
         <p><strong>Company:</strong> {{ product.company }}</p>
         <p><strong>Sold:</strong> {{ product.sold }}</p>
       </div>
+     
     </div>
   </ng-container>
 

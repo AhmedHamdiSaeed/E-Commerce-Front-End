@@ -95,4 +95,8 @@ export class CategoriesComponent implements OnInit {
     console.log('Category clicked:', categoryId);
     this.getProductsByCategory(categoryId);
   }
+  //load imge
+  getImageUrl(imagePath: string): string {
+    return `../../../assets${imagePath}`;
+  }
 }
