@@ -28,17 +28,17 @@
         <li class="nav-item">
           <a class="nav-link" routerLinkActive="active" routerLink="products/category">Products</a>
         </li>
-        <!-- <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" routerLink="/products">Products</a>
-        </li> -->
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="/about-us">About Us</a>
+        </li>
         <li class="nav-item">
           <i class="fa-solid fa-user"></i>
           <a class="nav-link" *ngIf="isAuthed">{{ user?.fname | uppercase }} {{ user?.lname | uppercase }}</a>
         </li>
       </ul>
-      <button routerLink="/cart" class="btn " >
-        <i style="font-size: 30px;"  class="bi bi-cart-plus"></i>
-       <span class="badge bg-danger" style="font-size: 10px;" >{{cartlength}}</span>
+      <button routerLink="/cart" class="btn ">
+        <i style="font-size: 30px;" class="bi bi-cart-plus"></i>
+        <span class="badge bg-danger" style="font-size: 10px;">{{cartlength}}</span>
       </button>
 
     </div>
