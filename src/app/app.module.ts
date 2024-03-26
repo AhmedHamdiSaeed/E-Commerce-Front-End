@@ -1,6 +1,15 @@
 import { NgModule } from '@angular/core';
+<<<<<<< HEAD
+import { AuthGuardService } from './Services/auth/auth-guard.service';
+import {
+  BrowserModule,
+  provideClientHydration,
+} from '@angular/platform-browser';
+import { MatDialogModule } from '@angular/material/dialog'; // Import MatDialogModule
+=======
 import {BrowserModule, provideClientHydration,} from '@angular/platform-browser';
 import { MatDialogModule } from '@angular/material/dialog';
+>>>>>>> f0842e75ab820fd68252db189b7728f0c7cde945
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -29,11 +38,17 @@ import { ProductComponent } from './Component/product/product.component';
 import { ProductDetailsComponent } from './Component/product-details/product-details.component';
 import { CartComponent } from './Component/Cart/cart/cart.component';
 import { ContentComponent } from './Component/content/content.component';
+<<<<<<< HEAD
+import { AboutUsComponent } from './Component/about-us/about-us.component';
+import { EditProductDialogComponent } from './Component/edit-product-dialog/edit-product-dialog.component';
+import { MatTableModule } from '@angular/material/table';
+=======
 import { UserProfileComponent } from './Component/user-profile/user-profile.component';
 import { AboutUsComponent } from './Component/about-us/about-us.component';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { EditProductDialogComponent } from './Component/edit-product-dialog/edit-product-dialog.component';
 
+>>>>>>> f0842e75ab820fd68252db189b7728f0c7cde945
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,12 +65,16 @@ import { EditProductDialogComponent } from './Component/edit-product-dialog/edit
     CartComponent,
     ContentComponent,
     AboutUsComponent,
+<<<<<<< HEAD
+    EditProductDialogComponent,
+=======
 
     EditProductDialogComponent,
 
     EditProductDialogComponent,
     ContentComponent,
     UserProfileComponent
+>>>>>>> f0842e75ab820fd68252db189b7728f0c7cde945
   ],
   imports: [
     BrowserModule,
@@ -71,6 +90,25 @@ import { EditProductDialogComponent } from './Component/edit-product-dialog/edit
     MatTabsModule,
     MatSelectModule,
     MatProgressSpinnerModule,
+<<<<<<< HEAD
+    AppRoutingModule,
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true,
+    },
+    provideClientHydration(),
+  ],
+  bootstrap: [
+    AppComponent,
+    MatTableModule,
+    MatInputModule,
+    MatDialogModule, // Include MatDialogModule here
+    AppRoutingModule,
+  ],
+=======
     MatTableModule,
     MatInputModule,
     MatDialogModule,
@@ -81,5 +119,6 @@ import { EditProductDialogComponent } from './Component/edit-product-dialog/edit
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true },
   ],
   bootstrap: [AppComponent]
+>>>>>>> f0842e75ab820fd68252db189b7728f0c7cde945
 })
 export class AppModule { }

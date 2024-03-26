@@ -13,8 +13,12 @@ import { HeaderComponent } from './Component/header/header.component';
 import { AboutUsComponent } from './Component/about-us/about-us.component';
 
 import { AdminBoardComponent } from './Component/admin-board/admin-board.component';
+<<<<<<< HEAD
+import { AuthGuardService } from './Services/auth/auth-guard.service';
+=======
 import {AuthGuardService} from './Services/auth/auth-guard.service'
 import { UserProfileComponent } from './Component/user-profile/user-profile.component';
+>>>>>>> f0842e75ab820fd68252db189b7728f0c7cde945
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -22,11 +26,27 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'products/category', component: CategoriesComponent },
   { path: 'about-us', component: AboutUsComponent },
+<<<<<<< HEAD
+  {
+    path: 'Admin/products',
+    component: ProductComponent,
+    canActivate: [AuthGuardService],
+  },
+  { path: 'products/:id', component: ProductDetailsComponent },
+  { path: 'cart', component: CartComponent },
+  {
+    path: 'Admin',
+    component: AdminBoardComponent,
+    canActivate: [AuthGuardService],
+  },
+  { path: '', redirectTo: '/', pathMatch: 'full' },
+=======
    { path: 'Admin/products', component: ProductComponent ,canActivate: [AuthGuardService] },
   { path: 'products/:id', component: ProductDetailsComponent },
   { path: 'cart', component: CartComponent },
   {path: 'Admin' , component: AdminBoardComponent ,  canActivate: [AuthGuardService]},
   { path: '', redirectTo: '/home', pathMatch: 'full' },
+>>>>>>> f0842e75ab820fd68252db189b7728f0c7cde945
   { path: 'Not-Found', component: NotFoundComponent },
   {path:'Profile',component:UserProfileComponent},
   { path: '**', redirectTo: 'Not-Found' },
