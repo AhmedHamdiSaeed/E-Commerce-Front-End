@@ -2,9 +2,6 @@
 <app-header ></app-header>
 <div class="container-fluid">
     <div class="row">
-         <div *ngIf="User?.role=== 'admin'">
-             <app-admin-board></app-admin-board>
-         </div>
          <div class="col-md-12  mt-5 ">
              <router-outlet></router-outlet>
          </div>
