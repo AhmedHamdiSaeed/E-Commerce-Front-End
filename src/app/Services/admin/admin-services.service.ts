@@ -20,7 +20,7 @@ export class AdminServices{
   getProducts() {
     return this.http.get<any>(this.apiProduct).pipe(
       map((res) => {
-        // console.log(res.data);
+        console.log(res.data);
         return res;
       })
     );
@@ -36,7 +36,7 @@ export class AdminServices{
   }
   updateProducts(id: any, product: any) {
     const formData = new FormData();
-    formData.append('name', product.name);
+    formData.append('name', product.title);
     formData.append('price', product.price);
     formData.append('description', product.description);
     if (product.photo) {
