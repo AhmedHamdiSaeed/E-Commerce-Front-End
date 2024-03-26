@@ -1,0 +1,53 @@
+/* .container-fluid, */
+#aboutUs {
+  width: 100%;
+  height: 100vh;
+  background-image: url("../../../assets/project images/aboutus.jpeg");
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  margin-top: -63px;
+}
+
+#aboutUs::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #2f3b3660;
+  z-index: 0;
+}
+
+.c1 {
+  background-color: #1987546c;
+  position: relative;
+  z-index: 1;
+  color: white;
+  padding: 50px;
+  border-radius: 10px 10px;
+  text-align: center;
+}
+
+h2 {
+  font-size: bold;
+}
+
+.c2 {
+  margin-top: 50px;
+}
+
+.c2 p {
+  font-size: 13px;
+}
+
+.col2 {
+  padding: 15px 0;
+
+}
+
+.c2 h2,
+.list h2 {
+  color: #198754
+}

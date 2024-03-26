@@ -20,10 +20,8 @@ export class AdminBoardComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     this.getProducts();
-    // this.getOrders();
     this.getUser();
     console.log(this.totalSales);
-
     console.log(this.orderInfo);
   }
   getUser() {

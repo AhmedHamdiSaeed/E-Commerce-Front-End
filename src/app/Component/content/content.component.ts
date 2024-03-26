@@ -6,9 +6,13 @@ import { AdminServices } from '../../Services/admin/admin-services.service';
   templateUrl: './content.component.html',
   styleUrl: './content.component.css'
 })
+// export interface OrderInfo {
+//   status: string; // Order status property
+// }
+
 export class ContentComponent implements OnInit {
   modeSelect: any;
-  orderInfo: any = [];
+ orderInfo:any = [];
   users: any;
   orders: any;
   select: any;
@@ -16,6 +20,7 @@ export class ContentComponent implements OnInit {
     private serve: AdminServices,
   ) {}
   ngOnInit(): void {
+    // this.getOrderInfo();
     this.orders = this.serve.getOrders().subscribe((res) => {
       this.orderInfo = res;
       // this.select = res.status;
@@ -26,21 +31,16 @@ export class ContentComponent implements OnInit {
       //console.log(this.users);
     });
   }
-  // Status(status, id) {
-  //   const changedStatus = {
-  //     status,
-  //   };
-  //   console.log(status, id);
-
-  //   this.serve.updateStatus(id, { status }).subscribe({
-  //     next: (res) => {
-  //       this.orders = this.serve.getOrders().subscribe((res) => {
-  //         this.orderInfo = res;
-
-  //         // console.log(res);
-  //       });
-  //       console.log(res);
-  //     },
-  //   });
+  // getOrderInfo() {
+  //   this.serve.getOrderInfo() // Replace with your order fetching method
+  //     .subscribe(orders => this.orderInfo = orders);
   // }
+  // updateOrderStatus(order: OrderInfo, newStatus: string) {
+  //   this.serve.updateOrderStatus(order._id, newStatus) // Replace with your order update method
+  //     .subscribe(() => {
+  //       const index = this.orderInfo.findIndex(o => o._id === order._id);
+  //       this.orderInfo[index].status = newStatus;
+  //     });
+  // }
+
 }
