@@ -28,7 +28,7 @@ import { ProductComponent } from './Component/product/product.component';
 import { ProductDetailsComponent } from './Component/product-details/product-details.component';
 import { CartComponent } from './Component/Cart/cart/cart.component';
 import { ContentComponent } from './Component/content/content.component';
-
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,7 +59,8 @@ import { ContentComponent } from './Component/content/content.component';
     MatTabsModule,
     MatSelectModule,
     MatProgressSpinnerModule,
-    AppRoutingModule
+    AppRoutingModule,
+    CarouselModule
   ],
   providers: [ {provide:  HTTP_INTERCEPTORS , useClass: AuthInterceptorService , multi: true}, provideClientHydration()],
   bootstrap: [AppComponent]

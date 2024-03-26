@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: 'products/category', component: CategoriesComponent },
   // { path: 'products', component: ProductComponent },
   { path: 'products/:id', component: ProductDetailsComponent },
-  { path: '', redirectTo: '/', pathMatch: 'full' },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'cart', component: CartComponent },
   { path: 'Not-Found', component: NotFoundComponent },
   { path: '**', redirectTo: 'Not-Found' },
