@@ -1,7 +1,8 @@
-<div class="product-container">
-  <button mat-raised-button color="primary" class="add-product-btn" (click)="addProduct()">Add New Product</button>
-  <div *ngIf="products" class="product-list">
-    <div *ngFor="let product of products" class="product-card">
+<div class="product-container w-100 m-auto mt-2">
+  <button mat-raised-button color="primary" class="add-product-btn btn btn-success ms-5" (click)="addProduct()">Add New
+    Product</button>
+  <div *ngIf="products" class="product-list row w-100 g-2 m-auto mt-2">
+    <div *ngFor="let product of products" class="product-card col-5">
       <img [src]="product.image" alt="Product Image">
       <h3>{{ product.title }}</h3>
       <p>{{ product.description }}</p>

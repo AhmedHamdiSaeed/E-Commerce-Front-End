@@ -54,3 +54,7 @@
 .action-buttons button:focus {
   outline: none;
 }
+
+.product-list {
+  justify-content: space-around;
+}

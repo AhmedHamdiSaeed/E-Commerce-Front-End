@@ -1,13 +1,10 @@
 import { NgModule } from '@angular/core';
-<<<<<<< HEAD
+import { AuthGuardService } from './Services/auth/auth-guard.service';
 import {
   BrowserModule,
   provideClientHydration,
 } from '@angular/platform-browser';
-=======
 import { MatDialogModule } from '@angular/material/dialog'; // Import MatDialogModule
-import { BrowserModule } from '@angular/platform-browser';
->>>>>>> c796b9fd57e7167672925931aa111c6cc4578061
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -35,13 +32,9 @@ import { ProductComponent } from './Component/product/product.component';
 import { ProductDetailsComponent } from './Component/product-details/product-details.component';
 import { CartComponent } from './Component/Cart/cart/cart.component';
 import { ContentComponent } from './Component/content/content.component';
-<<<<<<< HEAD
 import { AboutUsComponent } from './Component/about-us/about-us.component';
-=======
 import { EditProductDialogComponent } from './Component/edit-product-dialog/edit-product-dialog.component';
 import { MatTableModule } from '@angular/material/table';
->>>>>>> c796b9fd57e7167672925931aa111c6cc4578061
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,11 +50,8 @@ import { MatTableModule } from '@angular/material/table';
     ProductDetailsComponent,
     CartComponent,
     ContentComponent,
-<<<<<<< HEAD
     AboutUsComponent,
-=======
-    EditProductDialogComponent
->>>>>>> c796b9fd57e7167672925931aa111c6cc4578061
+    EditProductDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -77,7 +67,6 @@ import { MatTableModule } from '@angular/material/table';
     MatTabsModule,
     MatSelectModule,
     MatProgressSpinnerModule,
-<<<<<<< HEAD
     AppRoutingModule,
   ],
   providers: [
@@ -88,15 +77,12 @@ import { MatTableModule } from '@angular/material/table';
     },
     provideClientHydration(),
   ],
-  bootstrap: [AppComponent],
-=======
+  bootstrap: [
+    AppComponent,
     MatTableModule,
     MatInputModule,
     MatDialogModule, // Include MatDialogModule here
-    AppRoutingModule
+    AppRoutingModule,
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true }],
-  bootstrap: [AppComponent]
->>>>>>> c796b9fd57e7167672925931aa111c6cc4578061
 })
 export class AppModule {}
