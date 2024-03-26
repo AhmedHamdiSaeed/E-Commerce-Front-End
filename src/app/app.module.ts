@@ -28,6 +28,7 @@ import { ProductComponent } from './Component/product/product.component';
 import { ProductDetailsComponent } from './Component/product-details/product-details.component';
 import { CartComponent } from './Component/Cart/cart/cart.component';
 import { ContentComponent } from './Component/content/content.component';
+import { UserProfileComponent } from './Component/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { ContentComponent } from './Component/content/content.component';
     ProductComponent,
     ProductDetailsComponent,
     CartComponent,
-    ContentComponent
+    ContentComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,

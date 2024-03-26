@@ -9,6 +9,7 @@ import { ProductComponent } from './Component/product/product.component';
 import { ProductDetailsComponent } from './Component/product-details/product-details.component';
 import { CartComponent } from './Component/Cart/cart/cart.component';
 import { HeaderComponent } from './Component/header/header.component';
+import { UserProfileComponent } from './Component/user-profile/user-profile.component';
 
 
 const routes: Routes = [
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/', pathMatch: 'full' },
   { path: 'cart', component: CartComponent },
   { path: 'Not-Found', component: NotFoundComponent },
+  {path:'userProfile',component:UserProfileComponent},
   { path: '**', redirectTo: 'Not-Found' },
 ];
 
