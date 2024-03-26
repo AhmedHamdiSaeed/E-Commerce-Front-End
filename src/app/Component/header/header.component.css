@@ -1,12 +1,14 @@
 /* Navbar Styling */
 .navbar {
-  background-color: #fff; /* Adjust background color */
-  padding: 10px; /* Add padding */
+  background-color: #fff;
+  /* Adjust background color */
+  padding: 10px;
+  /* Add padding */
 }
 
 /* Active Link Styling */
 .active {
-  background-color: #0aad0a;
+  background-color: #198754;
   color: #fff !important;
   padding: 10px 20px;
   border-radius: 5px;
@@ -15,13 +17,15 @@
 
 /* Navigation Links */
 .nav-item {
-  padding: 0 10px; /* Adjust padding */
+  padding: 0 10px;
+  /* Adjust padding */
 }
 
 /* Logo Styling */
 .logo {
   padding: 10px;
-  margin-right: 20px; /* Add margin for spacing */
+  margin-right: 20px;
+  /* Add margin for spacing */
 }
 
 .logo i {
