@@ -1,10 +1,11 @@
-<app-header></app-header>
+
+<app-header ></app-header>
 <div class="container-fluid">
-    <div class="row main">
-         <div class="col-md-2 d-none d-md-block " *ngIf="User?.role=== 'admin'">
+    <div class="row">
+         <div *ngIf="User?.role=== 'admin'">
              <app-admin-board></app-admin-board>
          </div>
-         <div class="col-md-9 ml-sm-auto col-lg-10 ">
+         <div class="col-md-12  mt-5 ">
              <router-outlet></router-outlet>
          </div>
     </div>

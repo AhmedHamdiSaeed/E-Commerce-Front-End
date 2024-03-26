@@ -1,0 +1,19 @@
+.product-details {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.loading-spinner {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.error-message {
+  color: #721c24;
+  background-color: #f8d7da;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 20px;
+}

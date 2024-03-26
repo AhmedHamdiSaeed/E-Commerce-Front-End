@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../../Services/auth.service';
+import { AuthService } from '../../Services/auth/auth.service';
 import { User } from '../../models/user';
 import { Router } from '@angular/router';
 
@@ -29,7 +29,7 @@ export class SignupComponent implements OnInit {
     } , {validator: this.checkMatchingPassword});
   }
 
-  checkMatchingPassword(group : FormGroup)  
+  checkMatchingPassword(group : FormGroup)
   {
     const password = group.get('password')?.value ;
     const confirmpassword = group.get('confirmPassword')?.value ;
@@ -51,13 +51,13 @@ export class SignupComponent implements OnInit {
       this.isLoading = false ;
       this.router.navigateByUrl('/') ;
 
-      
+
     } , (err)=>{
       console.log(err);
       this.isLoading = false ;
       this.error = err.error.message ;
 
-      
+
     })
     this.registerForm.reset();
   }

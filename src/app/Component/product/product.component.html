@@ -1,0 +1,31 @@
+<div *ngIf="successMessage" class="alert alert-success " role="alert">
+  {{ successMessage }}
+</div>
+<!-- product.component.html -->
+<div class="container">
+  <h1 class="text-center mt-3">Our Products</h1>
+
+  <div class="row">
+    <div *ngIf="isLoading" class="col-md-12 text-center mt-5">
+      <app-loading-spinner></app-loading-spinner>
+    </div>
+
+    <div class="col-md-4" *ngFor="let product of products">
+      <div class="card mb-3 custom-card " >
+        <img class="card-img-top" [src]="product.image" [alt]="product.title">
+        <div class="card-body">
+          <h5 class="card-title">{{ product.title }}</h5>
+          <p class="card-text">{{ product.description }}</p>
+          <p class="card-text">Price: {{ product.price }}</p>
+          <div class="d-grid gap-2">
+              <button class="btn btn-success mb-2" [routerLink]="['/products', product._id]">Show Details</button>
+              <button class="btn btn-success mb-2"  (click)="addToCart(product)">
+                <i class="bi bi-cart-plus"></i>
+                Add To Cart
+              </button>
+          </div>
+
+      </div>
+    </div>
+  </div>
+</div>

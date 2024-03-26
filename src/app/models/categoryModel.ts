@@ -1,4 +1,8 @@
-export class Category{
-    name!: String;
-    
+export interface Category {
+  _id: string;
+  name: string;
+  slug?: string;
+  image?: string;
+  createdAt?: Date;
+  updatedAt?: Date;
 }

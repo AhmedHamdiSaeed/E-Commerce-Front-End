@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AuthService } from './Services/auth.service';
+import { AuthService } from './Services/auth/auth.service';
 import { Subscription } from 'rxjs';
 import { User } from './models/user';
 
@@ -18,9 +18,10 @@ export class AppComponent implements OnInit,OnDestroy {
    this.userSub =  this.auth.userSubject.subscribe((user)=>{
       this.User = user ;
       // console.log(user.);
-      
+
    })
   }
+ 
   ngOnDestroy(): void {
     this.userSub.unsubscribe()
   }

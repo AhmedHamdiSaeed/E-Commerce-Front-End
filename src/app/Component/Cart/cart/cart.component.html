@@ -1,0 +1,44 @@
+<ng-container *ngIf=" cartProducts.length > 0">
+    <div class="container d-flex justify-content-center align-items-center" >
+        <div class="card ">
+            <h5 class="card-title">Shop Cart</h5>
+            <p class="card-price">Total Price : EGP {{ getTotalPrice() }}</p>
+            <button class="btn btn-danger clear"  (click)="Clear()">Clear Cart</button>
+        <div class="mt-4 card-item " *ngFor="let product of cartProducts; let i = index">
+            <div class=" card_img"><img [src]="product.image" alt=""></div>
+             <div class="card-text">
+                <h4>{{product.title}}</h4>
+                <p>{{product.price}}</p>
+                <button (click)="removeItem(i)" class="btn remove"><i class="bi bi-trash3"></i>Remove</button>
+            </div>
+          
+            <div class="quantity">
+                <button class="btn btn-outline-success"(click)="increaseQuantity(product)" >+</button>
+                <input class="form-control" type="number" min="1" [(ngModel)]="product.quantity">
+                <button class="btn btn-outline-success " (click)="decreaseQuantity(product)">-</button>
+            </div>
+        
+        </div>
+        <hr>
+ 
+         <button class="btn btn-primary buy">Buy Now</button>
+        
+        
+      
+    </div>
+    
+    </div>
+</ng-container>
+
+<ng-container *ngIf="cartProducts.length === 0">
+    <div class="container d-flex justify-content-center align-items-center" style="height: 60vh;">
+        <div class="card">
+        <div class="text-center mt-4">
+            <img src="../../../assets/project images/cart.png" alt="">
+            <h4>Your cart is empty!</h4>
+            <p>Add items to it now</p>
+            <button routerLink="/products" class="btn btn-outline-success">Shop Now</button>
+        </div>
+    </div>
+    </div>
+</ng-container>

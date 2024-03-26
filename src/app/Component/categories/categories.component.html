@@ -1,38 +1,38 @@
+<div class="container-fluid">
+  <div class="row">
+    <!-- Sidebar with Categories -->
+    <div class="col-md-3 justify-content-between">
+      <h3 class="text-center text-main">All Categories</h3>
+      <div *ngFor="let category of allCategories" class="category-border border text-center">
+        <!-- Ensure that getSpecificCategory method is correctly called on click -->
+        <img (click)="getSpecificCategory(category._id)" height="150" class="w-75 d-block mx-auto py-2" [src]="category.image" [alt]="category.name">
+        <h1 class="h4 py-3 text-main">{{category.name}}</h1>
+      </div>
+    </div>
+    <!-- Main Section for Products -->
+    <div class="col-md-9">
+      <div class="row">
+        <h3 class="text-center text-main">Products</h3>
 
-
-  <div class="container">
-    <div class="row m-5">
-      <div class="col">
-        <div class="card" style="width: 18rem;">
-          <img src="../../../assets/project images/The-Best-Phones-to-buy-in-2024---our-top-10-list.jpg"  class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Phones</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+        <div class="col-md-4" *ngFor="let product of products">
+          <!-- Display product details -->
+          <div class="card mb-3 custom-card">
+            <img class="card-img-top" [src]="product.image" [alt]="product.title">
+            <div class="card-body">
+              <h5 class="card-title">{{ product.title }}</h5>
+              <p class="card-text">{{ product.description }}</p>
+              <p class="card-text">Price: {{ product.price }}</p>
+              <div class="d-grid gap-2">
+                <button class="btn btn-success mb-2" [routerLink]="['/products', product._id]">Show Details</button>
+                <button class="btn btn-success mb-2" (click)="addToCart(product)">
+                  <i class="bi bi-cart-plus"></i>
+                  Add To Cart
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    
     </div>
   </div>
-
-  
-  <div *ngIf="cats"  class="container">
-    <div class="row m-5">
-      <div class="col">
-        <div class="card" style="width: 18rem;">
-          <img src="../../../assets/project images/The-Best-Phones-to-buy-in-2024---our-top-10-list.jpg"  class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Phones</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
-      </div>
-    
-    </div>
-  </div>
-
-  <!-- <button class="btn btn-primary" (click)="getData()"> get data</button> -->
-
-
+</div>
