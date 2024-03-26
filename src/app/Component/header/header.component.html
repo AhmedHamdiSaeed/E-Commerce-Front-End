@@ -13,9 +13,9 @@
         <li class="nav-item">
           <a class="nav-link" routerLinkActive="active" routerLink="/home">Home</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" routerLink="/category" *ngIf="isAuthed">Category</a>
-        </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" routerLink="/about-us">About Us</a>
+      </li>
         <li class="nav-item">
           <a class="nav-link" routerLinkActive="active" routerLink="/register" *ngIf="!isAuthed">Register</a>
         </li>
@@ -23,17 +23,15 @@
           <a class="nav-link" routerLinkActive="active" routerLink="/login" *ngIf="!isAuthed">Login</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" (click)="onLogout()" *ngIf="isAuthed">Logout</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" routerLink="products/category">Products</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" routerLink="/about-us">About Us</a>
-        </li>
+          <a class="nav-link" *ngIf="user?.role == 'user' "  routerLinkActive="active" routerLink="/products/category">Products</a>
+          </li>
         <li class="nav-item">
           <i class="fa-solid fa-user"></i>
-          <a class="nav-link" *ngIf="isAuthed">{{ user?.fname | uppercase }} {{ user?.lname | uppercase }}</a>
+          <a class="nav-link" *ngIf="isAuthed && user?.role == 'user' " routerLinkActive="active" routerLink="/Profile">{{ user?.fname | uppercase }} {{ user?.lname | uppercase }} </a>
+        </li>          <a class="nav-link" *ngIf="isAuthed && user?.role == 'admin' " routerLinkActive="active" routerLink="/Admin">{{ user?.fname | uppercase }} {{ user?.lname | uppercase }} </a>
+
+        <li class="nav-item">
+          <a class="nav-link" (click)="onLogout()" *ngIf="isAuthed">Logout</a>
         </li>
       </ul>
       <button routerLink="/cart" class="btn ">

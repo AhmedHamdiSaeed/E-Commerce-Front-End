@@ -29,9 +29,9 @@ import { ProductComponent } from './Component/product/product.component';
 import { ProductDetailsComponent } from './Component/product-details/product-details.component';
 import { CartComponent } from './Component/Cart/cart/cart.component';
 import { ContentComponent } from './Component/content/content.component';
-import { UserProfileComponent } from './Component/user-profile/user-profile.component';
 import { AboutUsComponent } from './Component/about-us/about-us.component';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { UserProfileComponent } from './Component/user-profile/user-profile.component';
 import { EditProductDialogComponent } from './Component/edit-product-dialog/edit-product-dialog.component';
 
 @NgModule({
@@ -50,11 +50,7 @@ import { EditProductDialogComponent } from './Component/edit-product-dialog/edit
     CartComponent,
     ContentComponent,
     AboutUsComponent,
-
     EditProductDialogComponent,
-
-    EditProductDialogComponent,
-    ContentComponent,
     UserProfileComponent
   ],
   imports: [
@@ -75,10 +71,10 @@ import { EditProductDialogComponent } from './Component/edit-product-dialog/edit
     MatInputModule,
     MatDialogModule,
     AppRoutingModule,
-    CarouselModule.forRoot(),
+    CarouselModule.forRoot()
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true }
   ],
   bootstrap: [AppComponent]
 })

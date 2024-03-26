@@ -74,9 +74,11 @@ mat-toolbar {
   text-align: start;
   font-size: 20px;
 }
-.row > * {
+
+.row>* {
   margin-top: 30px;
 }
+
 /* --------- curve outside ---------- */
 .navigation ul li:hover a::before,
 .navigation ul li.hovered a::before {
@@ -381,44 +383,44 @@ mat-toolbar {
 
 
   .main {
-      width: 100%;
-      left: 0;
+    width: 100%;
+    left: 0;
   }
 
   .main.active {
-      left: 300px;
+    left: 300px;
   }
 
   .cardBox {
-      grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 768px) {
   .details {
-      grid-template-columns: 1fr;
+    grid-template-columns: 1fr;
   }
 
   .recentOrders {
-      overflow-x: auto;
+    overflow-x: auto;
   }
 
   .status.inProgress {
-      white-space: nowrap;
+    white-space: nowrap;
   }
 }
 
 @media (max-width: 480px) {
   .cardBox {
-      grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(1, 1fr);
   }
 
   .cardHeader h2 {
-      font-size: 20px;
+    font-size: 20px;
   }
 
   .user {
-      min-width: 40px;
+    min-width: 40px;
   }
 
 }
@@ -435,4 +437,8 @@ mat-toolbar {
 .repass mat-form-field {
   width: 100%;
   margin-top: 20px;
+}
+
+.c1 {
+  margin: 15px !important;
 }
