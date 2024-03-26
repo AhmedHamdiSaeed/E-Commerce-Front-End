@@ -17,7 +17,6 @@ export class AuthGuardService implements CanActivate {
       take(1),
       map((user: User | null) => {
         if (!user) {
-          // User is not logged in, redirect to login page
           return this.router.createUrlTree(['/login']);
         } else if (user.role === 'admin' && state.url === '/admin') {
           return this.router.createUrlTree(['/Admin']);

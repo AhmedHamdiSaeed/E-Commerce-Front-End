@@ -2,7 +2,7 @@
 <div class="container-sm">
 <div class="row justify-content-center align-items-center" style="height: 70vh;">
   <div class="col-6">
-      
+
   <div class="alert alert-danger" *ngIf="error.length > 0">
     {{error}}
   </div>
@@ -21,11 +21,7 @@
       <input type="password" class="form-control" id="exampleInputPassword1"  name="password" #password="ngModel" ngModel required>
       <p class="form-text" *ngIf="!password.valid && password.touched"> please enter a valid password</p>
     </div>
-    <!-- not empilminted yet  -->
-    <!-- <div class="mb-3 form-check">
-      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-      <label class="form-check-label" for="exampleCheck1">Check me out</label>
-    </div> -->
+
     <button type="submit" class="btn btn-primary " [disabled]="!form.valid">Submit</button>
   </form>
   </div>
