@@ -49,7 +49,7 @@ import { EditProductDialogComponent } from './Component/edit-product-dialog/edit
     CartComponent,
     ContentComponent,
     AboutUsComponent,
-    EditProductDialogComponent, // Add EditProductDialogComponent if needed
+    EditProductDialogComponent,
   ],
   imports: [
     BrowserModule,
