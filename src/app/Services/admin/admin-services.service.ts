@@ -13,7 +13,7 @@ export class AdminServices{
   // getProducts(){
   //  return this.http.get('http://localhost:3000/api/v1/admin/products') ;
   // }
-  private apiProduct : string ='http://localhost:3000/api/v1/admin/products';
+  private apiProduct : string ='http://localhost:4000/api/v1/admin/products';
   getProducts() {
     return this.http.get<any>(this.apiProduct).pipe(
       map((res) => {
@@ -23,7 +23,7 @@ export class AdminServices{
     );
   }
   getOrders() {
-    return this.http.get<any>('http://localhost:3000/api/v1/admin/orders').pipe(
+    return this.http.get<any>('http://localhost:4000/api/v1/admin/orders').pipe(
       map((res) => {
         return res;
       })

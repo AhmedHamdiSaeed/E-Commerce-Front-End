@@ -6,8 +6,8 @@ import { CategoryService } from '../category/category-services.service';
   providedIn: 'root',
 })
 export class ProductService {
-  private apiUrl = 'http://localhost:3000/api/v1/products';
-  private UrlCat = 'http://localhost:3000/api/v1/category';
+  private apiUrl = 'http://localhost:4000/api/v1/products';
+  private UrlCat = 'http://localhost:4000/api/v1/category';
   constructor(private http: HttpClient) {}
   getProducts() {
     return this.http.get(this.apiUrl);
