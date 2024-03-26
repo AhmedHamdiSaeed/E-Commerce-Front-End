@@ -23,7 +23,7 @@
             <td>{{ item.amount }}</td>
             <td>{{ item.status }}</td>
             <td class="list">
-              <mat-form-field appearance="fill">
+              <mat-form-field appearance="fill" class="status-dropdown">
                 <mat-label>Select</mat-label>
                 <mat-select matNativeControl placeholder="Status">
                   <mat-option value="pending">Pending</mat-option>
@@ -32,6 +32,7 @@
                 </mat-select>
               </mat-form-field>
             </td>
+
           </tr>
         </tbody>
       </table>
