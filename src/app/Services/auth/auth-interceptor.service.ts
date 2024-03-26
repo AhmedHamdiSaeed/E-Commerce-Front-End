@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { exhaustMap, take } from 'rxjs/operators';
 import { AuthService } from './auth.service';
 import {Observable} from 'rxjs'
+import {baseURL} from '../../../.././env'
+
 @Injectable({
   providedIn: 'root'
 })
@@ -17,14 +19,14 @@ export class AuthInterceptorService implements HttpInterceptor {
       if (!user || !user.Token) {
         return next.handle(req);
       }
-    
+
       // Attach token in the Authorization header
       const modifiedReq = req.clone({
         setHeaders: {
           jwt: ` ${user.Token}`
         }
       });
-    
+
       return next.handle(modifiedReq);
     })
    )
