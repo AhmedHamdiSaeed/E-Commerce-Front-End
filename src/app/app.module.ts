@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
+import { MatDialogModule } from '@angular/material/dialog'; // Import MatDialogModule
+import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -12,6 +11,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatInputModule } from '@angular/material/input';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -28,6 +28,8 @@ import { ProductComponent } from './Component/product/product.component';
 import { ProductDetailsComponent } from './Component/product-details/product-details.component';
 import { CartComponent } from './Component/Cart/cart/cart.component';
 import { ContentComponent } from './Component/content/content.component';
+import { EditProductDialogComponent } from './Component/edit-product-dialog/edit-product-dialog.component';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,8 @@ import { ContentComponent } from './Component/content/content.component';
     ProductComponent,
     ProductDetailsComponent,
     CartComponent,
-    ContentComponent
+    ContentComponent,
+    EditProductDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -59,9 +62,12 @@ import { ContentComponent } from './Component/content/content.component';
     MatTabsModule,
     MatSelectModule,
     MatProgressSpinnerModule,
+    MatTableModule,
+    MatInputModule,
+    MatDialogModule, // Include MatDialogModule here
     AppRoutingModule
   ],
-  providers: [ {provide:  HTTP_INTERCEPTORS , useClass: AuthInterceptorService , multi: true}, provideClientHydration()],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

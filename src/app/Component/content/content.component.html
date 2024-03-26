@@ -1,63 +1,61 @@
 <!-- ================ Order Details List ================= -->
 <div class="details">
   <div class="recentOrders">
-      <div class="cardHeader">
-          <h2>Recent Orders</h2>
+    <div class="cardHeader">
+      <h2>Recent Orders</h2>
+    </div>
 
-      </div>
-
+    <div class="table-container">
       <table>
-          <thead>
-              <tr>
-
-                  <td>Order</td>
-                  <td>Total price</td>
-                  <td>Amount</td>
-                  <td>Status</td>
-                  <td>update Status</td>
-              </tr>
-          </thead>
-          <tbody>
-              <tr *ngFor="let item of orderInfo">
-
-                  <td>{{item.productId?.name}}</td>
-                  <td>{{item.totalPrice}}</td>
-                  <td>{{item.amount}}</td>
-                  <td>{{item.status}}</td>
-                  <td class="list">
-                      <mat-form-field appearance="fill">
-                          <mat-label>Select</mat-label>
-                          <!-- <mat-select matNativeControl  (selectionChange)="Status( $event.value , item._id)" placeholder="Status"> -->
-                              <mat-option value="pending">Pendding</mat-option>
-                              <mat-option value="accepted">Accepted</mat-option>
-                              <mat-option value="rejected">Rejected</mat-option>
-                          <!-- </mat-select> -->
-                      </mat-form-field>
-                  </td>
-              </tr>
-
-              <mat-spinner style=" position: absolute; top: 0; left: 0; transform: translate(30vw,30vh);"
-                  *ngIf="orderInfo.length == 0"></mat-spinner>
-
-          </tbody>
+        <thead>
+          <tr>
+            <td>Order</td>
+            <td>Total price</td>
+            <td>Amount</td>
+            <td>Status</td>
+            <td>Update Status</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of orderInfo">
+            <td>{{ item.productId?.name }}</td>
+            <td>{{ item.totalPrice }}</td>
+            <td>{{ item.amount }}</td>
+            <td>{{ item.status }}</td>
+            <td class="list">
+              <mat-form-field appearance="fill">
+                <mat-label>Select</mat-label>
+                <mat-select matNativeControl placeholder="Status">
+                  <mat-option value="pending">Pending</mat-option>
+                  <mat-option value="accepted">Accepted</mat-option>
+                  <mat-option value="rejected">Rejected</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </td>
+          </tr>
+        </tbody>
       </table>
+    </div>
+
+    <mat-spinner *ngIf="orderInfo.length == 0" class="spinner"></mat-spinner>
   </div>
 
-  <!-- ================= New Customers ================ -->
   <div class="recentCustomers">
-      <div class="cardHeader">
-          <h2>Recent Customers</h2>
-      </div>
+    <div class="cardHeader">
+      <h2>Recent Customers</h2>
+    </div>
 
+    <div class="table-container">
       <table>
-          <tr *ngFor="let item of users">
-              <td width="60px">
-                  <div class="imgBx"><img src="{{item.userImage}}" alt=""></div>
-              </td>
-              <td>
-                  <h4>{{item.username}} <br> <span>{{item.email}}</span></h4>
-              </td>
-          </tr>
+        <tr *ngFor="let item of users">
+          <td width="60px">
+            <div class="imgBx"><img src="{{ item.userImage }}" alt=""></div>
+          </td>
+          <td>
+            <h4>{{ item.username }} <br> <span>{{ item.email }}</span></h4>
+          </td>
+        </tr>
       </table>
+    </div>
   </div>
 </div>

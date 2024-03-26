@@ -1,0 +1,23 @@
+<div class="product-container">
+  <button mat-raised-button color="primary" class="add-product-btn" (click)="addProduct()">Add New Product</button>
+  <div *ngIf="products" class="product-list">
+    <div *ngFor="let product of products" class="product-card">
+      <img [src]="product.image" alt="Product Image">
+      <h3>{{ product.title }}</h3>
+      <p>{{ product.description }}</p>
+      <p>Price: {{ product.price }}</p>
+      <div class="action-buttons">
+        <!-- Edit product icon -->
+        <button mat-icon-button (click)="editProduct(product._id)">
+          <i class="bi bi-pencil-fill"></i> <!-- Bootstrap pencil icon -->
+        </button>
+        <!-- Delete product icon -->
+        <button mat-icon-button (click)="deleteProduct(product._id)">
+          <i class="bi bi-trash-fill"></i> <!-- Bootstrap trash icon -->
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Button to add a new product -->
+</div>
