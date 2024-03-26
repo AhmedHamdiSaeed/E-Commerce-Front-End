@@ -1,3 +1,129 @@
 
-<!-- 
-<app-categories></app-categories> -->
+  <head>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+
+  </head>
+  <body>
+<main>
+    <section class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <carousel>
+                    <slide>
+                      <img src="../../../assets/project images/1.png" class="img-fluid">
+                    </slide>
+                    <slide>
+                        <img src="../../../assets/project images/2.png" class="img-fluid">
+                      </slide>
+                  </carousel>
+            </div>
+            <div class="col-md-4">
+                    <div class="row d-flex flex-column">
+                        <div class="col-md-12 ">
+                            <img src="../../../assets/project images/3.png" class="img-fluid" style="max-width: 100%; height: auto;">
+                        </div>
+                        <div class="col-md-12">
+                            <img src="../../../assets/project images/4.png" class="img-fluid" style="max-width: 100%; height: auto;">
+                        </div>
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="container-fluid  category">
+    <h2>Shop Popular Categoties</h2>
+      <div *ngFor="let category of allCategories"
+
+        class="category-border border text-center text-uppercase border-2 mb-2 rounded-2">
+        <a [routerLink]="['/products/category']">
+            <img (click)="getSpecificCategory(category._id)" height="150" class="w-75 d-block mx-auto py-2"
+            [src]="category.image" [alt]="category.name">
+
+        <h1 class="h4 py-3 text-main">{{category.name}}</h1>  </a>
+      </div>
+    </section>
+    <section class="container-fluid customer-reviews">
+        <h2>Customer Reviews</h2>
+
+        <carousel>
+          <slide>
+            <div class="review">
+                <img src="../../../assets/project images/person1.png">
+              <p class="quote">"This product is amazing! I love it."</p>
+              <p class="reviewer">- Doe</p>
+              <div class="rating">
+                <span class="star">&#9733;</span>
+                <span class="star">&#9733;</span>
+                <span class="star">&#9733;</span>
+                <span class="star">&#9733;</span>
+                <span class="star">&#9733;</span>
+              </div>
+            </div>
+          </slide>
+          <slide>
+            <div class="review">
+                <img src="../../../assets/project images/person2.png">
+              <p class="quote">"This product is amazing! I love it."</p>
+              <p class="reviewer">- John Doe</p>
+              <div class="rating">
+                <span class="star">&#9733;</span>
+                <span class="star">&#9733;</span>
+                <span class="star">&#9733;</span>
+                <span class="star">&#9733;</span>
+                <span class="star">&#9733;</span>
+              </div>
+            </div>
+          </slide>
+        </carousel>
+      </section>
+
+
+</main>
+<footer class="footer">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6 col-lg-3 mb-4 mb-md-0">
+						<h2 class="footer-heading">Shoping</h2>
+						<p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+						<ul class="ftco-footer-social p-0">
+                            <li class="ftco-animate"><a href="#"  data-placement="top" title="Twitter"><i class="bi bi-twitter-x"></i></a></li>
+                            <li class="ftco-animate"><a href="#"  data-placement="top" title="Facebook"><i class="bi bi-facebook"></i></a></li>
+                            <li class="ftco-animate"><a href="#" data-placement="top" title="Instagram"><i class="bi bi-instagram"></i></a></li>
+                        </ul>
+
+					</div>
+
+					<div class="col-md-6 col-lg-3 pl-lg-5 mb-4 mb-md-0">
+						<h2 class="footer-heading">Quick Links</h2>
+						<ul class="list-unstyled">
+                            <li><a href="#" class="py-2 d-block">Home</a></li>
+                            <li><a href="#" class="py-2 d-block">About</a></li>
+                            <li><a href="#" class="py-2 d-block">Services</a></li>
+                            <li><a href="#" class="py-2 d-block">Contact</a></li>
+                            </ul>
+					</div>
+					<div class="col-md-6 col-lg-3 mb-4 mb-md-0">
+						<h2 class="footer-heading">Contact Us</h2>
+						<div class="block-23 mb-3">
+                            <ul>
+                                <li><a href="#"><i class="bi bi-geo-alt"></i><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></a></li>
+                                <li><a href="#"><i class="bi bi-telephone"></i><span class="text">+2 392 3929 210</span></a></li>
+                                <li><a href="#"><i class="bi bi-send"></i><span class="text">infoyourdomain.com</span></a></li>
+                            </ul>
+            </div>
+					</div>
+				</div>
+				<div class="row mt-5">
+          <div class="col-md-12 text-center">
+
+            <p class="copyright">
+  Copyright &copy;All rights reserved</p>
+          </div>
+        </div>
+			</div>
+</footer>
+
+
+
+  </body>

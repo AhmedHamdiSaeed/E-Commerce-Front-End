@@ -8,12 +8,13 @@ import { CategoriesComponent } from './Component/categories/categories.component
 import { ProductComponent } from './Component/product/product.component';
 import { ProductDetailsComponent } from './Component/product-details/product-details.component';
 import { CartComponent } from './Component/Cart/cart/cart.component';
+
 import { HeaderComponent } from './Component/header/header.component';
 import { AboutUsComponent } from './Component/about-us/about-us.component';
 
 import { AdminBoardComponent } from './Component/admin-board/admin-board.component';
 import {AuthGuardService} from './Services/auth/auth-guard.service'
-
+import { UserProfileComponent } from './Component/user-profile/user-profile.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -25,8 +26,9 @@ const routes: Routes = [
   { path: 'products/:id', component: ProductDetailsComponent },
   { path: 'cart', component: CartComponent },
   {path: 'Admin' , component: AdminBoardComponent ,  canActivate: [AuthGuardService]},
-  { path: '', redirectTo: '/', pathMatch: 'full' },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'Not-Found', component: NotFoundComponent },
+  {path:'userProfile',component:UserProfileComponent},
   { path: '**', redirectTo: 'Not-Found' },
 ];
 

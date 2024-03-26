@@ -13,6 +13,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatInputModule } from '@angular/material/input';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatTableModule } from '@angular/material/table';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CategoriesComponent } from './Component/categories/categories.component';
@@ -28,10 +29,10 @@ import { ProductComponent } from './Component/product/product.component';
 import { ProductDetailsComponent } from './Component/product-details/product-details.component';
 import { CartComponent } from './Component/Cart/cart/cart.component';
 import { ContentComponent } from './Component/content/content.component';
+import { UserProfileComponent } from './Component/user-profile/user-profile.component';
 import { AboutUsComponent } from './Component/about-us/about-us.component';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { EditProductDialogComponent } from './Component/edit-product-dialog/edit-product-dialog.component';
-import { MatTableModule } from '@angular/material/table';
-
 
 @NgModule({
   declarations: [
@@ -49,7 +50,12 @@ import { MatTableModule } from '@angular/material/table';
     CartComponent,
     ContentComponent,
     AboutUsComponent,
-    EditProductDialogComponent
+
+    EditProductDialogComponent,
+
+    EditProductDialogComponent,
+    ContentComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -65,13 +71,15 @@ import { MatTableModule } from '@angular/material/table';
     MatTabsModule,
     MatSelectModule,
     MatProgressSpinnerModule,
-    AppRoutingModule,
     MatTableModule,
     MatInputModule,
     MatDialogModule,
-    AppRoutingModule
+    AppRoutingModule,
+    CarouselModule.forRoot(),
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true }],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
