@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import {BrowserModule, provideClientHydration,} from '@angular/platform-browser';
-import { MatDialogModule } from '@angular/material/dialog'; // Import MatDialogModule
+import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -68,7 +68,7 @@ import { MatTableModule } from '@angular/material/table';
     AppRoutingModule,
     MatTableModule,
     MatInputModule,
-    MatDialogModule, // Include MatDialogModule here
+    MatDialogModule,
     AppRoutingModule
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true }],
