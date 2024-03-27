@@ -13,6 +13,7 @@ import { AboutUsComponent } from './Component/about-us/about-us.component';
 import { AdminBoardComponent } from './Component/admin-board/admin-board.component';
 import { AuthGuardService } from './Services/auth/auth-guard.service';
 import { UserProfileComponent } from './Component/user-profile/user-profile.component';
+import { AddProductComponent } from './Component/add-product/add-product.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -25,6 +26,7 @@ const routes: Routes = [
   { path: 'Admin', component: AdminBoardComponent, canActivate: [AuthGuardService] },
   { path: 'Admin/products', component: ProductComponent, canActivate: [AuthGuardService] },
   { path: 'Profile', component: UserProfileComponent },
+  { path: 'Add_Product', component: AddProductComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'Not-Found', component: NotFoundComponent },
   { path: '**', redirectTo: 'Not-Found' },

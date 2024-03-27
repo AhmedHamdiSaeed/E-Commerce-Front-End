@@ -33,6 +33,7 @@ import { AboutUsComponent } from './Component/about-us/about-us.component';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { UserProfileComponent } from './Component/user-profile/user-profile.component';
 import { EditProductDialogComponent } from './Component/edit-product-dialog/edit-product-dialog.component';
+import { AddProductComponent } from './Component/add-product/add-product.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { EditProductDialogComponent } from './Component/edit-product-dialog/edit
     ContentComponent,
     AboutUsComponent,
     EditProductDialogComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    AddProductComponent
   ],
   imports: [
     BrowserModule,

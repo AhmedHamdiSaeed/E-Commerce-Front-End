@@ -30,7 +30,7 @@
           <div class="dropdown">
             <button>
             <a class="nav-link" *ngIf="isAuthed && user?.role == 'user' " routerLinkActive="active" routerLink="/Profile">{{ user?.fname | uppercase }} {{ user?.lname | uppercase }} </a>
-            <a class="nav-link" *ngIf="isAuthed && user?.role == 'admin' " routerLinkActive="active" routerLink="/Admin">{{ user?.fname | uppercase }} {{ user?.lname | uppercase }} </a>    
+            <a class="nav-link" *ngIf="isAuthed && user?.role == 'admin' " routerLinkActive="active" routerLink="/Admin">{{ user?.fname | uppercase  }} {{ user?.lname | uppercase }} </a>    
           </button>
             <ul class="dropdown-menu dropdown-content" aria-labelledby="dropdownMenuButton1">
               <li><a class="dropdown-item" routerLink="/Profile" (click)="getUser()">Your Account</a></li>
