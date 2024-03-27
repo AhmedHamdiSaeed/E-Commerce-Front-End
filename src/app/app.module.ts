@@ -35,7 +35,7 @@ import { ContentComponent } from './Component/content/content.component';
 import { AboutUsComponent } from './Component/about-us/about-us.component';
 import { EditProductDialogComponent } from './Component/edit-product-dialog/edit-product-dialog.component';
 import { MatTableModule } from '@angular/material/table';
-import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { CarouselModule } from 'ngx-bootstrap/carousel/carousel.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,16 +52,8 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
     CartComponent,
     ContentComponent,
     AboutUsComponent,
-<<<<<<< HEAD
-    EditProductDialogComponent,
-=======
-
-    EditProductDialogComponent,
-
     EditProductDialogComponent,
     ContentComponent,
-    UserProfileComponent
->>>>>>> f0842e75ab820fd68252db189b7728f0c7cde945
   ],
   imports: [
     BrowserModule,
@@ -93,11 +85,7 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
     MatInputModule,
     MatDialogModule, // Include MatDialogModule here
     AppRoutingModule,
-    CarouselModule.forRoot(),
+    // CarouselModule.forRoot(),
   ],
-  providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true },
-  ],
-  bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
