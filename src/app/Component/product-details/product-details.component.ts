@@ -66,4 +66,7 @@ export class ProductDetailsComponent implements OnInit {
       }
     );
   }
+  getImageUrl(imagePath: string): string {
+    return `../../../assets${imagePath}`;
+  }
 }

@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
-import { AuthGuardService } from './Services/auth/auth-guard.service';
 import {
   BrowserModule,
   provideClientHydration,
 } from '@angular/platform-browser';
-import { MatDialogModule } from '@angular/material/dialog'; // Import MatDialogModule
+import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -17,6 +16,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatInputModule } from '@angular/material/input';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatTableModule } from '@angular/material/table';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CategoriesComponent } from './Component/categories/categories.component';
@@ -34,8 +34,7 @@ import { CartComponent } from './Component/Cart/cart/cart.component';
 import { ContentComponent } from './Component/content/content.component';
 import { AboutUsComponent } from './Component/about-us/about-us.component';
 import { EditProductDialogComponent } from './Component/edit-product-dialog/edit-product-dialog.component';
-import { MatTableModule } from '@angular/material/table';
-import { CarouselModule } from 'ngx-bootstrap/carousel/carousel.module';
+import { SearchComponent } from './Component/search/search.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,6 +53,7 @@ import { CarouselModule } from 'ngx-bootstrap/carousel/carousel.module';
     AboutUsComponent,
     EditProductDialogComponent,
     ContentComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,
@@ -85,7 +85,6 @@ import { CarouselModule } from 'ngx-bootstrap/carousel/carousel.module';
     MatInputModule,
     MatDialogModule, // Include MatDialogModule here
     AppRoutingModule,
-    // CarouselModule.forRoot(),
   ],
 })
 export class AppModule {}
