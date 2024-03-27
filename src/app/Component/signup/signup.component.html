@@ -7,7 +7,7 @@
         {{error}}
       </div>
 
-      <div *ngIf="isLoading">
+      <div *ngIf="isLoading" class="loading-spinner">
         <app-loading-spinner></app-loading-spinner>
       </div>
       <form [formGroup]="registerForm" (ngSubmit)="onRegister()" *ngIf="!isLoading" class=" m-auto">
