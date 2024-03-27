@@ -18,7 +18,6 @@ constructor(private auth : AuthService,
             private router: Router){}
 
 onSubmit(form : NgForm){
-    // console.log('submitted')
     this.isLoading = true ;
 
     console.log(form.value.email);
@@ -32,7 +31,7 @@ onSubmit(form : NgForm){
       }
       else
       {
-        this.router.navigate(['/Profile']) ;
+        this.router.navigate(['/products/category']) ;
       }
 
     } , (err) => {
