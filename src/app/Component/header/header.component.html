@@ -25,13 +25,20 @@
         <li class="nav-item">
           <a class="nav-link" *ngIf="user?.role == 'user' "  routerLinkActive="active" routerLink="/products/category">Products</a>
           </li>
+    
         <li class="nav-item">
-          <i class="fa-solid fa-user"></i>
-          <a class="nav-link" *ngIf="isAuthed && user?.role == 'user' " routerLinkActive="active" routerLink="/Profile">{{ user?.fname | uppercase }} {{ user?.lname | uppercase }} </a>
-        </li>          <a class="nav-link" *ngIf="isAuthed && user?.role == 'admin' " routerLinkActive="active" routerLink="/Admin">{{ user?.fname | uppercase }} {{ user?.lname | uppercase }} </a>
-
-        <li class="nav-item">
-          <a class="nav-link" (click)="onLogout()" *ngIf="isAuthed">Logout</a>
+          <div class="dropdown">
+            <button>
+            <a class="nav-link" *ngIf="isAuthed && user?.role == 'user' " routerLinkActive="active" routerLink="/Profile">{{ user?.fname | uppercase }} {{ user?.lname | uppercase }} </a>
+            <a class="nav-link" *ngIf="isAuthed && user?.role == 'admin' " routerLinkActive="active" routerLink="/Admin">{{ user?.fname | uppercase }} {{ user?.lname | uppercase }} </a>    
+          </button>
+            <ul class="dropdown-menu dropdown-content" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" routerLink="/Profile" (click)="getUser()">Your Account</a></li>
+              <li><a class="dropdown-item" href="#">Your Order</a></li>
+              <li><a class="nav-link" (click)="onLogout()" *ngIf="isAuthed">Logout</a>
+              </li>
+            </ul>
+          </div>
         </li>
       </ul>
       <button routerLink="/cart" class="btn ">
