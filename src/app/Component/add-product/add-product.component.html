@@ -1,0 +1,76 @@
+<form class="row g-3 " (ngSubmit)="AddProduct()" #addForm="ngForm">
+    <div class="col-md-4">
+      <label for="title" class="form-label">Product title</label>
+      <input type="text" class="form-control" id="title"  ngModel name="title" #title="ngModel" required>
+      <div class="form-text" *ngIf="!title.valid  && title.touched">
+       not so  good!
+      </div>
+    </div>
+    <div class="col-md-4">
+      <label for="quantity" class="form-label">quantity</label>
+      <input type="number" class="form-control" id="quantity" ngModel name="quantity" #quantity="ngModel" required>
+      <div class="form-text" *ngIf="!quantity.valid  && quantity.touched">
+        not so  good!
+       </div>
+    </div>
+
+    <div class="col-md-4">
+        <label for="price" class="form-label">price</label>
+        <input type="number" class="form-control" id="price" ngModel name="price" #price="ngModel"  required>
+        <div class="form-text" *ngIf="!price.valid  && price.touched">
+          not so  good!
+         </div>
+      </div>
+
+      <div class="col-md-4">
+        <label for="description" class="form-label">description</label>
+        <input type="text" class="form-control" id="description" ngModel name="description" #description="ngModel"  required>
+        <div class="form-text" *ngIf="!description.valid  && description.touched">
+          not so  good!
+         </div>
+      </div>
+
+      <div class="col-md-4">
+        <label for="image" class="form-label">image</label>
+        <input type="file" class="form-control" id="image" ngModel name="image" #image="ngModel" required>
+        <div class="form-text" *ngIf="!image.valid  && image.touched">
+          not so  good!
+         </div>
+      </div>
+
+      <div class="col-md-4">
+        <label for="colors" class="form-label">colors</label>
+        <input type="color" class="form-control form-control-color" id="colors" ngModel name="colors" #colors="ngModel" required>
+        <div class="form-text" *ngIf="!colors.valid  && colors.touched">
+          not so  good!
+         </div>
+      </div>
+
+      <div class="col-md-4">
+        <label for="category" class="form-label">category</label>
+        <input type="text" class="form-control" id="category" ngModel name="category" #category="ngModel" required>
+        <div class="form-text" *ngIf="!category.valid  && category.touched">
+          not so  good!
+         </div>
+      </div>
+
+      <div class="col-md-4">
+        <label for="company" class="form-label">company</label>
+        <input type="text" class="form-control" id="company" ngModel name="company" #company="ngModel"  required>
+        <div class="form-text" *ngIf="!company.valid  && company.touched">
+          not so  good!
+         </div>
+      </div>
+
+      <div class="col-md-4">
+        <label for="sold" class="form-label">sold</label>
+        <input type="number" class="form-control" id="sold" ngModel name="sold" #sold="ngModel" required>
+        <div class="form-text" *ngIf="!sold.valid  && sold.touched">
+          not so  good!
+         </div>
+      </div>
+    
+    <div class="col-12">
+      <button class="btn btn-primary" type="submit">Submit form</button>
+    </div>
+  </form>

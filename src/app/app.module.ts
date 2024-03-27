@@ -29,12 +29,13 @@ import { AdminBoardComponent } from './Component/admin-dashboard/admin-board/adm
 import { ProductComponent } from './Component/admin-dashboard/product/product.component';
 import { ProductDetailsComponent } from './Component/product-details/product-details.component';
 import { CartComponent } from './Component/Cart/cart/cart.component';
-import { ContentComponent } from './Component/admin-dashboard/content/content.component';
+import { ContentComponent } from './Component/admin-dashboard/Orders/content.component';
 
 import { AboutUsComponent } from './Component/about-us/about-us.component';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { UserProfileComponent } from './Component/user-profile/user-profile.component';
 import { EditProductDialogComponent } from './Component/edit-product-dialog/edit-product-dialog.component';
+import { AddProductComponent } from './Component/add-product/add-product.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { EditProductDialogComponent } from './Component/edit-product-dialog/edit
     AboutUsComponent,
     EditProductDialogComponent,
     ContentComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    AddProductComponent
   ],
   imports: [
     BrowserModule,
