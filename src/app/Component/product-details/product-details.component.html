@@ -3,25 +3,29 @@
     <div *ngIf="isLoading" class="loading-spinner">
       <app-loading-spinner></app-loading-spinner>
     </div>
-    <div class="row">
+    <div *ngIf="!isLoading" class="row">
       <div class="col-md-6 d-flex justify-content-center align-items-center">
         <img class="card-img-top img-fluid" [src]="getImageUrl(product.image)" [alt]="product.title">
-    </div>
+      </div>
       <div class="col-md-6 product-details">
         <h2>{{ product.title }}</h2>
         <p class="lead">{{ product.description }}</p>
         <p><strong>Price:</strong> {{ product.price }}</p>
         <p><strong>Quantity:</strong> {{ product.quantity }}</p>
-        <p><strong>Colors:</strong> {{ product.colors.join(', ') }}</p>
-        <p><strong>Category:</strong> {{categoryName}}</p>
+        <p><strong>Colors:</strong>
+          <span *ngFor="let color of product.colors" class="color-rectangle" [style.background-color]="color"></span>
+        </p>
+        <p><strong>Category:</strong> {{ categoryName }}</p>
         <p><strong>Company:</strong> {{ product.company }}</p>
         <p><strong>Sold:</strong> {{ product.sold }}</p>
+        <button class="btn btn-success custom-button mb-2" (click)="addToCart(product)">
+          <i class="bi bi-cart-plus"></i>
+          Add To Cart
+        </button>
       </div>
-     
+
     </div>
   </ng-container>
-
-
 
   <div *ngIf="error" class="error-message text-center">
     <p>Error: {{ error }}</p>

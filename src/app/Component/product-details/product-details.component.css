@@ -9,6 +9,21 @@
   text-align: center;
   margin-top: 20px;
 }
+.color-rectangle {
+  display: inline-block;
+  width: 18px;
+  height: 17px;
+  margin-left: 8px;
+  margin-bottom: -3px;
+  margin-top: 0;
+  border: 1px solid #000;
+}
+.custom-button {
+  font-size: 16px;
+  padding: 8px 16px;
+  width: 36%;
+  margin-left: 158px;
+}
 
 .error-message {
   color: #721c24;

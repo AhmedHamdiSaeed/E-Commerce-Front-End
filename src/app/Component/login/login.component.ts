@@ -38,6 +38,8 @@ onSubmit(form : NgForm){
       console.log(err) ;
 
       this.error = err.error.message ;
+      this.isLoading = false ;
+
     }
     )
 

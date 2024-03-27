@@ -14,7 +14,10 @@
   border-radius: 5px;
   cursor: pointer;
 }
-
+.dropdown-menu
+{
+  z-index: 999;
+}
 /* Navigation Links */
 .nav-item {
   padding: 0 10px;

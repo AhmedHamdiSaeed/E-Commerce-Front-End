@@ -21,12 +21,11 @@ export class CategoriesComponent implements OnInit {
   ) {}
 
   allCategories: Category[] = [];
-  products: Product[] = [];
+  products: Product[] | any = [];
   isLoading: boolean = false;
   error: string = '';
   categoryId: string | null = null;
   successMessage: string = '';
-  searchTerm: string = '';
 
   ngOnInit(): void {
     this.getAllCategories();
@@ -53,21 +52,19 @@ export class CategoriesComponent implements OnInit {
     );
   }
 
-  getAllCategories(): void {
-    this.productService.getAllCategories().subscribe(
-      (res: any) => {
-        if (Array.isArray(res)) {
-          this.allCategories = res;
-        } else {
-          this.allCategories = [res];
-        }
-      },
-      (err) => {
-        console.log(err);
-        this.isLoading = false;
-        this.error = err.error.message;
+  async getAllCategories(): Promise<void> {
+    try {
+      const res: any = await this.productService.getAllCategories().toPromise();
+      if (Array.isArray(res)) {
+        this.allCategories = res;
+      } else {
+        this.allCategories = [res];
       }
-    );
+    } catch (err: any) {
+      console.error(err);
+      this.isLoading = false;
+      this.error = err.error.message;
+    }
   }
 
   getProductsByCategory(categoryId: string): void {
@@ -102,7 +99,8 @@ export class CategoriesComponent implements OnInit {
     console.log('Category clicked:', categoryId);
     this.getProductsByCategory(categoryId);
   }
-  //load imge
+
+  // Load image
   getImageUrl(imagePath: string): string {
     return `../../../assets${imagePath}`;
   }

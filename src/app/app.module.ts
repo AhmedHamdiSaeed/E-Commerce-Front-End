@@ -1,9 +1,14 @@
 import { NgModule } from '@angular/core';
+<<<<<<< HEAD
 import {
   BrowserModule,
   provideClientHydration,
 } from '@angular/platform-browser';
 import { MatDialogModule } from '@angular/material/dialog';
+=======
+import { AuthGuardService } from './Services/auth/auth-guard.service';
+import {BrowserModule, provideClientHydration,} from '@angular/platform-browser';
+>>>>>>> bfc9f0451525076f2c8ef805cc24cd906f85f159
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -27,14 +32,20 @@ import { HeaderComponent } from './Component/header/header.component';
 import { NotFoundComponent } from './Component/not-found/not-found.component';
 import { LoadingSpinnerComponent } from './SharedComponent/loading-spinner/loading-spinner.component';
 import { AuthInterceptorService } from './Services/auth/auth-interceptor.service';
-import { AdminBoardComponent } from './Component/admin-board/admin-board.component';
-import { ProductComponent } from './Component/product/product.component';
+import { AdminBoardComponent } from './Component/admin-dashboard/admin-board/admin-board.component';
+import { ProductComponent } from './Component/admin-dashboard/product/product.component';
 import { ProductDetailsComponent } from './Component/product-details/product-details.component';
 import { CartComponent } from './Component/Cart/cart/cart.component';
-import { ContentComponent } from './Component/content/content.component';
+import { ContentComponent } from './Component/admin-dashboard/Orders/content.component';
+
 import { AboutUsComponent } from './Component/about-us/about-us.component';
 import { EditProductDialogComponent } from './Component/edit-product-dialog/edit-product-dialog.component';
+<<<<<<< HEAD
 import { SearchComponent } from './Component/search/search.component';
+=======
+import { AddProductComponent } from './Component/add-product/add-product.component';
+
+>>>>>>> bfc9f0451525076f2c8ef805cc24cd906f85f159
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +64,12 @@ import { SearchComponent } from './Component/search/search.component';
     AboutUsComponent,
     EditProductDialogComponent,
     ContentComponent,
+<<<<<<< HEAD
     SearchComponent,
+=======
+    UserProfileComponent,
+    AddProductComponent
+>>>>>>> bfc9f0451525076f2c8ef805cc24cd906f85f159
   ],
   imports: [
     BrowserModule,
@@ -78,6 +94,7 @@ import { SearchComponent } from './Component/search/search.component';
       multi: true,
     },
     provideClientHydration(),
+<<<<<<< HEAD
   ],
   bootstrap: [
     AppComponent,
@@ -86,5 +103,17 @@ import { SearchComponent } from './Component/search/search.component';
     MatDialogModule, // Include MatDialogModule here
     AppRoutingModule,
   ],
+=======
+  ],
+  bootstrap: [
+    AppComponent,
+    MatTableModule,
+    MatInputModule,
+    MatDialogModule, // Include MatDialogModule here
+    AppRoutingModule,
+  ],
+
+
+>>>>>>> bfc9f0451525076f2c8ef805cc24cd906f85f159
 })
 export class AppModule {}
