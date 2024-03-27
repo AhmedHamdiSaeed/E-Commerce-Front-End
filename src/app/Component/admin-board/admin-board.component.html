@@ -1,128 +1,128 @@
 <mat-sidenav-container>
   <mat-sidenav mode="side" #sidenav role="navigation">
-      <div class="container">
-          <div class="navigation">
-              <ul>
-                  <li style="border-bottom: 3px solid rgb(5, 157, 13);">
-                      <a href="#">
-                          <span class="icon">
-                              <mat-icon>Shopping</mat-icon>
-                          </span>
-                          <span class="title" style="font-weight: bolder; ">Shopping SyStem</span>
-                      </a>
-                  </li>
+    <div class="container">
+      <div class="navigation">
+        <ul>
+          <li style="border-bottom: 3px solid rgb(5, 157, 13);">
+            <a href="#">
+              <span class="icon">
+                <mat-icon>Shopping</mat-icon>
+              </span>
+              <span class="title" style="font-weight: bolder; ">Shopping SyStem</span>
+            </a>
+          </li>
 
-                  <li>
-                      <a href="#">
-                          <span class="icon">
-                              <mat-icon>home</mat-icon>
-                          </span>
-                          <span class="title">Dashboard</span>
-                      </a>
-                  </li>
+          <li>
+            <a href="#">
+              <span class="icon">
+                <mat-icon>home</mat-icon>
+              </span>
+              <span class="title">Dashboard</span>
+            </a>
+          </li>
 
-                  <li>
-                      <a href="#">
-                          <span class="icon">
-                          </span>
-                          <span class="title">Customers</span>
-                      </a>
-                  </li>
+          <li>
+            <a href="#">
+              <span class="icon">
+              </span>
+              <span class="title">Customers</span>
+            </a>
+          </li>
 
 
-                  <li>
-                      <a href="#">
-                          <span class="icon">
-                              <mat-icon>settings</mat-icon>
-                          </span>
-                          <span class="title">Settings</span>
-                      </a>
-                  </li>
+          <li>
+            <a href="#">
+              <span class="icon">
+                <mat-icon>settings</mat-icon>
+              </span>
+              <span class="title">Settings</span>
+            </a>
+          </li>
 
-                  <li (click)="logout()">
-                      <a href="#">
-                          <span class="icon">
-                              <mat-icon>logout</mat-icon>
-                          </span>
-                          <span class="title">logout</span>
-                      </a>
-                  </li>
-              </ul>
-          </div>
+          <li (click)="logout()">
+            <a href="#">
+              <span class="icon">
+                <mat-icon>logout</mat-icon>
+              </span>
+              <span class="title">logout</span>
+            </a>
+          </li>
+        </ul>
       </div>
+    </div>
   </mat-sidenav>
   <mat-sidenav-content>
-      <mat-toolbar color="basic">
-          <div fxLayoutAlign=" center">
-              <button mat-icon-button (click)="sidenav.toggle()">
-                  <mat-icon>menu</mat-icon>
-              </button>
-              <i class="fa fa-strikethrough" aria-hidden="true"></i>
-              <span style="font-size: larger;">Admin</span>
-          </div>
-          <div class="search">
-              <label>
-                  <input type="text" placeholder="Search here">
-                  <i class="fa fa-search" aria-hidden="true"></i>
-              </label>
-          </div>
-
-          <div class="user">
-              <img src="assets\home-img-1.png" alt="">
-          </div>
-      </mat-toolbar>
-      <div class="cardBox">
-          <div class="card">
-              <div>
-                  <div class="numbers">{{products?.views}}</div>
-                  <div class="cardName">Daily Views</div>
-              </div>
-
-              <div class="iconBx">
-                  <i class="fa-solid fa-eye"></i>
-              </div>
-          </div>
-
-          <div class="card">
-              <div>
-                  <div class="numbers">{{products?.count}}</div>
-                  <div class="cardName">Sales</div>
-              </div>
-
-              <div class="iconBx">
-                  <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-              </div>
-          </div>
-
-          <div class="card">
-              <div>
-                  <div class="numbers">{{users?.length }}</div>
-                  <div class="cardName">Users</div>
-              </div>
-
-              <div class="iconBx">
-                  <i class="fa-sharp fa-solid fa-users"></i>
-              </div>
-          </div>
-
-          <div class="card">
-              <div>
-                  <div class="numbers">${{totalSales}}</div>
-                  <div class="cardName">Earning</div>
-              </div>
-          </div>
+    <mat-toolbar color="basic">
+      <div fxLayoutAlign=" center">
+        <button mat-icon-button (click)="sidenav.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <i class="fa fa-strikethrough" aria-hidden="true"></i>
+        <span style="font-size: larger;">Admin</span>
       </div>
-<div >
-      <mat-tab-group>
+      <div class="search">
+        <label>
+          <input type="text" placeholder="Search here">
+          <i class="fa fa-search" aria-hidden="true"></i>
+        </label>
+      </div>
+
+      <div class="user">
+        <img src="assets\home-img-1.png" alt="">
+      </div>
+    </mat-toolbar>
+    <div class="cardBox">
+      <div class="card">
+        <div>
+          <div class="numbers">{{products?.views}}</div>
+          <div class="cardName">Daily Views</div>
+        </div>
+
+        <div class="iconBx">
+          <i class="fa-solid fa-eye"></i>
+        </div>
+      </div>
+
+      <div class="card">
+        <div>
+          <div class="numbers">{{products?.count}}</div>
+          <div class="cardName">Sales</div>
+        </div>
+
+        <div class="iconBx">
+          <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+        </div>
+      </div>
+
+      <div class="card">
+        <div>
+          <div class="numbers">{{users?.length }}</div>
+          <div class="cardName">Users</div>
+        </div>
+
+        <div class="iconBx">
+          <i class="fa-sharp fa-solid fa-users"></i>
+        </div>
+      </div>
+
+      <div class="card">
+        <div>
+          <div class="numbers">${{totalSales}}</div>
+          <div class="cardName">Earning</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <mat-tab-group class=" d-block mb-3">
         <mat-tab label="Orders State">
-          <ng-template mat-tab-label>
+          <ng-template mat-tab-label class="c1">
             <span style="font-weight: bolder; font-size: large;">User Data</span>
           </ng-template>
           <br>
           <app-content></app-content>
         </mat-tab>
         <mat-tab label="Products">
-          <ng-template mat-tab-label>
+          <ng-template mat-tab-label class="c1">
             <span style="font-weight: bolder; font-size: large;"> Products </span>
           </ng-template>
           <br>
@@ -131,4 +131,4 @@
       </mat-tab-group>
     </div>
 
-    </mat-sidenav-content>
+  </mat-sidenav-content>

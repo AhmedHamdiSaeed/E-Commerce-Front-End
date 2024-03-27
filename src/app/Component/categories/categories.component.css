@@ -7,3 +7,7 @@
   background-color: #198754;
   color: white;
 }
+.card-img-top{
+  max-width: 80%; height: auto; 
+  text-align: center;
+}

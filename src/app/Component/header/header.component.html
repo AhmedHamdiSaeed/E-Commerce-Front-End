@@ -13,9 +13,9 @@
         <li class="nav-item">
           <a class="nav-link" routerLinkActive="active" routerLink="/home">Home</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" routerLink="/category" *ngIf="isAuthed">Category</a>
-        </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" routerLink="/about-us">About Us</a>
+      </li>
         <li class="nav-item">
           <a class="nav-link" routerLinkActive="active" routerLink="/register" *ngIf="!isAuthed">Register</a>
         </li>
@@ -23,26 +23,15 @@
           <a class="nav-link" routerLinkActive="active" routerLink="/login" *ngIf="!isAuthed">Login</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" (click)="onLogout()" *ngIf="isAuthed">Logout</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" routerLink="products/category">Products</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" routerLink="/about-us">About Us</a>
-        </li>
+          <a class="nav-link" *ngIf="user?.role == 'user' "  routerLinkActive="active" routerLink="/products/category">Products</a>
+          </li>
         <li class="nav-item">
           <i class="fa-solid fa-user"></i>
-         
-          <div class="dropdown" *ngIf="isAuthed">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-              {{ user?.fname | uppercase }} {{ user?.lname | uppercase }}          
-              </button>
-            <ul class="dropdown-menu dropdown-content" aria-labelledby="dropdownMenuButton1">
-              <li><a class="dropdown-item" routerLink="/userProfile" (click)="getUser()">Your Account</a></li>
-              <li><a class="dropdown-item" href="#">Your Order</a></li>
-            </ul>
-          </div>
+          <a class="nav-link" *ngIf="isAuthed && user?.role == 'user' " routerLinkActive="active" routerLink="/Profile">{{ user?.fname | uppercase }} {{ user?.lname | uppercase }} </a>
+        </li>          <a class="nav-link" *ngIf="isAuthed && user?.role == 'admin' " routerLinkActive="active" routerLink="/Admin">{{ user?.fname | uppercase }} {{ user?.lname | uppercase }} </a>
+
+        <li class="nav-item">
+          <a class="nav-link" (click)="onLogout()" *ngIf="isAuthed">Logout</a>
         </li>
       </ul>
       <button routerLink="/cart" class="btn ">

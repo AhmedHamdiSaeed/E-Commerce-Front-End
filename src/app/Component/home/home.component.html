@@ -1,8 +1,7 @@
-<!doctype html>
-<html lang="en">
+
   <head>
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
-	
+
   </head>
   <body>
 <main>
@@ -26,27 +25,33 @@
                         <div class="col-md-12">
                             <img src="../../../assets/project images/4.png" class="img-fluid" style="max-width: 100%; height: auto;">
                         </div>
-                    
-                    
+
+
                 </div>
             </div>
         </div>
+
     </section> 
-    <section class="container-fluid  category">
-    <h2>Shop Popular Categoties</h2>
-      <div *ngFor="let category of allCategories"
-      
-        class="category-border border text-center text-uppercase border-2 mb-2 rounded-2">
-        <a [routerLink]="['/products/category']">
-            <img (click)="getSpecificCategory(category._id)" height="150" class="w-75 d-block mx-auto py-2"
-            [src]="category.image" [alt]="category.name">
-      
-        <h1 class="h4 py-3 text-main">{{category.name}}</h1>  </a>
-      </div>
-    </section>
+    
+    <section class="container-fluid category">
+        <h2 class="text-center mb-4">Shop Popular Categories</h2>
+        <div class="row justify-content-center">
+          <ng-container *ngFor="let category of allCategories">
+            <div class="col-md-4 mb-4">
+              <div class="category-border border text-center text-uppercase border-2 rounded-2">
+                <a [routerLink]="['/products/category']">
+                  <img (click)="getSpecificCategory(category._id)" height="150" class="w-75 d-block mx-auto py-2"
+                    src="../../../assets/project images/images (1).jpg" [alt]="category.name">
+                  <h1 class="h4 py-3 text-main">{{category.name}}</h1>
+                </a>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </section>
+
     <section class="container-fluid customer-reviews">
         <h2>Customer Reviews</h2>
-        
         <carousel>
           <slide>
             <div class="review">
@@ -78,9 +83,9 @@
           </slide>
         </carousel>
       </section>
-      
-      
-</main>		
+
+
+</main>
 <footer class="footer">
 			<div class="container">
 				<div class="row">
@@ -92,9 +97,9 @@
                             <li class="ftco-animate"><a href="#"  data-placement="top" title="Facebook"><i class="bi bi-facebook"></i></a></li>
                             <li class="ftco-animate"><a href="#" data-placement="top" title="Instagram"><i class="bi bi-instagram"></i></a></li>
                         </ul>
-                        
+
 					</div>
-					
+
 					<div class="col-md-6 col-lg-3 pl-lg-5 mb-4 mb-md-0">
 						<h2 class="footer-heading">Quick Links</h2>
 						<ul class="list-unstyled">
@@ -124,8 +129,7 @@
         </div>
 			</div>
 </footer>
-		
 
-  
+
+
   </body>
-</html>
