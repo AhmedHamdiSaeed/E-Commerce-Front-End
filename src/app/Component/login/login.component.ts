@@ -18,7 +18,6 @@ constructor(private auth : AuthService,
             private router: Router){}
 
 onSubmit(form : NgForm){
-    // console.log('submitted')
     this.isLoading = true ;
 
     console.log(form.value.email);
@@ -26,7 +25,14 @@ onSubmit(form : NgForm){
       console.log(data.user.role);
 
       this.isLoading = false ;
-      this.router.navigate(['/products/category']) ;
+      if(data.user.role == 'admin')
+      {
+        this.router.navigate(['/Admin']) ;
+      }
+      else
+      {
+        this.router.navigate(['/products/category']) ;
+      }
 
     } , (err) => {
       console.log(err) ;
