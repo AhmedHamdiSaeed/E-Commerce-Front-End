@@ -1,6 +1,6 @@
 import { Component, ElementRef, ViewChild , OnInit } from '@angular/core';
-import { AdminServices } from '../../Services/admin/admin-services.service';
-import {AuthService} from "../../Services/auth/auth.service"
+import { AdminServices } from '../../../Services/admin/admin-services.service';
+import {AuthService} from "../../../Services/auth/auth.service"
 import { Router } from '@angular/router';
 
 @Component({

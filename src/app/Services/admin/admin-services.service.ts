@@ -13,10 +13,7 @@ export class AdminServices{
   // getProducts(){
   //  return this.http.get('http://localhost:3000/api/v1/admin/products') ;
   // }
-
-
-  private apiProduct : string =`${baseURL}/admin/products`;
-
+private apiProduct : string =`${baseURL}/admin/products`;
   getProducts() {
     return this.http.get<any>(this.apiProduct).pipe(
       map((res) => {
@@ -27,8 +24,8 @@ export class AdminServices{
   }
   getOrders() {
 
-    return this.http.get<any>(`${baseURL}/admin/orders`).pipe(
 
+    return this.http.get<any>(`${baseURL}/admin/orders`).pipe(
       map((res) => {
         return res;
       })
