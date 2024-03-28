@@ -27,6 +27,7 @@ export class CategoriesComponent implements OnInit {
   error: string = '';
   categoryId: string | null = null;
   successMessage: string = '';
+  sortBy: string = '';
 
   ngOnInit(): void {
     this.getAllCategories();
@@ -109,5 +110,34 @@ export class CategoriesComponent implements OnInit {
   //filter
   onSearchTextChanged(searchValue: string) {
     this.searchTerm = searchValue;
+  }
+
+  //sort
+  onSortChange(sortBy: string): void {
+    if (sortBy === 'price') {
+      this.products.sort((a: { price: any }, b: { price: any }) => {
+        const priceA = a.price;
+        const priceB = b.price;
+        return priceA - priceB; // Sort by price in ascending order
+      });
+    } else if (sortBy === 'price-desc') {
+      this.products.sort((a: { price: any }, b: { price: any }) => {
+        const priceA = a.price;
+        const priceB = b.price;
+        return priceB - priceA; // Sort by price in descending order
+      });
+    } else if (sortBy === 'category') {
+      this.products.sort((a: { category: any }, b: { category: any }) => {
+        const categoryA = a.category.toLowerCase();
+        const categoryB = b.category.toLowerCase();
+        if (categoryA < categoryB) {
+          return -1;
+        }
+        if (categoryA > categoryB) {
+          return 1;
+        }
+        return 0;
+      });
+    }
   }
 }
