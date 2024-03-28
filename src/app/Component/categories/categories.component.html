@@ -29,7 +29,7 @@
             <!-- end sort -->
           </div>
         </div>
-        <div class="col-md-4" *ngFor="let product of products">
+        <div class="col-md-4" *ngFor="let product of receivedProducts">
           <div class="card mb-3 custom-card"
             *ngIf="searchTerm ==''|| product.title.trim().toLowerCase().includes(searchTerm.toLowerCase())">
             <div>
@@ -53,3 +53,5 @@
     </div>
   </div>
 </div>
+<!-- Pagination component -->
+<app-pagination (displayedProductsEvent)="updateDisplayedProducts($event)"></app-pagination>
