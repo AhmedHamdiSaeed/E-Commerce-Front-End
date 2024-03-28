@@ -38,12 +38,21 @@
           </div>
           <div class="col-sm-7">
             <div class="quantity">
-              <div class="quantity-controls">  <strong>Quantity : </strong>
+              <div class="quantity-controls">  
+             
                 <div class="quantity-text">
+                  <strong>Quantity : </strong>
                   {{product.quantity}}
                   </div>
-                  
-                <input class="form-control" type="number" min="1" [max]="product.quantity" [(ngModel)]="quantity">
+                  <div class="controls">
+                   <button class="btn btn-sm btn-outline-success" (click)="decreaseQuantity(product)">
+                      <i class="bi bi-dash"></i>
+                    </button>
+                    <span >{{ quantity }}</span>
+                    <button class="btn btn-sm btn-outline-success" (click)="increaseQuantity(product)">
+                      <i class="bi bi-plus"></i>
+                    </button>
+                  </div>
               </div>
             </div>
           </div>

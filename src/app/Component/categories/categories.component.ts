@@ -159,9 +159,9 @@ export class CategoriesComponent implements OnInit {
   isHovered: boolean = false;
 
   increaseQuantity(product: Product) {
-    const maxQuantity = product.quantity; // Maximum quantity available for the product
-    const totalQuantityInCart = this.cartService.getTotalQuantityInCart(product); // Total quantity already in the cart for the product
-    const remainingQuantity = maxQuantity - totalQuantityInCart; // Calculate remaining quantity that can be added
+    const maxQuantity = product.quantity; 
+    const totalQuantityInCart = this.cartService.getTotalQuantityInCart(product);  
+    const remainingQuantity = maxQuantity - totalQuantityInCart; 
     if (this.quantity < remainingQuantity) {
       this.quantity++;
     }

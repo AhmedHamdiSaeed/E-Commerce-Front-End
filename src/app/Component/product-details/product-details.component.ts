@@ -20,7 +20,7 @@ export class ProductDetailsComponent implements OnInit {
   error: string = "";
   categoryName: string = "";
   successMessage: string ="";
-  quantity: number = 1;
+  quantity: number = 0;
 
 
 
@@ -72,6 +72,10 @@ export class ProductDetailsComponent implements OnInit {
     }, 3000);
   }
   addToCart(product: Product) {
+    if (this.quantity <= 0) {
+      
+      return;
+    }
     if (!this.auth.isAuthenticated()) {
       this.router.navigate(['/login']);
       return;
@@ -79,16 +83,21 @@ export class ProductDetailsComponent implements OnInit {
     console.log("quantity: " + this.quantity);
     this.alertAppear();
     this.cartService.addToCart(product, this.quantity);
+    this.quantity = 0;
   }
 
   getImageUrl(imagePath: string): string {
     return `../../../assets${imagePath}`;
   }
   increaseQuantity(product: Product) {
-    if (this.quantity < this.product.quantity) {
+    const maxQuantity = product.quantity; 
+    const totalQuantityInCart = this.cartService.getTotalQuantityInCart(product);  
+    const remainingQuantity = maxQuantity - totalQuantityInCart; 
+    if (this.quantity < remainingQuantity) {
       this.quantity++;
+    }
   }
-  }
+  
   
   decreaseQuantity(product: Product) {
     if (this.quantity > 1) {
