@@ -1,14 +1,9 @@
 import { NgModule } from '@angular/core';
-<<<<<<< HEAD
+import { MatDialogModule } from '@angular/material/dialog';
 import {
   BrowserModule,
   provideClientHydration,
 } from '@angular/platform-browser';
-import { MatDialogModule } from '@angular/material/dialog';
-=======
-import { AuthGuardService } from './Services/auth/auth-guard.service';
-import {BrowserModule, provideClientHydration,} from '@angular/platform-browser';
->>>>>>> bfc9f0451525076f2c8ef805cc24cd906f85f159
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -37,15 +32,10 @@ import { ProductComponent } from './Component/admin-dashboard/product/product.co
 import { ProductDetailsComponent } from './Component/product-details/product-details.component';
 import { CartComponent } from './Component/Cart/cart/cart.component';
 import { ContentComponent } from './Component/admin-dashboard/Orders/content.component';
-
 import { AboutUsComponent } from './Component/about-us/about-us.component';
 import { EditProductDialogComponent } from './Component/edit-product-dialog/edit-product-dialog.component';
-<<<<<<< HEAD
 import { SearchComponent } from './Component/search/search.component';
-=======
-import { AddProductComponent } from './Component/add-product/add-product.component';
 
->>>>>>> bfc9f0451525076f2c8ef805cc24cd906f85f159
 @NgModule({
   declarations: [
     AppComponent,
@@ -64,12 +54,7 @@ import { AddProductComponent } from './Component/add-product/add-product.compone
     AboutUsComponent,
     EditProductDialogComponent,
     ContentComponent,
-<<<<<<< HEAD
     SearchComponent,
-=======
-    UserProfileComponent,
-    AddProductComponent
->>>>>>> bfc9f0451525076f2c8ef805cc24cd906f85f159
   ],
   imports: [
     BrowserModule,
@@ -94,7 +79,6 @@ import { AddProductComponent } from './Component/add-product/add-product.compone
       multi: true,
     },
     provideClientHydration(),
-<<<<<<< HEAD
   ],
   bootstrap: [
     AppComponent,
@@ -103,17 +87,5 @@ import { AddProductComponent } from './Component/add-product/add-product.compone
     MatDialogModule, // Include MatDialogModule here
     AppRoutingModule,
   ],
-=======
-  ],
-  bootstrap: [
-    AppComponent,
-    MatTableModule,
-    MatInputModule,
-    MatDialogModule, // Include MatDialogModule here
-    AppRoutingModule,
-  ],
-
-
->>>>>>> bfc9f0451525076f2c8ef805cc24cd906f85f159
 })
 export class AppModule {}

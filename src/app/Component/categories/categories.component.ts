@@ -12,6 +12,7 @@ import { AuthService } from '../../Services/auth/auth.service';
   styleUrls: ['./categories.component.css'],
 })
 export class CategoriesComponent implements OnInit {
+  searchTerm: string = '';
   constructor(
     private route: ActivatedRoute,
     private router: Router,

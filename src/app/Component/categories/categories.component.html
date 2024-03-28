@@ -23,8 +23,8 @@
         </div>
         <div class="col-md-4" *ngFor="let product of products">
           <div class="card mb-3 custom-card"
-            *ngIf="searchTerm ==''|| product.title.trim().toLowerCase().includes(searchTerm)">
-            <div class="d-flex justify-content-center align-items-center">
+            *ngIf="searchTerm ==''|| product.title.trim().toLowerCase().includes(searchTerm.toLowerCase())">
+            <div>
               <img class="card-img-top" [src]="getImageUrl(product.image)" [alt]="product.title">
             </div>
             <div class="card-body">
