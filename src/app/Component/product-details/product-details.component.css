@@ -3,8 +3,12 @@
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  height: 50%;
+  margin-top: -26px;
 }
-
+.card-img, .card-img-bottom, .card-img-top {
+  width: 60% !important;
+}
 .loading-spinner {
   text-align: center;
   margin-top: 20px;
@@ -19,7 +23,7 @@
   border: 1px solid #000;
 }
 .custom-button {
-  font-size: 16px;
+  font-size: 20px;
   padding: 8px 16px;
   width: 36%;
   margin-left: 158px;

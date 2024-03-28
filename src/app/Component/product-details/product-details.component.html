@@ -3,7 +3,7 @@
     <div *ngIf="isLoading" class="loading-spinner">
       <app-loading-spinner></app-loading-spinner>
     </div>
-    <div *ngIf="!isLoading" class="row">
+    <div class="row"  *ngIf="!isLoading">
       <div class="col-md-6 d-flex justify-content-center align-items-center">
         <img class="card-img-top img-fluid" [src]="getImageUrl(product.image)" [alt]="product.title">
       </div>
@@ -22,8 +22,8 @@
           <i class="bi bi-cart-plus"></i>
           Add To Cart
         </button>
-      </div>
 
+      </div>
     </div>
   </ng-container>
 
