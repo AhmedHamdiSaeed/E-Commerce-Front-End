@@ -61,7 +61,7 @@ const routes: Routes = [
   },
   { path: 'Profile', component: UserProfileComponent },
   { path: 'Add_Product', component: AddProductComponent },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '', redirectTo: '/', pathMatch: 'full' },
   { path: 'Not-Found', component: NotFoundComponent },
   { path: 'Profile', component: UserProfileComponent },
   { path: '**', redirectTo: 'Not-Found' },
