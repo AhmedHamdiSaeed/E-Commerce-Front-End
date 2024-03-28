@@ -39,14 +39,10 @@
               <h5 class="card-title">{{ product.title }}</h5>
               <p class="card-text">{{ product.description }}</p>
               <p class="card-text">Price: {{ product.price }}</p>
-              <!-- <div class="d-grid gap-2"> -->
-                <!-- <button class="btn btn-success mb-2" [routerLink]="['/products', product._id]">Show Details</button> -->
-
-                <!-- <button class="btn btn-success mb-2" (click)="addToCart(product)">
-                  <i class="bi bi-cart-plus"></i>
-                  Add To Cart
-                </button> -->
-               
+             
+              <button class="btn btn-outline-success  btn-details" [routerLink]="['/products', product._id]">
+                <i class="bi bi-eye-fill"></i>
+              </button>
                   <button class="btn btn-success mb-2  cart-btn" (mouseenter)="isHovered = true" (mouseleave)="isHovered = false">
                     <button class="btn" (click)="addToCart(product)"><i style="font-size: 30px;" class="bi bi-cart-plus" ></i></button>
                     <div class="quantity-controls" [ngClass]="{ 'expanded': isHovered }">
@@ -59,8 +55,9 @@
                       </button>
                     </div>
                   </button>
-            </div>
+           
           </div>
+        
         </div>
       </div>
     </div>
