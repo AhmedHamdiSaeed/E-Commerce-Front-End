@@ -32,7 +32,7 @@ export class CategoriesComponent implements OnInit {
   sortBy: string = '';
   receivedProducts: any[] = [];
   quantity: number = 0;
-  // searchTerm: string="";
+
   ngOnInit(): void {
     this.getAllCategories();
     this.getAllProducts();
