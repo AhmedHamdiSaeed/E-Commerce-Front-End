@@ -4,6 +4,9 @@ import { Category } from '../../models/categoryModel';
 import { Product } from '../../models/product';
 import {baseURL} from '../../../.././env'
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { AuthService } from '../../Services/auth/auth.service';
+import { CartService } from '../../Services/Cart/cart.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -12,8 +15,7 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
   styleUrls: ['./product-details.component.css']
 })
 export class ProductDetailsComponent implements OnInit {
-  constructor(private route: ActivatedRoute,private router: Router, private productService: ProductService, private cartService: CartService,private auth : AuthService) {}
-
+ 
   product: Product | any;
   allCategories: Category[] = [];
   isLoading: boolean = false;
@@ -25,8 +27,8 @@ export class ProductDetailsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private productService: ProductService,
-    private sanititzer: DomSanitizer
+    private sanititzer: DomSanitizer,
+    private router: Router, private productService: ProductService, private cartService: CartService,private auth : AuthService
   ) {}
 
   async ngOnInit(): Promise<void> {
@@ -81,6 +83,20 @@ export class ProductDetailsComponent implements OnInit {
     setTimeout(() => {
       this.successMessage = '';
     }, 3000);
+  }
+  addToCart(product: Product) {
+    if (this.quantity <= 0) {
+      
+      return;
+    }
+    if (!this.auth.isAuthenticated()) {
+      this.router.navigate(['/login']);
+      return;
+    }
+    console.log("quantity: " + this.quantity);
+    this.alertAppear();
+    this.cartService.addToCart(product, this.quantity);
+    this.quantity = 0;
   }
   getImageUrl(imagePath: string) :SafeUrl {
     // return `../../../assets${imagePath}`;

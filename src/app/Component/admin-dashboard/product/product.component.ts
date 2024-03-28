@@ -35,4 +35,6 @@ export class ProductComponent implements OnInit {
       this.products = this.products.filter((product: any) => product._id !== productId);
     });
   }
+  // Load image
+
 }
