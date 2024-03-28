@@ -1,27 +1,78 @@
-<div class="container mt-4">
+<div class="container mt-2">
   <ng-container *ngIf="product">
     <div *ngIf="isLoading" class="loading-spinner">
       <app-loading-spinner></app-loading-spinner>
     </div>
-    <div class="row">
+    <div *ngIf="!isLoading" class="row custom-row">
+
       <div class="col-md-6 d-flex justify-content-center align-items-center">
         <img class="card-img-top img-fluid" [src]="getImageUrl(product.image)" [alt]="product.title">
-    </div>
-      <div class="col-md-6 product-details">
-        <h2>{{ product.title }}</h2>
-        <p class="lead">{{ product.description }}</p>
-        <p><strong>Price:</strong> {{ product.price }}</p>
-        <p><strong>Quantity:</strong> {{ product.quantity }}</p>
-        <p><strong>Colors:</strong> {{ product.colors.join(', ') }}</p>
-        <p><strong>Category:</strong> {{categoryName}}</p>
-        <p><strong>Company:</strong> {{ product.company }}</p>
-        <p><strong>Sold:</strong> {{ product.sold }}</p>
       </div>
-     
+
+      <div class="col-md-6 product_details">
+        <div class="row">
+        <h2 class="title">{{ product.title }}</h2>
+          <div class="col-sm-6">
+            <p class="Category">{{ categoryName }}</p>
+          </div>
+          <div class="col-sm-6">
+            <p class="Price">Price : ${{ product.price }}</p>
+          </div>
+        </div>
+        <hr>
+        <div class="description">
+          <div class="description-controls">
+            <p class="desc-titel">About This Item :</p>
+            <p class="desc">{{ product.description }}</p>
+          </div>
+        </div>
+        <hr>
+
+        <div class="row custom-row">
+          <div class="col-sm-5">
+            <div class="Color">
+              <div class="color-container">  <strong>Colors : </strong>
+                <div *ngFor="let color of product.colors" class="color-circle" [style.background-color]="color"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-7">
+            <div class="quantity">
+              <div class="quantity-controls">  
+             
+                <div class="quantity-text">
+                  <strong>Quantity : </strong>
+                  {{product.quantity}}
+                  </div>
+                  <div class="controls">
+                   <button class="btn btn-sm btn-outline-success" (click)="decreaseQuantity(product)">
+                      <i class="bi bi-dash"></i>
+                    </button>
+                    <span >{{ quantity }}</span>
+                    <button class="btn btn-sm btn-outline-success" (click)="increaseQuantity(product)">
+                      <i class="bi bi-plus"></i>
+                    </button>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-6">
+            <button class="btn btn-success custom-button" (click)="addToCart(product)">
+              Add To Cart
+            </button>
+          </div>
+          <div class="col-6">
+            <button class="btn btn-outline-success custom-button">
+              Buy Now
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   </ng-container>
-
-
 
   <div *ngIf="error" class="error-message text-center">
     <p>Error: {{ error }}</p>

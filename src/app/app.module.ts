@@ -1,8 +1,12 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { MatDialogModule } from '@angular/material/dialog';
+import {
+  BrowserModule,
+  provideClientHydration,
+} from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {  ReactiveFormsModule } from '@angular/forms';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -13,7 +17,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatInputModule } from '@angular/material/input';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTableModule } from '@angular/material/table';
-import { MatDialogModule } from '@angular/material/dialog';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CategoriesComponent } from './Component/categories/categories.component';
@@ -24,16 +27,19 @@ import { HeaderComponent } from './Component/header/header.component';
 import { NotFoundComponent } from './Component/not-found/not-found.component';
 import { LoadingSpinnerComponent } from './SharedComponent/loading-spinner/loading-spinner.component';
 import { AuthInterceptorService } from './Services/auth/auth-interceptor.service';
-import { AdminBoardComponent } from './Component/admin-board/admin-board.component';
-import { ProductComponent } from './Component/product/product.component';
+import { AdminBoardComponent } from './Component/admin-dashboard/admin-board/admin-board.component';
+import { ProductComponent } from './Component/admin-dashboard/product/product.component';
 import { ProductDetailsComponent } from './Component/product-details/product-details.component';
 import { CartComponent } from './Component/Cart/cart/cart.component';
-import { ContentComponent } from './Component/content/content.component';
+import { ContentComponent } from './Component/admin-dashboard/Orders/content.component';
 import { AboutUsComponent } from './Component/about-us/about-us.component';
-import { CarouselModule } from 'ngx-bootstrap/carousel';
-import { UserProfileComponent } from './Component/user-profile/user-profile.component';
 import { EditProductDialogComponent } from './Component/edit-product-dialog/edit-product-dialog.component';
-import { AddProductComponent } from './Component/add-product/add-product.component';
+import { SearchComponent } from './Component/search/search.component';
+
+import { FormsModule } from '@angular/forms';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { PaginationComponent } from './Component/pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -52,14 +58,16 @@ import { AddProductComponent } from './Component/add-product/add-product.compone
     ContentComponent,
     AboutUsComponent,
     EditProductDialogComponent,
-    UserProfileComponent,
-    AddProductComponent
+    ContentComponent,
+    SearchComponent,
+    PaginationComponent,
   ],
   imports: [
+    CarouselModule.forRoot(),
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    FormsModule,
+    FormsModule, 
     ReactiveFormsModule,
     MatPaginatorModule,
     MatFormFieldModule,
@@ -69,15 +77,23 @@ import { AddProductComponent } from './Component/add-product/add-product.compone
     MatTabsModule,
     MatSelectModule,
     MatProgressSpinnerModule,
-    MatTableModule,
-    MatInputModule,
-    MatDialogModule,
     AppRoutingModule,
-    CarouselModule.forRoot()
+    NgxPaginationModule,
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true }
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true,
+    },
+    provideClientHydration(),
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [
+    AppComponent,
+    MatTableModule,
+    MatInputModule,
+    MatDialogModule, // Include MatDialogModule here
+    AppRoutingModule,
+  ],
 })
-export class AppModule { }
+export class AppModule {}

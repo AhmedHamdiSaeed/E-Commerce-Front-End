@@ -1,5 +1,5 @@
 import { Component ,OnInit} from '@angular/core';
-import { AdminServices } from '../../Services/admin/admin-services.service';
+import { AdminServices } from '../../../Services/admin/admin-services.service';
 
 @Component({
   selector: 'app-content',

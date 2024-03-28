@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../../Services/product/product.service';
 import { Category } from '../../models/categoryModel';
 import { Product } from '../../models/product';
@@ -13,11 +12,16 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
   styleUrls: ['./product-details.component.css']
 })
 export class ProductDetailsComponent implements OnInit {
-  product: Product | undefined;
+  constructor(private route: ActivatedRoute,private router: Router, private productService: ProductService, private cartService: CartService,private auth : AuthService) {}
+
+  product: Product | any;
   allCategories: Category[] = [];
   isLoading: boolean = false;
   error: string = "";
-  categoryName: string = ""; // Corrected property name
+  categoryName: string = "";
+  successMessage: string ="";
+  quantity: number = 0;
+
 
   constructor(
     private route: ActivatedRoute,
@@ -25,8 +29,8 @@ export class ProductDetailsComponent implements OnInit {
     private sanititzer: DomSanitizer
   ) {}
 
-  ngOnInit(): void {
-    this.getAllCategories();
+  async ngOnInit(): Promise<void> {
+    await this.getAllCategories();
     const productId = this.route.snapshot.paramMap.get('id');
     if (productId) {
       this.isLoading = true;
@@ -56,21 +60,27 @@ export class ProductDetailsComponent implements OnInit {
     }
   }
 
-  getAllCategories(): void {
-    this.productService.getAllCategories().subscribe(
-      (res: Category[] | any) => { // Adjust the type here
-        if (Array.isArray(res)) {
-          this.allCategories = res;
-        } else {
-          this.allCategories = [res];
-        }
-      },
-      (err) => {
-        console.log(err);
-        this.isLoading = false;
-        this.error = err.error.message;
+  async getAllCategories(): Promise<void> {
+    this.isLoading = true;
+    try {
+      const res: Category[] | any = await this.productService.getAllCategories().toPromise();
+      if (Array.isArray(res)) {
+        this.allCategories = res;
+      } else {
+        this.allCategories = [res];
       }
-    );
+      this.isLoading = false;
+    } catch (err: any) {
+      console.log(err);
+      this.isLoading = false;
+      this.error = err.error.message;
+    }
+  }
+  alertAppear(){
+    this.successMessage='Product added to cart!';
+    setTimeout(() => {
+      this.successMessage = '';
+    }, 3000);
   }
   getImageUrl(imagePath: string) :SafeUrl {
     // return `../../../assets${imagePath}`;
@@ -82,4 +92,20 @@ export class ProductDetailsComponent implements OnInit {
     return  this.sanititzer.bypassSecurityTrustUrl(safeurl) ;
 
   }
+  increaseQuantity(product: Product) {
+    const maxQuantity = product.quantity; 
+    const totalQuantityInCart = this.cartService.getTotalQuantityInCart(product);  
+    const remainingQuantity = maxQuantity - totalQuantityInCart; 
+    if (this.quantity < remainingQuantity) {
+      this.quantity++;
+    }
+  }
+  
+  
+  decreaseQuantity(product: Product) {
+    if (this.quantity > 1) {
+      this.quantity--;
+    }
+  }
+  
 }

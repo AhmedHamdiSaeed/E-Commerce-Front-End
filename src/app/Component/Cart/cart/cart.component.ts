@@ -12,6 +12,8 @@ export class CartComponent {
   products: Product[] = [];
   cartProducts: any[] = [];
   error: string = "";
+  quantity: number = 1;
+
   constructor(private router: Router ,private cartService: CartService) {}
 
   
@@ -27,37 +29,45 @@ export class CartComponent {
   getCartProduct(){
     if("cart" in localStorage){
       this.cartProducts = JSON.parse(localStorage.getItem("cart")!);
+     
     } 
   }
   
   removeItem(i: number) {
   this.cartProducts .splice(i, 1);
-  this.cartService.updateCartLength(this.cartProducts.length);
   this. setItem();
+  this.cartService.updateCartLengthFromLocalStorage();
   }
-  increaseQuantity(product: Product) {
-    product.quantity++;
-    this. setItem(); 
-}
+  
 
-decreaseQuantity(product: Product) {
-    if (product.quantity > 1) {
-        product.quantity--; 
-        this. setItem();
-    }
-}
 Clear(){
   this.cartProducts = [];
   this.setItem();
   this.getTotalPrice();
-  this.cartService.updateCartLength(this.cartProducts.length);
+  this.cartService.updateCartLengthFromLocalStorage();
 }
 getTotalPrice(): number {
-
- return this.cartProducts.reduce((total, product) => total + (product.quantity * product.price), 0);
+  return this.cartProducts.reduce((total, item) => total + (item.quantity * item.product.price), 0);
+}
+increaseQuantity(item: any): void {
+  if (item.quantity < item.product.quantity) {
+    item.quantity++;
+    this.setItem();
+  }
 }
 
+decreaseQuantity(item: any): void {
+  if (item.quantity > 1) {
+    item.quantity--;
+    this.setItem();
+  }
+}
 orderNow(){
   
+}
+
+// Load image
+getImageUrl(imagePath: string): string {
+  return `../../../assets${imagePath}`;
 }
 }

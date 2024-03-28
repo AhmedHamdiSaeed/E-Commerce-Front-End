@@ -9,7 +9,7 @@ import {baseURL} from '../../../.././env'
 })
 export class CartService {
   private apiUrl =  `${baseURL}/cart`;
-
+  quantity: number= 0;
   constructor(private http: HttpClient) {   this.updateCartLengthFromLocalStorage();}
   getCarts() {
     return this.http.get(`${this.apiUrl}`);
@@ -17,18 +17,22 @@ export class CartService {
   cartProducts: any[] = [];
   private cartLengthSubject = new BehaviorSubject<number>(0);
 
-  private updateCartLengthFromLocalStorage() {
-    const cartItems: Product[] = JSON.parse(localStorage.getItem("cart") || '[]');
-    this.updateCartLength(cartItems.length);
+  updateCartLengthFromLocalStorage() {
+    const storedCart = JSON.parse(localStorage.getItem("cart") || '[]');
+    this.cartProducts = storedCart || [];
+    const totalQuantity = this.cartProducts.reduce((total, item) => total + item.quantity, 0);
+    this.updateCartLength(totalQuantity);
   }
-  addToCart(product: Product) {
-    let cartProducts: Product[] = JSON.parse(localStorage.getItem("cart") || '[]');
-    let isExist = cartProducts.find(i => i._id === product._id);
-    if (!isExist) {
-      cartProducts.push(product);
-      localStorage.setItem("cart", JSON.stringify(cartProducts));
-      this.updateCartLength(cartProducts.length);
+  addToCart(product: Product, quantity: number) {
+    const existingProductIndex = this.cartProducts.findIndex(item => item.product._id === product._id);
+    if (existingProductIndex !== -1) {
+      this.cartProducts[existingProductIndex].quantity += quantity;
+    } else {
+      this.cartProducts.push({ product, quantity });
     }
+    localStorage.setItem('cart', JSON.stringify(this.cartProducts));
+    this.updateCartLengthFromLocalStorage();
+    console.log('Quantity added to cart:', quantity);
   }
 
   updateCartLength(length: number) {
@@ -39,6 +43,14 @@ export class CartService {
     return this.cartLengthSubject.asObservable();
   }
 
-
+  getTotalQuantityInCart(product: Product): number {
+    let totalQuantity = 0;
+    for (const item of this.cartProducts) {
+      if (item.product._id === product._id) {
+        totalQuantity += item.quantity;
+      }
+    }
+    return totalQuantity;
+  }
 
 }

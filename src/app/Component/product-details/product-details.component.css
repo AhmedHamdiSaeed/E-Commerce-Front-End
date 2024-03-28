@@ -1,19 +1,99 @@
-.product-details {
-  background-color: #f8f9fa;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.container.mt-2 {
+  margin-top: 2rem;
 }
 
 .loading-spinner {
-  text-align: center;
-  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.custom-row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card-img-top.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+.product_details {
+  padding: 0 15px;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.Category {
+  font-size: 1.2rem;
+  color: #666;
+}
+
+.Price {
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.description {
+  margin-top: 1rem;
+}
+
+.description-controls {
+  margin-bottom: 1rem;
+}
+
+.desc-titel {
+  font-weight: bold;
+}
+
+.desc {
+  color: #666;
+}
+
+.Color {
+  margin-top: 1rem;
+}
+
+.color-container {
+  display: flex;
+}
+
+.color-circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.quantity {
+  margin-top: 1rem;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+}
+
+.quantity-text {
+  margin-right: 60px;
+}
+.controls{
+  display: flex;
+  justify-content: space-around; 
+  font-size: 15px;
+  width: 100px;
+
+}
+.custom-button {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
 }
 
 .error-message {
-  color: #721c24;
-  background-color: #f8d7da;
-  padding: 10px;
-  border-radius: 5px;
-  margin-top: 20px;
+  margin-top: 1rem;
+  color: red;
 }
