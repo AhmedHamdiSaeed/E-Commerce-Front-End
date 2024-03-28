@@ -47,18 +47,6 @@ const routes: Routes = [
     canActivate: [AuthGuardService],
   },
 
-  { path: 'products/:id', component: ProductDetailsComponent },
-  { path: 'cart', component: CartComponent },
-  {
-    path: 'Admin',
-    component: AdminBoardComponent,
-    canActivate: [AuthGuardService],
-  },
-  {
-    path: 'Admin/products',
-    component: ProductComponent,
-    canActivate: [AuthGuardService],
-  },
   { path: 'Profile', component: UserProfileComponent },
   { path: 'Add_Product', component: AddProductComponent },
   { path: '', redirectTo: '/', pathMatch: 'full' },

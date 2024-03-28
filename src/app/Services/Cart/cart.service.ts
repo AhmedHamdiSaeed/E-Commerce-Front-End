@@ -8,11 +8,11 @@ import {baseURL} from '../../../.././env'
   providedIn: 'root'
 })
 export class CartService {
-  private apiUrl =  `${baseURL}/cart`;
+  private apiUrl =  `${baseURL}/cart/add`;
   quantity: number= 0;
   constructor(private http: HttpClient) {   this.updateCartLengthFromLocalStorage();}
-  getCarts() {
-    return this.http.get(`${this.apiUrl}`);
+  createNewCart(products:any) {
+    return this.http.post(`${this.apiUrl}`,products);
   }
   cartProducts: any[] = [];
   private cartLengthSubject = new BehaviorSubject<number>(0);

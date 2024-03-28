@@ -40,7 +40,7 @@ export class AuthService {
       const expireDate = new Date(new Date().getTime() + ( +resData.expiresIn * 60 * 60 *1000)) ;
       console.log(resData.expiresIn);
 
-      const newUser = new User(resData.user.fname , resData.user.lname , resData.user.email , resData.user.role , resData.token , expireDate) ;
+      const newUser = new User(resData.user.fname , resData.user.lname , resData.user.email , resData.user.role ,resData.user._id, resData.token ,expireDate,) ;
       this.userSubject.next(newUser) ;
       localStorage.setItem("userData" , JSON.stringify(newUser)) ;
     }))
@@ -56,11 +56,12 @@ export class AuthService {
         lname: string ,
         email: string ,
         role: string ,
+        _id: string ,
          _token: string ,
          tokenExpireDate: string
       }= JSON.parse(temp)
 
-      const newUser = new User(loadUser.fname , loadUser.lname ,loadUser.email, loadUser.role , loadUser._token , new Date(loadUser.tokenExpireDate)) ;
+      const newUser = new User(loadUser.fname , loadUser.lname ,loadUser.email, loadUser.role,loadUser._id , loadUser._token , new Date(loadUser.tokenExpireDate)) ;
       // console.log(loadUser.tokenExpireDate);
 
       if(newUser.Token){
