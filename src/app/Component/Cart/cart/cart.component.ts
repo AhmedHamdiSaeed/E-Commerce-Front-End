@@ -63,7 +63,14 @@ decreaseQuantity(item: any): void {
   }
 }
 orderNow(){
-  
+  let products= this.cartProducts.map(item=>{
+    return{productId: item.product._id, quantity: item.quantity}
+  })
+
+  this.cartService.createNewCart(products).subscribe(res=>{
+   this.success=true;
+  })
+  console.log(products)
 }
 
 // Load image
