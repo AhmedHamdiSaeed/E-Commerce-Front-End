@@ -89,14 +89,14 @@ export class CategoriesComponent implements OnInit {
       this.successMessage = '';
     }, 3000);
   }
-  addToCart(product: Product) {
-    if (!this.auth.isAuthenticated()) {
-      this.router.navigate(['/login']);
-      return;
-    }
-    this.alertAppear();
-    this.cartService.addToCart(product);
-  }
+  // addToCart(product: Product) {
+  //   if (!this.auth.isAuthenticated()) {
+  //     this.router.navigate(['/login']);
+  //     return;
+  //   }
+  //   this.alertAppear();
+  //   this.cartService.addToCart(product);
+  // }
   getSpecificCategory(categoryId: string): void {
     console.log('Category clicked:', categoryId);
     this.getProductsByCategory(categoryId);

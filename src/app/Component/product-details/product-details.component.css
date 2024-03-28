@@ -1,28 +1,59 @@
-.product-details {
-  background-color: #f8f9fa;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
 
+.product_details {
+height: 50%;
+
+}
+.card-img-top{
+  width: 80%;
+}
+.product_details h2{
+color: rgb(0, 0, 0);
+font-size: 30px;
+}
+.Category{
+  width: 100px;
+  height: 30px;
+  border-radius:5px;
+  background-color: rgba(0, 128, 0, 0.586);
+  color: white;
+  font-size: 17px;
+  font-weight: 500;
+  padding: 3px;
+  text-align: center;
+  margin-top: 40px;
+}
+.Price{
+ margin-top: 40px;
+  font-weight: bold;
+  color: #000000;
+  font-size: 20px;
+}
 .loading-spinner {
   text-align: center;
   margin-top: 20px;
 }
-.color-rectangle {
-  display: inline-block;
-  width: 18px;
-  height: 17px;
-  margin-left: 8px;
-  margin-bottom: -3px;
-  margin-top: 0;
-  border: 1px solid #000;
+
+.description {
+  margin-top: 20px;
 }
+.desc-titel{
+  font-size: larger;
+  font-weight: bold;
+}
+.description-controls {
+  
+  padding: 10px;
+  
+}
+
+.desc {
+  margin-bottom: 10px;
+}
+
 .custom-button {
   font-size: 16px;
-  padding: 8px 16px;
-  width: 36%;
-  margin-left: 158px;
+  padding: 10px 30px;
+  margin-top: 20px;
 }
 
 .error-message {
@@ -32,3 +63,51 @@
   border-radius: 5px;
   margin-top: 20px;
 }
+.color-container {
+  display: flex;
+  gap: 5px;
+}
+
+.color-circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  margin-top: 10px;
+}
+.Color{
+  margin: 20px 0px;
+}
+.Color strong{
+  font-size: 20px;
+  font-weight: 500;
+}
+.quantity {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+.quantity{
+  margin: 20px 0px;
+}
+.quantity strong{
+  font-size: 20px;
+  font-weight: 500;
+  margin-right: 10px;
+}
+
+.quantity input {
+  width: 70px;
+  text-align: center;
+  
+}
+.quantity-controls {
+  display: flex;
+ 
+}
+
+.quantity-controls button,
+.quantity-controls input {
+  margin-right: 5px; 
+}
+

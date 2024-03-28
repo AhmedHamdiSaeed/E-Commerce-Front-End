@@ -20,7 +20,7 @@ export class ProductDetailsComponent implements OnInit {
   error: string = "";
   categoryName: string = "";
   successMessage: string ="";
-
+  quantity: number = 1;
 
 
 
@@ -72,15 +72,26 @@ export class ProductDetailsComponent implements OnInit {
     }, 3000);
   }
   addToCart(product: Product) {
-    if(!this.auth.isAuthenticated()){
+    if (!this.auth.isAuthenticated()) {
       this.router.navigate(['/login']);
       return;
     }
+    console.log("quantity: " + this.quantity);
     this.alertAppear();
-    this.cartService.addToCart(product);
-     }
+    this.cartService.addToCart(product, this.quantity);
+  }
 
   getImageUrl(imagePath: string): string {
     return `../../../assets${imagePath}`;
   }
+  increaseQuantity(product: Product) {
+    this.quantity++;
+  }
+  
+  decreaseQuantity(product: Product) {
+    if (this.quantity > 1) {
+      this.quantity--;
+    }
+  }
+  
 }

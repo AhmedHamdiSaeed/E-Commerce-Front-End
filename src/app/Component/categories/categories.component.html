@@ -5,20 +5,16 @@
       <h3 class="text-center text-main bg-success text-light rounded-2 p-2">All Categories</h3>
       <div *ngFor="let category of allCategories"
         class="category-border border text-center text-uppercase border-2 mb-2 rounded-2">
-        <!-- Ensure that getSpecificCategory method is correctly called on click -->
-        <!-- <img (click)="getSpecificCategory(category._id)" height="150" class="w-75 d-block mx-auto py-2"
-          [src]="category.image" [alt]="category.name"> -->
-        <img (click)="getSpecificCategory(category._id)" height="150" class="w-75 d-block mx-auto py-2"
+        <img (click)="getSpecificCategory(category._id)" class="category-image" height="150"
           src="../../../assets/project images/images (1).jpg" [alt]="category.name">
-
         <h1 class="h4 py-3 text-main">{{category.name}}</h1>
       </div>
     </div>
     <!-- Main Section for Products -->
     <div class="col-md-9">
       <div class="row">
-        <div class=" d-flex justify-content-between text-center text-main  bg-success text-light rounded-2 p-2">
-          <h3 class="mt-2 ms-3">Products</h3>
+        <div class="d-flex justify-content-between text-center text-main  bg-success text-light rounded-2 p-2">
+          <h3 class="mt-2 ms-3 ">Products</h3>
           <div class="d-flex text-center">
             <!-- search -->
             <app-search (searchTextChanged)="onSearchTextChanged($event)"></app-search>
@@ -37,7 +33,7 @@
           <div class="card mb-3 custom-card"
             *ngIf="searchTerm ==''|| product.title.trim().toLowerCase().includes(searchTerm.toLowerCase())">
             <div>
-              <img class="card-img-top" [src]="getImageUrl(product.image)" [alt]="product.title">
+              <img class="card-img-top product-image" [src]="getImageUrl(product.image)" [alt]="product.title">
             </div>
             <div class="card-body">
               <h5 class="card-title">{{ product.title }}</h5>
@@ -45,10 +41,10 @@
               <p class="card-text">Price: {{ product.price }}</p>
               <div class="d-grid gap-2">
                 <button class="btn btn-success mb-2" [routerLink]="['/products', product._id]">Show Details</button>
-                <button class="btn btn-success mb-2" (click)="addToCart(product)">
+                <!-- <button class="btn btn-success mb-2" (click)="addToCart(product)">
                   <i class="bi bi-cart-plus"></i>
                   Add To Cart
-                </button>
+                </button> -->
               </div>
             </div>
           </div>

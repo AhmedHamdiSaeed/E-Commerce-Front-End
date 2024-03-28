@@ -4,26 +4,55 @@
       <app-loading-spinner></app-loading-spinner>
     </div>
     <div *ngIf="!isLoading" class="row">
-      <div class="col-md-6 d-flex justify-content-center align-items-center">
-        <img class="card-img-top img-fluid" [src]="getImageUrl(product.image)" [alt]="product.title">
+     
+        <div class="col-md-6 d-flex justify-content-center align-items-center">
+          <img class="card-img-top img-fluid" [src]="getImageUrl(product.image)" [alt]="product.title">
+        </div>
+   
+      <div class="col-md-6 product_details">
+        <h2 class="title">{{ product.title }}</h2><hr>
+        <div class="row">
+          <div class="col-sm-6">
+            <p class="Category">{{ categoryName }}</p>
+          </div>
+          <div class="col-sm-6">
+            <p class="Price">${{ product.price }}</p>
+          </div>
+        </div> 
+        <div class="Color"><strong>Color</strong>
+          <div class="color-container">
+            <span *ngFor="let color of product.colors" class="color-circle" [style.background-color]="color"></span>
+          </div>
+        </div>
+        <div class="quantity">
+          <strong>Quantity</strong><br>
+          <div class="quantity-controls">
+            <button class="btn btn-outline-success" (click)="decreaseQuantity(product)">-</button>
+            <input class="form-control" type="number" min="1" [(ngModel)]="quantity">
+            <button class="btn btn-outline-success" (click)="increaseQuantity(product)">+</button>
+          </div>
+        </div>
+        <hr>
+        <div class="description">
+          <div class="description-controls">
+            <p class="desc-titel">About This Item</p>
+            <p class="desc">{{ product.description }}</p>
+            </div>
+        </div>
+        <hr>
+        <div class="row ">
+          <div class="col-6">
+            <button class="btn btn-success custom-button" (click)="addToCart(product)">
+              Add To Cart
+            </button>
+          </div>
+          <div class="col-6">
+            <button class="btn btn-outline-success custom-button">
+              Order Now
+            </button>
+          </div>
+        </div>
       </div>
-      <div class="col-md-6 product-details">
-        <h2>{{ product.title }}</h2>
-        <p class="lead">{{ product.description }}</p>
-        <p><strong>Price:</strong> {{ product.price }}</p>
-        <p><strong>Quantity:</strong> {{ product.quantity }}</p>
-        <p><strong>Colors:</strong>
-          <span *ngFor="let color of product.colors" class="color-rectangle" [style.background-color]="color"></span>
-        </p>
-        <p><strong>Category:</strong> {{ categoryName }}</p>
-        <p><strong>Company:</strong> {{ product.company }}</p>
-        <p><strong>Sold:</strong> {{ product.sold }}</p>
-        <button class="btn btn-success custom-button mb-2" (click)="addToCart(product)">
-          <i class="bi bi-cart-plus"></i>
-          Add To Cart
-        </button>
-      </div>
-
     </div>
   </ng-container>
 
