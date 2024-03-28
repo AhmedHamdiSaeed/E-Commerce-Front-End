@@ -29,7 +29,7 @@ export class CategoriesComponent implements OnInit {
   successMessage: string = '';
   sortBy: string = '';
   receivedProducts: any[] = [];
-  quantity: number = 1;
+  quantity: number = 0;
 
   ngOnInit(): void {
     this.getAllCategories();
@@ -91,6 +91,10 @@ export class CategoriesComponent implements OnInit {
     }, 3000);
   }
   addToCart(product: Product) {
+    if (this.quantity <= 0) {
+      
+      return;
+    }
     if (!this.auth.isAuthenticated()) {
       this.router.navigate(['/login']);
       return;
@@ -98,6 +102,7 @@ export class CategoriesComponent implements OnInit {
     console.log("quantity: " + this.quantity);
     this.alertAppear();
     this.cartService.addToCart(product, this.quantity);
+    this.quantity = 0;
   }
   getSpecificCategory(categoryId: string): void {
     console.log('Category clicked:', categoryId);
@@ -149,4 +154,24 @@ export class CategoriesComponent implements OnInit {
   updateDisplayedProducts(displayedProducts: any[]): void {
     this.receivedProducts = displayedProducts;
   }
+
+  ////
+  isHovered: boolean = false;
+
+  increaseQuantity(product: Product) {
+    const maxQuantity = product.quantity; // Maximum quantity available for the product
+    const totalQuantityInCart = this.cartService.getTotalQuantityInCart(product); // Total quantity already in the cart for the product
+    const remainingQuantity = maxQuantity - totalQuantityInCart; // Calculate remaining quantity that can be added
+    if (this.quantity < remainingQuantity) {
+      this.quantity++;
+    }
+  }
+  
+  
+  decreaseQuantity(product: Product) {
+    if (this.quantity > 1) {
+      this.quantity--;
+    }
+  }
+  
 }
