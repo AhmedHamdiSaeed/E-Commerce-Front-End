@@ -35,8 +35,9 @@ import { ContentComponent } from './Component/admin-dashboard/Orders/content.com
 import { AboutUsComponent } from './Component/about-us/about-us.component';
 import { EditProductDialogComponent } from './Component/edit-product-dialog/edit-product-dialog.component';
 import { SearchComponent } from './Component/search/search.component';
+import { AddProductComponent } from './Component/add-product/add-product.component';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule  } from '@angular/forms';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { PaginationComponent } from './Component/pagination/pagination.component';
@@ -61,6 +62,7 @@ import { PaginationComponent } from './Component/pagination/pagination.component
     ContentComponent,
     SearchComponent,
     PaginationComponent,
+    AddProductComponent
   ],
   imports: [
     CarouselModule.forRoot(),

@@ -15,6 +15,7 @@ import { baseURL } from '../../../../env';
   styleUrls: ['./categories.component.css'],
 })
 export class CategoriesComponent implements OnInit {
+  searchTerm!: string;
   constructor(private route: ActivatedRoute,
     private router: Router,
      private productService: ProductService,

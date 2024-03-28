@@ -4,6 +4,9 @@ import { Category } from '../../models/categoryModel';
 import { Product } from '../../models/product';
 import {baseURL} from '../../../.././env'
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CartService } from '../../Services/Cart/cart.service';
+import { AuthService } from '../../Services/auth/auth.service';
 
 
 @Component({
@@ -12,7 +15,13 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
   styleUrls: ['./product-details.component.css']
 })
 export class ProductDetailsComponent implements OnInit {
-  constructor(private route: ActivatedRoute,private router: Router, private productService: ProductService, private cartService: CartService,private auth : AuthService) {}
+    constructor(private route: ActivatedRoute,
+      private router: Router, 
+      private productService: ProductService,
+       private cartService: CartService,
+       private auth : AuthService ,
+     private sanititzer: DomSanitizer
+    ) {}
 
   product: Product | any;
   allCategories: Category[] = [];
@@ -22,12 +31,6 @@ export class ProductDetailsComponent implements OnInit {
   successMessage: string ="";
   quantity: number = 0;
 
-
-  constructor(
-    private route: ActivatedRoute,
-    private productService: ProductService,
-    private sanititzer: DomSanitizer
-  ) {}
 
   async ngOnInit(): Promise<void> {
     await this.getAllCategories();
@@ -108,4 +111,8 @@ export class ProductDetailsComponent implements OnInit {
     }
   }
   
+
+  addToCart(product: Product){
+
+  }
 }
