@@ -5,6 +5,9 @@ import { Product } from '../../models/product';
 import { Category } from '../../models/categoryModel';
 import { CartService } from '../../Services/Cart/cart.service';
 import { AuthService } from '../../Services/auth/auth.service';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { baseURL } from '../../../../env';
+
 
 @Component({
   selector: 'app-categories',
@@ -12,14 +15,12 @@ import { AuthService } from '../../Services/auth/auth.service';
   styleUrls: ['./categories.component.css'],
 })
 export class CategoriesComponent implements OnInit {
-  searchTerm: string = '';
-  constructor(
-    private route: ActivatedRoute,
+  constructor(private route: ActivatedRoute,
     private router: Router,
-    private productService: ProductService,
-    private cartService: CartService,
-    private auth: AuthService
-  ) {}
+     private productService: ProductService,
+      private cartService: CartService,
+      private auth : AuthService,
+      private sanitizer: DomSanitizer) {}
 
   allCategories: Category[] = [];
   products: Product[] | any = [];
@@ -108,10 +109,16 @@ export class CategoriesComponent implements OnInit {
     console.log('Category clicked:', categoryId);
     this.getProductsByCategory(categoryId);
   }
+  //load imge
+  getImageUrl(imagePath: string) :SafeUrl {
+    // return `../../../assets${imagePath}`;
+    let safeurl = baseURL + '/' + imagePath ;
 
-  // Load image
-  getImageUrl(imagePath: string): string {
-    return `../../../assets${imagePath}`;
+    console.log(safeurl);
+
+    // return "http://localhost:3000/api/v1/uploads/image-1711636730983.jpg"
+    return  this.sanitizer.bypassSecurityTrustUrl(safeurl) ;
+
   }
 
   //filter

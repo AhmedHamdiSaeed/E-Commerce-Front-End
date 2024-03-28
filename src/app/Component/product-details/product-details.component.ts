@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../Services/product/product.service';
 import { Category } from '../../models/categoryModel';
 import { Product } from '../../models/product';
-import { CartService } from '../../Services/Cart/cart.service';
-import { AuthService } from '../../Services/auth/auth.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import {baseURL} from '../../../.././env'
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-product-details',
@@ -23,26 +23,37 @@ export class ProductDetailsComponent implements OnInit {
   quantity: number = 0;
 
 
+  constructor(
+    private route: ActivatedRoute,
+    private productService: ProductService,
+    private sanititzer: DomSanitizer
+  ) {}
 
   async ngOnInit(): Promise<void> {
     await this.getAllCategories();
     const productId = this.route.snapshot.paramMap.get('id');
     if (productId) {
       this.isLoading = true;
-      try {
-        this.product = await this.productService.getProductById(productId).toPromise();
-        const category = this.allCategories.find(c => this.product?.category == c._id );
-        if (category) {
-          this.categoryName = category.name;
-        } else {
-          this.categoryName = 'Unknown Category';
-        }
-      } catch (error: any) {
-        console.error(error);
-        this.error = error.message || "An error occurred while fetching the product.";
-      } finally {
-        this.isLoading = false;
-      }
+      this.productService.getProductById(productId)
+        .subscribe(
+          (product: any) => {
+            console.log(product);
+            
+            this.product = product;
+            this.isLoading = false;
+            const category = this.allCategories.find(c => product.category == c._id );
+            if (category) {
+              this.categoryName = category.name;
+            }
+            console.log(this.categoryName);
+
+          },
+          (error) => {
+            console.error(error);
+            this.isLoading = false;
+            this.error = error.message || "An error occurred while fetching the product.";
+          }
+        );
     } else {
       console.error("Product ID is undefined.");
       this.error = "Product ID is undefined.";
@@ -71,23 +82,15 @@ export class ProductDetailsComponent implements OnInit {
       this.successMessage = '';
     }, 3000);
   }
-  addToCart(product: Product) {
-    if (this.quantity <= 0) {
-      
-      return;
-    }
-    if (!this.auth.isAuthenticated()) {
-      this.router.navigate(['/login']);
-      return;
-    }
-    console.log("quantity: " + this.quantity);
-    this.alertAppear();
-    this.cartService.addToCart(product, this.quantity);
-    this.quantity = 0;
-  }
+  getImageUrl(imagePath: string) :SafeUrl {
+    // return `../../../assets${imagePath}`;
+    let safeurl = baseURL + '/' + imagePath ;
 
-  getImageUrl(imagePath: string): string {
-    return `../../../assets${imagePath}`;
+    console.log(safeurl);
+
+    // return "http://localhost:3000/api/v1/uploads/image-1711636730983.jpg"
+    return  this.sanititzer.bypassSecurityTrustUrl(safeurl) ;
+
   }
   increaseQuantity(product: Product) {
     const maxQuantity = product.quantity; 

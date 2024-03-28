@@ -7,13 +7,19 @@ import { CategoriesComponent } from '../categories/categories.component';
 import { Product } from '../../models/product';
 import { Category } from '../../models/categoryModel';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { DomSanitizer } from '@angular/platform-browser';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-  constructor(private route: ActivatedRoute,private router: Router, private productService: ProductService, private cartService: CartService,private auth : AuthService) {}
+  constructor(private route: ActivatedRoute,
+    private router: Router,
+     private productService: ProductService,
+      private cartService: CartService,
+      private auth : AuthService,
+      private sanitizer: DomSanitizer) {}
 
   allCategories: Category[] = [];
   products: Product[] = [];

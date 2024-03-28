@@ -3,7 +3,7 @@
     Product</button>
   <div *ngIf="products" class="product-list row w-100 g-2 m-auto mt-2">
     <div *ngFor="let product of products" class="product-card col-5">
-      <img [src]="product.image" alt="Product Image">
+      <img [src]="getImageUrl(product.image)" alt="Product Image">
       <h3>{{ product.title }}</h3>
       <p>{{ product.description }}</p>
       <p>Price: {{ product.price }}</p>
