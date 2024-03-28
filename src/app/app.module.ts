@@ -35,7 +35,8 @@ import { ContentComponent } from './Component/admin-dashboard/Orders/content.com
 import { AboutUsComponent } from './Component/about-us/about-us.component';
 import { EditProductDialogComponent } from './Component/edit-product-dialog/edit-product-dialog.component';
 import { SearchComponent } from './Component/search/search.component';
-
+import { NgxPaginationModule } from 'ngx-pagination';
+import { PaginationComponent } from './Component/pagination/pagination.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,6 +56,7 @@ import { SearchComponent } from './Component/search/search.component';
     EditProductDialogComponent,
     ContentComponent,
     SearchComponent,
+    PaginationComponent,
   ],
   imports: [
     BrowserModule,
@@ -71,6 +73,7 @@ import { SearchComponent } from './Component/search/search.component';
     MatSelectModule,
     MatProgressSpinnerModule,
     AppRoutingModule,
+    NgxPaginationModule,
   ],
   providers: [
     {

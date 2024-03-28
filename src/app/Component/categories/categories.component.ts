@@ -22,12 +22,13 @@ export class CategoriesComponent implements OnInit {
   ) {}
 
   allCategories: Category[] = [];
-  products: Product[] | any = [];
+  // products: Product[] | any = [];
   isLoading: boolean = false;
   error: string = '';
   categoryId: string | null = null;
   successMessage: string = '';
   sortBy: string = '';
+  receivedProducts: any[] = [];
 
   ngOnInit(): void {
     this.getAllCategories();
@@ -43,7 +44,7 @@ export class CategoriesComponent implements OnInit {
     this.isLoading = true;
     this.productService.getProducts().subscribe(
       (products: any) => {
-        this.products = products;
+        this.receivedProducts = products;
         this.isLoading = false;
       },
       (err) => {
@@ -73,7 +74,7 @@ export class CategoriesComponent implements OnInit {
     console.log('getProductsByCategory:', categoryId);
     this.productService.getProductsByCategory(categoryId).subscribe(
       (product: any) => {
-        this.products = product;
+        this.receivedProducts = product;
       },
       (error) => {
         console.log(error);
@@ -115,29 +116,36 @@ export class CategoriesComponent implements OnInit {
   //sort
   onSortChange(sortBy: string): void {
     if (sortBy === 'price') {
-      this.products.sort((a: { price: any }, b: { price: any }) => {
+      this.receivedProducts.sort((a: { price: any }, b: { price: any }) => {
         const priceA = a.price;
         const priceB = b.price;
         return priceA - priceB; // Sort by price in ascending order
       });
     } else if (sortBy === 'price-desc') {
-      this.products.sort((a: { price: any }, b: { price: any }) => {
+      this.receivedProducts.sort((a: { price: any }, b: { price: any }) => {
         const priceA = a.price;
         const priceB = b.price;
         return priceB - priceA; // Sort by price in descending order
       });
     } else if (sortBy === 'category') {
-      this.products.sort((a: { category: any }, b: { category: any }) => {
-        const categoryA = a.category.toLowerCase();
-        const categoryB = b.category.toLowerCase();
-        if (categoryA < categoryB) {
-          return -1;
+      this.receivedProducts.sort(
+        (a: { category: any }, b: { category: any }) => {
+          const categoryA = a.category.toLowerCase();
+          const categoryB = b.category.toLowerCase();
+          if (categoryA < categoryB) {
+            return -1;
+          }
+          if (categoryA > categoryB) {
+            return 1;
+          }
+          return 0;
         }
-        if (categoryA > categoryB) {
-          return 1;
-        }
-        return 0;
-      });
+      );
     }
+  }
+
+  //pagination
+  updateDisplayedProducts(displayedProducts: any[]): void {
+    this.receivedProducts = displayedProducts;
   }
 }
