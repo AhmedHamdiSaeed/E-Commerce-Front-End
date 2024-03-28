@@ -15,6 +15,7 @@ import { baseURL } from '../../../../env';
   styleUrls: ['./categories.component.css'],
 })
 export class CategoriesComponent implements OnInit {
+  searchTerm!: string;
   constructor(private route: ActivatedRoute,
     private router: Router,
      private productService: ProductService,
@@ -31,7 +32,7 @@ export class CategoriesComponent implements OnInit {
   sortBy: string = '';
   receivedProducts: any[] = [];
   quantity: number = 0;
-  searchTerm: string="";
+  // searchTerm: string="";
   ngOnInit(): void {
     this.getAllCategories();
     this.getAllProducts();

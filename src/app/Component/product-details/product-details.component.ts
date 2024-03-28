@@ -4,9 +4,10 @@ import { Category } from '../../models/categoryModel';
 import { Product } from '../../models/product';
 import {baseURL} from '../../../.././env'
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import { AuthService } from '../../Services/auth/auth.service';
-import { CartService } from '../../Services/Cart/cart.service';
+
 import { ActivatedRoute, Router } from '@angular/router';
+import { CartService } from '../../Services/Cart/cart.service';
+import { AuthService } from '../../Services/auth/auth.service';
 
 
 @Component({
@@ -15,7 +16,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./product-details.component.css']
 })
 export class ProductDetailsComponent implements OnInit {
- 
+
   product: Product | any;
   allCategories: Category[] = [];
   isLoading: boolean = false;
@@ -25,11 +26,13 @@ export class ProductDetailsComponent implements OnInit {
   quantity: number = 0;
 
 
+
   constructor(
     private route: ActivatedRoute,
     private sanititzer: DomSanitizer,
     private router: Router, private productService: ProductService, private cartService: CartService,private auth : AuthService
   ) {}
+
 
   async ngOnInit(): Promise<void> {
     await this.getAllCategories();
@@ -124,4 +127,6 @@ export class ProductDetailsComponent implements OnInit {
     }
   }
   
+
+ 
 }
