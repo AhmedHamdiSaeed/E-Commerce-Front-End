@@ -22,13 +22,14 @@ export class CategoriesComponent implements OnInit {
   ) {}
 
   allCategories: Category[] = [];
-  // products: Product[] | any = [];
+  products: Product[] | any = [];
   isLoading: boolean = false;
   error: string = '';
   categoryId: string | null = null;
   successMessage: string = '';
   sortBy: string = '';
   receivedProducts: any[] = [];
+  quantity: number = 1;
 
   ngOnInit(): void {
     this.getAllCategories();
@@ -83,21 +84,21 @@ export class CategoriesComponent implements OnInit {
       }
     );
   }
-
-  alertAppear() {
-    this.successMessage = 'Product added to cart!';
+  alertAppear(){
+    this.successMessage='Product added to cart!';
     setTimeout(() => {
       this.successMessage = '';
     }, 3000);
   }
-  // addToCart(product: Product) {
-  //   if (!this.auth.isAuthenticated()) {
-  //     this.router.navigate(['/login']);
-  //     return;
-  //   }
-  //   this.alertAppear();
-  //   this.cartService.addToCart(product);
-  // }
+  addToCart(product: Product) {
+    if (!this.auth.isAuthenticated()) {
+      this.router.navigate(['/login']);
+      return;
+    }
+    console.log("quantity: " + this.quantity);
+    this.alertAppear();
+    this.cartService.addToCart(product, this.quantity);
+  }
   getSpecificCategory(categoryId: string): void {
     console.log('Category clicked:', categoryId);
     this.getProductsByCategory(categoryId);

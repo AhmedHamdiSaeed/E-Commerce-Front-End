@@ -1,19 +1,26 @@
-
-.product_details {
-height: 50%;
-
+.row
+{
+  margin-top: -27px;
 }
-.card-img-top{
+.product_details {
+  height: 50%;
+}.container
+{
+ margin-top: 0px;
+}
+.card-img-top {
   width: 80%;
 }
-.product_details h2{
-color: rgb(0, 0, 0);
-font-size: 30px;
+
+.product_details h2 {
+  color: rgb(0, 0, 0);
+  font-size: 30px;
 }
-.Category{
+
+.Category {
   width: 100px;
-  height: 30px;
-  border-radius:5px;
+  height: 37px;
+  border-radius: 5px;
   background-color: rgba(0, 128, 0, 0.586);
   color: white;
   font-size: 17px;
@@ -22,12 +29,14 @@ font-size: 30px;
   text-align: center;
   margin-top: 40px;
 }
-.Price{
- margin-top: 40px;
+
+.Price {
+  margin-top: 40px;
   font-weight: bold;
   color: #000000;
   font-size: 20px;
 }
+
 .loading-spinner {
   text-align: center;
   margin-top: 20px;
@@ -36,14 +45,15 @@ font-size: 30px;
 .description {
   margin-top: 20px;
 }
-.desc-titel{
+
+.desc-titel {
   font-size: larger;
   font-weight: bold;
+  color:rgb(25 135 84);
 }
+
 .description-controls {
-  
   padding: 10px;
-  
 }
 
 .desc {
@@ -63,6 +73,7 @@ font-size: 30px;
   border-radius: 5px;
   margin-top: 20px;
 }
+
 .color-container {
   display: flex;
   gap: 5px;
@@ -73,24 +84,33 @@ font-size: 30px;
   height: 30px;
   border-radius: 50%;
   border: 1px solid #ccc;
-  margin-top: 10px;
+  margin-top: 0px;
 }
-.Color{
+
+.Color {
   margin: 20px 0px;
 }
-.Color strong{
+
+.Color strong {
   font-size: 20px;
   font-weight: 500;
+}
+.quantity-text
+{
+  margin-top: 5px;
+
 }
 .quantity {
   display: flex;
   flex-direction: column;
-  margin-top: 10px;
+  margin-top: 0px;
 }
-.quantity{
+
+.quantity {
   margin: 20px 0px;
 }
-.quantity strong{
+
+.quantity strong {
   font-size: 20px;
   font-weight: 500;
   margin-right: 10px;
@@ -99,15 +119,27 @@ font-size: 30px;
 .quantity input {
   width: 70px;
   text-align: center;
-  
 }
+
 .quantity-controls {
   display: flex;
- 
 }
 
 .quantity-controls button,
 .quantity-controls input {
-  margin-right: 5px; 
+  margin-right: 5px;
+}
+.row {
+
+  display: flex;
+  flex-wrap: wrap-reverse;
+}
+.product_details .custom-row {
+  margin-left: -5px;
+  margin-right: -5px;
 }
 
+.product_details .custom-row [class^="col-"] {
+  padding-left: 5px;
+  padding-right: 5px;
+}
