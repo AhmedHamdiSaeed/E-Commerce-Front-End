@@ -85,7 +85,9 @@ export class ProductDetailsComponent implements OnInit {
     return `../../../assets${imagePath}`;
   }
   increaseQuantity(product: Product) {
-    this.quantity++;
+    if (this.quantity < this.product.quantity) {
+      this.quantity++;
+  }
   }
   
   decreaseQuantity(product: Product) {
