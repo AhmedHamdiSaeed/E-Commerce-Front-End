@@ -13,6 +13,9 @@ export class PaginationComponent {
   products: Product[] | any = [];
 
   constructor(private productService: ProductService) {}
+  ngOnInit(): void {
+    this.getDisplayedProducts();
+  }
 
   onPageChange(direction: string): void {
     if (direction === 'next') {
