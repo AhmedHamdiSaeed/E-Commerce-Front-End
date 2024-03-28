@@ -29,22 +29,21 @@
         <hr>
 
         <div class="row custom-row">
-          <div class="col-sm-6">
+          <div class="col-sm-5">
             <div class="Color">
               <div class="color-container">  <strong>Colors : </strong>
                 <div *ngFor="let color of product.colors" class="color-circle" [style.background-color]="color"></div>
               </div>
             </div>
           </div>
-          <div class="col-sm-6">
+          <div class="col-sm-7">
             <div class="quantity">
               <div class="quantity-controls">  <strong>Quantity : </strong>
                 <div class="quantity-text">
                   {{product.quantity}}
                   </div>
-                <!-- <button class="btn btn-outline-success" (click)="decreaseQuantity(product)">-</button>
-                <input class="form-control" type="number" min="1" [(ngModel)]="quantity">
-                <button class="btn btn-outline-success" (click)="increaseQuantity(product)">+</button> -->
+                  
+                <input class="form-control" type="number" min="1" [max]="product.quantity" [(ngModel)]="quantity">
               </div>
             </div>
           </div>
