@@ -1,4 +1,4 @@
-<form class="row g-3 " (ngSubmit)="AddProduct()" #addForm="ngForm">
+<form class="row g-3 " (ngSubmit)="AddProduct(addForm)" #addForm="ngForm" enctype="multipart/form-data">
     <div class="col-md-4">
       <label for="title" class="form-label">Product title</label>
       <input type="text" class="form-control" id="title"  ngModel name="title" #title="ngModel" required>
@@ -31,27 +31,33 @@
       </div>
 
       <div class="col-md-4">
-        <label for="image" class="form-label">image</label>
-        <input type="file" class="form-control" id="image" ngModel name="image" #image="ngModel" required>
-        <div class="form-text" *ngIf="!image.valid  && image.touched">
+        <label for="image" class="form-label">choose image</label>
+        <input type="file" class="form-control" id="image"  name="image" (change)="onFileSelected($event)" ngModel #image="ngModel"  required>
+        <div class="form-text" *ngIf="!image.valid  && (image.touched || image.control)">
           not so  good!
          </div>
       </div>
 
       <div class="col-md-4">
         <label for="colors" class="form-label">colors</label>
-        <input type="color" class="form-control form-control-color" id="colors" ngModel name="colors" #colors="ngModel" required>
+        <input type="color" class="form-control form-control-color" id="colors" [(ngModel)]="color" name="colors" #colors="ngModel" required>
         <div class="form-text" *ngIf="!colors.valid  && colors.touched">
           not so  good!
          </div>
       </div>
 
-      <div class="col-md-4">
+      <div class="col-md-4" *ngIf="allCategories">
         <label for="category" class="form-label">category</label>
-        <input type="text" class="form-control" id="category" ngModel name="category" #category="ngModel" required>
+        <!-- <input type="text" class="form-control" id="category" ngModel name="category" #category="ngModel" required>
         <div class="form-text" *ngIf="!category.valid  && category.touched">
           not so  good!
-         </div>
+         </div> -->
+          <select name="category" ngModel>
+            
+            <option *ngFor="let cat of allCategories" value={{cat.id}}>{{cat.name}}</option>
+            <!-- <option value="accepted">Accepted</option>
+            <option value="rejected">Rejected</option> -->
+          </select>
       </div>
 
       <div class="col-md-4">

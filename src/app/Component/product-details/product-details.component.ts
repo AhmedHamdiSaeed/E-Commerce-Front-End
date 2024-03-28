@@ -3,6 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../../Services/product/product.service';
 import { Category } from '../../models/categoryModel';
 import { Product } from '../../models/product';
+import {baseURL} from '../../../.././env'
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-product-details',
@@ -18,7 +21,8 @@ export class ProductDetailsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private productService: ProductService
+    private productService: ProductService,
+    private sanititzer: DomSanitizer
   ) {}
 
   ngOnInit(): void {
@@ -29,6 +33,8 @@ export class ProductDetailsComponent implements OnInit {
       this.productService.getProductById(productId)
         .subscribe(
           (product: any) => {
+            console.log(product);
+            
             this.product = product;
             this.isLoading = false;
             const category = this.allCategories.find(c => product.category == c._id );
@@ -66,7 +72,14 @@ export class ProductDetailsComponent implements OnInit {
       }
     );
   }
-  getImageUrl(imagePath: string): string {
-    return `../../../assets${imagePath}`;
+  getImageUrl(imagePath: string) :SafeUrl {
+    // return `../../../assets${imagePath}`;
+    let safeurl = baseURL + '/' + imagePath ;
+
+    console.log(safeurl);
+
+    // return "http://localhost:3000/api/v1/uploads/image-1711636730983.jpg"
+    return  this.sanititzer.bypassSecurityTrustUrl(safeurl) ;
+
   }
 }

@@ -28,6 +28,9 @@ export class ProductService {
     return this.http.get(`${this.apiUrl}/category/${categoryId}`);
   }
 
+  addProduct( product : FormData){
+    return this.http.post( this.apiUrl , product )
+  }
 
   // getAllBrands():any
   // {
