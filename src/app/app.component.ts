@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from './Services/auth/auth.service';
 import { Subscription } from 'rxjs';
 import { User } from './models/user';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',

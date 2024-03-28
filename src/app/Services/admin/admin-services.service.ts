@@ -1,19 +1,19 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
-import {baseURL} from '../../../.././env'
+import { baseURL } from '../../../.././env';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class AdminServices{
-
+export class AdminServices {
   photo: any;
   constructor(private http: HttpClient) {}
 
   // getProducts(){
   //  return this.http.get('http://localhost:3000/api/v1/admin/products') ;
   // }
-private apiProduct : string =`${baseURL}/admin/products`;
+
+  private apiProduct: string = `${baseURL}/admin/products`;
   getProducts() {
     return this.http.get<any>(this.apiProduct).pipe(
       map((res) => {
@@ -23,8 +23,6 @@ private apiProduct : string =`${baseURL}/admin/products`;
     );
   }
   getOrders() {
-
-
     return this.http.get<any>(`${baseURL}/admin/orders`).pipe(
       map((res) => {
         return res;
@@ -40,10 +38,7 @@ private apiProduct : string =`${baseURL}/admin/products`;
       formData.append('photo', product.photo, product.photo?.name);
     }
 
-    return this.http.patch(
-      this.apiProduct + id,
-      formData
-    );
+    return this.http.patch(this.apiProduct + id, formData);
   }
   // getOrders(){
   //   return this.http.get('http://localhost:3000/api/v1/admin/orders') ;
@@ -56,7 +51,7 @@ private apiProduct : string =`${baseURL}/admin/products`;
   //  getUsers(){
   //   return this.http.get('http://localhost:3000/api/v1/admin/users') ;
   //  }
-   AddProduct(product: any) {
+  AddProduct(product: any) {
     const formData = new FormData();
     formData.append('name', product.name);
     formData.append('price', product.price);
@@ -82,14 +77,3 @@ private apiProduct : string =`${baseURL}/admin/products`;
     return this.http.get('admin/users');
   }
 }
-
-
-
-
-
-
-
-
-
-
-

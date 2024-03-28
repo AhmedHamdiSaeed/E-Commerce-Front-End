@@ -9,7 +9,7 @@ import {baseURL} from '../../../.././env'
 })
 export class CartService {
   private apiUrl =  `${baseURL}/cart`;
-
+  quantity: number=1;
   constructor(private http: HttpClient) {   this.updateCartLengthFromLocalStorage();}
   getCarts() {
     return this.http.get(`${this.apiUrl}`);
@@ -21,14 +21,17 @@ export class CartService {
     const cartItems: Product[] = JSON.parse(localStorage.getItem("cart") || '[]');
     this.updateCartLength(cartItems.length);
   }
-  addToCart(product: Product) {
+  addToCart(product: Product, quantity: number) {
     let cartProducts: Product[] = JSON.parse(localStorage.getItem("cart") || '[]');
-    let isExist = cartProducts.find(i => i._id === product._id);
-    if (!isExist) {
-      cartProducts.push(product);
-      localStorage.setItem("cart", JSON.stringify(cartProducts));
-      this.updateCartLength(cartProducts.length);
+    const existingProductIndex = cartProducts.findIndex((item) => item._id === product._id);
+    if (existingProductIndex !== -1) {
+      cartProducts[existingProductIndex].quantity += quantity;
+    } else {
+      const productWithQuantity = { ...product, quantity: quantity };
+      cartProducts.push(productWithQuantity);
     }
+    localStorage.setItem('cart', JSON.stringify(cartProducts));
+    this.updateCartLength(cartProducts.length);
   }
 
   updateCartLength(length: number) {

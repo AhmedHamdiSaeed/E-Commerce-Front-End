@@ -12,6 +12,7 @@ import { AuthService } from '../../Services/auth/auth.service';
   styleUrls: ['./categories.component.css'],
 })
 export class CategoriesComponent implements OnInit {
+  searchTerm: string = '';
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -23,13 +24,16 @@ export class CategoriesComponent implements OnInit {
   allCategories: Category[] = [];
   products: Product[] | any = [];
   isLoading: boolean = false;
-  error: string = "";
+  error: string = '';
   categoryId: string | null = null;
-  successMessage: string = "";
+  successMessage: string = '';
+  sortBy: string = '';
+  receivedProducts: any[] = [];
+  quantity: number = 1;
 
-  async ngOnInit(): Promise<void> {
-    await this.getAllCategories();
-    await this.getAllProducts();
+  ngOnInit(): void {
+    this.getAllCategories();
+    this.getAllProducts();
     this.route.paramMap.subscribe((params) => {
       this.categoryId = params.get('id');
       if (this.categoryId) {
@@ -37,17 +41,19 @@ export class CategoriesComponent implements OnInit {
       }
     });
   }
-
-  async getAllProducts(): Promise<void> {
-    try {
-      this.isLoading = true;
-      this.products = await this.productService.getProducts().toPromise();
-      this.isLoading = false;
-    } catch (err: any) {
-      console.error(err);
-      this.isLoading = false;
-      this.error = err.error.message;
-    }
+  getAllProducts(): void {
+    this.isLoading = true;
+    this.productService.getProducts().subscribe(
+      (products: any) => {
+        this.receivedProducts = products;
+        this.isLoading = false;
+      },
+      (err) => {
+        console.log(err);
+        this.isLoading = false;
+        this.error = err.error.message;
+      }
+    );
   }
 
   async getAllCategories(): Promise<void> {
@@ -58,40 +64,41 @@ export class CategoriesComponent implements OnInit {
       } else {
         this.allCategories = [res];
       }
-    } catch (err: any) { 
+    } catch (err: any) {
       console.error(err);
       this.isLoading = false;
       this.error = err.error.message;
     }
   }
 
-  async getProductsByCategory(categoryId: string): Promise<void> {
-    try {
-      console.log('getProductsByCategory:', categoryId);
-      this.products = await this.productService.getProductsByCategory(categoryId).toPromise();
-    } catch (error: any) {
-      console.error(error);
-      this.isLoading = false;
-      this.error = error.error.message;
-    }
+  getProductsByCategory(categoryId: string): void {
+    console.log('getProductsByCategory:', categoryId);
+    this.productService.getProductsByCategory(categoryId).subscribe(
+      (product: any) => {
+        this.receivedProducts = product;
+      },
+      (error) => {
+        console.log(error);
+        this.isLoading = false;
+        this.error = error.message;
+      }
+    );
   }
-
-  alertAppear(): void {
-    this.successMessage = 'Product added to cart!';
+  alertAppear(){
+    this.successMessage='Product added to cart!';
     setTimeout(() => {
       this.successMessage = '';
     }, 3000);
   }
-
-  addToCart(product: Product): void {
+  addToCart(product: Product) {
     if (!this.auth.isAuthenticated()) {
       this.router.navigate(['/login']);
       return;
     }
+    console.log("quantity: " + this.quantity);
     this.alertAppear();
-    this.cartService.addToCart(product);
+    this.cartService.addToCart(product, this.quantity);
   }
-
   getSpecificCategory(categoryId: string): void {
     console.log('Category clicked:', categoryId);
     this.getProductsByCategory(categoryId);
@@ -100,5 +107,46 @@ export class CategoriesComponent implements OnInit {
   // Load image
   getImageUrl(imagePath: string): string {
     return `../../../assets${imagePath}`;
+  }
+
+  //filter
+  onSearchTextChanged(searchValue: string) {
+    this.searchTerm = searchValue;
+  }
+
+  //sort
+  onSortChange(sortBy: string): void {
+    if (sortBy === 'price') {
+      this.receivedProducts.sort((a: { price: any }, b: { price: any }) => {
+        const priceA = a.price;
+        const priceB = b.price;
+        return priceA - priceB; // Sort by price in ascending order
+      });
+    } else if (sortBy === 'price-desc') {
+      this.receivedProducts.sort((a: { price: any }, b: { price: any }) => {
+        const priceA = a.price;
+        const priceB = b.price;
+        return priceB - priceA; // Sort by price in descending order
+      });
+    } else if (sortBy === 'category') {
+      this.receivedProducts.sort(
+        (a: { category: any }, b: { category: any }) => {
+          const categoryA = a.category.toLowerCase();
+          const categoryB = b.category.toLowerCase();
+          if (categoryA < categoryB) {
+            return -1;
+          }
+          if (categoryA > categoryB) {
+            return 1;
+          }
+          return 0;
+        }
+      );
+    }
+  }
+
+  //pagination
+  updateDisplayedProducts(displayedProducts: any[]): void {
+    this.receivedProducts = displayedProducts;
   }
 }

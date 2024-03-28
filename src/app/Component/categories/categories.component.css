@@ -1,13 +1,48 @@
 .category-border {
   color: #198754;
-
+  margin-bottom: 20px; 
+  
 }
 
 .category-border:hover {
   background-color: #198754;
   color: white;
 }
-.card-img-top{
-  max-width: 80%; height: auto; 
+
+.product-card {
+  margin-bottom: 10px; 
+  margin-top: 10px; 
+}
+
+.card-body {
+  height: 60%; 
+  
+}
+
+.category-item {
   text-align: center;
+}
+
+.category-image {
+  width: 50%;
+  height: auto;
+}
+
+.product-image {
+  height: 300px;
+  object-fit: cover;
+}
+
+.custom-card {
+  height: 100%;
+  margin-top: 10px; 
+}
+
+.card-body {
+  height: 100%;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
 }
