@@ -33,6 +33,7 @@ export class CategoriesComponent implements OnInit {
   receivedProducts: any[] = [];
   searchTerm: string = '';
   quantity: number = 0;
+  p: number = 1;
 
   ngOnInit(): void {
     this.getAllCategories();
@@ -49,8 +50,10 @@ export class CategoriesComponent implements OnInit {
     this.productService.getProducts().subscribe(
       (products: any) => {
         this.receivedProducts = products;
+        this.products = products;
         this.isLoading = false;
         console.log(this.receivedProducts);
+        console.log(this.products);
       },
       (err) => {
         console.log(err);
@@ -135,47 +138,47 @@ export class CategoriesComponent implements OnInit {
 
   onSearchTextChanged(searchValue: string) {
     this.searchTerm = searchValue;
-  }
-  productMatchesSearch(product: Product): boolean {
-    if (!this.searchTerm) {
-      return true;
-    }
-    return product.title.toLowerCase().includes(this.searchTerm.toLowerCase());
-  }
-  //sort
-  onSortChange(sortBy: string): void {
-    if (sortBy === 'price') {
-      this.receivedProducts.sort((a: { price: any }, b: { price: any }) => {
-        const priceA = a.price;
-        const priceB = b.price;
-        return priceA - priceB; // Sort by price in ascending order
+    if (this.searchTerm == '') {
+      this.ngOnInit();
+    } else {
+      this.receivedProducts = this.receivedProducts.filter((res) => {
+        return res.title.toLowerCase().includes(this.searchTerm.toLowerCase());
       });
-    } else if (sortBy === 'price-desc') {
-      this.receivedProducts.sort((a: { price: any }, b: { price: any }) => {
-        const priceA = a.price;
-        const priceB = b.price;
-        return priceB - priceA; // Sort by price in descending order
-      });
-    } else if (sortBy === 'category') {
-      this.receivedProducts.sort(
-        (a: { category: any }, b: { category: any }) => {
-          const categoryA = a.category.toLowerCase();
-          const categoryB = b.category.toLowerCase();
-          if (categoryA < categoryB) {
-            return -1;
-          }
-          if (categoryA > categoryB) {
-            return 1;
-          }
-          return 0;
-        }
-      );
     }
   }
 
-  //pagination
-  updateDisplayedProducts(displayedProducts: any[]): void {
-    this.receivedProducts = displayedProducts;
+  //sort
+  onSortChange(sortBy: string): void {
+    this.productService.getProducts().subscribe((products: any) => {
+      this.receivedProducts = products;
+      if (sortBy === 'price') {
+        this.receivedProducts.sort((a: { price: any }, b: { price: any }) => {
+          const priceA = a.price;
+          const priceB = b.price;
+          return priceA - priceB; // Sort by price in ascending order
+        });
+      } else if (sortBy === 'price-desc') {
+        this.receivedProducts.sort((a: { price: any }, b: { price: any }) => {
+          const priceA = a.price;
+          const priceB = b.price;
+          return priceB - priceA; // Sort by price in descending order
+        });
+      } else if (sortBy === 'category') {
+        this.receivedProducts.sort(
+          (a: { category: any }, b: { category: any }) => {
+            const categoryA = a.category.toLowerCase();
+            const categoryB = b.category.toLowerCase();
+            if (categoryA < categoryB) {
+              return -1;
+            }
+            if (categoryA > categoryB) {
+              return 1;
+            }
+            return 0;
+          }
+        );
+      }
+    });
   }
 
   ////

@@ -21,7 +21,7 @@
             <!-- sort by price and category-->
             <select class="form-select w-25 ms-2 text-success" aria-label="Sort By" [(ngModel)]="sortBy"
               (change)="onSortChange(sortBy)">
-              <option disabled selected>Sort By</option>
+              <option selected value="">Sort By</option>
               <option value="price">Price (Low to High)</option>
               <option value="price-desc">Price (High to Low)</option>
               <option value="category">Category (A to Z)</option>
@@ -29,9 +29,9 @@
             <!-- end sort -->
           </div>
         </div>
-        <div class="col-md-4" *ngFor="let product of receivedProducts">
-          <div class="card mb-3 custom-card" *ngIf="productMatchesSearch(product)">
-          
+
+        <div class="col-md-4" *ngFor="let product of receivedProducts |paginate: {itemsPerPage:6,currentPage:p}">
+          <div class="card mb-3 custom-card">
             <div>
               <img class="card-img-top product-image" [src]="getImageUrl(product.image)" [alt]="product.title">
             </div>
@@ -68,5 +68,6 @@
 
     </div>
   </div>
-  <!-- Pagination component -->
-  <app-pagination (displayedProductsEvent)="updateDisplayedProducts($event)"></app-pagination>
+  <div class="mt-5 border-1 border-success p-2 text-center w-100">
+    <pagination-controls (pageChange)="p=$event"></pagination-controls>
+  </div>
