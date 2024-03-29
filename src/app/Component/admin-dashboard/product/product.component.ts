@@ -22,7 +22,7 @@ export class ProductComponent implements OnInit {
 
   getProducts() {
     this.productService.getProducts().subscribe((res) => {
-      console.log(res);
+      // console.log(res);
       
       this.products = res;
     });
@@ -48,7 +48,7 @@ export class ProductComponent implements OnInit {
     // return `../../../assets${imagePath}`;
     let safeurl = baseURL + imagePath ;
 
-    console.log(safeurl);
+    // console.log(safeurl);
 
     // return "http://localhost:3000/api/v1/uploads/image-1711636730983.jpg"
     return  this.sanitizer.bypassSecurityTrustUrl(safeurl) ;

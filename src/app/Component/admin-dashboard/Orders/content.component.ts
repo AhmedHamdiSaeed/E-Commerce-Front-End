@@ -24,7 +24,7 @@ export class ContentComponent implements OnInit {
     this.orders = this.serve.getOrders().subscribe((res) => {
       this.orderInfo = res;
       // this.select = res.status;
-      console.log(res);
+      // console.log(res);
     });
     this.serve.getUsers().subscribe((res) => {
       this.users = res;

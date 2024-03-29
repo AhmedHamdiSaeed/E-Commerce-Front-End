@@ -17,7 +17,7 @@ export class AdminServices {
   getProducts() {
     return this.http.get<any>(this.apiProduct).pipe(
       map((res) => {
-        console.log(res.data);
+        // console.log(res);
         return res;
       })
     );
@@ -74,6 +74,6 @@ export class AdminServices {
   //   return this.http.patch('https://api-cafebuyers.onrender.com/orders/' + id, status);
   // }
   getUsers() {
-    return this.http.get('admin/users');
+    return this.http.get(baseURL +'/admin/users');
   }
 }

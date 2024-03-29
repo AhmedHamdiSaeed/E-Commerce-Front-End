@@ -45,7 +45,7 @@ export class AdminBoardComponent implements OnInit {
   getProducts() {
     this.product.getProducts().subscribe((res) => {
       this.products = res;
-      console.log(res);
+      // console.log(res);
     });
   }
 }
