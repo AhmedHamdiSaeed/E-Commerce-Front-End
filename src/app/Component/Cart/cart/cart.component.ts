@@ -3,6 +3,7 @@ import { Product } from '../../../models/product';
 import { ProductService } from '../../../Services/product/product.service';
 import { CartService } from '../../../Services/Cart/cart.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../../../Services/auth/auth.service';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -14,7 +15,7 @@ export class CartComponent {
   error: string = "";
   quantity: number = 1;
   success:boolean = false;
-  constructor(private router: Router ,private cartService: CartService) {}
+  constructor(private router: Router ,private cartService: CartService ,private auth: AuthService) {}
 
   
   setItem(){
@@ -63,14 +64,25 @@ decreaseQuantity(item: any): void {
   }
 }
 orderNow(){
+   if (!this.auth.isAuthenticated()) {
+      this.router.navigate(['/login']);
+      return;
+    }
   let products= this.cartProducts.map(item=>{
     return{productId: item.product._id, quantity: item.quantity}
   })
 
-  this.cartService.createNewCart(products).subscribe(res=>{
-   this.success=true;
-  })
-  console.log(products)
+  this.cartService.createNewCart(products).subscribe(
+    res => {
+      this.success = true;
+    },
+    error => {
+      console.error('Error creating new cart:', error);
+    }
+  );
+
+  console.log(products);
+  this.Clear();
 }
 
 // Load image
