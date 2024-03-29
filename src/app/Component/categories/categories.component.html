@@ -1,18 +1,45 @@
 <div class="container-fluid">
   <div class="row">
+    <h3 class="text-center text-main bg-success text-light rounded-2 p-2">All Categories</h3>
     <!-- Sidebar with Categories -->
-    <div class="col-md-3 justify-content-between">
-      <h3 class="text-center text-main bg-success text-light rounded-2 p-2">All Categories</h3>
-      <div *ngFor="let category of allCategories"
-        class="category-border border text-center text-uppercase border-2 mb-2 rounded-2">
-        <img (click)="getSpecificCategory(category._id)" class="category-image" height="150"
-          src="../../../assets/project images/images (1).jpg" [alt]="category.name">
-        <h1 class="h4 py-3 text-main">{{category.name}}</h1>
+    <div id="carouselExampleControls" class="carousel carousel-dark slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="card-wrapper container-sm d-flex  justify-content-around">
+            <div class="card me-4 cardCategory" style="width: 18rem;" *ngFor="let category of allCategories"
+              (click)="getSpecificCategory(category._id)">
+              <img src="../../../assets/project images/images (1).jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">{{category.name}}</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="card-wrapper container-sm d-flex justify-content-around">
+            <div class="card me-4 cardCategory" style="width: 18rem;" *ngFor="let category of allCategories"
+              (click)="getSpecificCategory(category._id)">
+              <img src="../../../assets/project images/images (1).jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">{{category.name}}</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+          data-bs-slide="prev">
+          <span class="carousel-control-prev-icon bg-success" aria-hidden="true"></span>
+          <span class="visually-hidden bg-success">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+          data-bs-slide="next">
+          <span class="carousel-control-next-icon bg-success" aria-hidden="true"></span>
+          <span class="visually-hidden bg-success">Next</span>
+        </button>
       </div>
-    </div>
-    <!-- Main Section for Products -->
-    <div class="col-md-9">
-      <div class="row">
+
+      <div class="row mt-5">
         <div class="d-flex justify-content-between text-center text-main  bg-success text-light rounded-2 p-2">
           <h3 class="mt-2 ms-3 ">Products</h3>
           <div class="d-flex text-center">
@@ -29,7 +56,8 @@
             <!-- end sort -->
           </div>
         </div>
-        <div class="col-md-4" *ngFor="let product of receivedProducts |paginate: {itemsPerPage:6,currentPage:p}">
+        <div class=" col-sm-3 m-auto"
+          *ngFor="let product of receivedProducts |paginate: {itemsPerPage:itemsPerPage,currentPage:p}">
           <div class="card mb-3 custom-card">
             <div>
               <img class="card-img-top product-image" [src]="getImageUrl(product.image)" [alt]="product.title">
@@ -62,9 +90,7 @@
           </div>
         </div>
       </div>
-
     </div>
-  </div>
-  <div class="mt-5 border-1 border-success p-2 text-center w-100">
-    <pagination-controls (pageChange)="p=$event"></pagination-controls>
-  </div>
+    <div class="mt-5 border-1 border-success p-2 text-center w-100">
+      <pagination-controls (pageChange)="p=$event"></pagination-controls>
+    </div>
