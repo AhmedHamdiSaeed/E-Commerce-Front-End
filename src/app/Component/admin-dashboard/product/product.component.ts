@@ -22,12 +22,14 @@ export class ProductComponent implements OnInit {
 
   getProducts() {
     this.productService.getProducts().subscribe((res) => {
+      console.log(res);
+      
       this.products = res;
     });
   }
 
   addProduct() {
-    this.router.navigateByUrl('/add-product');
+    this.router.navigateByUrl('/Add_Product');
   }
 
   editProduct(productId: string) {
@@ -44,7 +46,7 @@ export class ProductComponent implements OnInit {
 
   getImageUrl(imagePath: string) :SafeUrl {
     // return `../../../assets${imagePath}`;
-    let safeurl = baseURL + '/' + imagePath ;
+    let safeurl = baseURL + imagePath ;
 
     console.log(safeurl);
 

@@ -125,8 +125,15 @@ export class CategoriesComponent implements OnInit {
 
   // }
 
-  getImageUrl(imagePath: string): string {
-    return `../../../assets${imagePath}`;
+  getImageUrl(imagePath: string): SafeUrl {
+    // return `../../../assets${imagePath}`;
+    let safeurl = baseURL + imagePath ;
+
+    console.log(safeurl);
+
+    // return "http://localhost:3000/api/v1/uploads/image-1711636730983.jpg"
+    return  this.sanitizer.bypassSecurityTrustUrl(safeurl) ;
+
   }
   //filter
 

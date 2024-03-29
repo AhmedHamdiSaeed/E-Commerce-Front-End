@@ -75,7 +75,9 @@ export class HomeComponent {
     console.log('getProductsByCategory:', categoryId);
     this.productService.getProductsByCategory(categoryId).subscribe(
        (product: any) => {
-        this.products = product;
+        console.log(product);
+        
+        // this.products = product;
       },(error) => {
         console.log(error);
         this.isLoading = false;
