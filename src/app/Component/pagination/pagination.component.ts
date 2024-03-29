@@ -9,7 +9,7 @@ import { ProductService } from '../../Services/product/product.service';
 })
 export class PaginationComponent {
   currentPage = 1; // Current page
-  itemsPerPage = 9;
+  itemsPerPage = 6;
   products: Product[] | any = [];
 
   constructor(private productService: ProductService) {}
