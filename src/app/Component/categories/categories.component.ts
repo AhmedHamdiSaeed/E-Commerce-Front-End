@@ -31,6 +31,7 @@ export class CategoriesComponent implements OnInit {
   successMessage: string = '';
   sortBy: string = '';
   receivedProducts: any[] = [];
+  
   quantity: number = 0;
 
   ngOnInit(): void {
@@ -49,6 +50,7 @@ export class CategoriesComponent implements OnInit {
       (products: any) => {
         this.receivedProducts = products;
         this.isLoading = false;
+        console.log(this.receivedProducts)
       },
       (err) => {
         console.log(err);
@@ -111,18 +113,22 @@ export class CategoriesComponent implements OnInit {
     this.getProductsByCategory(categoryId);
   }
   //load imge
-  getImageUrl(imagePath: string) :SafeUrl {
-    // return `../../../assets${imagePath}`;
-    let safeurl = baseURL + '/' + imagePath ;
+  // getImageUrl(imagePath: string) :SafeUrl {
+  //   // return `../../../assets${imagePath}`;
+  //   let safeurl = baseURL + '/' + imagePath ;
 
-    console.log(safeurl);
+  //   console.log(safeurl);
 
-    // return "http://localhost:3000/api/v1/uploads/image-1711636730983.jpg"
-    return  this.sanitizer.bypassSecurityTrustUrl(safeurl) ;
+  //   // return "http://localhost:3000/api/v1/uploads/image-1711636730983.jpg"
+  //   return  this.sanitizer.bypassSecurityTrustUrl(safeurl) ;
 
+  // }
+
+  getImageUrl(imagePath: string): string {
+    return `../../../assets${imagePath}`;
   }
-
   //filter
+  // searchTerm: string = '';
   onSearchTextChanged(searchValue: string) {
     this.searchTerm = searchValue;
   }

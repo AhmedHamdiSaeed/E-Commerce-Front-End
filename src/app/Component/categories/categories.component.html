@@ -29,9 +29,13 @@
             <!-- end sort -->
           </div>
         </div>
+        
         <div class="col-md-4" *ngFor="let product of receivedProducts">
+          <!-- {{ searchTerm | json }}
+          {{ product.title | json }} -->
+
           <div class="card mb-3 custom-card"
-            *ngIf="searchTerm ==''|| product.title.trim().toLowerCase().includes(searchTerm.toLowerCase())"> 
+          *ngIf="searchTerm !=''|| product.title.trim().toLowerCase().includes(searchTerm.toLowerCase())"> 
             
             <div>
               <img class="card-img-top product-image" [src]="getImageUrl(product.image)" [alt]="product.title">
@@ -62,6 +66,7 @@
         </div>
       </div>
     </div>
+   
   </div>
 </div>
 <!-- Pagination component -->

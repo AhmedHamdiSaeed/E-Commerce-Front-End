@@ -78,8 +78,8 @@
   padding: 2px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   overflow: hidden;
-  transition: max-width 0.3s ease;
-  max-width: 0;
+  /* transition: max-width 0.2s ease; 
+  max-width: 0;  */
   margin-left: 20px;
 }
 
@@ -89,6 +89,7 @@
   font-size: 20px;
   width: 100px;
   color: #2c4f1b;
+  animation: expandQuantityControls 0.1s ease forwards;
 }
 
 .quantity-controls.expanded {
@@ -100,3 +101,11 @@
   padding: 0.25rem 0.5rem;
 }
 
+@keyframes expandQuantityControls {
+  from {
+    max-width: 0;
+  }
+  to {
+    max-width: 250px;
+  }
+}

@@ -22,6 +22,7 @@ export class SearchComponent implements OnInit {
     this.searchTextChanged.emit(this.searchTerm);
   }
 
+
   productMatchesSearch(product: Product): boolean {
     if (!this.searchTerm) {
       return true;
