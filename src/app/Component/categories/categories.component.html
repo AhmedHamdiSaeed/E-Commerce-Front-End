@@ -29,14 +29,9 @@
             <!-- end sort -->
           </div>
         </div>
-        
         <div class="col-md-4" *ngFor="let product of receivedProducts">
-          <!-- {{ searchTerm | json }}
-          {{ product.title.trim().toLowerCase().includes(searchTerm.toLowerCase()) | json }} -->
-          <!-- *ngIf="searchTerm ==''|| product.title.trim().toLowerCase().includes(searchTerm.toLowerCase())" -->
           <div class="card mb-3 custom-card"
-          *ngIf="productMatchesSearch(product)"> 
-            
+            *ngIf="searchTerm ==''|| product.title.trim().toLowerCase().includes(searchTerm.toLowerCase())">
             <div>
               <img class="card-img-top product-image" [src]="getImageUrl(product.image)" [alt]="product.title">
             </div>
@@ -44,30 +39,32 @@
               <h5 class="card-title">{{ product.title }}</h5>
               <p class="card-text">{{ product.description }}</p>
               <p class="card-text">Price: {{ product.price }}</p>
-             
+
               <button class="btn btn-outline-success  btn-details" [routerLink]="['/products', product._id]">
                 <i class="bi bi-eye-fill"></i>
               </button>
-                  <button class="btn btn-success mb-2  cart-btn" (mouseenter)="isHovered = true" (mouseleave)="isHovered = false">
-                    <button class="btn" (click)="addToCart(product)"><i style="font-size: 30px;" class="bi bi-cart-plus" ></i></button>
-                    <div class="quantity-controls" [ngClass]="{ 'expanded': isHovered }">
-                      <button class="btn btn-sm btn-outline-success" (click)="decreaseQuantity(product)">
-                        <i class="bi bi-dash"></i>
-                      </button>
-                      <span >{{ quantity }}</span>
-                      <button class="btn btn-sm btn-outline-success" (click)="increaseQuantity(product)">
-                        <i class="bi bi-plus"></i>
-                      </button>
-                    </div>
+              <button class="btn btn-success mb-2  cart-btn" (mouseenter)="isHovered = true"
+                (mouseleave)="isHovered = false">
+                <button class="btn" (click)="addToCart(product)"><i style="font-size: 30px;"
+                    class="bi bi-cart-plus"></i></button>
+                <div class="quantity-controls" [ngClass]="{ 'expanded': isHovered }">
+                  <button class="btn btn-sm btn-outline-success" (click)="decreaseQuantity(product)">
+                    <i class="bi bi-dash"></i>
                   </button>
-           
+                  <span>{{ quantity }}</span>
+                  <button class="btn btn-sm btn-outline-success" (click)="increaseQuantity(product)">
+                    <i class="bi bi-plus"></i>
+                  </button>
+                </div>
+              </button>
+
+            </div>
+
           </div>
-        
         </div>
       </div>
+
     </div>
-   
   </div>
-</div>
-<!-- Pagination component -->
-<app-pagination (displayedProductsEvent)="updateDisplayedProducts($event)"></app-pagination>
+  <!-- Pagination component -->
+  <app-pagination (displayedProductsEvent)="updateDisplayedProducts($event)"></app-pagination>

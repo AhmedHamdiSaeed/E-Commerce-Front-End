@@ -8,20 +8,20 @@ import { AuthService } from '../../Services/auth/auth.service';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { baseURL } from '../../../../env';
 
-
 @Component({
   selector: 'app-categories',
   templateUrl: './categories.component.html',
   styleUrls: ['./categories.component.css'],
 })
 export class CategoriesComponent implements OnInit {
-  searchTerm!: string;
-  constructor(private route: ActivatedRoute,
+  constructor(
+    private route: ActivatedRoute,
     private router: Router,
-     private productService: ProductService,
-      private cartService: CartService,
-      private auth : AuthService,
-      private sanitizer: DomSanitizer) {}
+    private productService: ProductService,
+    private cartService: CartService,
+    private auth: AuthService,
+    private sanitizer: DomSanitizer
+  ) {}
 
   allCategories: Category[] = [];
   products: Product[] | any = [];
@@ -31,7 +31,7 @@ export class CategoriesComponent implements OnInit {
   successMessage: string = '';
   sortBy: string = '';
   receivedProducts: any[] = [];
-  
+  searchTerm: string = '';
   quantity: number = 0;
 
   ngOnInit(): void {
@@ -50,7 +50,7 @@ export class CategoriesComponent implements OnInit {
       (products: any) => {
         this.receivedProducts = products;
         this.isLoading = false;
-        console.log(this.receivedProducts)
+        console.log(this.receivedProducts);
       },
       (err) => {
         console.log(err);
@@ -88,8 +88,8 @@ export class CategoriesComponent implements OnInit {
       }
     );
   }
-  alertAppear(){
-    this.successMessage='Product added to cart!';
+  alertAppear() {
+    this.successMessage = 'Product added to cart!';
     setTimeout(() => {
       this.successMessage = '';
     }, 3000);
@@ -100,11 +100,10 @@ export class CategoriesComponent implements OnInit {
       return;
     }
     if (this.quantity <= 0) {
-      
       return;
     }
     if (product) {
-      console.log("quantity: " + this.quantity);
+      console.log('quantity: ' + this.quantity);
       this.alertAppear();
       this.cartService.addToCart(product, this.quantity);
       this.quantity = 0;
@@ -130,7 +129,7 @@ export class CategoriesComponent implements OnInit {
     return `../../../assets${imagePath}`;
   }
   //filter
-  // searchTerm: string = '';
+
   onSearchTextChanged(searchValue: string) {
     this.searchTerm = searchValue;
   }
@@ -180,19 +179,18 @@ export class CategoriesComponent implements OnInit {
   isHovered: boolean = false;
 
   increaseQuantity(product: Product) {
-    const maxQuantity = product.quantity; 
-    const totalQuantityInCart = this.cartService.getTotalQuantityInCart(product);  
-    const remainingQuantity = maxQuantity - totalQuantityInCart; 
+    const maxQuantity = product.quantity;
+    const totalQuantityInCart =
+      this.cartService.getTotalQuantityInCart(product);
+    const remainingQuantity = maxQuantity - totalQuantityInCart;
     if (this.quantity < remainingQuantity) {
       this.quantity++;
     }
   }
-  
-  
+
   decreaseQuantity(product: Product) {
     if (this.quantity > 1) {
       this.quantity--;
     }
   }
-  
 }
