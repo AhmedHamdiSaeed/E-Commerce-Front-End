@@ -95,18 +95,20 @@ export class CategoriesComponent implements OnInit {
     }, 3000);
   }
   addToCart(product: Product) {
-    if (this.quantity <= 0) {
-      
-      return;
-    }
     if (!this.auth.isAuthenticated()) {
       this.router.navigate(['/login']);
       return;
     }
-    console.log("quantity: " + this.quantity);
-    this.alertAppear();
-    this.cartService.addToCart(product, this.quantity);
-    this.quantity = 0;
+    if (this.quantity <= 0) {
+      
+      return;
+    }
+    if (product) {
+      console.log("quantity: " + this.quantity);
+      this.alertAppear();
+      this.cartService.addToCart(product, this.quantity);
+      this.quantity = 0;
+    }
   }
   getSpecificCategory(categoryId: string): void {
     console.log('Category clicked:', categoryId);
@@ -132,7 +134,12 @@ export class CategoriesComponent implements OnInit {
   onSearchTextChanged(searchValue: string) {
     this.searchTerm = searchValue;
   }
-
+  productMatchesSearch(product: Product): boolean {
+    if (!this.searchTerm) {
+      return true;
+    }
+    return product.title.toLowerCase().includes(this.searchTerm.toLowerCase());
+  }
   //sort
   onSortChange(sortBy: string): void {
     if (sortBy === 'price') {
