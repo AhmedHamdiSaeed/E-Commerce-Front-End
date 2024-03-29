@@ -185,10 +185,7 @@ body {
 .ftco-footer-social li {
     display: inline-block;
     margin-right: 20px;
-    /* width: 40px;
-    height: 40px;
-    background-color: rgb(86, 210, 131);
-    border-radius: 50%; */
+   
 }
 
 .ftco-footer-social li:last-child {

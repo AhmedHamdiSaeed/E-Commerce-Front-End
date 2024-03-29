@@ -70,11 +70,16 @@
               <button class="btn btn-outline-success  btn-details" [routerLink]="['/products', product._id]">
                 <i class="bi bi-eye-fill"></i>
               </button>
-              <button class="btn btn-success mb-2  cart-btn" (mouseenter)="isHovered = true"
+              <button class="btn btn-success mb-2 cart-btn" (mouseenter)="isHovered = true"
                 (mouseleave)="isHovered = false">
-                <button class="btn" (click)="addToCart(product)"><i style="font-size: 30px;"
-                    class="bi bi-cart-plus"></i></button>
-                <div class="quantity-controls" [ngClass]="{ 'expanded': isHovered }">
+                <button class="btn" (click)="addToCart(product)" (mouseenter)="isHovered = true"
+                  (mouseleave)="isHovered = false">
+                  <i style="font-size: 30px;" class="bi bi-cart-plus"></i>
+                  <!-- <span class="badge badge-primary" *ngIf=" hoveredProduct && hoveredProduct._id === product._id">{{ quantity }}</span> -->
+                </button>
+
+                <div class="quantity-controls"
+                  [ngClass]="{ 'expanded': isHovered && hoveredProduct && hoveredProduct._id === product._id }">
                   <button class="btn btn-sm btn-outline-success" (click)="decreaseQuantity(product)">
                     <i class="bi bi-dash"></i>
                   </button>
