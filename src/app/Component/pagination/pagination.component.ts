@@ -37,4 +37,5 @@ export class PaginationComponent {
       this.displayedProductsEvent.emit(displayedProducts);
     });
   }
+  
 }

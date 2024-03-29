@@ -65,10 +65,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #fff!important;
 }
 .cart-btn .btn {
-  color: #fff; 
+  color: #494d59; 
   cursor: pointer;
+  background-color: #fff!important;
 }
 
 .quantity-controls {
@@ -78,8 +80,6 @@
   padding: 2px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   overflow: hidden;
-  /* transition: max-width 0.2s ease; 
-  max-width: 0;  */
   margin-left: 20px;
 }
 
@@ -100,6 +100,15 @@
 .quantity-controls button {
   padding: 0.25rem 0.5rem;
 }
+.badge{
+  border:1px solid red;
+  color: #198754;
+}
+.cart-btn:hover {
+  background-color: #218838;
+  border-color: #1e7e34;
+}
+
 
 @keyframes expandQuantityControls {
   from {

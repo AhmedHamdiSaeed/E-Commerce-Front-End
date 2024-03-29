@@ -31,6 +31,7 @@
         </div>
         <div class="col-md-4" *ngFor="let product of receivedProducts">
           <div class="card mb-3 custom-card" *ngIf="productMatchesSearch(product)">
+          
             <div>
               <img class="card-img-top product-image" [src]="getImageUrl(product.image)" [alt]="product.title">
             </div>
@@ -44,8 +45,11 @@
               </button>
               <button class="btn btn-success mb-2  cart-btn" (mouseenter)="isHovered = true"
                 (mouseleave)="isHovered = false">
-                <button class="btn" (click)="addToCart(product)"><i style="font-size: 30px;"
-                    class="bi bi-cart-plus"></i></button>
+                <button class="btn " (click)="addToCart(product)"(mouseenter)="isHovered = true" (mouseleave)="isHovered = false">
+                  <i style="font-size: 30px;" class="bi bi-cart-plus"></i>
+                  <span class="badge badge-primary" *ngIf="quantity > 0">{{ quantity }}</span>
+                </button>
+                
                 <div class="quantity-controls" [ngClass]="{ 'expanded': isHovered }">
                   <button class="btn btn-sm btn-outline-success" (click)="decreaseQuantity(product)">
                     <i class="bi bi-dash"></i>
@@ -56,7 +60,6 @@
                   </button>
                 </div>
               </button>
-
             </div>
 
           </div>

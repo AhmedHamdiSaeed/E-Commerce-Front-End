@@ -1,69 +1,106 @@
-
-
 .card {
-    padding: 20px;
-    border-radius: 10px;
-    width: 100%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-top: 50px;
-  }
-  .clear,.buy{
-    width: 15%;
-  }
-  h5{
-    font-size: 30px;
-  }
-  .card-price{
-    font-size: 25px;
-    color:#28a745;
-  }
+  padding: 20px;
+  border-radius: 10px;
+  width: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 50px;
+}
 
-  
-  .card_img img {
-    width: 150px;
-    margin-bottom: 20px;
-  }
-  
-  .card_img h4, .card_img p {
-    margin-bottom: 10px;
-  }
-  
-  .btn-outline-success {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    color: #28a745; 
-    border-color: #28a745; 
-  }
-  
-  .btn-outline-success:hover {
-    background-color: #28a745; 
-    color: #fff; 
-  }
-  .remove{
-    color: #28a745; 
-  }
-  .remove i{
-    padding-right: 10px;
-  }
-.card-item{
+.clear, .buy {
+  width: 15%;
+}
 
+h5 {
+  font-size: 30px;
+}
+
+.card-price {
+  font-size: 25px;
+  color: #28a745;
+}
+
+.card_img img {
+  width: 150px;
+  margin-bottom: 20px;
+}
+
+.card_img h4,
+.card_img p {
+  margin-bottom: 10px;
+}
+
+.btn-outline-success {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  color: #28a745;
+  border-color: #28a745;
+}
+
+.btn-outline-success:hover {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.remove {
+  color: #28a745;
+}
+
+.remove i {
+  padding-right: 10px;
+}
+
+.card-item {
   width: 100%;
   display: flex;
   justify-content: space-between;
 }
-.card-text p, h4{
 
+.card-text p,
+h4 {
   padding: 10px 0px 0px 10px;
 }
+
 .quantity {
   display: flex;
   align-items: center;
   width: 200px;
 }
 
-
 .quantity button,
 .quantity input {
   margin: 0 5px;
 }
 
+@media screen and (max-width: 768px) {
+  .card {
+    padding: 10px;
+  }
+
+  .card_img img {
+    width: 100px;
+  }
+
+  .card_img h4,
+  .card_img p {
+    font-size: 14px;
+  }
+
+  .quantity {
+    width: 150px;
+  }
+
+  .clear,
+  .buy {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .card_img img {
+    width: 80px;
+  }
+
+  .quantity {
+    width: 120px;
+  }
+}
