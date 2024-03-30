@@ -4,7 +4,7 @@ import { Category } from '../../models/categoryModel';
 import { CategoryService } from '../../Services/category/category-services.service';
 import { ViewCat } from '../../models/viewCat';
 import { ProductService } from '../../Services/product/product.service';
-
+import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-add-product',
   templateUrl: './add-product.component.html',
@@ -15,14 +15,23 @@ export class AddProductComponent implements OnInit {
   allCategories: ViewCat[] = [];
   selectedImage!: File  ;
   color :string ="fff" ;
+  colors: string[] = [];
+  chosenColors: string[] = [];
 
-@ViewChild('addForm' , {static: true}) AddProductForm !: NgForm ;
+  @ViewChild('addForm' , {static: true}) AddProductForm !: NgForm ;
 
-  constructor(private getCategories:CategoryService , public prductService: ProductService ){}
+  constructor(private getCategories:CategoryService , public prductService: ProductService ,public dialog: MatDialog ){}
 
   ngOnInit(): void {
     this.getAllCategories();
-    
+
+  }
+  confirmAddProduct(addForm: NgForm): void {
+    if (confirm('Are you sure you want to add this product?')) {
+      this.AddProduct(addForm);
+    }
+    addForm.resetForm();
+
   }
   getAllCategories(): void {
     this.getCategories.getCategories().subscribe(
@@ -30,48 +39,62 @@ export class AddProductComponent implements OnInit {
        res.forEach(element => {
           let tempCate = new ViewCat(element.name , element._id) ;
           this.allCategories.push(tempCate) ;
-       }); 
+       });
       },
       (err) => {
         console.log(err);
-        // this.isLoading = false;
-        // this.error = err.error.message;
       }
     );
   }
   AddProduct(form: NgForm){
-    // console.log(this.AddProductForm.value);
     const formData = new FormData() ;
     formData.append('title' , form.value.title);
     formData.append('quantity' , form.value.quantity);
     formData.append('price' , form.value.price);
     formData.append('description' , form.value.description);
-    formData.append('colors' , this.color);
+    formData.append('colors' , this.colors.join(','));
     formData.append('category' , form.value.category);
     formData.append('company' , form.value.company);
     formData.append('sold' , form.value.sold);
     formData.append('image' , this.selectedImage);
 
-    console.log(formData.get('image'));
-    
-    
     this.prductService.addProduct(formData)
     .subscribe((res)=>{
-      console.log("producte created successfuly");
-
-      form.resetForm() ;
-       
-      
+      console.log("product created successfully");
+      form.resetForm();
     }, err => {
       console.log(err);
-      
-    })
-
-    
+    });
   }
   onFileSelected(event: any){
     this.selectedImage= event.target.files[0] ;
-    // console.log(event.target.files[0]);
-    
   }
+  addColor(): void {
+    this.chosenColors.push(this.color);
+    this.colors.push(this.color);
+    this.color = '';
+  }
+  removeColor(chosenColor: string): void {
+    const index = this.chosenColors.indexOf(chosenColor);
+    if (index !== -1) {
+      this.chosenColors.splice(index, 1);
+    }
+    const colorIndex = this.colors.indexOf(chosenColor);
+    if (colorIndex !== -1) {
+      this.colors.splice(colorIndex, 1);
+    }
+  }
+  // confirmRemoveColor(color: string): void {
+  //   const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+  //     width: '300px',
+  //     data: { message: 'Are you sure you want to remove this color?' },
+  //   });
+
+  //   dialogRef.afterClosed().subscribe((result) => {
+  //     if (result) {
+  //       this.removeColor(color);
+  //     }
+  //   });
+  // }
 }
+

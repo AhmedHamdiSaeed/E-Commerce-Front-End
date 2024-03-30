@@ -27,7 +27,7 @@ export class ProductComponent implements OnInit {
   }
 
   addProduct() {
-    this.router.navigateByUrl('/add-product');
+    this.router.navigateByUrl('/Admin/AddProduct');
   }
 
   editProduct(productId: string) {
@@ -35,20 +35,24 @@ export class ProductComponent implements OnInit {
   }
 
   deleteProduct(productId: string) {
-    this.productService.deleteProduct(productId).subscribe(() => {
-      this.products = this.products.filter((product: any) => product._id !== productId);
-    });
+    console.log(productId);
+
+    this.productService.deleteProduct(productId).subscribe(
+      () => {
+        console.log("Product deleted successfully");
+        this.products = this.products.filter((p: any) => p._id !== productId);
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
 
-  // Load image
+
 
   getImageUrl(imagePath: string) :SafeUrl {
-    // return `../../../assets${imagePath}`;
     let safeurl = baseURL + '/' + imagePath ;
-
     console.log(safeurl);
-
-    // return "http://localhost:3000/api/v1/uploads/image-1711636730983.jpg"
     return  this.sanitizer.bypassSecurityTrustUrl(safeurl) ;
 
   }

@@ -40,7 +40,7 @@ import { AddProductComponent } from './Component/add-product/add-product.compone
 import { FormsModule } from '@angular/forms';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { FooterComponent } from './component/footer/footer.component';
+import { FooterComponent } from './Component/footer/footer.component';
 
 @NgModule({
   declarations: [

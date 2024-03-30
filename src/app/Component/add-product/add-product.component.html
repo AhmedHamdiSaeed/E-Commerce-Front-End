@@ -1,79 +1,74 @@
-<form class="row g-3 " (ngSubmit)="AddProduct(addForm)" #addForm="ngForm" enctype="multipart/form-data">
-    <div class="col-md-4">
-      <label for="title" class="form-label">Product title</label>
-      <input type="text" class="form-control" id="title"  ngModel name="title" #title="ngModel" required>
-      <div class="form-text" *ngIf="!title.valid  && title.touched">
-        please provide a valid title for the product
-      </div>
-    </div>
-    <div class="col-md-4">
-      <label for="quantity" class="form-label">quantity</label>
-      <input type="number" min="1" max="5000" class="form-control" id="quantity" ngModel name="quantity" #quantity="ngModel" required>
-      <div class="form-text" *ngIf="!quantity.valid  && quantity.touched">
-        please provide a valid quantity for the product
-
-       </div>
-    </div>
-
-    <div class="col-md-4">
-        <label for="price" class="form-label">price</label>
-        <input type="number" min="1" max="5000"  class="form-control" id="price" ngModel name="price" #price="ngModel"  required>
-        <div class="form-text" *ngIf="!price.valid  && price.touched">
-          please provide a valid price for the product
-
-         </div>
-      </div>
-
-      <div class="col-md-4">
-        <label for="description" class="form-label">description</label>
-        <input type="text" class="form-control" id="description" ngModel name="description" #description="ngModel"  required>
-        <div class="form-text" *ngIf="!description.valid  && description.touched">
-          please provide a valid description for the product
-
-         </div>
-      </div>
-
-      <div class="col-md-4">
-        <label for="image" class="form-label">choose image</label>
-        <input type="file" class="form-control" id="image"  name="image" (change)="onFileSelected($event)" ngModel #image="ngModel"  required>
-        <div class="form-text" *ngIf="!image.valid  && (image.touched || image.dirty)">
-          please provide a valid image (.jpg , .jpeg , .png , .gif) 
-         </div>
-      </div>
-
-      <div class="col-md-4">
-        <label for="colors" class="form-label">colors</label>
-        <input type="color" class="form-control form-control-color" id="colors" [(ngModel)]="color" name="colors" #colors="ngModel" required>
-        <div class="form-text" *ngIf="!colors.valid  && colors.touched">
-          please provide a valid colors for the product
-
-         </div>
-      </div>
-
-      <div class="col-md-4" *ngIf="allCategories">
-        <label for="category" class="form-label">category</label>
-          <select name="category" ngModel>
-            <option *ngFor="let cat of allCategories" value={{cat.id}}>{{cat.name}}</option>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <form class="row g-3" (ngSubmit)="confirmAddProduct(addForm)" #addForm="ngForm" enctype="multipart/form-data">
+        <div class="col-12">
+          <label for="title" class="form-label">Product title</label>
+          <input type="text" class="form-control" id="title" ngModel name="title" #title="ngModel" required>
+          <div class="form-text" *ngIf="!title.valid && title.touched">
+            Please provide a valid title for the product
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="quantity" class="form-label">Quantity</label>
+          <input type="number" min="1" max="5000" class="form-control" id="quantity" ngModel name="quantity" #quantity="ngModel" required>
+          <div class="form-text" *ngIf="!quantity.valid && quantity.touched">
+            Please provide a valid quantity for the product
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="sold" class="form-label">Sold</label>
+          <input type="number" min="0" max="5000" class="form-control" id="sold" ngModel name="sold" #sold="ngModel" required>
+          <div class="form-text" *ngIf="!sold.valid && sold.touched">
+            Please provide a valid sold value for the product
+          </div>
+        </div>
+        <div class="col-12">
+          <label for="price" class="form-label">Price</label>
+          <input type="number" min="1" max="5000" class="form-control" id="price" ngModel name="price" #price="ngModel" required>
+          <div class="form-text" *ngIf="!price.valid && price.touched">
+            Please provide a valid price for the product
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="category" class="form-label">Category</label>
+          <select name="category" class="form-select" ngModel>
+            <option *ngFor="let cat of allCategories" [value]="cat.id">{{cat.name}}</option>
           </select>
-      </div>
-
-      <div class="col-md-4">
-        <label for="company" class="form-label">company</label>
-        <input type="text" class="form-control" id="company" ngModel name="company" #company="ngModel"  required>
-        <div class="form-text" *ngIf="!company.valid  && company.touched">
-          please provide a valid company for the product    
-         </div>
-      </div>
-
-      <div class="col-md-4">
-        <label for="sold" class="form-label">sold</label>
-        <input type="number" min="0" max="5000"  class="form-control" id="sold" ngModel name="sold" #sold="ngModel" required>
-        <div class="form-text" *ngIf="!sold.valid  && sold.touched">
-          please provide a valid sold for the product
-         </div>
-      </div>
-    
-    <div class="col-12">
-      <button class="btn btn-primary" type="submit" [disabled]="!addForm.valid">Submit form</button>
+        </div>
+        <div class="col-md-6">
+          <label for="company" class="form-label">Company</label>
+          <input type="text" class="form-control" id="company" ngModel name="company" #company="ngModel" required>
+          <div class="form-text" *ngIf="!company.valid && company.touched">
+            Please provide a valid company for the product
+          </div>
+        </div>
+        <div class="col-12">
+          <label for="colors" class="form-label">Colors</label>
+          <div class="input-group">
+            <input type="color" class="form-control" [(ngModel)]="color" name="colors" #colors="ngModel">
+            <button class="btn btn-outline-secondary" type="button" (click)="addColor()">Add Color</button>
+          </div>
+          <div class="form-text" *ngIf="!colors.valid && colors.touched">
+            Please provide valid colors for the product
+          </div>
+          <div class="color-circles">
+            <span *ngFor="let chosenColor of chosenColors" class="color-circle" [style.background-color]="chosenColor" (mouseenter)="showRemoveIcon(chosenColor)" (mouseleave)="hideRemoveIcon(chosenColor)">
+              <span class="remove-icon" >&#10006;</span>
+            </span>
+          </div>
+        </div>
+        <div class="col-12">
+          <label for="description" class="form-label">Description</label>
+          <input type="text" class="form-control" id="description" ngModel name="description" #description="ngModel" required>
+          <div class="form-text" *ngIf="!description.valid && description.touched">
+            Please provide a valid description for the product
+          </div>
+        </div>
+        <div class="col-12">
+          <button class="btn btn-primary" type="submit" [disabled]="!addForm.valid">Submit</button>
+        </div>
+      </form>
     </div>
-  </form>
+  </div>
+</div>

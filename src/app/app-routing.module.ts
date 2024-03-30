@@ -21,24 +21,9 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'products/category', component: CategoriesComponent },
   { path: 'about-us', component: AboutUsComponent },
-  {
-    path: 'Admin/products',
-    component: ProductComponent,
-    canActivate: [AuthGuardService],
-  },
   { path: 'products/:id', component: ProductDetailsComponent },
   { path: 'cart', component: CartComponent },
-  {
-    path: 'Admin',
-    component: AdminBoardComponent,
-    canActivate: [AuthGuardService],
-  },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  {
-    path: 'Admin/products',
-    component: ProductComponent,
-    canActivate: [AuthGuardService],
-  },
   { path: 'products/:id', component: ProductDetailsComponent },
   { path: 'cart', component: CartComponent },
   {
@@ -46,9 +31,17 @@ const routes: Routes = [
     component: AdminBoardComponent,
     canActivate: [AuthGuardService],
   },
+  {
+    path: 'Admin/products',
+    component: ProductComponent,
+    canActivate: [AuthGuardService],
+  },
+  { path: 'Admin/AddProduct',
+   component: AddProductComponent,
+    canActivate: [AuthGuardService]
+   },
 
   { path: 'Profile', component: UserProfileComponent },
-  { path: 'Add_Product', component: AddProductComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'Not-Found', component: NotFoundComponent },
   { path: 'Profile', component: UserProfileComponent },

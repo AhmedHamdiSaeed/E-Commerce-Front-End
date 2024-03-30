@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { baseURL } from '../../../.././env';
 @Injectable({
   providedIn: 'root',
@@ -9,11 +10,7 @@ export class AdminServices {
   photo: any;
   constructor(private http: HttpClient) {}
 
-  // getProducts(){
-  //  return this.http.get('http://localhost:3000/api/v1/admin/products') ;
-  // }
-
-  private apiProduct: string = `${baseURL}/admin/products`;
+  private apiProduct: string = `${baseURL}/products`;
   getProducts() {
     return this.http.get<any>(this.apiProduct).pipe(
       map((res) => {
@@ -22,8 +19,13 @@ export class AdminServices {
       })
     );
   }
+
+  deleteProduct(productId: string) {
+    return this.http.delete(`${this.apiProduct}/${productId}`);
+  }
+
   getOrders() {
-    return this.http.get<any>(`${baseURL}/admin/orders`).pipe(
+    return this.http.get<any>(`${baseURL}/orders`).pipe(
       map((res) => {
         return res;
       })
@@ -63,16 +65,11 @@ export class AdminServices {
     return this.http.post(this.apiProduct, formData);
   }
 
-  deleteProduct(id: any) {
-    return this.http.delete(this.apiProduct + id);
-  }
+
   getProductx(id: any) {
-    return this.http.get(this.apiProduct + id);
+    return this.http.get(`${this.apiProduct}/${ id}`);
   }
-  // updateStatus(id: any, status: any) {
-  //   console.log(status, id);
-  //   return this.http.patch('https://api-cafebuyers.onrender.com/orders/' + id, status);
-  // }
+
   getUsers() {
     return this.http.get('admin/users');
   }

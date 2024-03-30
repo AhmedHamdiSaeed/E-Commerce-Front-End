@@ -43,7 +43,7 @@ export class ProductDetailsComponent implements OnInit {
         .subscribe(
           (product: any) => {
             console.log(product);
-            
+
             this.product = product;
             this.isLoading = false;
             const category = this.allCategories.find(c => product.category == c._id );
@@ -93,7 +93,7 @@ export class ProductDetailsComponent implements OnInit {
       return;
     }
     if (this.quantity <= 0) {
-      
+
       return;
     }
     console.log("quantity: " + this.quantity);
@@ -102,31 +102,29 @@ export class ProductDetailsComponent implements OnInit {
     this.quantity = 0;
   }
   getImageUrl(imagePath: string) :SafeUrl {
-    // return `../../../assets${imagePath}`;
     let safeurl = baseURL + '/' + imagePath ;
 
     console.log(safeurl);
 
-    // return "http://localhost:3000/api/v1/uploads/image-1711636730983.jpg"
     return  this.sanititzer.bypassSecurityTrustUrl(safeurl) ;
 
   }
   increaseQuantity(product: Product) {
-    const maxQuantity = product.quantity; 
-    const totalQuantityInCart = this.cartService.getTotalQuantityInCart(product);  
-    const remainingQuantity = maxQuantity - totalQuantityInCart; 
-    if (this.quantity < remainingQuantity) {
+    const maxQuantity = product.quantity;
+    // const totalQuantityInCart = this.cartService.getTotalQuantityInCart(product);
+    // const remainingQuantity = maxQuantity - totalQuantityInCart;
+    if (this.quantity <= maxQuantity) {
       this.quantity++;
     }
   }
-  
-  
+
+
   decreaseQuantity(product: Product) {
     if (this.quantity > 1) {
       this.quantity--;
     }
   }
-  
 
- 
+
+
 }
