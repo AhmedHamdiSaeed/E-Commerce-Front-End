@@ -33,6 +33,11 @@ export class CategoriesComponent implements OnInit {
   receivedProducts: any[] = [];
   searchTerm: string = '';
   quantity: number = 0;
+  p: number = 1;
+  itemsPerPage: number = 8;
+  isHovered: boolean = false;
+  hoveredProduct: any | null = null;
+  
 
   ngOnInit(): void {
     this.getAllCategories();
@@ -49,8 +54,10 @@ export class CategoriesComponent implements OnInit {
     this.productService.getProducts().subscribe(
       (products: any) => {
         this.receivedProducts = products;
+        this.products = products;
         this.isLoading = false;
         console.log(this.receivedProducts);
+        console.log(this.products);
       },
       (err) => {
         console.log(err);
@@ -94,21 +101,8 @@ export class CategoriesComponent implements OnInit {
       this.successMessage = '';
     }, 3000);
   }
-  addToCart(product: Product) {
-    if (!this.auth.isAuthenticated()) {
-      this.router.navigate(['/login']);
-      return;
-    }
-    if (this.quantity <= 0) {
-      return;
-    }
-    if (product) {
-      console.log('quantity: ' + this.quantity);
-      this.alertAppear();
-      this.cartService.addToCart(product, this.quantity);
-      this.quantity = 0;
-    }
-  }
+
+  
   getSpecificCategory(categoryId: string): void {
     console.log('Category clicked:', categoryId);
     this.getProductsByCategory(categoryId);
@@ -139,65 +133,68 @@ export class CategoriesComponent implements OnInit {
 
   onSearchTextChanged(searchValue: string) {
     this.searchTerm = searchValue;
-  }
-  productMatchesSearch(product: Product): boolean {
-    if (!this.searchTerm) {
-      return true;
+    if (this.searchTerm == '') {
+      this.ngOnInit();
+    } else {
+      this.receivedProducts = this.receivedProducts.filter((res) => {
+        return res.title.toLowerCase().includes(this.searchTerm.toLowerCase());
+      });
     }
-    return product.title.toLowerCase().includes(this.searchTerm.toLowerCase());
   }
+
   //sort
   onSortChange(sortBy: string): void {
-    if (sortBy === 'price') {
-      this.receivedProducts.sort((a: { price: any }, b: { price: any }) => {
-        const priceA = a.price;
-        const priceB = b.price;
-        return priceA - priceB; // Sort by price in ascending order
-      });
-    } else if (sortBy === 'price-desc') {
-      this.receivedProducts.sort((a: { price: any }, b: { price: any }) => {
-        const priceA = a.price;
-        const priceB = b.price;
-        return priceB - priceA; // Sort by price in descending order
-      });
-    } else if (sortBy === 'category') {
-      this.receivedProducts.sort(
-        (a: { category: any }, b: { category: any }) => {
-          const categoryA = a.category.toLowerCase();
-          const categoryB = b.category.toLowerCase();
-          if (categoryA < categoryB) {
-            return -1;
+    this.productService.getProducts().subscribe((products: any) => {
+      this.receivedProducts = products;
+      if (sortBy === 'price') {
+        this.receivedProducts.sort((a: { price: any }, b: { price: any }) => {
+          const priceA = a.price;
+          const priceB = b.price;
+          return priceA - priceB; // Sort by price in ascending order
+        });
+      } else if (sortBy === 'price-desc') {
+        this.receivedProducts.sort((a: { price: any }, b: { price: any }) => {
+          const priceA = a.price;
+          const priceB = b.price;
+          return priceB - priceA; // Sort by price in descending order
+        });
+      } else if (sortBy === 'category') {
+        this.receivedProducts.sort(
+          (a: { category: any }, b: { category: any }) => {
+            const categoryA = a.category.toLowerCase();
+            const categoryB = b.category.toLowerCase();
+            if (categoryA < categoryB) {
+              return -1;
+            }
+            if (categoryA > categoryB) {
+              return 1;
+            }
+            return 0;
           }
-          if (categoryA > categoryB) {
-            return 1;
-          }
-          return 0;
-        }
-      );
-    }
+        );
+      }
+    });
   }
 
-  //pagination
-  updateDisplayedProducts(displayedProducts: any[]): void {
-    this.receivedProducts = displayedProducts;
-  }
 
-  ////
-  isHovered: boolean = false;
-
-  increaseQuantity(product: Product) {
-    const maxQuantity = product.quantity;
-    const totalQuantityInCart =
-      this.cartService.getTotalQuantityInCart(product);
-    const remainingQuantity = maxQuantity - totalQuantityInCart;
-    if (this.quantity < remainingQuantity) {
-      this.quantity++;
+  
+  addToCart(product: Product) {
+    const availableQuantity = product.quantity; // Get the available quantity of the product
+    const currentQuantityInCart = this.getHoveredProductQuantity(product); // Get the current quantity of the product in the cart
+    const quantityToAdd = Math.min(1, availableQuantity - currentQuantityInCart);
+  
+    if (quantityToAdd > 0) {
+      this.cartService.addToCart(product, quantityToAdd);
     }
   }
-
-  decreaseQuantity(product: Product) {
-    if (this.quantity > 1) {
-      this.quantity--;
-    }
+  
+ 
+  removeFromCart(product: Product) {
+    this.cartService.removeFromCart(product); // Remove the product from the cart
+  }
+  
+  getHoveredProductQuantity(product: Product): number {
+    // Return the quantity of the product in the cart
+    return this.cartService.getTotalQuantityInCart(product); // Convert
   }
 }

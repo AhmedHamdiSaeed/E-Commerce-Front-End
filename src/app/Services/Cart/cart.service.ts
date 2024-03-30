@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import { ChangeDetectorRef, Injectable } from '@angular/core';
 import { Product } from '../../models/product';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import {baseURL} from '../../../.././env'
 
@@ -10,7 +10,10 @@ import {baseURL} from '../../../.././env'
 export class CartService {
   private apiUrl =  `${baseURL}/cart/add`;
   quantity: number= 0;
-  constructor(private http: HttpClient) {   this.updateCartLengthFromLocalStorage();}
+  private productHoverQuantity: { [productId: string]: number } = {};
+  private clearProductHoverQuantitySubject = new Subject<void>();
+
+  constructor(private http: HttpClient ) {   this.updateCartLengthFromLocalStorage();}
   createNewCart(products:any) {
     return this.http.post(`${this.apiUrl}`,products);
   }
@@ -34,6 +37,33 @@ export class CartService {
     this.updateCartLengthFromLocalStorage();
     console.log('Quantity added to cart:', quantity);
   }
+  
+  removeFromCart(product: Product): void {
+    // Retrieve the cart data from localStorage
+    const cartDataString = localStorage.getItem('cart');
+    if (cartDataString) {
+      // Parse the cart data into an array of products
+      const cartData: { product: Product, quantity: number }[] = JSON.parse(cartDataString);
+      // Find the index of the product in the cartData array
+      const index = cartData.findIndex(item => item.product._id === product._id);
+      if (index !== -1) {
+        // If the quantity is greater than 1, decrement it
+        if (cartData[index].quantity > 1) {
+          cartData[index].quantity--;
+        } else {
+          // If the quantity is 1, remove the product from the cartData array
+          cartData.splice(index, 1);
+        }
+        // Update the cart data in localStorage
+        localStorage.setItem('cart', JSON.stringify(cartData));
+        this.updateCartLengthFromLocalStorage();
+        console.log('Product quantity updated in cart');
+      }
+    }
+  }
+  
+  
+  
 
   updateCartLength(length: number) {
     this.cartLengthSubject.next(length);
@@ -42,7 +72,7 @@ export class CartService {
   getCartLength() {
     return this.cartLengthSubject.asObservable();
   }
-
+ 
   getTotalQuantityInCart(product: Product): number {
     let totalQuantity = 0;
     for (const item of this.cartProducts) {
@@ -53,4 +83,6 @@ export class CartService {
     return totalQuantity;
   }
 
+
+ 
 }

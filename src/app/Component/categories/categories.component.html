@@ -1,18 +1,45 @@
 <div class="container-fluid">
   <div class="row">
+    <h3 class="text-center text-main bg-success text-light rounded-2 p-2">All Categories</h3>
     <!-- Sidebar with Categories -->
-    <div class="col-md-3 justify-content-between">
-      <h3 class="text-center text-main bg-success text-light rounded-2 p-2">All Categories</h3>
-      <div *ngFor="let category of allCategories"
-        class="category-border border text-center text-uppercase border-2 mb-2 rounded-2">
-        <img (click)="getSpecificCategory(category._id)" class="category-image" height="150"
-          src="../../../assets/project images/images (1).jpg" [alt]="category.name">
-        <h1 class="h4 py-3 text-main">{{category.name}}</h1>
+    <div id="carouselExampleControls" class="carousel carousel-dark slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="card-wrapper container-sm d-flex  justify-content-around">
+            <div class="card me-4 cardCategory" style="width: 18rem;" *ngFor="let category of allCategories"
+              (click)="getSpecificCategory(category._id)">
+              <img src="../../../assets/project images/images (1).jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">{{category.name}}</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="card-wrapper container-sm d-flex justify-content-around">
+            <div class="card me-4 cardCategory" style="width: 18rem;" *ngFor="let category of allCategories"
+              (click)="getSpecificCategory(category._id)">
+              <img src="../../../assets/project images/images (1).jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">{{category.name}}</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+          data-bs-slide="prev">
+          <span class="carousel-control-prev-icon bg-success" aria-hidden="true"></span>
+          <span class="visually-hidden bg-success">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+          data-bs-slide="next">
+          <span class="carousel-control-next-icon bg-success" aria-hidden="true"></span>
+          <span class="visually-hidden bg-success">Next</span>
+        </button>
       </div>
-    </div>
-    <!-- Main Section for Products -->
-    <div class="col-md-9">
-      <div class="row">
+
+      <div class="row mt-5">
         <div class="d-flex justify-content-between text-center text-main  bg-success text-light rounded-2 p-2">
           <h3 class="mt-2 ms-3 ">Products</h3>
           <div class="d-flex text-center">
@@ -21,7 +48,7 @@
             <!-- sort by price and category-->
             <select class="form-select w-25 ms-2 text-success" aria-label="Sort By" [(ngModel)]="sortBy"
               (change)="onSortChange(sortBy)">
-              <option disabled selected>Sort By</option>
+              <option selected value="">Sort By</option>
               <option value="price">Price (Low to High)</option>
               <option value="price-desc">Price (High to Low)</option>
               <option value="category">Category (A to Z)</option>
@@ -29,8 +56,9 @@
             <!-- end sort -->
           </div>
         </div>
-        <div class="col-md-4" *ngFor="let product of receivedProducts">
-          <div class="card mb-3 custom-card" *ngIf="productMatchesSearch(product)">
+        <div class=" col-sm-3 m-auto"
+          *ngFor="let product of receivedProducts |paginate: {itemsPerPage:itemsPerPage,currentPage:p}">
+          <div class="card mb-3 custom-card">
             <div>
               <img class="card-img-top product-image" [src]="getImageUrl(product.image)" [alt]="product.title">
             </div>
@@ -42,28 +70,33 @@
               <button class="btn btn-outline-success  btn-details" [routerLink]="['/products', product._id]">
                 <i class="bi bi-eye-fill"></i>
               </button>
-              <button class="btn btn-success mb-2  cart-btn" (mouseenter)="isHovered = true"
-                (mouseleave)="isHovered = false">
-                <button class="btn" (click)="addToCart(product)"><i style="font-size: 30px;"
-                    class="bi bi-cart-plus"></i></button>
-                <div class="quantity-controls" [ngClass]="{ 'expanded': isHovered }">
-                  <button class="btn btn-sm btn-outline-success" (click)="decreaseQuantity(product)">
-                    <i class="bi bi-dash"></i>
-                  </button>
-                  <span>{{ quantity }}</span>
-                  <button class="btn btn-sm btn-outline-success" (click)="increaseQuantity(product)">
-                    <i class="bi bi-plus"></i>
-                  </button>
-                </div>
+           
+             <button class="btn btn-success mb-2 cart-btn"  
+        (mouseenter)="hoveredProduct = product; isHovered = true"
+        (mouseleave)="hoveredProduct = null; isHovered = false">
+  <i style="font-size: 30px; color: white;" class="bi bi-cart-plus"></i>
+  <span   class="badge badge-primary" *ngIf="getHoveredProductQuantity(product) !== 0">
+    {{ getHoveredProductQuantity(product) }}
+  </span>
+  
+  <div class="quantity-controls" [ngClass]="{ 'expanded': isHovered && hoveredProduct && hoveredProduct._id === product._id }">
+    <button class="btn btn-sm btn-outline-success" (click)="addToCart(product)">
+      <i class="bi bi-plus"></i>
+    </button>
+    <span>{{ getHoveredProductQuantity(product) }}</span>
+    <button class="btn btn-sm btn-outline-success" (click)="removeFromCart(product)">
+      <i class="bi bi-dash"></i>
+    </button>
+  </div>
               </button>
 
-            </div>
+          </div>
 
           </div>
         </div>
       </div>
-
     </div>
-  </div>
-  <!-- Pagination component -->
-  <app-pagination (displayedProductsEvent)="updateDisplayedProducts($event)"></app-pagination>
+    <div class="mt-5 border-1 border-success p-2 text-center w-100">
+      <pagination-controls (pageChange)="p=$event"></pagination-controls>
+    </div>
+    <app-footer></app-footer>

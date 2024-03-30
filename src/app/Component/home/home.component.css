@@ -1,5 +1,10 @@
+body, html {
+    margin: 0;
+    padding: 0;
+  }
 body {
     font-family: 'Poppins', sans-serif;
+
 }
 .category{
     margin: 40;
@@ -21,13 +26,14 @@ body {
     color: #333;
   }
 
-
 .footer {
+    width: 100%;
     background-color: #212529;
     color: #fff;
-    padding: 50px 0;
+    padding: 50px 0px;
     margin-top: 50px;
 }
+
 
 .footer-heading {
     color: #fff;
@@ -108,16 +114,7 @@ body {
   background-repeat: no-repeat;
   background-position: center center; }
 
-.footer-heading {
-    color: #fff;
-    font-size: 24px;
-    margin-bottom: 20px;
-}
-.ftco-animate{
-width: 40px;
-height: 40px;
-color: aqua;
-}
+
 .footer p {
     color: #ccc;
     font-size: 16px;
@@ -188,10 +185,7 @@ color: aqua;
 .ftco-footer-social li {
     display: inline-block;
     margin-right: 20px;
-    /* width: 40px;
-    height: 40px;
-    background-color: rgb(86, 210, 131);
-    border-radius: 50%; */
+   
 }
 
 .ftco-footer-social li:last-child {

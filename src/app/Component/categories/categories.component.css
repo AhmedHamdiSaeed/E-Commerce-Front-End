@@ -1,22 +1,28 @@
 .category-border {
   color: #198754;
-  margin-bottom: 20px; 
-  
+  margin-bottom: 20px;
+
 }
 
-.category-border:hover {
+/*  */
+
+.cardCategory:hover {
+  cursor: pointer;
   background-color: #198754;
   color: white;
 }
 
+/*  */
+
+
 .product-card {
-  margin-bottom: 10px; 
-  margin-top: 10px; 
+  margin-bottom: 10px;
+  margin-top: 10px;
 }
 
 .card-body {
-  height: 60%; 
-  
+  height: 60%;
+
 }
 
 .category-item {
@@ -35,14 +41,16 @@
 
 .custom-card {
   height: 100%;
-  margin-top: 10px; 
+  margin-top: 10px;
   position: relative;
 }
-.btn-details{
+
+.btn-details {
   position: absolute;
   top: 0;
   right: 0;
 }
+
 .card-body {
   height: 100%;
 }
@@ -51,23 +59,28 @@
   font-size: 1.25rem;
   font-weight: bold;
 }
+
 .category-border {
   color: #198754;
   margin-bottom: 20px;
-  position: relative; 
+  position: relative;
 }
 
 .category-border:hover {
   background-color: #198754;
   color: white;
 }
-.cart-btn{
+
+.cart-btn {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #fff !important;
+  transition: background-color 0.3s ease;
 }
-.cart-btn .btn {
-  color: #fff; 
+
+.cart-btn .bi-cart-plus {
+  color: #198754 !important;
   cursor: pointer;
 }
 
@@ -78,33 +91,46 @@
   padding: 2px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   overflow: hidden;
-  /* transition: max-width 0.2s ease; 
-  max-width: 0;  */
   margin-left: 20px;
 }
 
-.btn:hover .quantity-controls {
+.cart-btn:hover .quantity-controls {
   display: flex;
-  justify-content: space-around; 
+  justify-content: space-around;
   font-size: 20px;
   width: 100px;
   color: #2c4f1b;
   animation: expandQuantityControls 0.1s ease forwards;
 }
+.cart-btn:hover .quantity-controls.expanded {
+  max-width: 250px;
+}
 
-.quantity-controls.expanded {
-  max-width: 250px; 
+.cart-btn:hover .badge {
+  background-color: #198754 !important; /* Change background color on hover */
+  color: white; /* Change text color on hover */
 }
 
 
-.quantity-controls button {
-  padding: 0.25rem 0.5rem;
+.badge {
+  color: green;
+  margin-bottom: 20px;
 }
+
+.cart-btn:hover {
+  background-color: #198754 !important;
+}
+
+.cart-btn:hover .bi-cart-plus {
+  color: white !important;
+}
+
 
 @keyframes expandQuantityControls {
   from {
     max-width: 0;
   }
+
   to {
     max-width: 250px;
   }

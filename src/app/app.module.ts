@@ -6,7 +6,7 @@ import {
 } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import {  ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -37,10 +37,10 @@ import { EditProductDialogComponent } from './Component/edit-product-dialog/edit
 import { SearchComponent } from './Component/search/search.component';
 import { AddProductComponent } from './Component/add-product/add-product.component';
 
-import { FormsModule  } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { PaginationComponent } from './Component/pagination/pagination.component';
+import { FooterComponent } from './component/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -61,15 +61,15 @@ import { PaginationComponent } from './Component/pagination/pagination.component
     EditProductDialogComponent,
     ContentComponent,
     SearchComponent,
-    PaginationComponent,
-    AddProductComponent
+    AddProductComponent,
+    FooterComponent,
   ],
   imports: [
     CarouselModule.forRoot(),
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    FormsModule, 
+    FormsModule,
     ReactiveFormsModule,
     MatPaginatorModule,
     MatFormFieldModule,

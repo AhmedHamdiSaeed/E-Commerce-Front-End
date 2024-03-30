@@ -7,7 +7,7 @@ import { Product } from '../../models/product';
   styleUrls: ['./search.component.css'],
 })
 export class SearchComponent implements OnInit {
-  @Input() receivedProducts: Product[] = []; // Define receivedProducts as an input property
+  @Input() products: Product[] = []; // Define receivedProducts as an input property
 
   searchTerm: string = '';
 
@@ -21,7 +21,6 @@ export class SearchComponent implements OnInit {
   onSearchChange() {
     this.searchTextChanged.emit(this.searchTerm);
   }
-
 
   productMatchesSearch(product: Product): boolean {
     if (!this.searchTerm) {

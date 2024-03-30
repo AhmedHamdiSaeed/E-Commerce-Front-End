@@ -33,7 +33,7 @@ const routes: Routes = [
     component: AdminBoardComponent,
     canActivate: [AuthGuardService],
   },
-  { path: '', redirectTo: '/', pathMatch: 'full' },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   {
     path: 'Admin/products',
     component: ProductComponent,
@@ -49,7 +49,7 @@ const routes: Routes = [
 
   { path: 'Profile', component: UserProfileComponent },
   { path: 'Add_Product', component: AddProductComponent },
-  { path: '', redirectTo: '/', pathMatch: 'full' },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'Not-Found', component: NotFoundComponent },
   { path: 'Profile', component: UserProfileComponent },
   { path: '**', redirectTo: 'Not-Found' },
