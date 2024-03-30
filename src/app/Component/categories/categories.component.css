@@ -76,12 +76,12 @@
   justify-content: center;
   align-items: center;
   background-color: #fff !important;
+  transition: background-color 0.3s ease;
 }
 
-.cart-btn .btn {
-  color: #494d59;
+.cart-btn .bi-cart-plus {
+  color: #198754 !important;
   cursor: pointer;
-  background-color: #fff !important;
 }
 
 .quantity-controls {
@@ -94,7 +94,7 @@
   margin-left: 20px;
 }
 
-.btn:hover .quantity-controls {
+.cart-btn:hover .quantity-controls {
   display: flex;
   justify-content: space-around;
   font-size: 20px;
@@ -102,24 +102,27 @@
   color: #2c4f1b;
   animation: expandQuantityControls 0.1s ease forwards;
 }
-
-.quantity-controls.expanded {
+.cart-btn:hover .quantity-controls.expanded {
   max-width: 250px;
 }
 
-
-.quantity-controls button {
-  padding: 0.25rem 0.5rem;
+.cart-btn:hover .badge {
+  background-color: #198754 !important; /* Change background color on hover */
+  color: white; /* Change text color on hover */
 }
 
+
 .badge {
-  border: 1px solid red;
-  color: #198754;
+  color: green;
+  margin-bottom: 20px;
 }
 
 .cart-btn:hover {
-  background-color: #218838;
-  border-color: #1e7e34;
+  background-color: #198754 !important;
+}
+
+.cart-btn:hover .bi-cart-plus {
+  color: white !important;
 }
 
 

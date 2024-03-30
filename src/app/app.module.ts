@@ -40,6 +40,7 @@ import { AddProductComponent } from './Component/add-product/add-product.compone
 import { FormsModule } from '@angular/forms';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { FooterComponent } from './component/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     ContentComponent,
     SearchComponent,
     AddProductComponent,
+    FooterComponent,
   ],
   imports: [
     CarouselModule.forRoot(),

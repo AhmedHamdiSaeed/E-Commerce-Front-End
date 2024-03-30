@@ -1,9 +1,11 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
 import { Product } from '../../../models/product';
 import { ProductService } from '../../../Services/product/product.service';
 import { CartService } from '../../../Services/Cart/cart.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../Services/auth/auth.service';
+import { CategoriesComponent } from '../../categories/categories.component';
+
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -15,9 +17,10 @@ export class CartComponent {
   error: string = "";
   quantity: number = 1;
   success:boolean = false;
-  constructor(private router: Router ,private cartService: CartService ,private auth: AuthService) {}
-
   
+  constructor(private router: Router ,private cartService: CartService ,private auth: AuthService) { }
+  
+
   setItem(){
     localStorage.setItem("cart", JSON.stringify(this.cartProducts));
   }
@@ -38,6 +41,7 @@ export class CartComponent {
   this.cartProducts .splice(i, 1);
   this. setItem();
   this.cartService.updateCartLengthFromLocalStorage();
+  
   }
   
 
@@ -46,6 +50,7 @@ Clear(){
   this.setItem();
   this.getTotalPrice();
   this.cartService.updateCartLengthFromLocalStorage();
+  
 }
 getTotalPrice(): number {
   return this.cartProducts.reduce((total, item) => total + (item.quantity * item.product.price), 0);
@@ -64,10 +69,7 @@ decreaseQuantity(item: any): void {
   }
 }
 orderNow(){
-   if (!this.auth.isAuthenticated()) {
-      this.router.navigate(['/login']);
-      return;
-    }
+ 
   let products= this.cartProducts.map(item=>{
     return{productId: item.product._id, quantity: item.quantity}
   })
@@ -82,7 +84,7 @@ orderNow(){
   );
 
   console.log(products);
-  this.Clear();
+  // this.Clear();
 }
 
 // Load image

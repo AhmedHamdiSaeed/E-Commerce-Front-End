@@ -70,27 +70,27 @@
               <button class="btn btn-outline-success  btn-details" [routerLink]="['/products', product._id]">
                 <i class="bi bi-eye-fill"></i>
               </button>
-              <button class="btn btn-success mb-2 cart-btn" (mouseenter)="isHovered = true"
-                (mouseleave)="isHovered = false">
-                <button class="btn" (click)="addToCart(product)" (mouseenter)="isHovered = true"
-                  (mouseleave)="isHovered = false">
-                  <i style="font-size: 30px;" class="bi bi-cart-plus"></i>
-                  <!-- <span class="badge badge-primary" *ngIf=" hoveredProduct && hoveredProduct._id === product._id">{{ quantity }}</span> -->
-                </button>
-
-                <div class="quantity-controls"
-                  [ngClass]="{ 'expanded': isHovered && hoveredProduct && hoveredProduct._id === product._id }">
-                  <button class="btn btn-sm btn-outline-success" (click)="decreaseQuantity(product)">
-                    <i class="bi bi-dash"></i>
-                  </button>
-                  <span>{{ quantity }}</span>
-                  <button class="btn btn-sm btn-outline-success" (click)="increaseQuantity(product)">
-                    <i class="bi bi-plus"></i>
-                  </button>
-                </div>
+           
+             <button class="btn btn-success mb-2 cart-btn"  
+        (mouseenter)="hoveredProduct = product; isHovered = true"
+        (mouseleave)="hoveredProduct = null; isHovered = false">
+  <i style="font-size: 30px; color: white;" class="bi bi-cart-plus"></i>
+  <span   class="badge badge-primary" *ngIf="getHoveredProductQuantity(product) !== 0">
+    {{ getHoveredProductQuantity(product) }}
+  </span>
+  
+  <div class="quantity-controls" [ngClass]="{ 'expanded': isHovered && hoveredProduct && hoveredProduct._id === product._id }">
+    <button class="btn btn-sm btn-outline-success" (click)="addToCart(product)">
+      <i class="bi bi-plus"></i>
+    </button>
+    <span>{{ getHoveredProductQuantity(product) }}</span>
+    <button class="btn btn-sm btn-outline-success" (click)="removeFromCart(product)">
+      <i class="bi bi-dash"></i>
+    </button>
+  </div>
               </button>
 
-            </div>
+          </div>
 
           </div>
         </div>
@@ -99,3 +99,4 @@
     <div class="mt-5 border-1 border-success p-2 text-center w-100">
       <pagination-controls (pageChange)="p=$event"></pagination-controls>
     </div>
+    <app-footer></app-footer>

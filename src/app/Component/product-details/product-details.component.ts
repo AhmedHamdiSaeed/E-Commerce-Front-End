@@ -88,12 +88,12 @@ export class ProductDetailsComponent implements OnInit {
     }, 3000);
   }
   addToCart(product: Product) {
-    if (this.quantity <= 0) {
-      
-      return;
-    }
     if (!this.auth.isAuthenticated()) {
       this.router.navigate(['/login']);
+      return;
+    }
+    if (this.quantity <= 0) {
+      
       return;
     }
     console.log("quantity: " + this.quantity);

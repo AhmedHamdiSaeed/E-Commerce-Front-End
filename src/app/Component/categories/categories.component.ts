@@ -35,6 +35,9 @@ export class CategoriesComponent implements OnInit {
   quantity: number = 0;
   p: number = 1;
   itemsPerPage: number = 8;
+  isHovered: boolean = false;
+  hoveredProduct: any | null = null;
+  
 
   ngOnInit(): void {
     this.getAllCategories();
@@ -98,23 +101,8 @@ export class CategoriesComponent implements OnInit {
       this.successMessage = '';
     }, 3000);
   }
-  hoveredProduct: any | null = null;
-  quantityDict: { [productId: string]: number } = {}; 
-  addToCart(product: Product) {
-    if (this.quantity <= 0) {
-      return;
-    }
 
-    if (product) {
-      console.log('quantity: ' + this.quantity);
-      this.alertAppear();
-      this.cartService.addToCart(product, this.quantity);
-      this.hoveredProduct = product;
-      this.quantity=0;
-    }
-    
-    
-  }
+  
   getSpecificCategory(categoryId: string): void {
     console.log('Category clicked:', categoryId);
     this.getProductsByCategory(categoryId);
@@ -181,22 +169,25 @@ export class CategoriesComponent implements OnInit {
     });
   }
 
-  ////
-  isHovered: boolean = false;
 
-  increaseQuantity(product: Product) {
-    const maxQuantity = product.quantity;
-    const totalQuantityInCart =
-      this.cartService.getTotalQuantityInCart(product);
-    const remainingQuantity = maxQuantity - totalQuantityInCart;
-    if (this.quantity < remainingQuantity) {
-      this.quantity++;
+  
+  addToCart(product: Product) {
+    const availableQuantity = product.quantity; // Get the available quantity of the product
+    const currentQuantityInCart = this.getHoveredProductQuantity(product); // Get the current quantity of the product in the cart
+    const quantityToAdd = Math.min(1, availableQuantity - currentQuantityInCart);
+  
+    if (quantityToAdd > 0) {
+      this.cartService.addToCart(product, quantityToAdd);
     }
   }
-
-  decreaseQuantity(product: Product) {
-    if (this.quantity > 1) {
-      this.quantity--;
-    }
+  
+ 
+  removeFromCart(product: Product) {
+    this.cartService.removeFromCart(product); // Remove the product from the cart
+  }
+  
+  getHoveredProductQuantity(product: Product): number {
+    // Return the quantity of the product in the cart
+    return this.cartService.getTotalQuantityInCart(product); // Convert
   }
 }
