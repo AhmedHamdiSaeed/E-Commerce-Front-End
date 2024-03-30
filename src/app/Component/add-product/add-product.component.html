@@ -53,7 +53,7 @@
             Please provide valid colors for the product
           </div>
           <div class="color-circles">
-            <span *ngFor="let chosenColor of chosenColors" class="color-circle" [style.background-color]="chosenColor" (mouseenter)="showRemoveIcon(chosenColor)" (mouseleave)="hideRemoveIcon(chosenColor)">
+            <span *ngFor="let chosenColor of chosenColors" class="color-circle" [style.background-color]="chosenColor" >
               <span class="remove-icon" >&#10006;</span>
             </span>
           </div>

@@ -14,7 +14,7 @@ import { MatDialog } from '@angular/material/dialog';
 export class AddProductComponent implements OnInit {
   allCategories: ViewCat[] = [];
   selectedImage!: File  ;
-  color :string ="fff" ;
+  color: string = '#008000';
   colors: string[] = [];
   chosenColors: string[] = [];
 
@@ -70,8 +70,10 @@ export class AddProductComponent implements OnInit {
     this.selectedImage= event.target.files[0] ;
   }
   addColor(): void {
-    this.chosenColors.push(this.color);
-    this.colors.push(this.color);
+    if (!this.chosenColors.includes(this.color)) {
+      this.chosenColors.push(this.color);
+      this.colors.push(this.color);
+    }
     this.color = '';
   }
   removeColor(chosenColor: string): void {
@@ -84,17 +86,4 @@ export class AddProductComponent implements OnInit {
       this.colors.splice(colorIndex, 1);
     }
   }
-  // confirmRemoveColor(color: string): void {
-  //   const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
-  //     width: '300px',
-  //     data: { message: 'Are you sure you want to remove this color?' },
-  //   });
-
-  //   dialogRef.afterClosed().subscribe((result) => {
-  //     if (result) {
-  //       this.removeColor(color);
-  //     }
-  //   });
-  // }
 }
-
