@@ -38,7 +38,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   onLogout(){
+   
     this.auth.logout();
+    this.cartService.Clear();
   }
   getUser()
   {

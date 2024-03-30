@@ -95,12 +95,7 @@ export class CategoriesComponent implements OnInit {
       }
     );
   }
-  alertAppear() {
-    this.successMessage = 'Product added to cart!';
-    setTimeout(() => {
-      this.successMessage = '';
-    }, 3000);
-  }
+
 
   
   getSpecificCategory(categoryId: string): void {
@@ -177,7 +172,7 @@ export class CategoriesComponent implements OnInit {
   }
 
 
-  
+ //add to cart 
   addToCart(product: Product) {
     const availableQuantity = product.quantity; // Get the available quantity of the product
     const currentQuantityInCart = this.getHoveredProductQuantity(product); // Get the current quantity of the product in the cart

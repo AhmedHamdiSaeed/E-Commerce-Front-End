@@ -44,9 +44,11 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { FooterComponent } from './Component/footer/footer.component';
 import { ConfirmMessageComponent } from './SharedComponent/confirm-message/confirm-message.component';
 import { AddCategoryComponent } from './Component/add-category/add-category.component';
+import { ContactUsComponent } from './Component/contact-us/contact-us.component';
 
 @NgModule({
   declarations: [
+   
     AppComponent,
     CategoriesComponent,
     LoginComponent,
@@ -66,8 +68,6 @@ import { AddCategoryComponent } from './Component/add-category/add-category.comp
     SearchComponent,
     AddProductComponent,
     FooterComponent,
-    ConfirmMessageComponent,
-    AddCategoryComponent,
   ],
   imports: [
     CarouselModule.forRoot(),
@@ -86,6 +86,7 @@ import { AddCategoryComponent } from './Component/add-category/add-category.comp
     MatProgressSpinnerModule,
     AppRoutingModule,
     NgxPaginationModule,
+    HttpClientModule,
   ],
   providers: [
     {
