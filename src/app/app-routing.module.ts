@@ -14,12 +14,15 @@ import { AdminBoardComponent } from './Component/admin-dashboard/admin-board/adm
 import { AuthGuardService } from './Services/auth/auth-guard.service';
 import { UserProfileComponent } from './Component/user-profile/user-profile.component';
 import { AddProductComponent } from './Component/add-product/add-product.component';
+import { AddCategoryComponent } from './Component/add-category/add-category.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'register', component: SignupComponent },
   { path: 'login', component: LoginComponent },
   { path: 'products/category', component: CategoriesComponent },
+  { path: 'Add_Category', component: AddCategoryComponent },
+
   { path: 'about-us', component: AboutUsComponent },
   {
     path: 'Admin/products',

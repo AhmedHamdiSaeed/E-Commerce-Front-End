@@ -43,6 +43,7 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FooterComponent } from './Component/footer/footer.component';
 import { ConfirmMessageComponent } from './SharedComponent/confirm-message/confirm-message.component';
+import { AddCategoryComponent } from './Component/add-category/add-category.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { ConfirmMessageComponent } from './SharedComponent/confirm-message/confi
     AddProductComponent,
     FooterComponent,
     ConfirmMessageComponent,
+    AddCategoryComponent,
   ],
   imports: [
     CarouselModule.forRoot(),

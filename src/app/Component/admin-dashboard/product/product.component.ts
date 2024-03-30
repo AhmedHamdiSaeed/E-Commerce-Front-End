@@ -32,6 +32,10 @@ export class ProductComponent implements OnInit {
     this.router.navigateByUrl('/Add_Product');
   }
 
+  addCategory(){
+    this.router.navigateByUrl('/Add_Category');
+  }
+
   editProduct(productId: string) {
     this.router.navigateByUrl(`/edit-product/${productId}`);
   }
