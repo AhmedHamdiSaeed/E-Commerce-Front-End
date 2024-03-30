@@ -1,5 +1,8 @@
 import { Component ,OnInit} from '@angular/core';
 import { AdminServices } from '../../../Services/admin/admin-services.service';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { baseURL } from '../../../../../env';
+import { appUser } from '../../../models/applicationUser';
 
 @Component({
   selector: 'app-content',
@@ -13,23 +16,29 @@ import { AdminServices } from '../../../Services/admin/admin-services.service';
 export class ContentComponent implements OnInit {
   modeSelect: any;
  orderInfo:any = [];
-  users: any;
+  users!: appUser[];
   orders: any;
   select: any;
+  isloading = false;
+  showDelet = false ;
   constructor(
-    private serve: AdminServices,
+    private adminService: AdminServices,
+    private sanitizer: DomSanitizer
   ) {}
   ngOnInit(): void {
+    this.isloading = true ;
     // this.getOrderInfo();
-    this.orders = this.serve.getOrders().subscribe((res) => {
+    this.orders = this.adminService.getOrders().subscribe((res) => {
       this.orderInfo = res;
       // this.select = res.status;
-      // console.log(res);
+      // console.log(res , this.orderInfo);
     });
-    this.serve.getUsers().subscribe((res) => {
+    this.adminService.getUsers().subscribe((res) => {
       this.users = res;
-      //console.log(this.users);
-    });
+      this.isloading = false ;
+      // console.log(this.users);
+    });  // 1- todo handle error if req failde to get users data 
+        // 2- conect the user with the link of the profile 
   }
   // getOrderInfo() {
   //   this.serve.getOrderInfo() // Replace with your order fetching method
@@ -43,4 +52,30 @@ export class ContentComponent implements OnInit {
   //     });
   // }
 
+
+  getImgUrl(path: string): SafeUrl {
+  let imagePath = baseURL+ '/'+ path ;
+  // console.log(imagePath);
+  
+   return this.sanitizer.bypassSecurityTrustUrl(imagePath)
+  }
+
+  deleteUser(userId: string){
+    return this.adminService.deleteUser(userId)
+    .subscribe((res)=>{
+      console.log(res);
+      this.users = this.users.filter((user) => user._id !== userId);
+      
+    }, error =>{
+      console.log(error);
+      
+    })
+    // todo handle the error 
+    // console.log(user._id);
+    
+  }
+
+  showDele(){
+    this.showDelet = true ;
+  }
 }

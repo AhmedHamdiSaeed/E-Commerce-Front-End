@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { baseURL } from '../../../.././env';
+import { appUser } from '../../models/applicationUser';
 @Injectable({
   providedIn: 'root',
 })
@@ -74,6 +75,10 @@ export class AdminServices {
   //   return this.http.patch('https://api-cafebuyers.onrender.com/orders/' + id, status);
   // }
   getUsers() {
-    return this.http.get(baseURL +'/admin/users');
+    return this.http.get<appUser[]>(baseURL +'/admin/users');
+  }
+
+  deleteUser(userId : string){
+    return this.http.delete(baseURL + '/admin/users/' + userId );
   }
 }

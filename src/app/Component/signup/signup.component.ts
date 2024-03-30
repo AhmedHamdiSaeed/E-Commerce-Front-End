@@ -49,7 +49,7 @@ export class SignupComponent implements OnInit {
     .subscribe((resdata)=>{
       console.log(resdata);
       this.isLoading = false ;
-      this.router.navigateByUrl('/') ;
+      this.router.navigateByUrl('/login') ;
 
 
     } , (err)=>{

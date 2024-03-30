@@ -15,7 +15,7 @@ export class AdminBoardComponent implements OnInit {
   totalSales = 0;
   constructor(
     private router: Router,
-    private product: AdminServices,
+    private adminServices: AdminServices,
    private auth : AuthService
   ) {}
   ngOnInit(): void {
@@ -25,7 +25,7 @@ export class AdminBoardComponent implements OnInit {
     console.log(this.orderInfo);
   }
   getUser() {
-    this.product.getUsers().subscribe((res) => {
+    this.adminServices.getUsers().subscribe((res) => {
       this.users = res;
     });
   }
@@ -43,7 +43,7 @@ export class AdminBoardComponent implements OnInit {
     this.router.navigateByUrl('/login');
   }
   getProducts() {
-    this.product.getProducts().subscribe((res) => {
+    this.adminServices.getProducts().subscribe((res) => {
       this.products = res;
       // console.log(res);
     });
