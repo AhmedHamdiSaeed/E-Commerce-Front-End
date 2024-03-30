@@ -69,7 +69,10 @@ decreaseQuantity(item: any): void {
   }
 }
 orderNow(){
- 
+  if (!this.auth.isAuthenticated()) {
+    this.router.navigate(['/login']);
+    return;
+  }
   let products= this.cartProducts.map(item=>{
     return{productId: item.product._id, quantity: item.quantity}
   })

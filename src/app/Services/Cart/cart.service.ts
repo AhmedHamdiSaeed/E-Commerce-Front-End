@@ -20,6 +20,16 @@ export class CartService {
   cartProducts: any[] = [];
   private cartLengthSubject = new BehaviorSubject<number>(0);
 
+  Clear(){
+    this.cartProducts = [];
+    this.setItem();
+    // this.getTotalPrice();
+    this.updateCartLengthFromLocalStorage();
+    
+  }
+  setItem(){
+    localStorage.setItem("cart", JSON.stringify(this.cartProducts));
+  }
   updateCartLengthFromLocalStorage() {
     const storedCart = JSON.parse(localStorage.getItem("cart") || '[]');
     this.cartProducts = storedCart || [];

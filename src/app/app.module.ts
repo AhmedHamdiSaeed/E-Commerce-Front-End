@@ -40,10 +40,12 @@ import { AddProductComponent } from './Component/add-product/add-product.compone
 import { FormsModule } from '@angular/forms';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { FooterComponent } from './component/footer/footer.component';
+import { FooterComponent } from './Component/footer/footer.component';
+import { ContactUsComponent } from './Component/contact-us/contact-us.component';
 
 @NgModule({
   declarations: [
+   
     AppComponent,
     CategoriesComponent,
     LoginComponent,
@@ -63,6 +65,7 @@ import { FooterComponent } from './component/footer/footer.component';
     SearchComponent,
     AddProductComponent,
     FooterComponent,
+    ContactUsComponent,
   ],
   imports: [
     CarouselModule.forRoot(),
@@ -81,6 +84,7 @@ import { FooterComponent } from './component/footer/footer.component';
     MatProgressSpinnerModule,
     AppRoutingModule,
     NgxPaginationModule,
+    HttpClientModule,
   ],
   providers: [
     {
