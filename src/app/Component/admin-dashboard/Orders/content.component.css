@@ -29,6 +29,9 @@
 
 .table-container {
   overflow-x: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
 table {
@@ -113,4 +116,39 @@ tbody tr td:nth-child(3) {
   .recentCustomers {
     width: 100%;
   }
+}
+
+
+
+
+
+.userDiv{
+  position: relative;
+  background-color: #99999925;
+  margin: 50px;
+  /* border: 1px solid red; */
+}
+
+.deleteContainer{
+  position: absolute;
+  display: none;
+  /* background-color: #ff040471; */
+  top: 0;
+  right: 0;
+  width: 30%;
+  height: 100%;
+  border-radius: 5px;
+}
+
+.deletBtn{
+  position: absolute;
+  right: 20%;
+  top:50% ;
+  transform: translateY(-50%);
+  /* display: none; */
+
+}
+
+.userDiv:hover .deleteContainer{
+  display: block;
 }

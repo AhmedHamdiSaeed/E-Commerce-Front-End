@@ -17,6 +17,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatInputModule } from '@angular/material/input';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTableModule } from '@angular/material/table';
+import { MatButtonModule } from '@angular/material/button';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CategoriesComponent } from './Component/categories/categories.component';
@@ -40,7 +41,8 @@ import { AddProductComponent } from './Component/add-product/add-product.compone
 import { FormsModule } from '@angular/forms';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { FooterComponent } from './component/footer/footer.component';
+import { FooterComponent } from './Component/footer/footer.component';
+import { ConfirmMessageComponent } from './SharedComponent/confirm-message/confirm-message.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +65,7 @@ import { FooterComponent } from './component/footer/footer.component';
     SearchComponent,
     AddProductComponent,
     FooterComponent,
+    ConfirmMessageComponent,
   ],
   imports: [
     CarouselModule.forRoot(),

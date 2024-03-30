@@ -3,6 +3,8 @@ import { AdminServices } from '../../../Services/admin/admin-services.service';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { baseURL } from '../../../../../env';
 import { appUser } from '../../../models/applicationUser';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmMessageComponent } from '../../../SharedComponent/confirm-message/confirm-message.component';
 
 @Component({
   selector: 'app-content',
@@ -21,9 +23,12 @@ export class ContentComponent implements OnInit {
   select: any;
   isloading = false;
   showDelet = false ;
+  message = "this user will be deleted ";
+
   constructor(
     private adminService: AdminServices,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private confirmdialog: MatDialog
   ) {}
   ngOnInit(): void {
     this.isloading = true ;
@@ -75,7 +80,30 @@ export class ContentComponent implements OnInit {
     
   }
 
-  showDele(){
-    this.showDelet = true ;
+  OpenDialog(userId: string){
+
+   const msgDialog =  this.confirmdialog.open(ConfirmMessageComponent , {
+      width:'40%',
+      height: '35%',
+      data: {message: this.message, title: "Delete User"},
+      panelClass: 'custom-dialog' // Apply custom CSS class
+
+
+    })
+
+    msgDialog.afterClosed().subscribe((result=>{
+      // console.log('dialog closed' , result);
+      if(result) {
+        console.log('confirm');
+        this.deleteUser(userId) ;
+      }
+      else {
+       console.log("cansle");
+        
+      }      
+      
+    }))
   }
+
+
 }
