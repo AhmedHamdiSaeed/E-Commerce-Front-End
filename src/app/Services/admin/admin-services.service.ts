@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { baseURL } from '../../../.././env';
+import { appUser } from '../../models/applicationUser';
 @Injectable({
   providedIn: 'root',
 })
@@ -9,36 +11,31 @@ export class AdminServices {
   photo: any;
   constructor(private http: HttpClient) {}
 
-  // getProducts(){
-  //  return this.http.get('http://localhost:3000/api/v1/admin/products') ;
-  // }
-
-  private apiProduct: string = `${baseURL}/admin/products`;
+  private apiProduct: string = `${baseURL}/products`;
   getProducts() {
     return this.http.get<any>(this.apiProduct).pipe(
       map((res) => {
-        console.log(res.data);
+        // console.log(res);
         return res;
       })
     );
   }
+
+  deleteProduct(productId: string) {
+    return this.http.delete(`${this.apiProduct}/${productId}`);
+  }
+
   getOrders() {
-    return this.http.get<any>(`${baseURL}/admin/orders`).pipe(
+    return this.http.get<any>(`${baseURL}/orders`).pipe(
       map((res) => {
         return res;
       })
     );
   }
-  updateProducts(id: any, product: any) {
-    const formData = new FormData();
-    formData.append('name', product.title);
-    formData.append('price', product.price);
-    formData.append('description', product.description);
-    if (product.photo) {
-      formData.append('photo', product.photo, product.photo?.name);
-    }
+  updateProducts(id: any, product : FormData) {
 
-    return this.http.patch(this.apiProduct + id, formData);
+
+    return this.http.patch(this.apiProduct + id, product);
   }
   // getOrders(){
   //   return this.http.get('http://localhost:3000/api/v1/admin/orders') ;
@@ -51,29 +48,20 @@ export class AdminServices {
   //  getUsers(){
   //   return this.http.get('http://localhost:3000/api/v1/admin/users') ;
   //  }
-  AddProduct(product: any) {
-    const formData = new FormData();
-    formData.append('name', product.name);
-    formData.append('price', product.price);
-    formData.append('description', product.description);
 
-    formData.append('photo', product.photo, product.photo?.name);
-    console.log(formData);
-
-    return this.http.post(this.apiProduct, formData);
+  addProduct( product : FormData){
+    return this.http.post( this.apiProduct , product )
   }
 
-  deleteProduct(id: any) {
-    return this.http.delete(this.apiProduct + id);
+  getProductById(id: any) {
+    return this.http.get(`${this.apiProduct}/${ id}`);
   }
-  getProductx(id: any) {
-    return this.http.get(this.apiProduct + id);
-  }
-  // updateStatus(id: any, status: any) {
-  //   console.log(status, id);
-  //   return this.http.patch('https://api-cafebuyers.onrender.com/orders/' + id, status);
-  // }
+
   getUsers() {
-    return this.http.get('admin/users');
+    return this.http.get<appUser[]>(baseURL +'/admin/users');
+  }
+
+  deleteUser(userId : string){
+    return this.http.delete(baseURL + '/admin/users/' + userId );
   }
 }

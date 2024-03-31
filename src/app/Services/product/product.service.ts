@@ -8,7 +8,6 @@ import {baseURL} from '../../../.././env'
   providedIn: 'root',
 })
 export class ProductService {
-
   private apiUrl = `${baseURL}/products`;
   private UrlCat =`${baseURL}/category`;
 

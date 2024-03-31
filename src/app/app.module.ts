@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { MatDialogModule } from '@angular/material/dialog';
+import { CommonModule } from '@angular/common';
 import {
   BrowserModule,
   provideClientHydration,
@@ -17,6 +18,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatInputModule } from '@angular/material/input';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTableModule } from '@angular/material/table';
+import { MatButtonModule } from '@angular/material/button';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CategoriesComponent } from './Component/categories/categories.component';
@@ -33,7 +35,7 @@ import { ProductDetailsComponent } from './Component/product-details/product-det
 import { CartComponent } from './Component/Cart/cart/cart.component';
 import { ContentComponent } from './Component/admin-dashboard/Orders/content.component';
 import { AboutUsComponent } from './Component/about-us/about-us.component';
-import { EditProductDialogComponent } from './Component/edit-product-dialog/edit-product-dialog.component';
+import { EditProductComponent } from './Component/edit-product/edit-product.component';
 import { SearchComponent } from './Component/search/search.component';
 import { AddProductComponent } from './Component/add-product/add-product.component';
 
@@ -41,11 +43,15 @@ import { FormsModule } from '@angular/forms';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FooterComponent } from './Component/footer/footer.component';
+import { ConfirmMessageComponent } from './SharedComponent/confirm-message/confirm-message.component';
+import { AddCategoryComponent } from './Component/add-category/add-category.component';
 import { ContactUsComponent } from './Component/contact-us/contact-us.component';
 
 @NgModule({
   declarations: [
-   
+    ContactUsComponent,
+    AddCategoryComponent,
+    ConfirmMessageComponent,
     AppComponent,
     CategoriesComponent,
     LoginComponent,
@@ -60,12 +66,11 @@ import { ContactUsComponent } from './Component/contact-us/contact-us.component'
     CartComponent,
     ContentComponent,
     AboutUsComponent,
-    EditProductDialogComponent,
+    EditProductComponent,
     ContentComponent,
     SearchComponent,
     AddProductComponent,
     FooterComponent,
-    ContactUsComponent,
   ],
   imports: [
     CarouselModule.forRoot(),
@@ -85,6 +90,8 @@ import { ContactUsComponent } from './Component/contact-us/contact-us.component'
     AppRoutingModule,
     NgxPaginationModule,
     HttpClientModule,
+    CommonModule,
+    FormsModule
   ],
   providers: [
     {

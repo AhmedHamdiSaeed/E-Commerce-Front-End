@@ -1,5 +1,10 @@
 import { Component ,OnInit} from '@angular/core';
 import { AdminServices } from '../../../Services/admin/admin-services.service';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { baseURL } from '../../../../../env';
+import { appUser } from '../../../models/applicationUser';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmMessageComponent } from '../../../SharedComponent/confirm-message/confirm-message.component';
 
 @Component({
   selector: 'app-content',
@@ -13,23 +18,32 @@ import { AdminServices } from '../../../Services/admin/admin-services.service';
 export class ContentComponent implements OnInit {
   modeSelect: any;
  orderInfo:any = [];
-  users: any;
+  users!: appUser[];
   orders: any;
   select: any;
+  isloading = false;
+  showDelet = false ;
+  message = "this user will be deleted ";
+
   constructor(
-    private serve: AdminServices,
+    private adminService: AdminServices,
+    private sanitizer: DomSanitizer,
+    private confirmdialog: MatDialog
   ) {}
   ngOnInit(): void {
+    this.isloading = true ;
     // this.getOrderInfo();
-    this.orders = this.serve.getOrders().subscribe((res) => {
+    this.orders = this.adminService.getOrders().subscribe((res) => {
       this.orderInfo = res;
       // this.select = res.status;
-      console.log(res);
+      // console.log(res , this.orderInfo);
     });
-    this.serve.getUsers().subscribe((res) => {
+    this.adminService.getUsers().subscribe((res) => {
       this.users = res;
-      //console.log(this.users);
-    });
+      this.isloading = false ;
+      // console.log(this.users);
+    });  // 1- todo handle error if req failde to get users data 
+        // 2- conect the user with the link of the profile 
   }
   // getOrderInfo() {
   //   this.serve.getOrderInfo() // Replace with your order fetching method
@@ -42,5 +56,54 @@ export class ContentComponent implements OnInit {
   //       this.orderInfo[index].status = newStatus;
   //     });
   // }
+
+
+  getImgUrl(path: string): SafeUrl {
+  let imagePath = baseURL+ '/'+ path ;
+  // console.log(imagePath);
+  
+   return this.sanitizer.bypassSecurityTrustUrl(imagePath)
+  }
+
+  deleteUser(userId: string){
+    return this.adminService.deleteUser(userId)
+    .subscribe((res)=>{
+      console.log(res);
+      this.users = this.users.filter((user) => user._id !== userId);
+      
+    }, error =>{
+      console.log(error);
+      
+    })
+    // todo handle the error 
+    // console.log(user._id);
+    
+  }
+
+  OpenDialog(userId: string){
+
+   const msgDialog =  this.confirmdialog.open(ConfirmMessageComponent , {
+      width:'40%',
+      height: '35%',
+      data: {message: this.message, title: "Delete User"},
+      panelClass: 'custom-dialog' // Apply custom CSS class
+
+
+    })
+
+    msgDialog.afterClosed().subscribe((result=>{
+      // console.log('dialog closed' , result);
+      if(result) {
+        console.log('confirm');
+        this.deleteUser(userId) ;
+      }
+      else {
+       console.log("cansle");
+        
+      }      
+      
+    }))
+  }
+
 
 }
