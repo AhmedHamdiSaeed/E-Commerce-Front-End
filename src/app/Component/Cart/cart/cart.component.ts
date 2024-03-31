@@ -87,7 +87,7 @@ orderNow(){
   );
 
   console.log(products);
-  // this.Clear();
+   this.Clear();
 }
 
 // Load image

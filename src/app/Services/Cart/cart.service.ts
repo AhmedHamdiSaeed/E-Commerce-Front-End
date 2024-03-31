@@ -23,7 +23,6 @@ export class CartService {
   Clear(){
     this.cartProducts = [];
     this.setItem();
-    // this.getTotalPrice();
     this.updateCartLengthFromLocalStorage();
     
   }
