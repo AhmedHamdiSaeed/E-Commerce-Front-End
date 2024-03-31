@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { baseURL } from '../../../.././env';
+import { appUser } from '../../models/applicationUser';
 @Injectable({
   providedIn: 'root',
 })
@@ -14,7 +15,7 @@ export class AdminServices {
   getProducts() {
     return this.http.get<any>(this.apiProduct).pipe(
       map((res) => {
-        console.log(res.data);
+        // console.log(res);
         return res;
       })
     );
@@ -71,6 +72,10 @@ export class AdminServices {
   }
 
   getUsers() {
-    return this.http.get('admin/users');
+    return this.http.get<appUser[]>(baseURL +'/admin/users');
+  }
+
+  deleteUser(userId : string){
+    return this.http.delete(baseURL + '/admin/users/' + userId );
   }
 }

@@ -1,6 +1,8 @@
-
-
-input[type="text"].ng-invalid.ng-touched
+.mt-5 {
+  margin-top: -1rem !important;
+  margin-bottom: 3rem !important;
+}
+textarea.ng-invalid.ng-touched,select.ng-invalid.ng-touched,input.ng-invalid.ng-touched
  {
     border: 1px solid red;
 }
@@ -24,6 +26,22 @@ color: red;
   cursor: pointer;
   border: 1px solid;
 
+}
+.input-group {
+  display: flex;
+  align-items: center;
+}
+
+.input-group input[type="color"] {
+  padding: 0;
+  border: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+
+.input-group button {
+  margin-left: 10px;
 }
 
 .remove-icon {

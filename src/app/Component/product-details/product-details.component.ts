@@ -98,7 +98,8 @@ export class ProductDetailsComponent implements OnInit {
     this.quantity = 0;
   }
   getImageUrl(imagePath: string) :SafeUrl {
-    let safeurl = baseURL + '/' + imagePath ;
+    // return `../../../assets${imagePath}`;
+    let safeurl = baseURL + imagePath ;
 
     console.log(safeurl);
 

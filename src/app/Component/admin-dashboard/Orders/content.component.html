@@ -36,26 +36,47 @@
         </tbody>
       </table>
     </div>
-
-    <mat-spinner *ngIf="orderInfo.length == 0" class="spinner"></mat-spinner>
+    <div *ngIf="orderInfo.length == 0" >
+      <app-loading-spinner></app-loading-spinner>
+      </div>
+    <!-- <mat-spinner *ngIf="orderInfo.length == 0" class="spinner"></mat-spinner> -->
   </div>
 
   <div class="recentCustomers">
     <div class="cardHeader">
-      <h2>Recent Customers</h2>
+                <h2>Recent Customers</h2> 
+           
+
     </div>
 
-    <div class="table-container">
+    <div *ngIf="isloading">
+      <app-loading-spinner></app-loading-spinner>
+      </div>
+    <div class="table-container" *ngIf="!isloading">
       <table>
-        <tr *ngFor="let item of users">
+        <tr *ngFor="let item of users" class="userDiv">
           <td width="60px">
-            <div class="imgBx"><img src="{{ item.userImage }}" alt=""></div>
+            <div class="imgBx"><img [src]="getImgUrl(item.image)" alt=""></div>
           </td>
           <td>
-            <h4>{{ item.username }} <br> <span>{{ item.email }}</span></h4>
+            <h4>{{ item.fname  }} <br> <span>{{ item.email }}</span></h4>
           </td>
+          
+           <div class="deleteContainer" >
+            <span class="deletBtn">
+              <button class="btn btn-danger" (click)="OpenDialog(item._id)"> <!-- (click)="deleteUser(item._id)"-->
+                Delete User
+                <i class="bi bi-trash-fill" ></i> <!-- Bootstrap trash icon -->
+              </button>
+            </span>
+           </div>
+        
+          
         </tr>
       </table>
     </div>
   </div>
 </div>
+
+
+<!-- [ngStyle]="{'display': toggleDeleBox()}" -->

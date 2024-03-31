@@ -46,4 +46,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   {
     
   }
+  getUserIamge(){
+    return "../../../assets/project images/person2.png" ;
+  }
 }

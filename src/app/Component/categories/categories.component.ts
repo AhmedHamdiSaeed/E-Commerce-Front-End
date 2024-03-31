@@ -56,8 +56,8 @@ export class CategoriesComponent implements OnInit {
         this.receivedProducts = products;
         this.products = products;
         this.isLoading = false;
-        console.log(this.receivedProducts);
-        console.log(this.products);
+        // console.log(this.receivedProducts);
+        // console.log(this.products);
       },
       (err) => {
         console.log(err);
@@ -114,8 +114,15 @@ export class CategoriesComponent implements OnInit {
 
   // }
 
-  getImageUrl(imagePath: string): string {
-    return `../../../assets${imagePath}`;
+  getImageUrl(imagePath: string): SafeUrl {
+    // return `../../../assets${imagePath}`;
+    let safeurl = baseURL + imagePath ;
+
+    // console.log(safeurl);
+
+    // return "http://localhost:3000/api/v1/uploads/image-1711636730983.jpg"
+    return  this.sanitizer.bypassSecurityTrustUrl(safeurl) ;
+
   }
   //filter
 

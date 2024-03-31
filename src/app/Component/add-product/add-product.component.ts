@@ -5,6 +5,9 @@ import { CategoryService } from '../../Services/category/category-services.servi
 import { ViewCat } from '../../models/viewCat';
 import { ProductService } from '../../Services/product/product.service';
 import { MatDialog } from '@angular/material/dialog';
+import { ConfirmMessageComponent } from '../../SharedComponent/confirm-message/confirm-message.component';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-add-product',
   templateUrl: './add-product.component.html',
@@ -20,19 +23,30 @@ export class AddProductComponent implements OnInit {
 
   @ViewChild('addForm' , {static: true}) AddProductForm !: NgForm ;
 
-  constructor(private getCategories:CategoryService , public prductService: ProductService ,public dialog: MatDialog ){}
+  constructor(private getCategories:CategoryService , public prductService: ProductService ,public dialog: MatDialog , private router: Router){}
 
   ngOnInit(): void {
     this.getAllCategories();
 
   }
-  confirmAddProduct(addForm: NgForm): void {
-    if (confirm('Are you sure you want to add this product?')) {
-      this.AddProduct(addForm);
-    }
-    addForm.resetForm();
 
+  confirmAddProduct(addForm: NgForm): void {
+    const dialogRef = this.dialog.open(ConfirmMessageComponent, {
+      width: '300px',
+      data: { message: 'Are you sure you want to add this product?' },
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result)
+      {
+        this.AddProduct(addForm);
+    this.router.navigate(['/Admin']) ;
+      }
+      addForm.resetForm() ;
+
+  });
   }
+
+
   getAllCategories(): void {
     this.getCategories.getCategories().subscribe(
       (res: Category[]) => {
@@ -47,23 +61,30 @@ export class AddProductComponent implements OnInit {
     );
   }
   AddProduct(form: NgForm){
+    // console.log(this.AddProductForm.value);
     const formData = new FormData() ;
     formData.append('title' , form.value.title);
     formData.append('quantity' , form.value.quantity);
     formData.append('price' , form.value.price);
     formData.append('description' , form.value.description);
-    formData.append('colors' , this.colors.join(','));
+    formData.append('colors' , this.color);
     formData.append('category' , form.value.category);
     formData.append('company' , form.value.company);
     formData.append('sold' , form.value.sold);
     formData.append('image' , this.selectedImage);
 
+    console.log(formData.get('image'));
+
+
     this.prductService.addProduct(formData)
     .subscribe((res)=>{
-      console.log("product created successfully");
-      form.resetForm();
+      console.log("producte created successfuly");
+
+
+
     }, err => {
       console.log(err);
+
     });
   }
   onFileSelected(event: any){
@@ -74,7 +95,7 @@ export class AddProductComponent implements OnInit {
       this.chosenColors.push(this.color);
       this.colors.push(this.color);
     }
-    this.color = '';
+    this.color =  '#008000';
   }
   removeColor(chosenColor: string): void {
     const index = this.chosenColors.indexOf(chosenColor);
@@ -86,4 +107,18 @@ export class AddProductComponent implements OnInit {
       this.colors.splice(colorIndex, 1);
     }
   }
+  confirmRemoveColor(color: string): void {
+    const dialogRef = this.dialog.open(ConfirmMessageComponent, {
+      width: '300px',
+      data: { message: 'Are you sure you want to remove this color?' },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.removeColor(color);
+      }
+    });
+  }
+  hideRemoveIcon(chosenColor: string): void {}
+  showRemoveIcon(chosenColor: string): void {}
 }

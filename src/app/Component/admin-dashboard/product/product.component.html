@@ -1,6 +1,8 @@
 <div class="product-container w-100 m-auto mt-2">
   <button mat-raised-button color="primary" class="add-product-btn btn btn-success ms-8" (click)="addProduct()">Add New
     Product</button>
+    <button mat-raised-button color="primary" class="add-product-btn btn btn-success ms-8" (click)="addCategory()">Add New
+      Category</button>
   <div *ngIf="products" class="product-list row w-100 g-2 m-auto mt-2">
     <div *ngFor="let product of products" class="product-card col-5">
       <img [src]="getImageUrl(product.image)" alt="Product Image">
@@ -11,7 +13,7 @@
         <button mat-icon-button (click)="editProduct(product._id)">
           <i class="bi bi-pencil-fill"></i> <!-- Bootstrap pencil icon -->
         </button>
-        <button mat-icon-button (click)="deleteProduct(product._id) ">
+        <button mat-icon-button (click)="confirmRemoveProduct(product._id) ">
           <i class="bi bi-trash-fill"></i> <!-- Bootstrap trash icon -->
         </button>
       </div>
