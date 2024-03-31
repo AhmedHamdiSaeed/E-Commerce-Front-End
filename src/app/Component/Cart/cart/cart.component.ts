@@ -5,6 +5,8 @@ import { CartService } from '../../../Services/Cart/cart.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../Services/auth/auth.service';
 import { CategoriesComponent } from '../../categories/categories.component';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { baseURL } from '../../../../../env';
 
 @Component({
   selector: 'app-cart',
@@ -18,7 +20,7 @@ export class CartComponent {
   quantity: number = 1;
   success:boolean = false;
   
-  constructor(private router: Router ,private cartService: CartService ,private auth: AuthService) { }
+  constructor(private router: Router ,private sanitizer: DomSanitizer,private cartService: CartService ,private auth: AuthService) { }
   
 
   setItem(){
@@ -73,6 +75,7 @@ orderNow(){
     this.router.navigate(['/login']);
     return;
   }
+  
   let products= this.cartProducts.map(item=>{
     return{productId: item.product._id, quantity: item.quantity}
   })
@@ -80,18 +83,22 @@ orderNow(){
   this.cartService.createNewCart(products).subscribe(
     res => {
       this.success = true;
+      
     },
     error => {
       console.error('Error creating new cart:', error);
     }
   );
-
+  this.Clear();
   console.log(products);
-   this.Clear();
+  
 }
 
 // Load image
-getImageUrl(imagePath: string): string {
-  return `../../../assets${imagePath}`;
+getImageUrl(imagePath: string): SafeUrl {
+ 
+  let safeurl = baseURL + imagePath ;
+  return  this.sanitizer.bypassSecurityTrustUrl(safeurl) ;
+
 }
 }
