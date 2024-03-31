@@ -32,16 +32,10 @@ export class AdminServices {
       })
     );
   }
-  updateProducts(id: any, product: any) {
-    const formData = new FormData();
-    formData.append('name', product.title);
-    formData.append('price', product.price);
-    formData.append('description', product.description);
-    if (product.photo) {
-      formData.append('photo', product.photo, product.photo?.name);
-    }
+  updateProducts(id: any, product : FormData) {
 
-    return this.http.patch(this.apiProduct + id, formData);
+
+    return this.http.patch(this.apiProduct + id, product);
   }
   // getOrders(){
   //   return this.http.get('http://localhost:3000/api/v1/admin/orders') ;
@@ -54,20 +48,12 @@ export class AdminServices {
   //  getUsers(){
   //   return this.http.get('http://localhost:3000/api/v1/admin/users') ;
   //  }
-  AddProduct(product: any) {
-    const formData = new FormData();
-    formData.append('name', product.name);
-    formData.append('price', product.price);
-    formData.append('description', product.description);
 
-    formData.append('photo', product.photo, product.photo?.name);
-    console.log(formData);
-
-    return this.http.post(this.apiProduct, formData);
+  addProduct( product : FormData){
+    return this.http.post( this.apiProduct , product )
   }
 
-
-  getProductx(id: any) {
+  getProductById(id: any) {
     return this.http.get(`${this.apiProduct}/${ id}`);
   }
 

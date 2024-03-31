@@ -35,7 +35,7 @@ import { ProductDetailsComponent } from './Component/product-details/product-det
 import { CartComponent } from './Component/Cart/cart/cart.component';
 import { ContentComponent } from './Component/admin-dashboard/Orders/content.component';
 import { AboutUsComponent } from './Component/about-us/about-us.component';
-import { EditProductDialogComponent } from './Component/edit-product-dialog/edit-product-dialog.component';
+import { EditProductComponent } from './Component/edit-product/edit-product.component';
 import { SearchComponent } from './Component/search/search.component';
 import { AddProductComponent } from './Component/add-product/add-product.component';
 
@@ -66,7 +66,7 @@ import { ContactUsComponent } from './Component/contact-us/contact-us.component'
     CartComponent,
     ContentComponent,
     AboutUsComponent,
-    EditProductDialogComponent,
+    EditProductComponent,
     ContentComponent,
     SearchComponent,
     AddProductComponent,
