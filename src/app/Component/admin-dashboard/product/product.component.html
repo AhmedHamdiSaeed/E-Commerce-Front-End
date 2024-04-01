@@ -1,4 +1,4 @@
-<div class="product-container w-100 m-auto mt-2">
+<!-- <div class="product-container w-100 m-auto mt-2">
   <button mat-raised-button color="primary" class="add-product-btn btn btn-success ms-8" (click)="addProduct()">Add New
     Product</button>
     <button mat-raised-button color="primary" class="add-product-btn btn btn-success ms-8" (click)="addCategory()">Add New
@@ -11,13 +11,60 @@
       <p>Price: {{ product.price }}</p>
       <div class="action-buttons">
         <button mat-icon-button (click)="editProduct(product._id)">
-          <i class="bi bi-pencil-fill"></i> <!-- Bootstrap pencil icon -->
+          <i class="bi bi-pencil-fill"></i>
         </button>
         <button mat-icon-button (click)="confirmRemoveProduct(product._id) ">
-          <i class="bi bi-trash-fill"></i> <!-- Bootstrap trash icon -->
+          <i class="bi bi-trash-fill"></i>
         </button>
       </div>
     </div>
-  </div>
+  </div> -->
 
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <div class="panel">
+        <div class="panel-heading">
+          <div class="row">
+            <div class="col col-sm-3 col-xs-12">
+              <h4 class="title">Products <span>List</span></h4>
+            </div>
+          </div>
+        </div>
+        <div class="panel-body table-responsive">
+          <table class="table mx-auto">
+            <thead>
+              <tr>
+                <th>Image</th>
+                <th>Title</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Sold</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let product of products">
+                <td>{{ product.image }}</td>
+                <td>{{ product.title }}</td>
+                <td> {{ product.price }}</td>
+                <td> {{ product.quantity }}</td>
+                <td>{{product.sold}}</td>
+                <td>
+                  <ul class="action-list">
+                    <li><button mat-icon-button (click)="editProduct(product._id)">
+                      <i class="bi bi-pencil-fill"></i>
+                    </button></li>
+                    <li><button mat-icon-button (click)="confirmRemoveProduct(product._id) ">
+                      <i class="bi bi-trash-fill"></i>
+                    </button></li>
+                  </ul>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
