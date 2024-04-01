@@ -16,6 +16,7 @@ import { UserProfileComponent } from './Component/user-profile/user-profile.comp
 import { AddProductComponent } from './Component/add-product/add-product.component';
 import { AddCategoryComponent } from './Component/add-category/add-category.component';
 import { EditProductComponent } from './Component/edit-product/edit-product.component';
+import { PaymentSuccessComponent } from './Component/payment-success/payment-success.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -48,6 +49,7 @@ const routes: Routes = [
    component: EditProductComponent,
     canActivate: [AuthGuardService]
    },
+  //  { path: '/paymentSuccess/:id', component: PaymentSuccessComponent },
 
   { path: 'Profile', component: UserProfileComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },

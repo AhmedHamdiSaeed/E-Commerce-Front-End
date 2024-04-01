@@ -16,7 +16,7 @@
             <p class="Category">{{ categoryName }}</p>
           </div>
           <div class="col-sm-6">
-            <p class="Price">Price : ${{ product.price }}</p>
+            <p class="Price">Price : {{ product.price |currency:'EGP':'symbol'}}</p>
           </div>
         </div>
         <hr>
@@ -45,12 +45,12 @@
                   {{product.quantity}}
                   </div>
                   <div class="controls">
-                   <button class="btn btn-sm btn-outline-success" (click)="decreaseQuantity(product)">
-                      <i class="bi bi-dash"></i>
-                    </button>
-                    <span >{{ quantity }}</span>
-                    <button class="btn btn-sm btn-outline-success" (click)="increaseQuantity(product)">
+                   <button class="btn btn-sm btn-outline-success" (click)="addToCart(product)">
                       <i class="bi bi-plus"></i>
+                    </button>
+                    <span>{{ getHoveredProductQuantity(product) }}</span>
+                    <button class="btn btn-sm btn-outline-success" (click)="removeFromCart(product)">
+                      <i class="bi bi-dash"></i>
                     </button>
                   </div>
               </div>
@@ -59,13 +59,8 @@
         </div>
         <br>
         <div class="row">
-          <div class="col-6">
-            <button class="btn btn-success custom-button" (click)="addToCart(product)">
-              Add To Cart
-            </button>
-          </div>
-          <div class="col-6">
-            <button class="btn btn-outline-success custom-button">
+          <div class="col-12">
+            <button class="btn btn-outline-success custom-button" (click)="orderNow()">
               Buy Now
             </button>
           </div>
