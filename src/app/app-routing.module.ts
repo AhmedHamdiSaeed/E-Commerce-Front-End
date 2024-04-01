@@ -49,7 +49,7 @@ const routes: Routes = [
    component: EditProductComponent,
     canActivate: [AuthGuardService]
    },
-   { path: '/paymentSuccess/:id', component: PaymentSuccessComponent },
+  //  { path: '/paymentSuccess/:id', component: PaymentSuccessComponent },
 
   { path: 'Profile', component: UserProfileComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },

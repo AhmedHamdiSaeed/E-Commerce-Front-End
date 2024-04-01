@@ -19,7 +19,7 @@ export class CartComponent {
   error: string = "";
   quantity: number = 1;
   success:boolean = false;
-  
+
   constructor(private router: Router ,private sanitizer: DomSanitizer,private cartService: CartService ,private auth: AuthService) { }
   
 

@@ -3,7 +3,7 @@ import { AuthService } from './Services/auth/auth.service';
 import { Subscription } from 'rxjs';
 import { User } from './models/user';
 import { FormsModule } from '@angular/forms';
-
+import {TranslateService} from "@ngx-translate/core";
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -11,7 +11,10 @@ import { FormsModule } from '@angular/forms';
 })
 export class AppComponent implements OnInit,OnDestroy {
 
-  constructor(private auth : AuthService){}
+  constructor(private auth : AuthService ,private translate: TranslateService){
+  
+    translate.use('ar');
+  }
   userSub!: Subscription ;
   User!: User | null ;
   ngOnInit(): void {
