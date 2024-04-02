@@ -68,6 +68,9 @@ import { ContactUsComponent } from './Component/contact-us/contact-us.component'
     SearchComponent,
     AddProductComponent,
     FooterComponent,
+    AddCategoryComponent,
+    ContactUsComponent,
+    ConfirmMessageComponent
   ],
   imports: [
     CarouselModule.forRoot(),
