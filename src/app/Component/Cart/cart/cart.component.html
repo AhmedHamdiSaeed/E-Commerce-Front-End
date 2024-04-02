@@ -1,27 +1,67 @@
-<ng-container *ngIf=" cartProducts.length > 0">
-    <div class="container d-flex justify-content-center align-items-center" >
+
+
+
+
+
+
+<ng-container *ngIf="!isLoading">
+    <ng-container *ngIf=" cartProducts.length > 0">
+        <div class="container d-flex justify-content-center align-items-center" >
+            <div class="card ">
+                <h5 class="card-title">Shop Cart</h5>
+                <p class="card-price">Total Price : EGP {{ getTotalPrice() }}</p>
+                <button class="btn btn-danger clear"  (click)="Clear()">Clear Cart</button>
+            <div class="mt-4 card-item " *ngFor="let item of cartProducts; let i = index">
+                <div class=" card_img"><img [src]="getImageUrl(item.product.image)" [alt]="item.product.title"></div>
+                
+                 <div class="card-text">
+                    <h4>{{item.product.title}}</h4>
+                    <p>{{item.product.price}}</p>
+                    <button (click)="removeItem(i)" class="btn remove"><i class="bi bi-trash3"></i>Remove</button>
+                </div>
+              
+                <div   class="quantity">
+                    <button class="btn btn-outline-success" (click)="increaseQuantity(item)">+</button>
+                    <span>{{ item.quantity }}</span>
+                    <button class="btn btn-outline-success" (click)="decreaseQuantity(item)">-</button>
+                </div> 
+            </div>
+            <hr>
+             <button class="btn btn-primary buy" (click)="orderNow()">Buy Now</button>        
+        </div>      
+        </div>
+    </ng-container>   
+    <div class="alert alert-success" role="alert" *ngIf="success"><strong>well donel</strong> Your Order is Successfully Send</div>   
+    <ng-container *ngIf="cartProducts.length === 0">
+        <div class="container d-flex justify-content-center align-items-center" style="height: 60vh;">
+            <div class="card">
+            <div class="text-center mt-4">
+                <img src="../../../assets/project images/cart.png" alt="">
+                <h4>Your cart is empty!</h4>
+                <p>Add items to it now</p>
+                <button routerLink="/products/category" class="btn btn-outline-success">Shop Now</button>
+<!-- [dir]="'dir' | translate" -->
+<ng-container *ngIf=" cartProducts.length > 0" >
+    <div class="container d-flex justify-content-center align-items-center" [dir]="'dir' | translate">
         <div class="card ">
-            <h5 class="card-title">Shop Cart</h5>
-            <p class="card-price">Total Price : {{ getTotalPrice() | currency:'EGP':'symbol' }} </p>
-            <button class="btn btn-danger clear"  (click)="Clear()">Clear Cart</button>
+            <h5 class="card-title" >{{ 'cart.card-title' | translate }}</h5>
+            <p class="card-price">{{ 'cart.card-price' | translate }} {{ getTotalPrice() | currency:'EGP':'symbol' }} </p>
+            <button class="btn btn-danger clear"  (click)="clearCart()">{{ 'cart.clear' | translate }}</button>
         <div class="mt-4 card-item " *ngFor="let item of cartProducts; let i = index">
             <div class=" card_img"><img [src]="getImageUrl(item.product.image)" [alt]="item.product.title"></div>
             
              <div class="card-text">
                 <h4>{{item.product.title}}</h4>
                 <p>{{item.product.price | currency:'EGP':'symbol'}}</p>
-                <button (click)="removeItem(i)" class="btn remove"><i class="bi bi-trash3"></i>Remove</button>
+                <button (click)="removeItem(i)" class="btn remove"><i class="bi bi-trash3"></i>{{ 'cart.remove-btn' | translate }}</button>
             </div>
           
             <div   class="quantity">
                 <button class="btn btn-outline-success" (click)="increaseQuantity(item)">+</button>
-                <span>{{ item.quantity }}</span>
+                <span> {{ item.quantity }}</span>
                 <button class="btn btn-outline-success" (click)="decreaseQuantity(item)">-</button>
             </div>
-            
-            
-            
-        
+        </div>
         </div>
         <hr>
  
@@ -31,24 +71,9 @@
       
     </div>
     
-    </div>
+    <app-footer></app-footer>
 </ng-container>
-
-<div class="alert alert-success" role="alert" *ngIf="success"><strong>well donel</strong> Your Order is Successfully Send</div>
-
-<ng-container *ngIf="cartProducts.length === 0">
-    <div class="container d-flex justify-content-center align-items-center" style="height: 60vh;">
-        <div class="card">
-        <div class="text-center mt-4">
-            <img src="../../../assets/project images/cart.png" alt="">
-            <h4>Your cart is empty!</h4>
-            <p>Add items to it now</p>
-            <button routerLink="/products/category" class="btn btn-outline-success">Shop Now</button>
-        </div>
+<div *ngIf="isLoading "class="position-fixed top-50 start-50 translate-middle">
+    <app-loading-spinner></app-loading-spinner>
     </div>
-    </div>
-</ng-container>
 
-
-
-<app-footer></app-footer>

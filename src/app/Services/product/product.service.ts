@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CategoryService } from '../category/category-services.service';
 import {baseURL} from '../../../.././env'
-
+import { TranslateService } from '@ngx-translate/core';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +12,9 @@ export class ProductService {
   private apiUrl = `${baseURL}/products`;
   private UrlCat =`${baseURL}/category`;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private translate: TranslateService) {}
+
+
   getProducts() {
     return this.http.get(this.apiUrl);
   }

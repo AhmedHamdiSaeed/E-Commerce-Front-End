@@ -46,8 +46,8 @@ import { FooterComponent } from './Component/footer/footer.component';
 import { ConfirmMessageComponent } from './SharedComponent/confirm-message/confirm-message.component';
 import { AddCategoryComponent } from './Component/add-category/add-category.component';
 import { ContactUsComponent } from './Component/contact-us/contact-us.component';
-// import ngx-translate and the http
-
+import { PaymentSuccessComponent } from './Component/payment-success/payment-success.component';
+// import ngx-translate and the http loader
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { ProductDetailsDialogComponent } from './Component/product-details-dialog/product-details-dialog.component';
@@ -77,6 +77,7 @@ import { ProductDetailsDialogComponent } from './Component/product-details-dialo
     AddProductComponent,
     FooterComponent,
     ProductDetailsDialogComponent,
+    PaymentSuccessComponent,
   ],
   imports: [
     CarouselModule.forRoot(),

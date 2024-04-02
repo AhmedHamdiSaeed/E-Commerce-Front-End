@@ -7,6 +7,8 @@ import { CartService } from '../../Services/Cart/cart.service';
 import { AuthService } from '../../Services/auth/auth.service';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { baseURL } from '../../../../env';
+import { TranslateService } from '@ngx-translate/core';
+
 
 @Component({
   selector: 'app-categories',
@@ -21,6 +23,7 @@ export class CategoriesComponent implements OnInit {
     private cartService: CartService,
     private auth: AuthService,
     private sanitizer: DomSanitizer
+    , private translate: TranslateService
   ) {}
 
   allCategories: Category[] = [];
@@ -56,8 +59,7 @@ export class CategoriesComponent implements OnInit {
         this.receivedProducts = products;
         this.products = products;
         this.isLoading = false;
-        // console.log(this.receivedProducts);
-        // console.log(this.products);
+        this.translateProductData();
       },
       (err) => {
         console.log(err);
@@ -66,6 +68,21 @@ export class CategoriesComponent implements OnInit {
       }
     );
   }
+
+  translateProductData() {
+    console.log('Current language:', this.translate.currentLang); // Log current language
+  console.log('Translation of "title":', this.translate.instant('title')); // Log translation of a specific key
+
+    this.products.forEach((product: { title: string | string[]; description: string | string[]; }) => {
+      product.title = this.translate.instant(product.title);
+      product.description = this.translate.instant(product.description);
+      console.log('Title:', product.title, 'Description:', product.description);
+    });
+    console.log('After translation:', this.products);
+  }
+  
+  
+  
 
   async getAllCategories(): Promise<void> {
     try {
