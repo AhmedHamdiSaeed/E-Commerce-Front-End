@@ -26,23 +26,22 @@ const routes: Routes = [
   { path: 'register', component: SignupComponent },
   { path: 'login', component: LoginComponent },
   { path: 'products/category', component: CategoriesComponent },
-  { path: 'Add_Category', component: AddCategoryComponent },
-
   { path: 'about-us', component: AboutUsComponent },
-  { path: 'products/:id', component: ProductDetailsComponent },
-  { path: 'cart', component: CartComponent },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'products/:id', component: ProductDetailsComponent },
 
   {
     path: 'Admin',
     component: AdminBoardComponent,
-    canActivate: [AuthGuardService],
+    canActivate: [AuthGuardService]
   },
+  { path: 'Admin/AddCategory',
+  component: AddCategoryComponent ,
+  canActivate: [AuthGuardService]
+},
   {
     path: 'Admin/Products',
     component: ProductComponent,
-    canActivate: [AuthGuardService],
+    canActivate: [AuthGuardService]
   },
   { path: 'Admin/AddProduct',
    component: AddProductComponent,
@@ -57,7 +56,6 @@ const routes: Routes = [
   { path: 'Profile', component: UserProfileComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'Not-Found', component: NotFoundComponent },
-  { path: 'Profile', component: UserProfileComponent },
   { path: '**', redirectTo: 'Not-Found' },
 ];
 

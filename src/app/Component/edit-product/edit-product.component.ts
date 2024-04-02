@@ -101,9 +101,9 @@ export class EditProductComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.EditProduct();
-        this.router.navigateByUrl('/Admin');
       }
     });
+    this.router.navigateByUrl('/Admin');
   }
 
   EditProduct(): void {
