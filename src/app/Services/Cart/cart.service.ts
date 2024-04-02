@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Injectable } from '@angular/core';
 import { Product } from '../../models/product';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import {baseURL} from '../../../.././env'
 
@@ -9,6 +9,7 @@ import {baseURL} from '../../../.././env'
 })
 export class CartService {
   private apiUrl =  `${baseURL}/cart/add`;
+  private apiUrlClear =  `${baseURL}/cart/clare`;
   quantity: number= 0;
   private productHoverQuantity: { [productId: string]: number } = {};
   private clearProductHoverQuantitySubject = new Subject<void>();
@@ -17,15 +18,20 @@ export class CartService {
   createNewCart(products:any) {
     return this.http.post(`${this.apiUrl}`,products);
   }
-  cartProducts: any[] = [];
-  private cartLengthSubject = new BehaviorSubject<number>(0);
-
+  clearCart(): Observable<any> {
+    return this.http.delete<any>(`${this.apiUrlClear}`);
+   
+  }
   Clear(){
     this.cartProducts = [];
     this.setItem();
     this.updateCartLengthFromLocalStorage();
     
   }
+  cartProducts: any[] = [];
+  private cartLengthSubject = new BehaviorSubject<number>(0);
+
+  
   setItem(){
     localStorage.setItem("cart", JSON.stringify(this.cartProducts));
   }
