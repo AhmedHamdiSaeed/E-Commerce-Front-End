@@ -53,7 +53,8 @@ export class CartComponent {
   getCartProduct(){
     if("cart" in localStorage){
       this.cartProducts = JSON.parse(localStorage.getItem("cart")!);
-     
+      console.log("cart :",this.cartProducts)
+
     } 
   }
   

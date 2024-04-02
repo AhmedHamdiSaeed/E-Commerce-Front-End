@@ -51,6 +51,8 @@ import { PaymentSuccessComponent } from './Component/payment-success/payment-suc
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { ProductDetailsDialogComponent } from './Component/Admin/product-details-dialog/product-details-dialog.component';
+import { UpdateProfileComponent } from './Component/update-profile/update-profile.component';
+import { UserOrdersComponent } from './Component/user-orders/user-orders.component';
 
 @NgModule({
   declarations: [
@@ -78,6 +80,8 @@ import { ProductDetailsDialogComponent } from './Component/Admin/product-details
     FooterComponent,
     ProductDetailsDialogComponent,
     PaymentSuccessComponent,
+    UpdateProfileComponent,
+    UserOrdersComponent,
   ],
   imports: [
     CarouselModule.forRoot(),
