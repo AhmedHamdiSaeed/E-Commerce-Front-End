@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../../Services/product/product.service';
-import { Category } from '../../models/categoryModel';
-import { Product } from '../../models/product';
-import {baseURL} from '../../../.././env'
+import { ProductService } from '../../../Services/product/product.service';
+import { Category } from '../../../models/categoryModel';
+import { Product } from '../../../models/product';
+import {baseURL} from '../../../../../env'
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 import { ActivatedRoute, Router } from '@angular/router';
-import { CartService } from '../../Services/Cart/cart.service';
-import { AuthService } from '../../Services/auth/auth.service';
+import { CartService } from '../../../Services/Cart/cart.service';
+import { AuthService } from '../../../Services/auth/auth.service';
 
 
 @Component({
@@ -82,8 +82,8 @@ export class ProductDetailsComponent implements OnInit {
       this.error = err.error.message;
     }
   }
-  
- 
+
+
   getImageUrl(imagePath: string) :SafeUrl {
     // return `../../../assets${imagePath}`;
     let safeurl = baseURL + imagePath ;
@@ -107,22 +107,22 @@ export class ProductDetailsComponent implements OnInit {
   //   }
   // }
 
-   //add to cart 
+   //add to cart
    addToCart(product: Product) {
     const availableQuantity = product.quantity; // Get the available quantity of the product
     const currentQuantityInCart = this.getHoveredProductQuantity(product); // Get the current quantity of the product in the cart
     const quantityToAdd = Math.min(1, availableQuantity - currentQuantityInCart);
-  
+
     if (quantityToAdd > 0) {
       this.cartService.addToCart(product, quantityToAdd);
     }
   }
-  
- 
+
+
   removeFromCart(product: Product) {
     this.cartService.removeFromCart(product); // Remove the product from the cart
   }
-  
+
  getHoveredProductQuantity(product: Product): number {
     return this.cartService.getTotalQuantityInCart(product); // Convert
   }
@@ -136,11 +136,11 @@ export class ProductDetailsComponent implements OnInit {
       productId: this.product._id,
       quantity: quantity
     }];
-  
+
     this.cartService.createNewCart(products).subscribe(
       res => {
         console.log(' creating new cart:', res);
-        
+
       },
       error => {
         console.error('Error creating new cart:', error);
@@ -148,7 +148,7 @@ export class ProductDetailsComponent implements OnInit {
     );
     this.clearCart();
     console.log(products);
-    
+
   }
   clearCart() {
     this.cartService.clearCart().subscribe(

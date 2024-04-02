@@ -31,25 +31,26 @@ import { LoadingSpinnerComponent } from './SharedComponent/loading-spinner/loadi
 import { AuthInterceptorService } from './Services/auth/auth-interceptor.service';
 import { AdminBoardComponent } from './Component/admin-dashboard/admin-board/admin-board.component';
 import { ProductComponent } from './Component/admin-dashboard/product/product.component';
-import { ProductDetailsComponent } from './Component/product-details/product-details.component';
+import { ProductDetailsComponent } from './Component/Admin/product-details/product-details.component';
 import { CartComponent } from './Component/Cart/cart/cart.component';
 import { ContentComponent } from './Component/admin-dashboard/Orders/content.component';
 import { AboutUsComponent } from './Component/about-us/about-us.component';
-import { EditProductComponent } from './Component/edit-product/edit-product.component';
+import { EditProductComponent } from './Component/Admin/edit-product/edit-product.component';
 import { SearchComponent } from './Component/search/search.component';
-import { AddProductComponent } from './Component/add-product/add-product.component';
+import { AddProductComponent } from './Component/Admin/add-product/add-product.component';
 
 import { FormsModule } from '@angular/forms';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FooterComponent } from './Component/footer/footer.component';
 import { ConfirmMessageComponent } from './SharedComponent/confirm-message/confirm-message.component';
-import { AddCategoryComponent } from './Component/add-category/add-category.component';
+import { AddCategoryComponent } from './Component/Admin/add-category/add-category.component';
 import { ContactUsComponent } from './Component/contact-us/contact-us.component';
 import { PaymentSuccessComponent } from './Component/payment-success/payment-success.component';
 // import ngx-translate and the http loader
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { ProductDetailsDialogComponent } from './Component/Admin/product-details-dialog/product-details-dialog.component';
 
 @NgModule({
   declarations: [
@@ -75,6 +76,7 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
     SearchComponent,
     AddProductComponent,
     FooterComponent,
+    ProductDetailsDialogComponent,
     PaymentSuccessComponent,
   ],
   imports: [
