@@ -1,19 +1,55 @@
+/* CSS for the category slider */
+.cardCategory {
+  cursor: pointer;
+  background-color: #ffffff;
+  border: 1px solid #198754;
+  border-radius: 10px;
+  transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+}
+
+.cardCategory:hover {
+  background-color: #198754;
+  border-color: #198754;
+  color: #ffffff;
+}
+
+.cardCategory .card-img-top {
+  height: 150px;
+  object-fit: cover;
+}
+
+.cardCategory .card-body {
+  padding: 10px;
+}
+
+.carousel-inner {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.carousel-item {
+  flex: 0 0 auto;
+  transition: transform 0.6s ease;
+}
+
+@media (max-width: 576px) {
+  .cardCategory {
+    flex-basis: calc(100% - 20px);
+    margin: 0 10px;
+  }
+}
+
+/* Rest of the CSS */
 .category-border {
   color: #198754;
   margin-bottom: 20px;
-
 }
-
-/*  */
 
 .cardCategory:hover {
   cursor: pointer;
   background-color: #198754;
   color: white;
 }
-
-/*  */
-
 
 .product-card {
   margin-bottom: 10px;
@@ -22,7 +58,6 @@
 
 .card-body {
   height: 60%;
-
 }
 
 .category-item {
@@ -102,6 +137,7 @@
   color: #2c4f1b;
   animation: expandQuantityControls 0.1s ease forwards;
 }
+
 .cart-btn:hover .quantity-controls.expanded {
   max-width: 250px;
 }
@@ -110,7 +146,6 @@
   background-color: #198754 !important; /* Change background color on hover */
   color: white; /* Change text color on hover */
 }
-
 
 .badge {
   color: green;
@@ -125,7 +160,6 @@
   color: white !important;
 }
 
-
 @keyframes expandQuantityControls {
   from {
     max-width: 0;
@@ -133,5 +167,25 @@
 
   to {
     max-width: 250px;
+  }
+}
+@media (max-width: 768px) {
+  .col-sm-3 {
+    flex-basis: calc(50% - 20px);
+    margin: 0 10px;
+  }
+}
+
+/* @media (max-width: 992px) {
+  .col-md-4 {
+    flex-basis: calc(50% - 20px);
+    margin: 0 10px;
+  }
+} */
+
+@media (max-width: 1200px) {
+  .col-lg-3 {
+    flex-basis: calc(50% - 20px);
+    margin: 0 10px;
   }
 }

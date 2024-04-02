@@ -1,21 +1,30 @@
-<form class="row g-3 " (ngSubmit)="AddCategory(addCat)" #addCat="ngForm" enctype="multipart/form-data">
+<div class="container-fluid mt-4">
+  <div class="row justify-content-center">
     <div class="col-md-4">
-      <label for="title" class="form-label">Category title</label>
-      <input type="text" class="form-control" id="title"  ngModel name="title" #title="ngModel" required>
-      <div class="form-text" *ngIf="!title.valid  && title.touched">
-        please provide a valid title for the Category
-      </div>
+      <h2 class="text-center mb-4">Add New Category</h2>
+      <form class="row g-3 p-4 bg-light border rounded shadow-sm" (ngSubmit)="AddCategory(addCat)" #addCat="ngForm" enctype="multipart/form-data">
+        <div class="text-center mb-4">
+          <div class="rounded-circle overflow-hidden d-inline-block" style="width: 150px; height: 150px; border: 2px solid #ccc;">
+            <img *ngIf="image.value" [src]="image.value" class="img-fluid" alt="Preview">
+          </div>
+        </div>
+        <div class="col-md-12 mb-3">
+          <label for="image" class="form-label">Choose image</label>
+          <input type="file" class="form-control" id="image" name="image" (change)="onFileSelected($event)" ngModel #image="ngModel" required accept=".jpg, .jpeg, .png, .gif">
+          <div class="form-text mb-2 text-danger" *ngIf="!image.valid && (image.touched || image.dirty)">Please provide a valid image (.jpg, .jpeg, .png, .gif)</div>
+        </div>
+        <div class="col-md-12 mb-3">
+          <label for="title" class="form-label">Category title</label>
+          <input type="text" class="form-control" id="title" ngModel name="title" #title="ngModel" required>
+          <div class="form-text text-danger" *ngIf="!title.valid && title.touched">Please provide a valid title for the Category</div>
+        </div>
+        <div class="col-md-12 mb-3 text-center">
+          <button class="btn btn-primary" type="submit" [disabled]="!addCat.valid" style="background-color: #198754; border-color: #198754;">Create Category</button>
+        </div>
+      </form>
     </div>
+  </div>
+</div>
 
-      <div class="col-md-4">
-        <label for="image" class="form-label">choose image</label>
-        <input type="file" class="form-control" id="image"  name="image" (change)="onFileSelected($event)" ngModel #image="ngModel"  required>
-        <div class="form-text" *ngIf="!image.valid  && (image.touched || image.dirty)">
-          please provide a valid image (.jpg , .jpeg , .png , .gif) 
-         </div>
-      </div>
-  
-    <div class="col-12">
-      <button class="btn btn-primary" type="submit" [disabled]="!addCat.valid">Create Category</button>
-    </div>
-  </form>
+<div class="mt-4"></div>
+<div class="mt-4"></div>

@@ -23,7 +23,7 @@
           <a class="nav-link" routerLinkActive="active" routerLink="/login" *ngIf="!isAuthed">Login</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" *ngIf="isAuthed && user?.role == 'user' "   routerLink="/products/category">Products</a>
+          <a class="nav-link" routerLinkActive="active" *ngIf="!isAuthed || user?.role == 'user'"    routerLink="/products/category">Products</a>
           </li>
 
         <li class="nav-item">
