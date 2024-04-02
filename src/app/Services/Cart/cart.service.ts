@@ -16,6 +16,7 @@ export class CartService {
 
   constructor(private http: HttpClient ) {   this.updateCartLengthFromLocalStorage();}
   createNewCart(products:any) {
+    console.log("cart inside createcartservice :",products)
     return this.http.post(`${this.apiUrl}`,products);
   }
   clearCart(): Observable<any> {
