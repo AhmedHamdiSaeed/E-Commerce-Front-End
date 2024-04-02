@@ -89,6 +89,10 @@ decreaseQuantity(item: any): void {
     this.setItem();
   }
 }
+
+
+
+
 orderNow(){
   this.isLoading=true;
   if (!this.auth.isAuthenticated()) {
@@ -103,7 +107,9 @@ orderNow(){
     res => {
       this.success = true;
       this.newCart=res;
-      console.log("cart before order:",this.newCart)
+       console.log("cart before order:",this.newCart)
+      console.log("cart before order:",res)
+    
         // this.checkoutservice.checkout(this.newCart.data._id).subscribe(
         //   (res)=>{
         //     this.checkoutSession=res;
@@ -114,10 +120,11 @@ orderNow(){
     },
     error => {
       console.error('Error creating new cart:', error);
-    }
+    }    
+
   );
-
-
+  console.log(products);
+  this.Clear();
   
 }
 
@@ -129,3 +136,4 @@ getImageUrl(imagePath: string): SafeUrl {
 
 }
 }
+
