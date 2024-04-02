@@ -13,15 +13,11 @@ export class CheckoutService {
 
 
 
-  checkout(cartID:string):Observable<any>
-  {
-    return this.httpclient.get(`${baseURL}/payment/checkout/${cartID}`)
-  }
+  
 
-  constructor(private http: HttpClient ) { }
 
 checkout(cartID:string)
 {
-  return this.http.get(`${baseURL}/payment/checkout/${cartID}`)
+  return this.httpclient.get(`${baseURL}/payment/checkout/${cartID}`)
 }
 }
