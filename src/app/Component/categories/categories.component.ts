@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../../Services/product/product.service';
 import { Product } from '../../models/product';
@@ -37,8 +37,7 @@ export class CategoriesComponent implements OnInit {
   itemsPerPage: number = 8;
   isHovered: boolean = false;
   hoveredProduct: any | null = null;
-  
-
+  categoriesInSlides: any[] = [];
   ngOnInit(): void {
     this.getAllCategories();
     this.getAllProducts();
@@ -56,8 +55,6 @@ export class CategoriesComponent implements OnInit {
         this.receivedProducts = products;
         this.products = products;
         this.isLoading = false;
-        // console.log(this.receivedProducts);
-        // console.log(this.products);
       },
       (err) => {
         console.log(err);
@@ -80,6 +77,12 @@ export class CategoriesComponent implements OnInit {
       this.isLoading = false;
       this.error = err.error.message;
     }
+    ///////for slider
+    for (let i = 0; i < this.allCategories.length; i += 3) {
+      const slice = this.allCategories.slice(i, i + 3);
+      console.log('Slice:', slice);
+      this.categoriesInSlides.push(slice);
+    }
   }
 
   getProductsByCategory(categoryId: string): void {
@@ -96,8 +99,6 @@ export class CategoriesComponent implements OnInit {
     );
   }
 
-
-  
   getSpecificCategory(categoryId: string): void {
     console.log('Category clicked:', categoryId);
     this.getProductsByCategory(categoryId);
@@ -116,13 +117,12 @@ export class CategoriesComponent implements OnInit {
 
   getImageUrl(imagePath: string): SafeUrl {
     // return `../../../assets${imagePath}`;
-    let safeurl = baseURL + imagePath ;
+    let safeurl = baseURL + imagePath;
 
     // console.log(safeurl);
 
     // return "http://localhost:3000/api/v1/uploads/image-1711636730983.jpg"
-    return  this.sanitizer.bypassSecurityTrustUrl(safeurl) ;
-
+    return this.sanitizer.bypassSecurityTrustUrl(safeurl);
   }
   //filter
 
@@ -171,23 +171,24 @@ export class CategoriesComponent implements OnInit {
     });
   }
 
-
- //add to cart 
+  //add to cart
   addToCart(product: Product) {
     const availableQuantity = product.quantity; // Get the available quantity of the product
     const currentQuantityInCart = this.getHoveredProductQuantity(product); // Get the current quantity of the product in the cart
-    const quantityToAdd = Math.min(1, availableQuantity - currentQuantityInCart);
-  
+    const quantityToAdd = Math.min(
+      1,
+      availableQuantity - currentQuantityInCart
+    );
+
     if (quantityToAdd > 0) {
       this.cartService.addToCart(product, quantityToAdd);
     }
   }
-  
- 
+
   removeFromCart(product: Product) {
     this.cartService.removeFromCart(product); // Remove the product from the cart
   }
-  
+
   getHoveredProductQuantity(product: Product): number {
     // Return the quantity of the product in the cart
     return this.cartService.getTotalQuantityInCart(product); // Convert

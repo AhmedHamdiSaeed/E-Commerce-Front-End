@@ -5,10 +5,13 @@
 }
 
 /*  */
+.cardCategory {
+  color: #61a887;
+}
 
 .cardCategory:hover {
   cursor: pointer;
-  background-color: #198754;
+  background-color: rgb(81 155 121);
   color: white;
 }
 
@@ -102,13 +105,16 @@
   color: #2c4f1b;
   animation: expandQuantityControls 0.1s ease forwards;
 }
+
 .cart-btn:hover .quantity-controls.expanded {
   max-width: 250px;
 }
 
 .cart-btn:hover .badge {
-  background-color: #198754 !important; /* Change background color on hover */
-  color: white; /* Change text color on hover */
+  background-color: #198754 !important;
+  /* Change background color on hover */
+  color: white;
+  /* Change text color on hover */
 }
 
 

@@ -6,7 +6,11 @@ import {
   provideClientHydration,
 } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
+import {
+  HttpClientModule,
+  HTTP_INTERCEPTORS,
+  HttpClient,
+} from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -47,8 +51,9 @@ import { ConfirmMessageComponent } from './SharedComponent/confirm-message/confi
 import { AddCategoryComponent } from './Component/add-category/add-category.component';
 import { ContactUsComponent } from './Component/contact-us/contact-us.component';
 // import ngx-translate and the http loader
-import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
-import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 @NgModule({
   declarations: [
@@ -95,16 +100,15 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
     HttpClientModule,
     CommonModule,
     FormsModule,
-    // ngx-translate and the loader module
     HttpClientModule,
     TranslateModule.forRoot({
-     defaultLanguage: 'en',
-        loader: {
-            provide: TranslateLoader,
-            useFactory: HttpLoaderFactory,
-            deps: [HttpClient]
-        }
-    })
+      defaultLanguage: 'en',
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+    }),
   ],
   providers: [
     {
@@ -113,6 +117,7 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
       multi: true,
     },
     provideClientHydration(),
+    provideAnimationsAsync(),
   ],
   bootstrap: [
     AppComponent,
