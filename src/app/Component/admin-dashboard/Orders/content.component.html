@@ -44,34 +44,28 @@
 
   <div class="recentCustomers">
     <div class="cardHeader">
-                <h2>Recent Customers</h2> 
-           
-
+                <h2>Recent Customers</h2>
     </div>
-
     <div *ngIf="isloading">
       <app-loading-spinner></app-loading-spinner>
       </div>
     <div class="table-container" *ngIf="!isloading">
       <table>
-        <tr *ngFor="let item of users" class="userDiv">
+        <tr *ngFor="let user of users" class="userDiv">
           <td width="60px">
-            <div class="imgBx"><img [src]="getImgUrl(item.image)" alt=""></div>
+            <div class="imgBx"><img [src]="getImgUrl(user.image)" alt=""></div>
           </td>
           <td>
-            <h4>{{ item.fname  }} <br> <span>{{ item.email }}</span></h4>
+            <h4>{{ user.fname  }} <br> <span>{{ user.email }}</span></h4>
           </td>
-          
+
            <div class="deleteContainer" >
             <span class="deletBtn">
-              <button class="btn btn-danger" (click)="OpenDialog(item._id)"> <!-- (click)="deleteUser(item._id)"-->
-                Delete User
-                <i class="bi bi-trash-fill" ></i> <!-- Bootstrap trash icon -->
+              <button class="btn btn-danger" (click)="OpenDialog(user._id)">
+                <i class="bi bi-trash-fill"></i>
               </button>
             </span>
            </div>
-        
-          
         </tr>
       </table>
     </div>
@@ -79,4 +73,3 @@
 </div>
 
 
-<!-- [ngStyle]="{'display': toggleDeleBox()}" -->

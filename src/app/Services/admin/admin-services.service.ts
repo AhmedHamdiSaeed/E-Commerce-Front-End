@@ -14,6 +14,7 @@ export class AdminServices {
   constructor(private http: HttpClient) {}
 
   private apiProduct: string = `${baseURL}/products`;
+  private UrlCat =`${baseURL}/category`;
 
   getProducts(): Observable<any> {
     return this.http.get<any>(this.apiProduct).pipe(
@@ -21,6 +22,10 @@ export class AdminServices {
         return res;
       })
     );
+  }
+  getAllCategories()
+  {
+    return this.http.get(`${this.UrlCat}`)
   }
 
   deleteProduct(productId: string): Observable<any> {
@@ -53,5 +58,8 @@ export class AdminServices {
 
   deleteUser(userId: string): Observable<any> {
     return this.http.delete(`${baseURL}/admin/users/${userId}`);
+  }
+  getProductsByCategory(categoryId: string) {
+    return this.http.get(`${this.apiProduct}/category/${categoryId}`);
   }
 }
