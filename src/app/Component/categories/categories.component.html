@@ -18,116 +18,70 @@
           </div>
         </div>
       </div>
+    </div>
 
-      <div class="row mt-5">
-        <div class="d-flex justify-content-between text-center text-main  bg-success text-light rounded-2 p-2">
-          <h3 class="mt-2 ms-3 ">{{'category.Products'| translate }}</h3>
-          <div class="d-flex text-center">
-            <!-- search -->
-            <app-search (searchTextChanged)="onSearchTextChanged($event)"></app-search>
-            <!-- sort by price and category-->
-            <select class="form-select w-25 ms-2 text-success" aria-label="Sort By" [(ngModel)]="sortBy"
-              (change)="onSortChange(sortBy)">
-              <option selected value="">{{ 'category.sort' | translate }}</option>
-              <option value="price">{{ 'category.price' | translate }}</option>
-              <option value="price-desc">{{ 'category.price-desc' | translate }}</option>
-              <option value="category">{{ 'category.category' | translate }}</option>
-            </select>
-            <!-- end sort -->
+    <div class="row mt-5">
+      <div class="d-flex justify-content-between text-center text-main  bg-success text-light rounded-2 p-2">
+        <h3 class="mt-2 ms-3 ">{{'category.Products'| translate }}</h3>
+        <div class="d-flex text-center">
+          <!-- search -->
+          <app-search (searchTextChanged)="onSearchTextChanged($event)"></app-search>
+          <!-- sort by price and category-->
+          <select class="form-select w-25 ms-2 text-success" aria-label="Sort By" [(ngModel)]="sortBy"
+            (change)="onSortChange(sortBy)">
+            <option selected value="">{{ 'category.sort' | translate }}</option>
+            <option value="price">{{ 'category.price' | translate }}</option>
+            <option value="price-desc">{{ 'category.price-desc' | translate }}</option>
+            <option value="category">{{ 'category.category' | translate }}</option>
+          </select>
+          <!-- end sort -->
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-3">
+      <div class="col-sm-3" *ngFor="let product of receivedProducts | paginate: {itemsPerPage: itemsPerPage, currentPage: p}">
+        <div class="card mb-3 custom-card">
+          <div>
+            <img class="card-img-top product-image" [src]="getImageUrl(product.image)" [alt]="product.title">
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">{{ product.title | translate }}</h5>
+            <p class="card-text">{{ product.description }}</p>
+            <p class="card-text">Price : {{ product.price | currency:'EGP':'symbol' }}</p>
+
+            <button class="btn btn-outline-success btn-details" [routerLink]="['/products', product._id]">
+              <i class="bi bi-eye-fill"></i> {{ 'product.details' | translate }}
+            </button>
+
+            <div class="cart-controls mt-2">
+              <button class="btn btn-success cart-btn" (mouseenter)="hoveredProduct = product; isHovered = true"
+                (mouseleave)="hoveredProduct = null; isHovered = false">
+                <i class="bi bi-cart-plus"></i>
+                <span class="badge badge-primary" *ngIf="getHoveredProductQuantity(product) !== 0">
+                  {{ getHoveredProductQuantity(product) }}
+                </span>
+              </button>
+
+              <div class="quantity-controls"
+                [ngClass]="{ 'expanded': isHovered && hoveredProduct && hoveredProduct._id === product._id }">
+                <button class="btn btn-sm btn-outline-success" (click)="addToCart(product)">
+                  <i class="bi bi-plus"></i>
+                </button>
+                <span>{{ getHoveredProductQuantity(product) }}</span>
+                <button class="btn btn-sm btn-outline-success" (click)="removeFromCart(product)">
+                  <i class="bi bi-dash"></i>
+                </button>
+              </div>
+            </div>
+
           </div>
         </div>
-        <div class=" col-sm-3 m-auto"
-          *ngFor="let product of receivedProducts |paginate: {itemsPerPage:itemsPerPage,currentPage:p}">
-          <div class="card mb-3 custom-card">
-            <div>
-              <img class="card-img-top product-image" [src]="getImageUrl(product.image)" [alt]="product.title">
-            </div>
-            <div class="card-body">
-              <h5 class="card-title">{{ product.title | translate }}</h5>
-              <p class="card-text">{{ product.description }}</p>
-              <p class="card-text">Price : {{ product.price | currency:'EGP':'symbol' }}</p>
-
-              <button class="btn btn-outline-success  btn-details" [routerLink]="['/products', product._id]">
-                <i class="bi bi-eye-fill"></i>
-              </button>
-
-             <button class="btn btn-success mb-2 cart-btn"
-        (mouseenter)="hoveredProduct = product; isHovered = true"
-        (mouseleave)="hoveredProduct = null; isHovered = false">
-  <i style="font-size: 30px; color: white;" class="bi bi-cart-plus"></i>
-  <span   class="badge badge-primary" *ngIf="getHoveredProductQuantity(product) !== 0">
-    {{ getHoveredProductQuantity(product) }}
-  </span>
-
-  <div class="quantity-controls" [ngClass]="{ 'expanded': isHovered && hoveredProduct && hoveredProduct._id === product._id }">
-    <button class="btn btn-sm btn-outline-success" (click)="addToCart(product)">
-      <i class="bi bi-plus"></i>
-    </button>
-    <span>{{ getHoveredProductQuantity(product) }}</span>
-    <button class="btn btn-sm btn-outline-success" (click)="removeFromCart(product)">
-      <i class="bi bi-dash"></i>
-    </button>
-  </div>
-
-  <div class="row mt-5">
-    <div class="d-flex justify-content-between text-center text-main bg-success text-light rounded-2 p-2">
-      <h3 class="mt-2 ms-3">Products</h3>
-      <div class="d-flex text-center">
-        <!-- search -->
-        <app-search (searchTextChanged)="onSearchTextChanged($event)"></app-search>
-        <!-- sort by price and category-->
-        <select class="form-select w-25 ms-2 text-success" aria-label="Sort By" [(ngModel)]="sortBy"
-          (change)="onSortChange(sortBy)">
-          <option selected value="">Sort By</option>
-          <option value="price">Price (Low to High)</option>
-          <option value="price-desc">Price (High to Low)</option>
-          <option value="category">Category (A to Z)</option>
-        </select>
-        <!-- end sort -->
       </div>
     </div>
-    <div class="col-sm-3 m-auto"
-      *ngFor="let product of receivedProducts | paginate: {itemsPerPage:itemsPerPage,currentPage:p}">
-      <div class="card mb-3 custom-card">
-        <div>
-          <img class="card-img-top product-image" [src]="getImageUrl(product.image)" [alt]="product.title">
-        </div>
-        <div class="card-body">
-          <h5 class="card-title">{{ product.title | translate }}</h5>
-          <p class="card-text">{{ product.description }}</p>
-          <p class="card-text">Price : {{ product.price | currency:'EGP':'symbol' }}</p>
 
-          <button class="btn btn-outline-success  btn-details" [routerLink]="['/products', product._id]">
-            <i class="bi bi-eye-fill"></i>
-          </button>
-
-          <button class="btn btn-success mb-2 cart-btn"
-            (mouseenter)="hoveredProduct = product; isHovered = true"
-            (mouseleave)="hoveredProduct = null; isHovered = false">
-            <i style="font-size: 30px; color: white;" class="bi bi-cart-plus"></i>
-            <span class="badge badge-primary" *ngIf="getHoveredProductQuantity(product) !== 0">
-              {{ getHoveredProductQuantity(product) }}
-            </span>
-
-            <div class="quantity-controls"
-              [ngClass]="{ 'expanded': isHovered && hoveredProduct && hoveredProduct._id === product._id }">
-              <button class="btn btn-sm btn-outline-success" (click)="addToCart(product)">
-                <i class="bi bi-plus"></i>
-              </button>
-              <span>{{ getHoveredProductQuantity(product) }}</span>
-              <button class="btn btn-sm btn-outline-success" (click)="removeFromCart(product)">
-                <i class="bi bi-dash"></i>
-              </button>
-            </div>
-          </button>
-
-        </div>
-
-      </div>
+    <div class="mt-5 border-1 border-success p-2 text-center w-100">
+      <pagination-controls (pageChange)="p=$event"></pagination-controls>
     </div>
   </div>
 </div>
-<div class="mt-5 border-1 border-success p-2 text-center w-100">
-  <pagination-controls (pageChange)="p=$event"></pagination-controls>
-</div>
-<app-footer></app-footer>
