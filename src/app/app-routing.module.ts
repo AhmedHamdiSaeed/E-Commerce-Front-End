@@ -28,7 +28,7 @@ const routes: Routes = [
   { path: 'products/category', component: CategoriesComponent },
   { path: 'about-us', component: AboutUsComponent },
   { path: 'products/:id', component: ProductDetailsComponent },
-
+  { path: 'cart', component: CartComponent },
   {
     path: 'Admin',
     component: AdminBoardComponent,
