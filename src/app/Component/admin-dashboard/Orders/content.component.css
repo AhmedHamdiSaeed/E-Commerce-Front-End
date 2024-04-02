@@ -1,17 +1,23 @@
 /* ================== Order Details List ============== */
 .details {
   display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
+    flex-wrap: unset;
+     gap: 30px;
 }
 
+.recentOrders{
+  flex: 1 1 70%;
+
+}
 .recentOrders,
 .recentCustomers {
-  flex: 1 1 50%;
   background: white;
   padding: 20px;
   border-radius: 20px;
   box-shadow: 0 7px 25px rgba(0, 0, 0, 0.3);
+}
+.recentOrders {
+  flex: 1 1 30%;
 }
 
 .cardHeader {
@@ -23,7 +29,7 @@
 
 .cardHeader h2 {
   font-weight: 600;
-  color: #127103;
+  color: #198754;
   margin: 0;
 }
 
@@ -53,7 +59,7 @@ tbody tr:last-child {
 }
 
 tbody tr:hover {
-  background: #127103;
+  background: #198754;
   color: white;
 }
 
@@ -99,11 +105,11 @@ tbody tr td:nth-child(3) {
 
 .recentCustomers table tr td h4 span {
   font-size: 14px;
-  color: #999;
+  /* color: #999; */
 }
 .status-dropdown {
   position: relative;
-  z-index: 1; 
+  z-index: 1;
 }
 
 /* ====================== Responsive Design ========================== */
@@ -117,38 +123,35 @@ tbody tr td:nth-child(3) {
     width: 100%;
   }
 }
-
-
-
-
-
 .userDiv{
   position: relative;
-  background-color: #99999925;
+  /* background-color: #99999925; */
   margin: 50px;
-  /* border: 1px solid red; */
 }
-
 .deleteContainer{
   position: absolute;
   display: none;
-  /* background-color: #ff040471; */
   top: 0;
   right: 0;
   width: 30%;
   height: 100%;
   border-radius: 5px;
 }
-
 .deletBtn{
   position: absolute;
-  right: 20%;
+  size: 30px;
+  right: 1%;
   top:50% ;
   transform: translateY(-50%);
-  /* display: none; */
 
 }
+.userDiv:hover {
+  background-color: #198754;
+  color:aliceblue;
+  border-radius: 10px;
 
+}
 .userDiv:hover .deleteContainer{
   display: block;
+
 }

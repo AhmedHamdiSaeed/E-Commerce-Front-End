@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../../Services/product/product.service';
-import { Category } from '../../models/categoryModel';
-import { Product } from '../../models/product';
-import {baseURL} from '../../../.././env'
+import { ProductService } from '../../../Services/product/product.service';
+import { Category } from '../../../models/categoryModel';
+import { Product } from '../../../models/product';
+import {baseURL} from '../../../../../env'
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 import { ActivatedRoute, Router } from '@angular/router';
-import { CartService } from '../../Services/Cart/cart.service';
-import { AuthService } from '../../Services/auth/auth.service';
+import { CartService } from '../../../Services/Cart/cart.service';
+import { AuthService } from '../../../Services/auth/auth.service';
 
 
 @Component({
@@ -23,7 +23,7 @@ export class ProductDetailsComponent implements OnInit {
   error: string = "";
   categoryName: string = "";
   successMessage: string ="";
-  quantity: number = 1;
+  quantity: number = 0;
   success:boolean = false;
   cartProducts: any[] = [];
 
@@ -82,22 +82,8 @@ export class ProductDetailsComponent implements OnInit {
       this.error = err.error.message;
     }
   }
-  alertAppear(){
-    this.successMessage='Product added to cart!';
-    setTimeout(() => {
-      this.successMessage = '';
-    }, 3000);
-  }
-  // addToCart(product: Product) {
-  //   if (this.quantity <= 0) {
 
-  //     return;
-  //   }
-  //   console.log("quantity: " + this.quantity);
-  //   this.alertAppear();
-  //   this.cartService.addToCart(product, this.quantity);
-  //   this.quantity = 0;
-  // }
+
   getImageUrl(imagePath: string) :SafeUrl {
     // return `../../../assets${imagePath}`;
     let safeurl = baseURL + imagePath ;
@@ -121,24 +107,23 @@ export class ProductDetailsComponent implements OnInit {
   //   }
   // }
 
-   //add to cart 
+   //add to cart
    addToCart(product: Product) {
     const availableQuantity = product.quantity; // Get the available quantity of the product
     const currentQuantityInCart = this.getHoveredProductQuantity(product); // Get the current quantity of the product in the cart
     const quantityToAdd = Math.min(1, availableQuantity - currentQuantityInCart);
-  
+
     if (quantityToAdd > 0) {
       this.cartService.addToCart(product, quantityToAdd);
     }
   }
-  
- 
+
+
   removeFromCart(product: Product) {
     this.cartService.removeFromCart(product); // Remove the product from the cart
   }
-  
-  getHoveredProductQuantity(product: Product): number {
-    // Return the quantity of the product in the cart
+
+ getHoveredProductQuantity(product: Product): number {
     return this.cartService.getTotalQuantityInCart(product); // Convert
   }
   orderNow(){
@@ -146,23 +131,34 @@ export class ProductDetailsComponent implements OnInit {
       this.router.navigate(['/login']);
       return;
     }
-    
-    let products= this.cartProducts.map(item=>{
-      return{productId: item.product._id, quantity: item.quantity}
-    })
-  
+    const quantity = this.getHoveredProductQuantity(this.product);
+    const products = [{
+      productId: this.product._id,
+      quantity: quantity
+    }];
+
     this.cartService.createNewCart(products).subscribe(
       res => {
-        this.success = true;
-        
+        console.log(' creating new cart:', res);
+
       },
       error => {
         console.error('Error creating new cart:', error);
       }
     );
-    this.cartService.Clear();
+    this.clearCart();
     console.log(products);
-    
+
   }
-  
+  clearCart() {
+    this.cartService.clearCart().subscribe(
+      () => {
+        this.cartService.Clear();
+      },
+      error => {
+        console.error('Failed to clear cart:', error);
+      }
+    );
+  }
+
 }

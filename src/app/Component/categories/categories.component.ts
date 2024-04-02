@@ -7,6 +7,8 @@ import { CartService } from '../../Services/Cart/cart.service';
 import { AuthService } from '../../Services/auth/auth.service';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { baseURL } from '../../../../env';
+import { TranslateService } from '@ngx-translate/core';
+
 
 @Component({
   selector: 'app-categories',
@@ -21,6 +23,7 @@ export class CategoriesComponent implements OnInit {
     private cartService: CartService,
     private auth: AuthService,
     private sanitizer: DomSanitizer
+    , private translate: TranslateService
   ) {}
 
   allCategories: Category[] = [];
@@ -63,6 +66,7 @@ export class CategoriesComponent implements OnInit {
       }
     );
   }
+
 
   async getAllCategories(): Promise<void> {
     try {

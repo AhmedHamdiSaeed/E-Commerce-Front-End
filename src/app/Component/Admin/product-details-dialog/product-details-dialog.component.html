@@ -1,0 +1,62 @@
+<div class="modal-header justify-content-end">
+  <button type="button" class="btn-close" aria-label="Close" (click)="closeDialog()"></button>
+</div>
+<br>
+<br>
+<div class="container mt-2">
+  <ng-container *ngIf="data">
+    <div  class="row custom-row">
+      <div class="col-md-6 d-flex justify-content-center align-items-center">
+        <img class="card-img-top img-fluid"  [src]="getImageUrl(data.image)" [alt]="data.title">
+      </div>
+      <div class="col-md-6 product_details">
+        <div class="row">
+          <h2 class="title">{{ data.title }}</h2>
+          <div class="col-sm-6">
+            <p class="Category">{{ categoryName }}</p>
+          </div>
+          <div class="col-sm-6">
+            <p class="Price">Price : {{ data.price |currency:'EGP':'symbol'}}</p>
+          </div>
+        </div>
+        <hr>
+        <div class="description">
+          <div class="description-controls">
+            <p class="desc-titel">About This Item :</p>
+            <p class="desc">{{ data.description }}</p>
+          </div>
+        </div>
+        <hr>
+
+        <div class="row custom-row">
+          <div class="col-sm-7">
+            <div class="Color">
+              <div class="color-container">  <strong>Colors : </strong>
+                <div *ngFor="let color of data.colors" class="color-circle" [style.background-color]="color"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-5">
+            <div class="quantity">
+              <div class="quantity-controls">
+                <div class="quantity-text">
+                  <strong>Quantity : </strong>
+                  {{data.quantity}}
+                </div>
+              </div>
+              <br>
+              <div class="action-buttons mt-3">
+                <button class="btn btn-primary" (click)="editProduct(data._id)">
+                  <i class="bi bi-pencil-fill"></i> Edit
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>
+
+<br>
+
