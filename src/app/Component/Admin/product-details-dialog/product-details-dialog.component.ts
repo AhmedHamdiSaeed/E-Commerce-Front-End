@@ -1,11 +1,11 @@
-import { Product } from '../../models/product';
+import { Product } from '../../../models/product';
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import { baseURL } from '../../../../env';
-import { Category } from '../../models/categoryModel';
-import { AdminServices } from '../../Services/admin/admin-services.service';
-import { ConfirmMessageComponent } from '../../SharedComponent/confirm-message/confirm-message.component';
+import { baseURL } from '../../../../../env';
+import { Category } from '../../../models/categoryModel';
+import { AdminServices } from '../../../Services/admin/admin-services.service';
+import { ConfirmMessageComponent } from '../../../SharedComponent/confirm-message/confirm-message.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
