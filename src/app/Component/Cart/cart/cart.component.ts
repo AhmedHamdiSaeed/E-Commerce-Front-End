@@ -24,10 +24,9 @@ export class CartComponent {
   newCart:any;
   isLoading:boolean=false;
   checkoutSession:any={}
-  constructor(private router: Router ,private sanitizer: DomSanitizer,private cartService: CartService ,private auth: AuthService,private checkoutservice:CheckoutService) { }
 
   constructor(private router: Router ,private sanitizer: DomSanitizer,
-    private cartService: CartService ,private auth: AuthService,private translate: TranslateService) { }
+    private cartService: CartService ,private auth: AuthService,private translate: TranslateService,private checkoutservice:CheckoutService) { }
   
 
   setItem(){
