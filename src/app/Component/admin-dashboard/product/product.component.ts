@@ -3,7 +3,9 @@ import { Router } from '@angular/router';
 import { AdminServices } from '../../../Services/admin/admin-services.service';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { baseURL } from '../../../../../env';
-
+import { ConfirmMessageComponent } from '../../../SharedComponent/confirm-message/confirm-message.component';
+import { MatDialog } from '@angular/material/dialog';
+import {ProductDetailsDialogComponent} from '../../product-details-dialog/product-details-dialog.component';
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
@@ -11,25 +13,81 @@ import { baseURL } from '../../../../../env';
 })
 export class ProductComponent implements OnInit {
   products: any;
+  categories: any;
+  selectedCategory: string = '';
+  displayedProducts: any;
 
-  constructor(private router: Router,
-     private productService: AdminServices,
-     private sanitizer: DomSanitizer) {}
+  constructor(private router: Router, private dialog: MatDialog,
+    private productService: AdminServices,
+    private sanitizer: DomSanitizer) {}
 
   ngOnInit(): void {
     this.getProducts();
+    this.getCategories();
   }
 
-  getProducts() {
-    this.productService.getProducts().subscribe((res) => {
-      // console.log(res);
-      
+  async getProducts() {
+    try {
+      const res = await this.productService.getProducts().toPromise();
       this.products = res;
+      this.displayedProducts = res;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async getCategories() {
+    try {
+      const res = await this.productService.getAllCategories().toPromise();
+      this.categories = res;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  filterProductsByCategory() {
+    if (this.selectedCategory === '') {
+      this.displayedProducts = this.products;
+    } else {
+      this.productService.getProductsByCategory(this.selectedCategory).subscribe(
+        (res: any) => {
+          if (res && Array.isArray(res)) {
+            this.displayedProducts = res;
+          } else {
+            console.error('Invalid response format:', res);
+          }
+        },
+        (error) => {
+          console.error(error);
+        }
+      );
+    }
+  }
+
+
+
+  openProductDetailsDialog(product: any): void {
+    this.dialog.open(ProductDetailsDialogComponent, {
+      // width: '500px',
+      data: product
     });
   }
+  confirmRemoveProduct(productId: string): void {
+    const dialogRef = this.dialog.open(ConfirmMessageComponent, {
+      width: '300px',
+      data: { message: 'Are you sure you want to remove this product?' },
+    });
 
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.deleteProduct(productId);
+        console.log("Product deleted successfully");
+        this.products = this.products.filter((p: any) => p._id !== productId);
+      }
+    });
+  }
   addProduct() {
-    this.router.navigateByUrl('/Add_Product');
+    this.router.navigateByUrl('Admin/AddProduct');
   }
 
   addCategory(){
@@ -37,16 +95,24 @@ export class ProductComponent implements OnInit {
   }
 
   editProduct(productId: string) {
-    this.router.navigateByUrl(`/edit-product/${productId}`);
+    this.router.navigateByUrl(`/Admin/EditProduct/${productId}`);
   }
 
   deleteProduct(productId: string) {
-    this.productService.deleteProduct(productId).subscribe(() => {
-      this.products = this.products.filter((product: any) => product._id !== productId);
-    });
+    console.log(productId);
+
+    this.productService.deleteProduct(productId).subscribe(
+      () => {
+        console.log("Product deleted successfully");
+        this.products = this.products.filter((p: any) => p._id !== productId);
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
 
-  // Load image
+
 
   getImageUrl(imagePath: string) :SafeUrl {
     // return `../../../assets${imagePath}`;
@@ -54,7 +120,6 @@ export class ProductComponent implements OnInit {
 
     // console.log(safeurl);
 
-    // return "http://localhost:3000/api/v1/uploads/image-1711636730983.jpg"
     return  this.sanitizer.bypassSecurityTrustUrl(safeurl) ;
 
   }

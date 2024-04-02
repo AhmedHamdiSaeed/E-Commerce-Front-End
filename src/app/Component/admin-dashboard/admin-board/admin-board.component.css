@@ -49,7 +49,7 @@ mat-toolbar {
 
 .navigation ul li:hover a,
 .navigation ul li.hovered a {
-  color: #127103;
+  color: 198754;
 }
 
 .navigation ul li a .icon {
@@ -91,7 +91,7 @@ mat-toolbar {
   height: 50px;
   background-color: transparent;
   border-radius: 50%;
-  box-shadow: 35px 35px 0 10px #F5F5F5;
+  box-shadow: 10px 10px 0 10px #ffffff;
   pointer-events: none;
 }
 
@@ -105,7 +105,7 @@ mat-toolbar {
   height: 50px;
   background-color: transparent;
   border-radius: 50%;
-  box-shadow: 35px -35px 0 10px #F5F5F5;
+  box-shadow: 10px -10px 0 10px #F5F5F5;
   pointer-events: none;
 }
 
@@ -177,7 +177,7 @@ mat-toolbar {
   align-items: center;
   flex-direction: row;
   cursor: pointer;
-  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 7px 25px rgba(154, 154, 154, 0.5);
 }
 
 .cardBox .card .numbers {
@@ -199,7 +199,7 @@ mat-toolbar {
 }
 
 .cardBox .card:hover {
-  background: #127103;
+  background: #198754;
 }
 
 .cardBox .card:hover .numbers,
@@ -369,7 +369,7 @@ mat-toolbar {
 }
 
 .recentCustomers table tr:hover {
-  background: #0eba33;
+  background:#198754;
   color: white;
 }
 

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { CategoryService } from '../../Services/category/category-services.service';
-
+import { NgForm } from '@angular/forms';
 @Component({
   selector: 'app-add-category',
   templateUrl: './add-category.component.html',
@@ -15,7 +14,7 @@ selectedImage!: File ;
   onFileSelected(event: any){
     this.selectedImage = event.target.files[0] ;
     console.log(this.selectedImage);
-    
+
   }
 
   AddCategory(form: NgForm){
@@ -26,10 +25,10 @@ selectedImage!: File ;
     this.categoryService.addCategory(forData).subscribe((res)=>{
       console.log(res);
       form.resetForm() ;
-      
+
     },err =>{
       console.log(err);
-      
+
     })
 
   }

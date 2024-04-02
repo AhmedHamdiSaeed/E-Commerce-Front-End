@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { MatDialogModule } from '@angular/material/dialog';
+import { CommonModule } from '@angular/common';
 import {
   BrowserModule,
   provideClientHydration,
 } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -34,7 +35,7 @@ import { ProductDetailsComponent } from './Component/product-details/product-det
 import { CartComponent } from './Component/Cart/cart/cart.component';
 import { ContentComponent } from './Component/admin-dashboard/Orders/content.component';
 import { AboutUsComponent } from './Component/about-us/about-us.component';
-import { EditProductDialogComponent } from './Component/edit-product-dialog/edit-product-dialog.component';
+import { EditProductComponent } from './Component/edit-product/edit-product.component';
 import { SearchComponent } from './Component/search/search.component';
 import { AddProductComponent } from './Component/add-product/add-product.component';
 
@@ -45,10 +46,17 @@ import { FooterComponent } from './Component/footer/footer.component';
 import { ConfirmMessageComponent } from './SharedComponent/confirm-message/confirm-message.component';
 import { AddCategoryComponent } from './Component/add-category/add-category.component';
 import { ContactUsComponent } from './Component/contact-us/contact-us.component';
+import { PaymentSuccessComponent } from './Component/payment-success/payment-success.component';
+// import ngx-translate and the http loader
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { ProductDetailsDialogComponent } from './Component/product-details-dialog/product-details-dialog.component';
 
 @NgModule({
   declarations: [
-   
+    ContactUsComponent,
+    AddCategoryComponent,
+    ConfirmMessageComponent,
     AppComponent,
     CategoriesComponent,
     LoginComponent,
@@ -63,14 +71,13 @@ import { ContactUsComponent } from './Component/contact-us/contact-us.component'
     CartComponent,
     ContentComponent,
     AboutUsComponent,
-    EditProductDialogComponent,
+    EditProductComponent,
     ContentComponent,
     SearchComponent,
     AddProductComponent,
     FooterComponent,
-    AddCategoryComponent,
-    ContactUsComponent,
-    ConfirmMessageComponent
+    ProductDetailsDialogComponent,
+    PaymentSuccessComponent,
   ],
   imports: [
     CarouselModule.forRoot(),
@@ -90,6 +97,18 @@ import { ContactUsComponent } from './Component/contact-us/contact-us.component'
     AppRoutingModule,
     NgxPaginationModule,
     HttpClientModule,
+    CommonModule,
+    FormsModule,
+    // ngx-translate and the loader module
+    HttpClientModule,
+    TranslateModule.forRoot({
+     defaultLanguage: 'en',
+        loader: {
+            provide: TranslateLoader,
+            useFactory: HttpLoaderFactory,
+            deps: [HttpClient]
+        }
+    })
   ],
   providers: [
     {
@@ -108,3 +127,7 @@ import { ContactUsComponent } from './Component/contact-us/contact-us.component'
   ],
 })
 export class AppModule {}
+// required for AOT compilation
+export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
+  return new TranslateHttpLoader(http);
+}

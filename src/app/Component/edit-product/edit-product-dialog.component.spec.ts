@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EditProductDialogComponent } from './edit-product-dialog.component';
+import { EditProductDialogComponent } from './edit-product.component';
 
 describe('EditProductDialogComponent', () => {
   let component: EditProductDialogComponent;
@@ -11,7 +11,7 @@ describe('EditProductDialogComponent', () => {
       declarations: [EditProductDialogComponent]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(EditProductDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

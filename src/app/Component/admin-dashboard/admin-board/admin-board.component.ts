@@ -48,4 +48,5 @@ export class AdminBoardComponent implements OnInit {
       // console.log(res);
     });
   }
+
 }

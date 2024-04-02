@@ -1,0 +1,88 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="mb-4">
+          <h2>Edit Product</h2>
+        </div>
+        <div class="col-md-6">
+          <form class="row g-3 border rounded p-4 shadow-sm" [formGroup]="editProductForm" (ngSubmit)="confirmEditProduct()" enctype="multipart/form-data">
+            <div class="col-12">
+            <div class="text-center mb-3">
+              <img [src]="product.image" class="rounded-circle img-thumbnail" alt="Product Image" style="width: 150px; height: 150px;">
+              <input type="file" class="form-control" id="image" name="image" (change)="onFileSelected($event)" accept="image/*">
+              <div class="form-text" *ngIf="editProductForm.get('image')?.invalid && (editProductForm.get('image')?.touched || editProductForm.get('image')?.dirty)">
+                Please provide a valid image (.jpg, .jpeg, .png, .gif)
+              </div>
+            </div>
+            </div>
+              <div class="col-12">
+                <label for="title" class="form-label">Product title</label>
+              <input type="text" formControlName="title" class="form-control">
+              <div class="form-text" *ngIf="editProductForm.get('title')?.invalid && (editProductForm.get('title')?.touched)">
+                Please provide a valid title for the product
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label for="quantity" class="form-label">Quantity</label>
+              <input type="number" min="1" max="5000" formControlName="quantity" class="form-control">
+              <div class="form-text" *ngIf="editProductForm.get('quantity')?.invalid && (editProductForm.get('quantity')?.touched)">
+                Please provide a valid quantity for the product
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label for="sold" class="form-label">Sold</label>
+              <input type="number"  min="0" max="5000" formControlName="sold" class="form-control">
+              <div class="form-text" *ngIf="editProductForm.get('sold')?.invalid && (editProductForm.get('sold')?.touched)">
+                Please provide a valid sold value for the product
+              </div>
+            </div>
+            <div class="col-12">
+              <label for="price" class="form-label">Price</label>
+              <input type="number" formControlName="price" class="form-control">
+              <div class="form-text" *ngIf="editProductForm.get('price')?.invalid && (editProductForm.get('price')?.touched)">
+                Please provide a valid price for the product
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <label for="category" class="form-label">Category</label>
+              <select formControlName="category" class="form-select">
+                <option *ngFor="let cat of allCategories" [value]="cat.id">{{ cat.name }}</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label for="company" class="form-label">Company</label>
+              <input type="text" formControlName="company" class="form-control">
+              <div class="form-text" *ngIf="editProductForm.get('company')?.invalid && (editProductForm.get('company')?.touched)">
+                Please provide a valid company for the product
+              </div>
+            </div>
+            <div class="col-12">
+              <label for="Allcolors" class="form-label">Colors</label>
+              <div class="input-group">
+                <input id="colorInput" type="color" class="form-control" name="Allcolors">
+                <button class="btn btn-outline-secondary" type="button" (click)="addColor()">Add Color</button>
+              </div>
+              <div class="form-text" *ngIf="editProductForm.get('colors')?.invalid && (editProductForm.get('colors')?.touched || editProductForm.get('colors')?.dirty)">
+                Please provide valid colors for the product
+              </div>
+            </div>
+              <div class="color-circles">
+                <span *ngFor="let chosenColor of chosenColors" class="color-circle" [style.background-color]="chosenColor" (mouseenter)="showRemoveIcon(chosenColor)" (mouseleave)="hideRemoveIcon(chosenColor)">
+                  <span class="remove-icon" (click)="confirmRemoveColor(chosenColor)">X</span>
+                </span>
+              </div>
+
+            <div class="col-12">
+              <label for="description" class="form-label">Description</label>
+              <textarea formControlName="description" class="form-control" rows="4" required></textarea>
+              <div class="form-text" *ngIf="editProductForm.get('description')?.invalid && (editProductForm.get('description')?.touched)">
+                Please provide a valid description for the product
+              </div>
+            </div>
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary" [disabled]="editProductForm?.invalid">Save changes</button>
+            </div>
+          </form>
+      </div>
+    </div>
+  </div>

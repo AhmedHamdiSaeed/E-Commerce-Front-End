@@ -1,23 +1,64 @@
-<div class="product-container w-100 m-auto mt-2">
-  <button mat-raised-button color="primary" class="add-product-btn btn btn-success ms-8" (click)="addProduct()">Add New
-    Product</button>
-    <button mat-raised-button color="primary" class="add-product-btn btn btn-success ms-8" (click)="addCategory()">Add New
-      Category</button>
-  <div *ngIf="products" class="product-list row w-100 g-2 m-auto mt-2">
-    <div *ngFor="let product of products" class="product-card col-5">
-      <img [src]="getImageUrl(product.image)" alt="Product Image">
-      <h3>{{ product.title }}</h3>
-      <p>{{ product.description }}</p>
-      <p>Price: {{ product.price }}</p>
-      <div class="action-buttons">
-        <button mat-icon-button (click)="editProduct(product._id)">
-          <i class="bi bi-pencil-fill"></i> <!-- Bootstrap pencil icon -->
-        </button>
-        <button mat-icon-button (click)="deleteProduct(product._id)">
-          <i class="bi bi-trash-fill"></i> <!-- Bootstrap trash icon -->
-        </button>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <div class="panel">
+        <div class="panel-heading bg-primary text-white">
+          <div class="row">
+            <div class="col-12 col-sm-6">
+              <h4 class="title">Products <span>List</span></h4>
+            </div>
+            <div class="col-12 col-sm-6 d-flex justify-content-end align-items-center">
+              <select class="form-select" [(ngModel)]="selectedCategory" (change)="filterProductsByCategory()">
+                <option value="">All Categories</option>
+                <option *ngFor="let category of categories" [value]="category._id">{{ category.name }}</option>
+              </select>
+              <button class="btn btn-success ms-2" routerLink]="['/Admin/AddCategory']">
+                <i class="bi bi-plus"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="panel-body table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Image</th>
+                <th>Title</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Sold</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let product of displayedProducts">
+                <td>
+                  <div class="image-container">
+                    <img [src]="getImageUrl(product.image)" alt="Product Image" class="img-fluid rounded-circle">
+                  </div>
+                </td>
+                <td>{{ product.title }}</td>
+                <td>{{ product.price }}</td>
+                <td>{{ product.quantity }}</td>
+                <td>{{ product.sold }}</td>
+                <td>
+                  <div class="action-buttons">
+                    <button class="btn btn-primary" (click)="editProduct(product._id)">
+                      <i class="bi bi-pencil-fill"></i>
+                    </button>
+                    <button class="btn btn-danger" (click)="confirmRemoveProduct(product._id)">
+                      <i class="bi bi-trash-fill"></i>
+                    </button>
+                    <button class="btn btn-info" (click)="openProductDetailsDialog(product)">
+                      <i class="bi bi-info-circle-fill"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
-
 </div>

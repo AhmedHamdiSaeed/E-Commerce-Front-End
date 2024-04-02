@@ -15,8 +15,13 @@ import { AuthGuardService } from './Services/auth/auth-guard.service';
 import { UserProfileComponent } from './Component/user-profile/user-profile.component';
 import { AddProductComponent } from './Component/add-product/add-product.component';
 import { AddCategoryComponent } from './Component/add-category/add-category.component';
+import { EditProductComponent } from './Component/edit-product/edit-product.component';
+import { PaymentSuccessComponent } from './Component/payment-success/payment-success.component';
 
 const routes: Routes = [
+  {path:'paymentSuccess/:id',component:PaymentSuccessComponent, canActivate: [AuthGuardService]},
+  { path: 'Profile', component: UserProfileComponent , canActivate: [AuthGuardService]},
+
   { path: 'home', component: HomeComponent },
   { path: 'register', component: SignupComponent },
   { path: 'login', component: LoginComponent },
@@ -24,24 +29,9 @@ const routes: Routes = [
   { path: 'Add_Category', component: AddCategoryComponent },
 
   { path: 'about-us', component: AboutUsComponent },
-  {
-    path: 'Admin/products',
-    component: ProductComponent,
-    canActivate: [AuthGuardService],
-  },
   { path: 'products/:id', component: ProductDetailsComponent },
   { path: 'cart', component: CartComponent },
-  {
-    path: 'Admin',
-    component: AdminBoardComponent,
-    canActivate: [AuthGuardService],
-  },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  {
-    path: 'Admin/products',
-    component: ProductComponent,
-    canActivate: [AuthGuardService],
-  },
   { path: 'products/:id', component: ProductDetailsComponent },
   { path: 'cart', component: CartComponent },
   {
@@ -49,9 +39,22 @@ const routes: Routes = [
     component: AdminBoardComponent,
     canActivate: [AuthGuardService],
   },
+  {
+    path: 'Admin/Products',
+    component: ProductComponent,
+    canActivate: [AuthGuardService],
+  },
+  { path: 'Admin/AddProduct',
+   component: AddProductComponent,
+    canActivate: [AuthGuardService]
+   },
+   { path: 'Admin/EditProduct/:id',
+   component: EditProductComponent,
+    canActivate: [AuthGuardService]
+   },
+
 
   { path: 'Profile', component: UserProfileComponent },
-  { path: 'Add_Product', component: AddProductComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'Not-Found', component: NotFoundComponent },
   { path: 'Profile', component: UserProfileComponent },
