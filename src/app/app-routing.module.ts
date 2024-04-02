@@ -33,7 +33,7 @@ const routes: Routes = [
   { path: 'cart', component: CartComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'products/:id', component: ProductDetailsComponent },
-  { path: 'cart', component: CartComponent },
+
   {
     path: 'Admin',
     component: AdminBoardComponent,

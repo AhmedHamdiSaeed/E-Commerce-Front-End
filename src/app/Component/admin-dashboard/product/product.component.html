@@ -12,7 +12,7 @@
                 <option value="">All Categories</option>
                 <option *ngFor="let category of categories" [value]="category._id">{{ category.name }}</option>
               </select>
-              <button class="btn btn-success ms-2" routerLink]="['/Admin/AddCategory']">
+              <button class="btn btn-success ms-2" [routerLink]="['/Admin/AddCategory']">
                 <i class="bi bi-plus"></i>
               </button>
             </div>
