@@ -5,7 +5,7 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { baseURL } from '../../../../../env';
 import { ConfirmMessageComponent } from '../../../SharedComponent/confirm-message/confirm-message.component';
 import { MatDialog } from '@angular/material/dialog';
-import {ProductDetailsDialogComponent} from '../../product-details-dialog/product-details-dialog.component';
+import {ProductDetailsDialogComponent} from '../../Admin/product-details-dialog/product-details-dialog.component';
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',

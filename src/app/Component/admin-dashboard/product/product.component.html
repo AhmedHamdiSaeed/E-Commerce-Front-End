@@ -12,7 +12,7 @@
                 <option value="">All Categories</option>
                 <option *ngFor="let category of categories" [value]="category._id">{{ category.name }}</option>
               </select>
-              <button class="btn btn-success ms-2" [routerLink]="['/Admin/AddCategory']">
+              <button class="btn btn-success ms-2" [routerLink]="['/Admin/AddCategory']" title="Add New Category">
                 <i class="bi bi-plus"></i>
               </button>
             </div>
@@ -37,19 +37,19 @@
                     <img [src]="getImageUrl(product.image)" alt="Product Image" class="img-fluid rounded-circle">
                   </div>
                 </td>
-                <td>{{ product.title }}</td>
+                <td><b>{{ product.title }}</b></td>
                 <td>{{ product.price }}</td>
                 <td>{{ product.quantity }}</td>
-                <td>{{ product.sold }}</td>
+                <td><b>{{ product.sold }}</b></td>
                 <td>
                   <div class="action-buttons">
-                    <button class="btn btn-primary" (click)="editProduct(product._id)">
+                    <button class="btn btn-primary" (click)="editProduct(product._id)" title="Edit">
                       <i class="bi bi-pencil-fill"></i>
                     </button>
-                    <button class="btn btn-danger" (click)="confirmRemoveProduct(product._id)">
+                    <button class="btn btn-danger" (click)="confirmRemoveProduct(product._id)" title="Remove">
                       <i class="bi bi-trash-fill"></i>
                     </button>
-                    <button class="btn btn-info" (click)="openProductDetailsDialog(product)">
+                    <button class="btn btn-info" (click)="openProductDetailsDialog(product)" title="Details">
                       <i class="bi bi-info-circle-fill"></i>
                     </button>
                   </div>

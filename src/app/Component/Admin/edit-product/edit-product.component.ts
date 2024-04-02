@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Category } from '../../models/categoryModel';
-import { Product } from '../../models/product';
-import { AdminServices } from '../../Services/admin/admin-services.service';
+import { Category } from '../../../models/categoryModel';
+import { Product } from '../../../models/product';
+import { AdminServices } from '../../../Services/admin/admin-services.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { ConfirmMessageComponent } from '../../SharedComponent/confirm-message/confirm-message.component';
-import { ViewCat } from '../../models/viewCat';
-import { CategoryService } from '../../Services/category/category-services.service';
+import { ConfirmMessageComponent } from '../../../SharedComponent/confirm-message/confirm-message.component';
+import { ViewCat } from '../../../models/viewCat';
+import { CategoryService } from '../../../Services/category/category-services.service';
 import { NgForm } from '@angular/forms';
 
 @Component({
