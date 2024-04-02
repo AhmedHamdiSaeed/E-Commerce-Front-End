@@ -83,16 +83,7 @@ export class ProductDetailsComponent implements OnInit {
     }
   }
   
-  // addToCart(product: Product) {
-  //   if (this.quantity <= 0) {
-
-  //     return;
-  //   }
-  //   console.log("quantity: " + this.quantity);
-  //   this.alertAppear();
-  //   this.cartService.addToCart(product, this.quantity);
-  //   this.quantity = 0;
-  // }
+ 
   getImageUrl(imagePath: string) :SafeUrl {
     // return `../../../assets${imagePath}`;
     let safeurl = baseURL + imagePath ;
@@ -155,8 +146,19 @@ export class ProductDetailsComponent implements OnInit {
         console.error('Error creating new cart:', error);
       }
     );
+    this.clearCart();
     console.log(products);
     
   }
-  
+  clearCart() {
+    this.cartService.clearCart().subscribe(
+      () => {
+        this.cartService.Clear();
+      },
+      error => {
+        console.error('Failed to clear cart:', error);
+      }
+    );
+  }
+
 }
