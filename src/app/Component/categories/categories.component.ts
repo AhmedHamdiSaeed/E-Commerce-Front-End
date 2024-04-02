@@ -68,9 +68,6 @@ export class CategoriesComponent implements OnInit {
     );
   }
 
- 
-  
-  
 
   async getAllCategories(): Promise<void> {
     try {
