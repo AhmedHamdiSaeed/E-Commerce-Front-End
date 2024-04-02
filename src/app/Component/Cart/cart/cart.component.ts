@@ -7,6 +7,7 @@ import { AuthService } from '../../../Services/auth/auth.service';
 import { CategoriesComponent } from '../../categories/categories.component';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { baseURL } from '../../../../../env';
+import { CheckoutService } from '../../../Services/checkout/checkout.service';
 
 @Component({
   selector: 'app-cart',
@@ -19,8 +20,10 @@ export class CartComponent {
   error: string = "";
   quantity: number = 1;
   success:boolean = false;
-  
-  constructor(private router: Router ,private sanitizer: DomSanitizer,private cartService: CartService ,private auth: AuthService) { }
+  newCart:any;
+  isLoading:boolean=false;
+  checkoutSession:any={}
+  constructor(private router: Router ,private sanitizer: DomSanitizer,private cartService: CartService ,private auth: AuthService,private checkoutservice:CheckoutService) { }
   
 
   setItem(){
@@ -52,7 +55,6 @@ Clear(){
   this.setItem();
   this.getTotalPrice();
   this.cartService.updateCartLengthFromLocalStorage();
-  
 }
 getTotalPrice(): number {
   return this.cartProducts.reduce((total, item) => total + (item.quantity * item.product.price), 0);
@@ -71,6 +73,7 @@ decreaseQuantity(item: any): void {
   }
 }
 orderNow(){
+  this.isLoading=true;
   if (!this.auth.isAuthenticated()) {
     this.router.navigate(['/login']);
     return;
@@ -79,18 +82,23 @@ orderNow(){
   let products= this.cartProducts.map(item=>{
     return{productId: item.product._id, quantity: item.quantity}
   })
-
   this.cartService.createNewCart(products).subscribe(
     res => {
       this.success = true;
-      
+      this.newCart=res;
+      console.log("cart before order:",this.newCart.data._id)
+        this.checkoutservice.checkout(this.newCart.data._id).subscribe(
+          (res)=>{
+            this.checkoutSession=res;
+            window.location.href=this.checkoutSession.session.url;
+          },
+          (err)=>{console.log(" Error creating checkout: ",err)}
+        )
     },
     error => {
       console.error('Error creating new cart:', error);
     }
   );
-  this.Clear();
-  console.log(products);
   
 }
 

@@ -46,6 +46,7 @@ import { FooterComponent } from './Component/footer/footer.component';
 import { ConfirmMessageComponent } from './SharedComponent/confirm-message/confirm-message.component';
 import { AddCategoryComponent } from './Component/add-category/add-category.component';
 import { ContactUsComponent } from './Component/contact-us/contact-us.component';
+import { PaymentSuccessComponent } from './Component/payment-success/payment-success.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +72,7 @@ import { ContactUsComponent } from './Component/contact-us/contact-us.component'
     SearchComponent,
     AddProductComponent,
     FooterComponent,
+    PaymentSuccessComponent,
   ],
   imports: [
     CarouselModule.forRoot(),
