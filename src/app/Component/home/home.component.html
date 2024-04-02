@@ -63,7 +63,7 @@
     </section>
 
     <section class="container-fluid category">
-      <h2 class="text-center mb-4">Shop Popular Categories</h2>
+      <h2 class="text-center mb-4">{{'review.category-title'|translate}}</h2>
       <div class="row justify-content-center">
 
         <ng-container *ngFor="let category of allCategories">
@@ -81,13 +81,13 @@
     </section>
 
     <section class="container-fluid customer-reviews">
-      <h2>Customer Reviews</h2>
+      <h2>{{'review.review-title'|translate}}</h2>
       <carousel>
         <slide>
           <div class="review">
             <img src="../../../assets/project images/person1.png">
-            <p class="quote">"This product is amazing! I love it."</p>
-            <p class="reviewer">- Doe</p>
+            <p class="quote">{{'review.review1-msg'|translate}}</p>
+            <p class="reviewer">{{'review.review1'|translate}}</p>
             <div class="rating">
               <span class="star">&#9733;</span>
               <span class="star">&#9733;</span>
@@ -100,8 +100,8 @@
         <slide>
           <div class="review">
             <img src="../../../assets/project images/person2.png">
-            <p class="quote">"This product is amazing! I love it."</p>
-            <p class="reviewer">- John Doe</p>
+            <p class="quote">{{'review.review2-msg'|translate}}</p>
+            <p class="reviewer">{{'review.review2'|translate}}</p>
             <div class="rating">
               <span class="star">&#9733;</span>
               <span class="star">&#9733;</span>
