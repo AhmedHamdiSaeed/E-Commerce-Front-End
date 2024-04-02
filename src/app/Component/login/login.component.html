@@ -1,5 +1,5 @@
 
-<div class="container-sm">
+<div class="container-sm" [dir]="'dir' | translate">
 <div class="row justify-content-center align-items-center" style="height: 70vh;">
   <div class="col-6">
 
@@ -12,20 +12,20 @@
 </div>
   <form (ngSubmit)="onSubmit(form)" #form="ngForm" *ngIf="!isLoading" >
     <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label">Email address</label>
+      <label for="exampleInputEmail1" class="form-label">{{'login.Email address'|translate}}</label>
       <input type="email" class="form-control" id="exampleInputEmail1" name="email" required email ngModel #email="ngModel" >
-      <div id="emailHelp" class="form-text" *ngIf="!email.valid && email.touched">please enter a valid email.</div>
+      <div id="emailHelp" class="form-text" *ngIf="!email.valid && email.touched">{{'login.email-message'|translate}}</div>
     </div>
     <div class="mb-3">
-      <label for="exampleInputPassword1" class="form-label">Password</label>
+      <label for="exampleInputPassword1" class="form-label">{{'login.Password'|translate}}</label>
       <input type="password" class="form-control" id="exampleInputPassword1"  name="password" #password="ngModel" ngModel required>
-      <p class="form-text" *ngIf="!password.valid && password.touched"> please enter a valid password</p>
+      <p class="form-text" *ngIf="!password.valid && password.touched"> {{'login.pass-message'|translate}}</p>
     </div>
 
-    <button type="submit" class="btn btn-primary " [disabled]="!form.valid">Submit</button>
+    <button type="submit" class="btn btn-primary " [disabled]="!form.valid">{{'login.Submit'|translate}}</button>
   </form>
 
-  <a  routerLink="/register">don't  have an account</a>
+  <a  routerLink="/register">{{'login.btn-message'|translate}}</a>
   </div>
 </div>
 </div>

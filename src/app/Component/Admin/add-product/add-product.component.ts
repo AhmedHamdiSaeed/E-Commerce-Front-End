@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Category } from '../../models/categoryModel';
-import { CategoryService } from '../../Services/category/category-services.service';
-import { ViewCat } from '../../models/viewCat';
-import { ProductService } from '../../Services/product/product.service';
+import { Category } from '../../../models/categoryModel';
+import { CategoryService } from '../../../Services/category/category-services.service';
+import { ViewCat } from '../../../models/viewCat';
+import { ProductService } from '../../../Services/product/product.service';
 import { MatDialog } from '@angular/material/dialog';
-import { ConfirmMessageComponent } from '../../SharedComponent/confirm-message/confirm-message.component';
+import { ConfirmMessageComponent } from '../../../SharedComponent/confirm-message/confirm-message.component';
 import { Router } from '@angular/router';
 
 @Component({

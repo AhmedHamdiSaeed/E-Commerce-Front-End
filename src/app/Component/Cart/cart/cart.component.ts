@@ -103,14 +103,14 @@ orderNow(){
     res => {
       this.success = true;
       this.newCart=res;
-      console.log("cart before order:",this.newCart.data._id)
-        this.checkoutservice.checkout(this.newCart.data._id).subscribe(
-          (res)=>{
-            this.checkoutSession=res;
-            window.location.href=this.checkoutSession.session.url;
-          },
-          (err)=>{console.log(" Error creating checkout: ",err)}
-        )
+      console.log("cart before order:",this.newCart)
+        // this.checkoutservice.checkout(this.newCart.data._id).subscribe(
+        //   (res)=>{
+        //     this.checkoutSession=res;
+        //     window.location.href=this.checkoutSession.session.url;
+        //   },
+        //   (err)=>{console.log(" Error creating checkout: ",err)}
+        // )
     },
     error => {
       console.error('Error creating new cart:', error);

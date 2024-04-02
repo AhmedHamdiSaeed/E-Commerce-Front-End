@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CategoryService } from '../../Services/category/category-services.service';
+import { CategoryService } from '../../../Services/category/category-services.service';
 import { NgForm } from '@angular/forms';
 @Component({
   selector: 'app-add-category',
