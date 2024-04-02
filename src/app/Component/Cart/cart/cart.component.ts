@@ -8,6 +8,7 @@ import { CategoriesComponent } from '../../categories/categories.component';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { baseURL } from '../../../../../env';
 import { CheckoutService } from '../../../Services/checkout/checkout.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-cart',
@@ -24,16 +25,31 @@ export class CartComponent {
   isLoading:boolean=false;
   checkoutSession:any={}
   constructor(private router: Router ,private sanitizer: DomSanitizer,private cartService: CartService ,private auth: AuthService,private checkoutservice:CheckoutService) { }
+
+  constructor(private router: Router ,private sanitizer: DomSanitizer,
+    private cartService: CartService ,private auth: AuthService,private translate: TranslateService) { }
   
 
   setItem(){
     localStorage.setItem("cart", JSON.stringify(this.cartProducts));
   }
- 
-
   ngOnInit(): void {
-  this.getCartProduct();
-  }
+    this.getCartProduct();
+    }
+  clearCart() {
+      this.cartService.clearCart().subscribe(
+        () => {
+          this.cartService.Clear();
+          this.getCartProduct();
+        },
+        error => {
+          console.error('Failed to clear cart:', error);
+        }
+      );
+    }
+  
+
+ 
  
   getCartProduct(){
     if("cart" in localStorage){
@@ -56,6 +72,8 @@ Clear(){
   this.getTotalPrice();
   this.cartService.updateCartLengthFromLocalStorage();
 }
+
+
 getTotalPrice(): number {
   return this.cartProducts.reduce((total, item) => total + (item.quantity * item.product.price), 0);
 }
@@ -99,6 +117,8 @@ orderNow(){
       console.error('Error creating new cart:', error);
     }
   );
+
+
   
 }
 

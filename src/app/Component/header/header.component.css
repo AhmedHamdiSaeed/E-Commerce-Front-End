@@ -83,3 +83,12 @@
 .navImage{
   height: 4rem;
 }
+.lang{
+  margin-left: 10px;
+  cursor: pointer; 
+}
+
+.lang:hover {
+ 
+  color: red;
+}

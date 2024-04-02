@@ -24,7 +24,8 @@ export class ProductDetailsComponent implements OnInit {
   categoryName: string = "";
   successMessage: string ="";
   quantity: number = 0;
-
+  success:boolean = false;
+  cartProducts: any[] = [];
 
 
   constructor(
@@ -81,22 +82,8 @@ export class ProductDetailsComponent implements OnInit {
       this.error = err.error.message;
     }
   }
-  alertAppear(){
-    this.successMessage='Product added to cart!';
-    setTimeout(() => {
-      this.successMessage = '';
-    }, 3000);
-  }
-  addToCart(product: Product) {
-    if (this.quantity <= 0) {
-
-      return;
-    }
-    console.log("quantity: " + this.quantity);
-    this.alertAppear();
-    this.cartService.addToCart(product, this.quantity);
-    this.quantity = 0;
-  }
+  
+ 
   getImageUrl(imagePath: string) :SafeUrl {
     // return `../../../assets${imagePath}`;
     let safeurl = baseURL + imagePath ;
@@ -106,22 +93,72 @@ export class ProductDetailsComponent implements OnInit {
     return  this.sanititzer.bypassSecurityTrustUrl(safeurl) ;
 
   }
-  increaseQuantity(product: Product) {
-    const maxQuantity = product.quantity;
-    // const totalQuantityInCart = this.cartService.getTotalQuantityInCart(product);
-    // const remainingQuantity = maxQuantity - totalQuantityInCart;
-    if (this.quantity <= maxQuantity) {
-      this.quantity++;
+  // increaseQuantity(product: Product) {
+  //   const maxQuantity = product.quantity;
+  //   if (this.quantity <= maxQuantity) {
+  //     this.quantity++;
+  //   }
+  // }
+
+
+  // decreaseQuantity(product: Product) {
+  //   if (this.quantity > 1) {
+  //     this.quantity--;
+  //   }
+  // }
+
+   //add to cart 
+   addToCart(product: Product) {
+    const availableQuantity = product.quantity; // Get the available quantity of the product
+    const currentQuantityInCart = this.getHoveredProductQuantity(product); // Get the current quantity of the product in the cart
+    const quantityToAdd = Math.min(1, availableQuantity - currentQuantityInCart);
+  
+    if (quantityToAdd > 0) {
+      this.cartService.addToCart(product, quantityToAdd);
     }
   }
-
-
-  decreaseQuantity(product: Product) {
-    if (this.quantity > 1) {
-      this.quantity--;
-    }
+  
+ 
+  removeFromCart(product: Product) {
+    this.cartService.removeFromCart(product); // Remove the product from the cart
   }
-
-
+  
+ getHoveredProductQuantity(product: Product): number {
+    return this.cartService.getTotalQuantityInCart(product); // Convert
+  }
+  orderNow(){
+    if (!this.auth.isAuthenticated()) {
+      this.router.navigate(['/login']);
+      return;
+    }
+    const quantity = this.getHoveredProductQuantity(this.product);
+    const products = [{
+      productId: this.product._id,
+      quantity: quantity
+    }];
+  
+    this.cartService.createNewCart(products).subscribe(
+      res => {
+        console.log(' creating new cart:', res);
+        
+      },
+      error => {
+        console.error('Error creating new cart:', error);
+      }
+    );
+    this.clearCart();
+    console.log(products);
+    
+  }
+  clearCart() {
+    this.cartService.clearCart().subscribe(
+      () => {
+        this.cartService.Clear();
+      },
+      error => {
+        console.error('Failed to clear cart:', error);
+      }
+    );
+  }
 
 }

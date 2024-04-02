@@ -1,0 +1,142 @@
+{
+    "dir":"ltr",
+    "users":{
+
+    },
+    "cart":{
+     "card-title":"Shpe Cart",
+     "card-price":"Total Price :",
+     "clear":"Clear Cart",
+     "remove-btn":"Remove"
+    
+    },
+    "general":{
+
+    },
+    "Contact":{
+        "Contact":"Contact Us"
+    },
+        "product": [
+          {
+            "_id": "65da0fd4bc3d4fd87bfbe638",
+            "title": "Apple 2023 MacBook Pro",
+            "description": "The iPhone was the first mobile radwa phone to use multi-touch technology.",
+            "category_id": "65d9348eae387c63a42ffc9a"
+          },
+          {
+            "_id": "65f0de96f6d9ac431f3bc4ce",
+            "title": "Apple 2023 MacBook Pro",
+            "description": "The iPhone was the first mobile phone to use multi-touch technology.",
+            "category_id": "65d9340bae387c63a42ffc96"
+          },
+          {
+            "_id": "65f0deb3f6d9ac431f3bc4cf",
+            "title": "Laptop Hp",
+            "description": "The Laptop was the first mobile radwa phone to use multi-touch technology.",
+            "category_id": "65d9340bae387c63a42ffc96"
+          },
+          {
+            "_id": "66034246f5057c627fb39246",
+            "title": "Dell XPS 13",
+            "description": "The Dell XPS 13 is a premium laptop with a sleek design and powerful performance.",
+            "category_id": "65d9348eae387c63a42ffc9a"
+          },
+          {
+            "_id": "66034299f5057c627fb39247",
+            "title": "HP Pavilion",
+            "description": "The HP Pavilion is a versatile laptop suitable for everyday use.",
+            "category_id": "65d9348eae387c63a42ffc9a"
+          },
+          {
+            "_id": "66047f1cffac53557cf1821b",
+            "title": "Laptop 1",
+            "description": "High-performance laptop with advanced features.",
+            "category_id": "65d9348eae387c63a42ffc9a"
+          },
+          {
+            "_id": "66047f1cffac53557cf18222",
+            "title": "Tablet 2",
+            "description": "High-performance tablet with a stunning display.",
+            "category_id": "6603efb64075054035e85718"
+          },
+          {
+            "_id": "66047f1cffac53557cf18223",
+            "title": "Smartwatch 1",
+            "description": "Stylish smartwatch with fitness tracking features.",
+            "category_id": "6603e621835b7db92d6e1d39"
+          },
+          {
+            "_id": "66047f1cffac53557cf18224",
+            "title": "Smartwatch 2",
+            "description": "Premium smartwatch with a customizable interface.",
+            "category_id": "6603e621835b7db92d6e1d39"
+          },
+          {
+            "_id": "66047f1cffac53557cf18225",
+            "title": "Laptop 3",
+            "description": "Affordable laptop with decent performance.",
+            "category_id": "65d9348eae387c63a42ffc9a"
+          },
+          {
+            "_id": "66047f1cffac53557cf18221",
+            "title": "Tablet 1",
+            "description": "Versatile tablet for work and entertainment.",
+            "category_id": "6603efb64075054035e85718"
+          },
+          {
+            "_id": "66047f1cffac53557cf1822b",
+            "title": "Tablet 3",
+            "description": "Lightweight tablet ideal for casual use.",
+            "category_id": "6603efb64075054035e85718"
+          },
+          {
+            "_id": "66047f1cffac53557cf1821c",
+            "title": "Laptop 2",
+            "description": "Sleek and stylish laptop for professionals.",
+            "category_id": "65d9348eae387c63a42ffc9a"
+          },
+          {
+            "_id": "66047f1cffac53557cf1822d",
+            "title": "Smartwatch 3",
+            "description": "Fitness-oriented smartwatch with heart rate monitoring.",
+            "category_id": "6603e621835b7db92d6e1d39"
+          },
+          {
+            "_id": "66047f1cffac53557cf1822e",
+            "title": "Smartwatch 4",
+            "description": "Advanced smartwatch with built-in GPS and water resistance.",
+            "category_id": "6603e621835b7db92d6e1d39"
+          },
+          {
+            "_id": "66047f1cffac53557cf18226",
+            "title": "Laptop 4",
+            "description": "Gaming laptop with powerful specifications.",
+            "category_id": "65d9348eae387c63a42ffc9a"
+          },
+          {
+            "_id": "66047f1cffac53557cf1822c",
+            "title": "Tablet 4",
+            "description": "Convertible tablet with a detachable keyboard for productivity.",
+            "category_id": "6603efb64075054035e85718"
+          },
+          {
+            "_id": "66048855dd1ac72e0fb4b116",
+            "title": "Laptop 1",
+            "description": "High-performance laptop with advanced features.",
+            "category_id": "65d9348eae387c63a42ffc9a"
+          },
+          {
+            "_id": "66048855dd1ac72e0fb4b11d",
+            "title": "Tablet 2",
+            "description": "High-performance tablet with a stunning display.",
+            "category_id": "6603efb64075054035e85718"
+          },
+          {
+            "_id": "66048855dd1ac72e0fb4b11e",
+            "title": "Smartwatch 1",
+            "description": "Stylish smartwatch with fitness tracking features.",
+            "category_id": "6603e621835b7db92d6e1d39"
+          }
+        ]
+      
+}

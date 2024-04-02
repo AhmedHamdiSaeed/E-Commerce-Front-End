@@ -40,7 +40,7 @@ const routes: Routes = [
     canActivate: [AuthGuardService],
   },
   {
-    path: 'Admin/products',
+    path: 'Admin/Products',
     component: ProductComponent,
     canActivate: [AuthGuardService],
   },
@@ -52,6 +52,9 @@ const routes: Routes = [
    component: EditProductComponent,
     canActivate: [AuthGuardService]
    },
+
+
+  { path: 'Profile', component: UserProfileComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'Not-Found', component: NotFoundComponent },
   { path: 'Profile', component: UserProfileComponent },

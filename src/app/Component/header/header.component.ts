@@ -5,6 +5,7 @@ import { User } from '../../models/user';
 import { CartService } from '../../Services/Cart/cart.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { CartComponent } from '../Cart/cart/cart.component';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-header',
@@ -16,8 +17,23 @@ export class HeaderComponent implements OnInit, OnDestroy {
   isAuthed: boolean = false ;
   userSub !: Subscription ;
   user !: User | null ;
-  constructor(private auth: AuthService ,private cartService: CartService ){}
+  lang:any = 'en';
+  constructor(private auth: AuthService ,private cartService: CartService ,private translate: TranslateService){
+   console.log(this.lang= this.translate.currentLang)
+    this.lang= this.translate.currentLang;
 
+  }
+  ///change language 
+  changeLanguage(){
+    if(this.lang=="en"){
+      localStorage .setItem("lang" , "ar")
+    
+      }else{
+        localStorage .setItem("lang" , "en")
+      }
+      window.location.reload();
+  }
+ 
   ngOnInit(): void {
    this.userSub =  this.auth.userSubject.subscribe((user)=>{
       this.isAuthed = !!user ;
@@ -31,8 +47,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       console.log(length)
     });
   }
-  
- 
+
   ngOnDestroy(): void {
     this.userSub.unsubscribe() ;
   }

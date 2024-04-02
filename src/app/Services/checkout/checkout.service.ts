@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { baseURL } from '../../../../env';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -16,4 +17,11 @@ export class CheckoutService {
   {
     return this.httpclient.get(`${baseURL}/payment/checkout/${cartID}`)
   }
+
+  constructor(private http: HttpClient ) { }
+
+checkout(cartID:string)
+{
+  return this.http.get(`${baseURL}/payment/checkout/${cartID}`)
+}
 }

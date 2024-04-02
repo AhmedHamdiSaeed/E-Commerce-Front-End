@@ -6,7 +6,7 @@ import {
   provideClientHydration,
 } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -47,6 +47,9 @@ import { ConfirmMessageComponent } from './SharedComponent/confirm-message/confi
 import { AddCategoryComponent } from './Component/add-category/add-category.component';
 import { ContactUsComponent } from './Component/contact-us/contact-us.component';
 import { PaymentSuccessComponent } from './Component/payment-success/payment-success.component';
+// import ngx-translate and the http loader
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
 @NgModule({
   declarations: [
@@ -93,7 +96,17 @@ import { PaymentSuccessComponent } from './Component/payment-success/payment-suc
     NgxPaginationModule,
     HttpClientModule,
     CommonModule,
-    FormsModule
+    FormsModule,
+    // ngx-translate and the loader module
+    HttpClientModule,
+    TranslateModule.forRoot({
+     defaultLanguage: 'en',
+        loader: {
+            provide: TranslateLoader,
+            useFactory: HttpLoaderFactory,
+            deps: [HttpClient]
+        }
+    })
   ],
   providers: [
     {
@@ -112,3 +125,7 @@ import { PaymentSuccessComponent } from './Component/payment-success/payment-suc
   ],
 })
 export class AppModule {}
+// required for AOT compilation
+export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
+  return new TranslateHttpLoader(http);
+}

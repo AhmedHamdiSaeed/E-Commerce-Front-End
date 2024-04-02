@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ConfirmMessageComponent } from '../../SharedComponent/confirm-message/confirm-message.component';
 import { ViewCat } from '../../models/viewCat';
 import { CategoryService } from '../../Services/category/category-services.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-product',
@@ -15,13 +16,14 @@ import { CategoryService } from '../../Services/category/category-services.servi
   styleUrls: ['./edit-product.component.css']
 })
 export class EditProductComponent implements OnInit {
-  editProductForm!: FormGroup;
   selectedImage!: File;
-  color: string = '#008000';
-  colors: string[] = [];
+  color: string = '';
+  Allcolors: string[] = [];
   chosenColors: string[] = [];
   allCategories: ViewCat[] = [];
   productId: string = '';
+  product!:Product;
+  editProductForm: FormGroup;
 
   constructor(
     private fb: FormBuilder,
@@ -30,9 +32,7 @@ export class EditProductComponent implements OnInit {
     private router: Router,
     public dialog: MatDialog,
     private getCategories: CategoryService
-  ) {}
-
-  ngOnInit(): void {
+  ) {
     this.editProductForm = this.fb.group({
       title: ['', Validators.required],
       description: ['', Validators.required],
@@ -44,7 +44,9 @@ export class EditProductComponent implements OnInit {
       company: ['', Validators.required],
       sold: ['', Validators.required]
     });
+  }
 
+  ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.productId = params['id'];
       this.getProductById(this.productId);
@@ -54,12 +56,29 @@ export class EditProductComponent implements OnInit {
   }
 
   getProductById(id: string): void {
-    this.productService.getProductById(id).subscribe(product => {
-      this.editProductForm.patchValue(product);
-      // this.chosenColors = product.colors || [];
-    });
-  }
+    this.productService.getProductById(id).subscribe(
+      (product: Product) => {
+        this.product = product;
+        this.editProductForm.patchValue({
+          title: this.product.title,
+          description: this.product.description,
+          price: this.product.price,
+          image: this.product.image,
+          quantity: this.product.quantity,
+          colors: this.product.colors,
+          category: this.product.category,
+          company: this.product.company,
+          sold: this.product.sold
 
+        });
+        this.chosenColors = [...this.product.colors];
+        this.color = this.product.colors[this.product.colors.length - 1];
+      },
+      (error) => {
+        console.error("Error fetching product:", error);
+      }
+    );
+  }
   getAllCategories(): void {
     this.getCategories.getCategories().subscribe(
       (res: Category[]) => {
@@ -73,9 +92,23 @@ export class EditProductComponent implements OnInit {
       }
     );
   }
+  confirmEditProduct(): void {
+    const dialogRef = this.dialog.open(ConfirmMessageComponent, {
+      width: '300px',
+      data: { message: 'Are you sure you want to Edit this product?' },
+    });
 
-  onSubmit(): void {
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.EditProduct();
+        this.router.navigateByUrl('/Admin');
+      }
+    });
+  }
+
+  EditProduct(): void {
     if (this.editProductForm.valid) {
+      this.editProductForm.patchValue({ colors: this.chosenColors });
       this.productService.updateProducts(this.productId, this.editProductForm.value).subscribe(() => {
         this.router.navigateByUrl(`/product-details/${this.productId}`);
       });
@@ -87,24 +120,24 @@ export class EditProductComponent implements OnInit {
   }
 
   addColor(): void {
+    const colorInput = document.getElementById('colorInput') as HTMLInputElement;
+    this.color = colorInput.value;
     if (!this.chosenColors.includes(this.color)) {
-      this.chosenColors.push(this.color);
-      this.colors.push(this.color);
+       this.chosenColors.push(this.color);
+       this.Allcolors.push(this.color);
     }
-    this.color = '#008000';
+    colorInput.value = '#008000';
   }
-
   removeColor(chosenColor: string): void {
     const index = this.chosenColors.indexOf(chosenColor);
     if (index !== -1) {
       this.chosenColors.splice(index, 1);
     }
-    const colorIndex = this.colors.indexOf(chosenColor);
+    const colorIndex = this.product.colors.indexOf(chosenColor);
     if (colorIndex !== -1) {
-      this.colors.splice(colorIndex, 1);
+      this.product.colors.splice(colorIndex, 1);
     }
   }
-
   confirmRemoveColor(color: string): void {
     const dialogRef = this.dialog.open(ConfirmMessageComponent, {
       width: '300px',
@@ -119,6 +152,5 @@ export class EditProductComponent implements OnInit {
   }
 
   hideRemoveIcon(chosenColor: string): void {}
-
   showRemoveIcon(chosenColor: string): void {}
 }
