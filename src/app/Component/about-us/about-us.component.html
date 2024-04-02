@@ -1,14 +1,11 @@
 <div *ngIf="isLoading">
   <app-loading-spinner></app-loading-spinner>
 </div>
-<div id="aboutUs">
+<div id="aboutUs" [dir]="'dir' | translate">
   <div class="c1 container">
-    <h2>About Us</h2>
+    <h2>{{'About.About Us'|translate}}</h2>
     <p>
-      Welcome to SHOPING, your one-stop destination for all your laptop and mobile needs. At SHOPING,
-      we are passionate about delivering top-quality technology products to our customers, ensuring they stay connected
-      and
-      productive in today's fast-paced world.
+      {{'About.About-txt'|translate}}
     </p>
   </div>
   <div class="container c2">
@@ -22,11 +19,8 @@
             </div>
             <div class="col-md-7">
               <div class="card-body p-0">
-                <h2 class="card-title h4 mb-3">Our Mission</h2>
-                <p class="card-text lead">Our mission at SHOPING is simple: to provide our customers with
-                  the best devices at competitive prices, coupled with exceptional customer service. We strive to offer
-                  a seamless online shopping experience, making it easy for you to find the perfect device that meets
-                  your needs.</p>
+                <h2 class="card-title h4 mb-3">{{'About.Our Mission'|translate}}</h2>
+                <p class="card-text lead">{{'About.Mission-txt'|translate}}</p>
               </div>
             </div>
           </div>
@@ -41,12 +35,8 @@
             </div>
             <div class="col-md-7">
               <div class="card-body p-0">
-                <h2 class="card-title h4 mb-3">Our Story</h2>
-                <p class="card-text lead">SHPOING was founded with a vision to make cutting-edge technology accessible
-                  to everyone. What started as a small venture has
-                  grown into a trusted online destination for tech enthusiasts and casual users alike. With years of
-                  experience in the
-                  industry, we continue to evolve and adapt to meet the ever-changing needs of our customers.</p>
+                <h2 class="card-title h4 mb-3">{{'About.Our Story'|translate}}</h2>
+                <p class="card-text lead">{{'About.Story-txt'|translate}}</p>
               </div>
             </div>
           </div>
@@ -56,36 +46,17 @@
   </div>
 </div>
 <div>
-  <div class="container list mb-5 w-75">
-    <h2 class=" text-center mt-5 mb-5">Why Choose Us?</h2>
+  <div class="container list mb-5 w-75" [dir]="'dir' | translate">
+    <h2 class=" text-center mt-5 mb-5">{{'About.Why Choose Us?'|translate}}</h2>
     <ol class="list-group list-group-numbered ">
-      <li class="list-group-item list-group-item-secondary p-3"><span class="text-success">Wide Selection:</span> We
-        offer a diverse range of laptops and
-        mobile phones from
-        leading
-        brands, ensuring you have plenty of
-        options to choose from.</li>
-      <li class="list-group-item list-group-item-secondary"><span class="text-success">Quality Assurance:</span> Every
-        product we sell
-        undergoes rigorous
-        quality checks
-        to ensure
-        it meets our standards of
-        excellence, giving you peace of mind with every purchase.</li>
-      <li class="list-group-item list-group-item-secondary"><span class="text-success">Customer Satisfaction:</span>
-        Your satisfaction is our
-        top
-        priority. Our
-        dedicated customer
-        support team is here to assist you
-        every step of the way, from product selection to after-sales support.</li>
-      <li class="list-group-item list-group-item-secondary"><span class="text-success">Competitive Pricing:</span> We
-        work hard to negotiate
-        the best
-        prices from our
-        suppliers,
-        allowing us to pass on savings to our
-        customers without compromising on quality.</li>
+      <li class="list-group-item list-group-item-secondary p-3"><span class="text-success">{{'About.Choose1-txt'|translate}}</span> We
+        {{'About.Choose1'|translate}}</li>
+      <li class="list-group-item list-group-item-secondary"><span class="text-success">{{'About.Choose2-txt'|translate}}</span> Every
+        {{'About.Choose2'|translate}}.</li>
+      <li class="list-group-item list-group-item-secondary"><span class="text-success">{{'About.Choose3-txt'|translate}}</span>
+        {{'About.Choose3'|translate}}.</li>
+      <li class="list-group-item list-group-item-secondary"><span class="text-success">{{'About.Choose4-txt'|translate}}</span> We
+        {{'About.Choose4'|translate}}.</li>
     </ol>
   </div>
 </div>

@@ -1,7 +1,37 @@
 {
     "dir":"ltr",
-    "users":{
+    "header":{
+        "Shoping":"Shoping",
+        "Home": "Home",
+        "About Us": "About Us",
+       " Register": "Register",
+        "Login": "Login",
+       " Products": "Products",
+       " Your Account": "Your Account",
+        "Your Order": "Your Order",
+        "Logout": "Logout"
 
+    },
+    "login":{
+        "Email address":"Email address",
+        "Password":"Password",
+        "Submit":"Submit",
+        "email-message":"please enter a valid email",
+        "pass-message":"please enter a valid password",
+        "btn-message":"don't  have an account"
+    },
+    "register":{
+        "First Name":"First Name",
+        "Last Name":"Last Name",
+        "Email address":"Email address",
+        "Password":"Password",
+        "Confirm Password":"Confirm Password",
+        "Submit":"Submit",
+        "email-message":"please enter a valid email",
+        "pass-message":"password isn't valid please enter a valid one",
+        "name-message":"enter a valid name",
+        "passConfirm-message":"Password didn't match",
+        "btn-message":"have an account ?"
     },
     "cart":{
      "card-title":"Shpe Cart",
@@ -9,134 +39,44 @@
      "clear":"Clear Cart",
      "remove-btn":"Remove"
     
+    }
+    ,
+    "About":{
+        "About Us": "About Us",
+        "About-txt": "Welcome to SHOPING, your one-stop destination for all your laptop and mobile needs. At SHOPING we are passionate about delivering top-quality technology products to our customers ensuring they stay connected and productive in today's fast-paced world.",
+        "Our Mission": "Our Mission",
+        "Mission-txt": "Our mission at SHOPING is simple: to provide our customers with the best devices at competitive prices, coupled with exceptional customer service. We strive to offer a seamless online shopping experience, making it easy for you to find the perfect device that meets your needs.",
+        "Our Story": "Our Story",
+        "Story-txt": "SHOPING was founded with a vision to make cutting-edge technology accessible to everyone. What started as a small venture has grown into a trusted online destination for tech enthusiasts and casual users alike. With years of experience in the industry, we continue to evolve and adapt to meet the ever-changing needs of our customers.",
+        "Why Choose Us?": "Why Choose Us?",
+        "Choose1": "We offer a diverse range of laptops and mobile phones from leading brands, ensuring you have plenty of options to choose from.",
+        "Choose2": "Every product we sell undergoes rigorous quality checks to ensure it meets our standards of excellence, giving you peace of mind with every purchase.",
+        "Choose3": "Your satisfaction is our top priority. Our dedicated customer support team is here to assist you every step of the way, from product selection to after-sales support.",
+        "Choose4": "We work hard to negotiate the best prices from our suppliers, allowing us to pass on savings to our customers without compromising on quality.",
+        "Choose1-txt":"Wide Selection",
+        "Choose2-txt":"Quality Assurance",
+        "Choose3-txt":"Customer Satisfaction",
+        "Choose4-txt":"Competitive Pricing"
+      
     },
     "general":{
 
     },
     "Contact":{
-        "Contact":"Contact Us"
+        "Contact":"Contact Us",
+        "email":"Email",
+        "name":"Name",
+        "message":"Message",
+        "submit":"Submit"
     },
-        "product": [
-          {
-            "_id": "65da0fd4bc3d4fd87bfbe638",
-            "title": "Apple 2023 MacBook Pro",
-            "description": "The iPhone was the first mobile radwa phone to use multi-touch technology.",
-            "category_id": "65d9348eae387c63a42ffc9a"
-          },
-          {
-            "_id": "65f0de96f6d9ac431f3bc4ce",
-            "title": "Apple 2023 MacBook Pro",
-            "description": "The iPhone was the first mobile phone to use multi-touch technology.",
-            "category_id": "65d9340bae387c63a42ffc96"
-          },
-          {
-            "_id": "65f0deb3f6d9ac431f3bc4cf",
-            "title": "Laptop Hp",
-            "description": "The Laptop was the first mobile radwa phone to use multi-touch technology.",
-            "category_id": "65d9340bae387c63a42ffc96"
-          },
-          {
-            "_id": "66034246f5057c627fb39246",
-            "title": "Dell XPS 13",
-            "description": "The Dell XPS 13 is a premium laptop with a sleek design and powerful performance.",
-            "category_id": "65d9348eae387c63a42ffc9a"
-          },
-          {
-            "_id": "66034299f5057c627fb39247",
-            "title": "HP Pavilion",
-            "description": "The HP Pavilion is a versatile laptop suitable for everyday use.",
-            "category_id": "65d9348eae387c63a42ffc9a"
-          },
-          {
-            "_id": "66047f1cffac53557cf1821b",
-            "title": "Laptop 1",
-            "description": "High-performance laptop with advanced features.",
-            "category_id": "65d9348eae387c63a42ffc9a"
-          },
-          {
-            "_id": "66047f1cffac53557cf18222",
-            "title": "Tablet 2",
-            "description": "High-performance tablet with a stunning display.",
-            "category_id": "6603efb64075054035e85718"
-          },
-          {
-            "_id": "66047f1cffac53557cf18223",
-            "title": "Smartwatch 1",
-            "description": "Stylish smartwatch with fitness tracking features.",
-            "category_id": "6603e621835b7db92d6e1d39"
-          },
-          {
-            "_id": "66047f1cffac53557cf18224",
-            "title": "Smartwatch 2",
-            "description": "Premium smartwatch with a customizable interface.",
-            "category_id": "6603e621835b7db92d6e1d39"
-          },
-          {
-            "_id": "66047f1cffac53557cf18225",
-            "title": "Laptop 3",
-            "description": "Affordable laptop with decent performance.",
-            "category_id": "65d9348eae387c63a42ffc9a"
-          },
-          {
-            "_id": "66047f1cffac53557cf18221",
-            "title": "Tablet 1",
-            "description": "Versatile tablet for work and entertainment.",
-            "category_id": "6603efb64075054035e85718"
-          },
-          {
-            "_id": "66047f1cffac53557cf1822b",
-            "title": "Tablet 3",
-            "description": "Lightweight tablet ideal for casual use.",
-            "category_id": "6603efb64075054035e85718"
-          },
-          {
-            "_id": "66047f1cffac53557cf1821c",
-            "title": "Laptop 2",
-            "description": "Sleek and stylish laptop for professionals.",
-            "category_id": "65d9348eae387c63a42ffc9a"
-          },
-          {
-            "_id": "66047f1cffac53557cf1822d",
-            "title": "Smartwatch 3",
-            "description": "Fitness-oriented smartwatch with heart rate monitoring.",
-            "category_id": "6603e621835b7db92d6e1d39"
-          },
-          {
-            "_id": "66047f1cffac53557cf1822e",
-            "title": "Smartwatch 4",
-            "description": "Advanced smartwatch with built-in GPS and water resistance.",
-            "category_id": "6603e621835b7db92d6e1d39"
-          },
-          {
-            "_id": "66047f1cffac53557cf18226",
-            "title": "Laptop 4",
-            "description": "Gaming laptop with powerful specifications.",
-            "category_id": "65d9348eae387c63a42ffc9a"
-          },
-          {
-            "_id": "66047f1cffac53557cf1822c",
-            "title": "Tablet 4",
-            "description": "Convertible tablet with a detachable keyboard for productivity.",
-            "category_id": "6603efb64075054035e85718"
-          },
-          {
-            "_id": "66048855dd1ac72e0fb4b116",
-            "title": "Laptop 1",
-            "description": "High-performance laptop with advanced features.",
-            "category_id": "65d9348eae387c63a42ffc9a"
-          },
-          {
-            "_id": "66048855dd1ac72e0fb4b11d",
-            "title": "Tablet 2",
-            "description": "High-performance tablet with a stunning display.",
-            "category_id": "6603efb64075054035e85718"
-          },
-          {
-            "_id": "66048855dd1ac72e0fb4b11e",
-            "title": "Smartwatch 1",
-            "description": "Stylish smartwatch with fitness tracking features.",
-            "category_id": "6603e621835b7db92d6e1d39"
-          }
-        ]
+    "category":{
+        "price":"Price (Low to High)",
+        "price-desc":"Price (High to Low)",
+        "category":"Category (A to Z)",
+        "sort":"Sort By" ,
+        "Search":"Search",
+        "Products":"Products" ,
+        "All Categories":"All Categories"
+    }
       
 }

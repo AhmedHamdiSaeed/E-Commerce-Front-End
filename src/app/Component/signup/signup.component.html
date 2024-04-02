@@ -1,4 +1,4 @@
-<div class="container-sm">
+<div class="container-sm"[dir]="'dir' | translate">
 
   <div class="row justify-content-center align-items-center" style="height: 80vh;">
 
@@ -12,50 +12,49 @@
       </div>
       <form [formGroup]="registerForm" (ngSubmit)="onRegister()" *ngIf="!isLoading" class="m-auto">
         <div class="mb-3">
-          <label for="exampleInputFname" class="form-label">First Name</label>
+          <label for="exampleInputFname" class="form-label">{{'register.First Name'|translate}}</label>
           <input type="text" class="form-control" id="exampleInputFname" aria-describedby="FnamelHelp"
             formControlName="UserFname">
           <div id="FnamelHelp" class="form-text"
-            *ngIf="!registerForm.get('UserFname')?.valid  && registerForm.get('UserFname')?.touched">enter a valid email
+            *ngIf="!registerForm.get('UserFname')?.valid  && registerForm.get('UserFname')?.touched">{{'register.name-message'|translate}}
           </div>
         </div>
         <div class="mb-3">
-          <label for="exampleInputLname1" class="form-label">Last Name</label>
+          <label for="exampleInputLname1" class="form-label">{{'register.Last Name'|translate}}</label>
           <input type="text" class="form-control" id="exampleInputLname1" aria-describedby="lnamelHelp"
             formControlName="UserLname">
           <div id="lnamelHelp" class="form-text"
-            *ngIf="!registerForm.get('UserLname')?.valid  && registerForm.get('UserLname')?.touched">enter a valid name
+            *ngIf="!registerForm.get('UserLname')?.valid  && registerForm.get('UserLname')?.touched">{{'register.name-message'|translate}}
           </div>
         </div>
         <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">Email address</label>
+          <label for="exampleInputEmail1" class="form-label">{{'register.Email address'|translate}}</label>
           <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
             formControlName="email">
           <div id="emailHelp" class="form-text"
-            *ngIf="!registerForm.get('email')?.valid  && registerForm.get('email')?.touched">please enter a valid email
+            *ngIf="!registerForm.get('email')?.valid  && registerForm.get('email')?.touched">{{'register.email-message'|translate}}
           </div>
         </div>
         <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <label for="exampleInputPassword1" class="form-label">{{'register.Password'|translate}}</label>
           <input type="password" class="form-control" id="exampleInputPassword1" formControlName="password">
           <div id="passwordHelp" class="form-text"
-            *ngIf="!registerForm.get('password')?.valid  && registerForm.get('password')?.touched">password isn't valid
-            please enter a valid one</div>
+            *ngIf="!registerForm.get('password')?.valid  && registerForm.get('password')?.touched">{{'register.pass-message'|translate}}</div>
 
         </div>
         <div class="mb-3">
-          <label for="exampleInputConfirmPassword" class="form-label">Confirm Password</label>
+          <label for="exampleInputConfirmPassword" class="form-label">{{'register.Confirm Password'|translate}}</label>
           <input type="password" class="form-control" id="exampleInputConfirmPassword"
             formControlName="confirmPassword">
           <div id="confirmPasswordHelp" class="form-text"
-            *ngIf="registerForm.hasError('nomatch') && registerForm.get('confirmPassword')?.touched">Password didn't
-            match </div>
+            *ngIf="registerForm.hasError('nomatch') && registerForm.get('confirmPassword')?.touched">
+             {{'register.passConfirm-message'|translate}}</div>
 
         </div>
 
-        <button type="submit" class="btn btn-primary" [disabled]="!registerForm.valid">Submit</button>
+        <button type="submit" class="btn btn-primary" [disabled]="!registerForm.valid">{{'register.Submit'|translate}}</button>
       </form>
-    <a routerLink="/login">have an account ? </a>
+    <a routerLink="/login">{{'register.btn-message'|translate}}</a>
 
     </div>
   </div>
