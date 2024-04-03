@@ -23,7 +23,7 @@ export class AdminUsersComponent implements OnInit {
               private adminService: AdminServices,
               private confirmdialog: MatDialog
     ){
-    
+
   }
 
   ngOnInit(): void {
@@ -31,44 +31,42 @@ export class AdminUsersComponent implements OnInit {
       this.users = res;
       this.isloading = false ;
       // console.log(this.users);
-    });  // 1- todo handle error if req failde to get users data 
-        // 2- conect the user with the link of the profile  
+    });  // 1- todo handle error if req failde to get users data
+        // 2- conect the user with the link of the profile
      }
-  
+
   OpenDialog( Id: string ){
 
     const msgDialog =  this.confirmdialog.open(ConfirmMessageComponent , {
-       width:'40%',
-       height: '35%',
-       data: {message: this.message, title: "Delete User"},
+       data: {message: this.message, title: "Are you sure remove this user?"},
        panelClass: 'custom-dialog' // Apply custom CSS class
- 
- 
+
+
      })
- 
+
      msgDialog.afterClosed().subscribe((result=>{
        // console.log('dialog closed' , result);
        if(result) {
          console.log('confirm');
          this.message = "this user will be deleted " ;
          this.deleteUser(Id) ;
-       
-      
+
+
        }
        else {
         console.log("cansle");
-         
-       }      
-       
+
+       }
+
      }))
    }
- 
+
 
 
   getImgUrl(path: string): SafeUrl {
     let imagePath = baseURL+ '/'+ path ;
     console.log(imagePath);
-    
+
      return this.sanitizer.bypassSecurityTrustUrl(imagePath)
     }
 
@@ -77,13 +75,13 @@ export class AdminUsersComponent implements OnInit {
       .subscribe((res)=>{
         console.log(res);
         this.users = this.users.filter((user) => user._id !== userId);
-        
+
       }, error =>{
         console.log(error);
-        
+
       })
-      // todo handle the error 
+      // todo handle the error
       // console.log(user._id);
-      
+
     }
 }
