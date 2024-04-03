@@ -1,6 +1,6 @@
-<div class="container-sm md-4 "[dir]="'dir' | translate">
+<div class="container  w-100 m-auto" [dir]="'dir' | translate">
 
-  <div class="row justify-content-center align-items-center" style="height: 80vh;">
+  <div class="row justify-content-center align-items-center">
 
     <div class="col">
       <div class="alert alert-danger" *ngIf="error.length  > 0">
@@ -10,13 +10,14 @@
       <div *ngIf="isLoading" class="loading-spinner">
         <app-loading-spinner></app-loading-spinner>
       </div>
-      <form [formGroup]="registerForm" (ngSubmit)="onRegister()" *ngIf="!isLoading" class="m-auto">
+      <form [formGroup]="registerForm" (ngSubmit)="onRegister()" *ngIf="!isLoading" class="col-sm-12 col-md-4 w-100">
         <div class="mb-3">
           <label for="exampleInputFname" class="form-label">{{'register.First Name'|translate}}</label>
           <input type="text" class="form-control" id="exampleInputFname" aria-describedby="FnamelHelp"
             formControlName="UserFname">
           <div id="FnamelHelp" class="form-text"
-            *ngIf="!registerForm.get('UserFname')?.valid  && registerForm.get('UserFname')?.touched">{{'register.name-message'|translate}}
+            *ngIf="!registerForm.get('UserFname')?.valid  && registerForm.get('UserFname')?.touched">
+            {{'register.name-message'|translate}}
           </div>
         </div>
         <div class="mb-3">
@@ -24,7 +25,8 @@
           <input type="text" class="form-control" id="exampleInputLname1" aria-describedby="lnamelHelp"
             formControlName="UserLname">
           <div id="lnamelHelp" class="form-text"
-            *ngIf="!registerForm.get('UserLname')?.valid  && registerForm.get('UserLname')?.touched">{{'register.name-message'|translate}}
+            *ngIf="!registerForm.get('UserLname')?.valid  && registerForm.get('UserLname')?.touched">
+            {{'register.name-message'|translate}}
           </div>
         </div>
         <div class="mb-3">
@@ -32,14 +34,16 @@
           <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
             formControlName="email">
           <div id="emailHelp" class="form-text"
-            *ngIf="!registerForm.get('email')?.valid  && registerForm.get('email')?.touched">{{'register.email-message'|translate}}
+            *ngIf="!registerForm.get('email')?.valid  && registerForm.get('email')?.touched">
+            {{'register.email-message'|translate}}
           </div>
         </div>
         <div class="mb-3">
           <label for="exampleInputPassword1" class="form-label">{{'register.Password'|translate}}</label>
           <input type="password" class="form-control" id="exampleInputPassword1" formControlName="password">
           <div id="passwordHelp" class="form-text"
-            *ngIf="!registerForm.get('password')?.valid  && registerForm.get('password')?.touched">{{'register.pass-message'|translate}}</div>
+            *ngIf="!registerForm.get('password')?.valid  && registerForm.get('password')?.touched">
+            {{'register.pass-message'|translate}}</div>
 
         </div>
         <div class="mb-3">
@@ -48,13 +52,14 @@
             formControlName="confirmPassword">
           <div id="confirmPasswordHelp" class="form-text"
             *ngIf="registerForm.hasError('nomatch') && registerForm.get('confirmPassword')?.touched">
-             {{'register.passConfirm-message'|translate}}</div>
+            {{'register.passConfirm-message'|translate}}</div>
 
         </div>
         <div class="mb-3">
-        <a routerLink="/login">{{'register.btn-message'|translate}}</a>
+          <a routerLink="/login">{{'register.btn-message'|translate}}</a>
         </div>
-        <button type="submit" class="btn btn-primary" [disabled]="!registerForm.valid">{{'Register'|translate}} </button>
+        <button type="submit" class="btn btn-primary" [disabled]="!registerForm.valid">{{'Register'|translate}}
+        </button>
       </form>
 
     </div>

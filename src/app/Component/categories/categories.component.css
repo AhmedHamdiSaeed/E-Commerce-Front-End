@@ -27,6 +27,24 @@
   flex-wrap: nowrap;
 }
 
+/* .divImg {
+  width: 100px
+} */
+
+/* .product-image {
+  height: 100%;
+} */
+
+.productTitle {
+  color: #198754;
+  cursor: pointer;
+}
+
+.productTitle:hover {
+  font-size: 27px;
+  font-weight: bolder;
+}
+
 .carousel-item {
   flex: 0 0 auto;
   transition: transform 0.6s ease;
