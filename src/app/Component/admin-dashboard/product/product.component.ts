@@ -93,11 +93,11 @@ export class ProductComponent implements OnInit {
     });
   }
   addProduct() {
-    this.router.navigateByUrl('Admin/AddProduct');
+    this.router.navigateByUrl('/Admin/AddProduct');
   }
 
   addCategory(){
-    this.router.navigateByUrl('/Add_Category');
+    this.router.navigateByUrl('/Admin/AddCategory');
   }
 
   editProduct(productId: string) {

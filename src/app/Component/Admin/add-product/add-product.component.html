@@ -1,7 +1,7 @@
-<div class="container mt-5">
+<div class="container-fluid mt-5">
   <div class="row justify-content-center">
-    <div class="mb-4">
-      <h2>Add New Product</h2>
+    <div class="md-4">
+      <h2 class="text-center mb-4">Add New Product</h2>
     </div>
     <div class="col-md-6">
       <form class="row g-3 border rounded p-4 shadow-sm" (ngSubmit)="confirmAddProduct(addForm)" #addForm="ngForm" enctype="multipart/form-data">
@@ -78,8 +78,8 @@
             Please provide a valid description for the product
           </div>
         </div>
-        <div class="col-12">
-          <button class="btn btn-primary" type="submit" [disabled]="!addForm.valid">Submit</button>
+        <div class="col-md-12 mb-3 text-center">
+         <button class="btn btn-primary" type="submit" style="background-color: #198754; border-color: #198754;" [disabled]="!addForm.valid">Add Product</button>
         </div>
       </form>
     </div>
