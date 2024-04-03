@@ -41,18 +41,18 @@ export class CartComponent {
   ngOnInit(): void {
     this.getCartProduct();
     }
-  clearCart() {
+  // clearCart() {
 
-      this.cartService.clearCart().subscribe(
-        () => {
-          this.cartService.Clear();
-          this.getCartProduct();
-        },
-        error => {
-          console.error('Failed to clear cart:', error);
-        }
-      );
-    }
+  //     this.cartService.clearCart().subscribe(
+  //       () => {
+  //         this.cartService.Clear();
+  //         this.getCartProduct();
+  //       },
+  //       error => {
+  //         console.error('Failed to clear cart:', error);
+  //       }
+  //     );
+  //   }
   
 
  
@@ -109,7 +109,7 @@ orderNow(){
     this.router.navigate(['/login']);
     return;
   }
-  
+
   let products= this.cartProducts.map(item=>{
     return{productId: item.product._id, quantity: item.quantity}
   })
@@ -134,7 +134,7 @@ orderNow(){
 
   );
   console.log(products);
-  this.Clear()
+ // this.Clear()
   
 }
 

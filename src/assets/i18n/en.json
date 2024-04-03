@@ -15,7 +15,7 @@
     "login":{
         "Email address":"Email address",
         "Password":"Password",
-        "Submit":"Submit",
+        "Submit":"Login",
         "email-message":"please enter a valid email",
         "pass-message":"please enter a valid password",
         "btn-message":"don't  have an account"
@@ -26,7 +26,7 @@
         "Email address":"Email address",
         "Password":"Password",
         "Confirm Password":"Confirm Password",
-        "Submit":"Submit",
+        "Submit":"Register",
         "email-message":"please enter a valid email",
         "pass-message":"password isn't valid please enter a valid one",
         "name-message":"enter a valid name",
