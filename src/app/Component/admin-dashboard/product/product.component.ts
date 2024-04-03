@@ -88,6 +88,7 @@ export class ProductComponent implements OnInit {
   confirmRemoveProduct(productId: string): void {
     const dialogRef = this.dialog.open(ConfirmMessageComponent, {
       data: { message: 'Are you sure you want to remove this product?' },
+      
     });
 
     dialogRef.afterClosed().subscribe((result) => {
