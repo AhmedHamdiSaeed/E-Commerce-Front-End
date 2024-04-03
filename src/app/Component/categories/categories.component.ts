@@ -8,6 +8,7 @@ import { AuthService } from '../../Services/auth/auth.service';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { baseURL } from '../../../../env';
 import { TranslateService } from '@ngx-translate/core';
+import { ImageService } from '../../Services/images/image.service';
 
 
 @Component({
@@ -22,7 +23,7 @@ export class CategoriesComponent implements OnInit {
     private productService: ProductService,
     private cartService: CartService,
     private auth: AuthService,
-    private sanitizer: DomSanitizer
+    private imagServices: ImageService
     , private translate: TranslateService
   ) {}
 
@@ -109,14 +110,8 @@ export class CategoriesComponent implements OnInit {
   }
   
 
-  getImageUrl(imagePath: string): SafeUrl {
-    // return `../../../assets${imagePath}`;
-    let safeurl = baseURL +'/' + imagePath;
-
-    // console.log(safeurl);
-
-    // return "http://localhost:3000/api/v1/uploads/image-1711636730983.jpg"
-    return this.sanitizer.bypassSecurityTrustUrl(safeurl);
+  getImageUrl(imagePath: string) {
+  return this.imagServices.getImageUrl( imagePath) ;
   }
   //filter
 

@@ -8,6 +8,7 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CartService } from '../../../Services/Cart/cart.service';
 import { AuthService } from '../../../Services/auth/auth.service';
+import { ImageService } from '../../../Services/images/image.service';
 
 
 @Component({
@@ -30,7 +31,7 @@ export class ProductDetailsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private sanititzer: DomSanitizer,
+    private imageServices: ImageService,
     private router: Router, private productService: ProductService, private cartService: CartService,private auth : AuthService
   ) {}
 
@@ -84,13 +85,8 @@ export class ProductDetailsComponent implements OnInit {
   }
 
 
-  getImageUrl(imagePath: string) :SafeUrl {
-    // return `../../../assets${imagePath}`;
-    let safeurl = baseURL + imagePath ;
-
-    console.log(safeurl);
-
-    return  this.sanititzer.bypassSecurityTrustUrl(safeurl) ;
+  getImageUrl(imagePath: string)  {
+  return this.imageServices.getImageUrl(imagePath) ;
 
   }
   // increaseQuantity(product: Product) {

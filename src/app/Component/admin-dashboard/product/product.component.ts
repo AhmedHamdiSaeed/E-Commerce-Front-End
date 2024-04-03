@@ -6,6 +6,7 @@ import { baseURL } from '../../../../../env';
 import { ConfirmMessageComponent } from '../../../SharedComponent/confirm-message/confirm-message.component';
 import { MatDialog } from '@angular/material/dialog';
 import {ProductDetailsDialogComponent} from '../../Admin/product-details-dialog/product-details-dialog.component';
+import { ImageService } from '../../../Services/images/image.service';
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
@@ -20,7 +21,7 @@ export class ProductComponent implements OnInit {
 
   constructor(private router: Router, private dialog: MatDialog,
     private productService: AdminServices,
-    private sanitizer: DomSanitizer) {}
+    private imageService: ImageService) {}
 
   ngOnInit(): void {
     this.isloading = true ;
@@ -119,16 +120,9 @@ export class ProductComponent implements OnInit {
   }
 
 
-
-
-  getImageUrl(imagePath: string) :SafeUrl {
-    // return `../../../assets${imagePath}`;
-    let safeurl = baseURL + '/' + imagePath ;
-
-    console.log(safeurl);
-
-    return  this.sanitizer.bypassSecurityTrustUrl(safeurl) ;
-
+  getImageUrl(imagePath: string){
+  return  this.imageService.getImageUrl(imagePath)
   }
+
 
 }

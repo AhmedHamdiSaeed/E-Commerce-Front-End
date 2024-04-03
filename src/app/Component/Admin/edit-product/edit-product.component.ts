@@ -11,6 +11,7 @@ import { CategoryService } from '../../../Services/category/category-services.se
 import { NgForm } from '@angular/forms';
 import { baseURL } from '../../../../.././env';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { ImageService } from '../../../Services/images/image.service';
 
 @Component({
   selector: 'app-edit-product',
@@ -34,7 +35,7 @@ export class EditProductComponent implements OnInit {
     private router: Router,
     public dialog: MatDialog,
     private getCategories: CategoryService,
-    private sanitizer: DomSanitizer
+    private imageServices: ImageService
   ) {
     this.editProductForm = this.fb.group({
       title: ['', Validators.required],
@@ -66,7 +67,7 @@ export class EditProductComponent implements OnInit {
           title: this.product.title,
           description: this.product.description,
           price: this.product.price,
-          image: this.product.image,
+          // image: this.product.image,
           quantity: this.product.quantity,
           colors: this.product.colors,
           category: this.product.category,
@@ -118,7 +119,7 @@ export class EditProductComponent implements OnInit {
       Object.keys(this.editProductForm.value).forEach(key => {
         formData.append(key, this.editProductForm.value[key]);
       });
-         console.log(formData.get('image'));
+        //  console.log(formData.get('image'));
       this.productService.updateProducts(this.productId, formData).subscribe(() => {
         this.router.navigateByUrl(`/Admin`);
       });
@@ -126,7 +127,7 @@ export class EditProductComponent implements OnInit {
   }
   onFileSelected(event: any) {
     this.selectedImage = event.target.files[0];
-    console.log(this.selectedImage);
+    // console.log(this.selectedImage);
   }
 
   addColor(): void {
@@ -165,9 +166,7 @@ export class EditProductComponent implements OnInit {
   showRemoveIcon(chosenColor: string): void {}
 
   getImageUrl(imagePath: string): SafeUrl {
-    let safeurl = baseURL + imagePath ;
-
-    return  this.sanitizer.bypassSecurityTrustUrl(safeurl) ;
+   return this.imageServices.getImageUrl(imagePath) ;
 
   }
 }
