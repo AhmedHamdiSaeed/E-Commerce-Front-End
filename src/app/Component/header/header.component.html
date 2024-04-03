@@ -23,7 +23,7 @@
           <a class="nav-link" routerLinkActive="active" routerLink="/login" *ngIf="!isAuthed">{{'header.Login'|translate}}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" *ngIf="isAuthed && user?.role == 'user' "   routerLink="/products/category">{{'header.Products'|translate}}</a>
+          <a class="nav-link" routerLinkActive="active" *ngIf="!isAuthed || user?.role == 'user'"    routerLink="/products/category">{{'header.Products'|translate}}</a>
           </li>
 
         <li class="nav-item">
@@ -34,6 +34,7 @@
           </button>
             <ul class="dropdown-menu dropdown-content" aria-labelledby="dropdownMenuButton1" *ngIf="isAuthed && user?.role == 'user'">
               <li><a class="dropdown-item" routerLink="/Profile" (click)="getUser()">{{'header.Your Account'|translate}}</a></li>
+              <li><a class="dropdown-item" routerLink="/updateProfile">update Profile</a></li>
               <li><a class="dropdown-item" href="#">{{'header.Your Order'|translate}}</a></li>
               <li><a class="nav-link" (click)="onLogout()" >{{'header.Logout'|translate}}</a>
               </li>

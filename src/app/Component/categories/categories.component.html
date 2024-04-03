@@ -1,102 +1,95 @@
 <div class="container-fluid">
   <div class="row">
-    <h3 class="text-center text-main bg-success text-light rounded-2 p-2">{{ 'category.All Categories' | translate }}</h3>
-    <!-- Sidebar with Categories -->
-    <div id="carouselExampleControls" class="carousel carousel-dark slide" data-bs-ride="carousel" [dir]="'dir' | translate">
+    <h3 class="text-center text-main bg-success text-light rounded-2 p-2">All Categories</h3>
+    <!-- categories slider -->
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
-        <div class="carousel-item active">
-          <div class="card-wrapper container-sm d-flex  justify-content-around">
-            <div class="card me-4 cardCategory" style="width: 18rem;" *ngFor="let category of allCategories"
-              (click)="getSpecificCategory(category._id)">
-              <img src="../../../assets/project images/images (1).jpg" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">{{category.name}}</h5>
+        <div class="carousel-item" *ngFor="let slide of categoriesInSlides; let i = index" [class.active]="i === 0">
+          <div class="row">
+            <div class="col-md-4 col-sm-12" *ngFor="let category of slide" (click)="getSpecificCategory(category._id)">
+              <div class="card">
+                <div class="card-body cardCategory text-center rounded-2 text-capitalize d-flex">
+                  <img src="../../../assets/project images/1.png" class="w-50">
+                  <h5 class="card-title ms-4 mt-4">{{ category.name }}</h5>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="carousel-item">
-          <div class="card-wrapper container-sm d-flex justify-content-around">
-            <div class="card me-4 cardCategory" style="width: 18rem;" *ngFor="let category of allCategories"
-              (click)="getSpecificCategory(category._id)">
-              <img src="../../../assets/project images/images (1).jpg" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">{{category.name}}</h5>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
-          data-bs-slide="prev">
-          <span class="carousel-control-prev-icon bg-success" aria-hidden="true"></span>
-          <span class="visually-hidden bg-success">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
-          data-bs-slide="next">
-          <span class="carousel-control-next-icon bg-success" aria-hidden="true"></span>
-          <span class="visually-hidden bg-success">Next</span>
-        </button>
       </div>
+      <!-- Navigation buttons -->
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+        data-bs-slide="prev">
+        <span class="carousel-control-prev-icon bg-success" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+        data-bs-slide="next">
+        <span class="carousel-control-next-icon bg-success" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
 
-      <div class="row mt-5">
-        <div class="d-flex justify-content-between text-center text-main  bg-success text-light rounded-2 p-2">
-          <h3 class="mt-2 ms-3 ">{{'category.Products'| translate }}</h3>
-          <div class="d-flex text-center">
-            <!-- search -->
-            <app-search (searchTextChanged)="onSearchTextChanged($event)"></app-search>
-            <!-- sort by price and category-->
-            <select class="form-select w-25 ms-2 text-success" aria-label="Sort By" [(ngModel)]="sortBy"
-              (change)="onSortChange(sortBy)">
-              <option selected value="">{{ 'category.sort' | translate }}</option>
-              <option value="price">{{ 'category.price' | translate }}</option>
-              <option value="price-desc">{{ 'category.price-desc' | translate }}</option>
-              <option value="category">{{ 'category.category' | translate }}</option>
-            </select>
-            <!-- end sort -->
-          </div>
+
+    <!-- products -->
+    <div class="row mt-5">
+      <div class="d-flex justify-content-between text-center text-main  bg-success text-light rounded-2 p-2">
+        <h3 class="mt-2 ms-3 ">Products</h3>
+        <div class="d-flex text-center">
+          <!-- search -->
+          <app-search (searchTextChanged)="onSearchTextChanged($event)"></app-search>
+          <!-- sort by price and category-->
+          <select class="form-select w-25 ms-2 text-success" aria-label="Sort By" [(ngModel)]="sortBy"
+            (change)="onSortChange(sortBy)">
+            <option selected value="">Sort By</option>
+            <option value="price">Price (Low to High)</option>
+            <option value="price-desc">Price (High to Low)</option>
+            <option value="category">Category (A to Z)</option>
+          </select>
+          <!-- end sort -->
         </div>
-        <div class=" col-sm-3 m-auto"
-          *ngFor="let product of receivedProducts |paginate: {itemsPerPage:itemsPerPage,currentPage:p}">
-          <div class="card mb-3 custom-card">
-            <div>
-              <img class="card-img-top product-image" [src]="getImageUrl(product.image)" [alt]="product.title">
-            </div>
-            <div class="card-body">
-              <h5 class="card-title">{{ product.title | translate }}</h5>
-              <p class="card-text">{{ product.description }}</p>
-              <p class="card-text">Price : {{ product.price | currency:'EGP':'symbol' }}</p>
+      </div>
+      <div class=" col-sm-3 m-auto"
+        *ngFor="let product of receivedProducts |paginate: {itemsPerPage:itemsPerPage,currentPage:p}">
+        <div class="card mb-3 custom-card">
+          <div>
+            <img class="card-img-top product-image" [src]="getImageUrl(product.image)" [alt]="product.title">
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">{{ product.title }}</h5>
+            <p class="card-text">{{ product.description }}</p>
+            <p class="card-text">Price : {{ product.price | currency:'EGP':'symbol' }}</p>
 
-              <button class="btn btn-outline-success  btn-details" [routerLink]="['/products', product._id]">
-                <i class="bi bi-eye-fill"></i>
-              </button>
-           
-             <button class="btn btn-success mb-2 cart-btn"  
-        (mouseenter)="hoveredProduct = product; isHovered = true"
-        (mouseleave)="hoveredProduct = null; isHovered = false">
-  <i style="font-size: 30px; color: white;" class="bi bi-cart-plus"></i>
-  <span   class="badge badge-primary" *ngIf="getHoveredProductQuantity(product) !== 0">
-    {{ getHoveredProductQuantity(product) }}
-  </span>
-  
-  <div class="quantity-controls" [ngClass]="{ 'expanded': isHovered && hoveredProduct && hoveredProduct._id === product._id }">
-    <button class="btn btn-sm btn-outline-success" (click)="addToCart(product)">
-      <i class="bi bi-plus"></i>
-    </button>
-    <span>{{ getHoveredProductQuantity(product) }}</span>
-    <button class="btn btn-sm btn-outline-success" (click)="removeFromCart(product)">
-      <i class="bi bi-dash"></i>
-    </button>
+            <button class="btn btn-outline-success  btn-details" [routerLink]="['/products', product._id]">
+              <i class="bi bi-eye-fill"></i>
+            </button>
+
+            <button class="btn btn-success mb-2 cart-btn" (mouseenter)="hoveredProduct = product; isHovered = true"
+              (mouseleave)="hoveredProduct = null; isHovered = false">
+              <i style="font-size: 30px; color: white;" class="bi bi-cart-plus"></i>
+              <span class="badge badge-primary" *ngIf="getHoveredProductQuantity(product) !== 0">
+                {{ getHoveredProductQuantity(product) }}
+              </span>
+
+              <div class="quantity-controls"
+                [ngClass]="{ 'expanded': isHovered && hoveredProduct && hoveredProduct._id === product._id }">
+                <button class="btn btn-sm btn-outline-success" (click)="addToCart(product)">
+                  <i class="bi bi-plus"></i>
+                </button>
+                <span>{{ getHoveredProductQuantity(product) }}</span>
+                <button class="btn btn-sm btn-outline-success" (click)="removeFromCart(product)">
+                  <i class="bi bi-dash"></i>
+                </button>
+              </div>
+            </button>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
   </div>
-              </button>
-
-          </div>
-
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="mt-5 border-1 border-success p-2 text-center w-100">
-      <pagination-controls (pageChange)="p=$event"></pagination-controls>
-    </div>
-    <app-footer></app-footer>
+  <div class="mt-5 border-1 border-success p-2 text-center w-100">
+    <pagination-controls (pageChange)="p=$event"></pagination-controls>
+  </div>
+  <app-footer></app-footer>

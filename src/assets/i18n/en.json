@@ -77,6 +77,14 @@
         "Search":"Search",
         "Products":"Products" ,
         "All Categories":"All Categories"
+    },
+    "review":{
+        "review1-msg":"This product is amazing! I love it.",
+        "review1":"- Doe",
+        "review-title":"Customer Reviews",
+        "review2-msg":"This product is amazing! I love it.",
+        "review2":"- John Doe",
+        "category-title":"Shop Popular Categories"
     }
       
 }

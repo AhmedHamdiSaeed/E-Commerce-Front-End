@@ -9,6 +9,8 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { baseURL } from '../../../../../env';
 import { CheckoutService } from '../../../Services/checkout/checkout.service';
 import { TranslateService } from '@ngx-translate/core';
+import { ConfirmMessageComponent } from '../../../SharedComponent/confirm-message/confirm-message.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-cart',
@@ -26,7 +28,11 @@ export class CartComponent {
   checkoutSession:any={}
 
   constructor(private router: Router ,private sanitizer: DomSanitizer,
-    private cartService: CartService ,private auth: AuthService,private translate: TranslateService,private checkoutservice:CheckoutService) { }
+    private cartService: CartService ,
+    private auth: AuthService,
+    private translate: TranslateService,
+    private checkoutservice:CheckoutService,
+    private dialog: MatDialog) { }
   
 
   setItem(){
@@ -36,6 +42,7 @@ export class CartComponent {
     this.getCartProduct();
     }
   clearCart() {
+
       this.cartService.clearCart().subscribe(
         () => {
           this.cartService.Clear();
@@ -53,7 +60,8 @@ export class CartComponent {
   getCartProduct(){
     if("cart" in localStorage){
       this.cartProducts = JSON.parse(localStorage.getItem("cart")!);
-     
+      console.log("cart :",this.cartProducts)
+
     } 
   }
   
@@ -80,6 +88,7 @@ increaseQuantity(item: any): void {
   if (item.quantity < item.product.quantity) {
     item.quantity++;
     this.setItem();
+    this.cartService.updateCartLengthFromLocalStorage();
   }
 }
 
@@ -87,8 +96,13 @@ decreaseQuantity(item: any): void {
   if (item.quantity > 1) {
     item.quantity--;
     this.setItem();
+    this.cartService.updateCartLengthFromLocalStorage();
   }
 }
+
+
+
+
 orderNow(){
   this.isLoading=true;
   if (!this.auth.isAuthenticated()) {
@@ -103,7 +117,9 @@ orderNow(){
     res => {
       this.success = true;
       this.newCart=res;
-      console.log("cart before order:",this.newCart)
+       console.log("cart before order:",this.newCart)
+      console.log("cart before order:",res)
+    
         // this.checkoutservice.checkout(this.newCart.data._id).subscribe(
         //   (res)=>{
         //     this.checkoutSession=res;
@@ -114,10 +130,11 @@ orderNow(){
     },
     error => {
       console.error('Error creating new cart:', error);
-    }
+    }    
+
   );
-
-
+  console.log(products);
+  this.Clear()
   
 }
 
@@ -129,3 +146,4 @@ getImageUrl(imagePath: string): SafeUrl {
 
 }
 }
+

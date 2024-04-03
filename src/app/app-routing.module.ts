@@ -17,13 +17,14 @@ import { AddProductComponent } from './Component/Admin/add-product/add-product.c
 import { AddCategoryComponent } from './Component/Admin/add-category/add-category.component';
 import { EditProductComponent } from './Component/Admin/edit-product/edit-product.component';
 import { PaymentSuccessComponent } from './Component/payment-success/payment-success.component';
+import { UpdateProfileComponent } from './Component/update-profile/update-profile.component';
 import { ContentComponent } from './Component/admin-dashboard/Orders/content.component';
 import { AdminUsersComponent } from './Component/admin-users/admin-users.component';
 
 const routes: Routes = [
   {path:'paymentSuccess/:id',component:PaymentSuccessComponent, canActivate: [AuthGuardService]},
   { path: 'Profile', component: UserProfileComponent , canActivate: [AuthGuardService]},
-
+  {path:'updateProfile',component:UpdateProfileComponent, canActivate: [AuthGuardService]},
   { path: 'home', component: HomeComponent },
   { path: 'register', component: SignupComponent },
   { path: 'login', component: LoginComponent },
