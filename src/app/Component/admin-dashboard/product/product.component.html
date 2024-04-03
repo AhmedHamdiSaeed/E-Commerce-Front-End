@@ -1,10 +1,10 @@
 <div class="container">
   <div class="row">
-        <div class="col-md-12 text-center">
-          <button class="btn btn-primary mb-3" (click)="addProduct()" title="Add New Product">
-            <i class="bi bi-plus"></i> Add New Product
-          </button>
-        </div>
+    <div class="col-md-12 text-center">
+      <button class="btn btn-primary mb-3" (click)="addProduct()" title="Add New Product">
+        <i class="bi bi-plus"></i> Add New Product
+      </button>
+    </div>
 
     <div class="col-md-12 text-center">
       <div class="panel">
@@ -36,7 +36,7 @@
                 <th>Actions</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody *ngIf="displayedProducts.length > 0; else noProductsFound">
               <tr *ngFor="let product of displayedProducts">
                 <td>
                   <div class="image-container">
@@ -63,11 +63,16 @@
               </tr>
             </tbody>
           </table>
+          <ng-template #noProductsFound>
+            <div class="text-center px-6" style="color: aliceblue; justify-content: center; font-size: 30px;">
+              <h3>No products found in this category.</h3>
+            </div>
+          </ng-template>
         </div>
       </div>
     </div>
-    <div *ngIf="displayedProducts.length == 0" >
+    <div *ngIf="isloading">
       <app-loading-spinner></app-loading-spinner>
-      </div>
+    </div>
   </div>
 </div>

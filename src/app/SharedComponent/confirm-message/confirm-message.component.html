@@ -1,13 +1,11 @@
-<div class="modal-content dialog-container">
-  <div class="modal-header">
-      <h5 class="modal-title custom-dialog-title">{{ data.title }}</h5>
-      <button type="button" class="btn-close mr-0" (click)="closeDialog()" aria-label="Close"></button>
+<div class="confirm-message-container">
+  <div class="confirm-message-title">
+    <i class="bi bi-exclamation-triangle-fill text-warning"></i> {{ data.title }}
   </div>
-  <div class="modal-body custom-dialog-content">
-      <p>{{ data.message }}</p>
-  </div>
-  <div class="modal-footer custom-dialog-actions">
-      <button type="button" class="btn btn-secondary" (click)="closeDialog()">Cancel</button>
-      <button type="button" class="btn btn-primary" (click)="confirm()">Confirm</button>
+  <div class="confirm-message-content">
+    {{ data.message }}  </div>
+  <div class="confirm-message-buttons">
+    <button class="btn btn-success confirm-button"(click)="confirm()">Confirm <i class="bi bi-check-circle-fill"></i></button>
+    <button class="btn btn-danger cancel-button" (click)="closeDialog()">Cancel <i class="bi bi-x-circle-fill"></i></button>
   </div>
 </div>

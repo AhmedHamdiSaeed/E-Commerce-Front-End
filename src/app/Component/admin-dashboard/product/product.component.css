@@ -32,15 +32,15 @@
   border-color: #146c43;
 }
 .image-container {
-  width: 80px;
-  height: 80px;
+  width: 70px;
+  height: 60px;
   border-radius: 50%;
   overflow: hidden;
 }
 
 .image-container img {
   width: 100%;
-  height: auto;
+  height: 100%;
   display: block;
 }
 
