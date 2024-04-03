@@ -52,12 +52,14 @@ import { AddCategoryComponent } from './Component/Admin/add-category/add-categor
 import { ContactUsComponent } from './Component/contact-us/contact-us.component';
 import { PaymentSuccessComponent } from './Component/payment-success/payment-success.component';
 // import ngx-translate and the http loader
+
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
-import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ProductDetailsDialogComponent } from './Component/Admin/product-details-dialog/product-details-dialog.component';
 import { UpdateProfileComponent } from './Component/update-profile/update-profile.component';
 import { UserOrdersComponent } from './Component/user-orders/user-orders.component';
+import { AdminUsersComponent } from './Component/Admin/admin-users/admin-users.component';
 
 @NgModule({
   declarations: [
@@ -87,6 +89,7 @@ import { UserOrdersComponent } from './Component/user-orders/user-orders.compone
     PaymentSuccessComponent,
     UpdateProfileComponent,
     UserOrdersComponent,
+    AdminUsersComponent,
   ],
   imports: [
     CarouselModule.forRoot(),

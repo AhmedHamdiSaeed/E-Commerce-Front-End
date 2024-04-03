@@ -18,6 +18,8 @@ import { AddCategoryComponent } from './Component/Admin/add-category/add-categor
 import { EditProductComponent } from './Component/Admin/edit-product/edit-product.component';
 import { PaymentSuccessComponent } from './Component/payment-success/payment-success.component';
 import { UpdateProfileComponent } from './Component/update-profile/update-profile.component';
+import { ContentComponent } from './Component/admin-dashboard/Orders/content.component';
+import { AdminUsersComponent } from './Component/Admin/admin-users/admin-users.component';
 
 const routes: Routes = [
   {path:'paymentSuccess/:id',component:PaymentSuccessComponent, canActivate: [AuthGuardService]},
@@ -33,25 +35,38 @@ const routes: Routes = [
   {
     path: 'Admin',
     component: AdminBoardComponent,
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService],
+    children:[
+      { path: 'AddCategory',
+      component: AddCategoryComponent ,
+      canActivate: [AuthGuardService]
+       },
+      {
+        path: 'Products',
+        component: ProductComponent,
+        canActivate: [AuthGuardService]
+      },
+      { path: 'AddProduct',
+       component: AddProductComponent,
+        canActivate: [AuthGuardService]
+       },
+       { path: 'EditProduct/:id',
+       component: EditProductComponent,
+        canActivate: [AuthGuardService]
+       },
+       {
+        path: 'Orders',
+        component: ContentComponent,
+        canActivate: [AuthGuardService]
+       },
+       {
+        path: 'Users',
+        component: AdminUsersComponent,
+        canActivate: [AuthGuardService]
+       },
+    ]
   },
-  { path: 'Admin/AddCategory',
-  component: AddCategoryComponent ,
-  canActivate: [AuthGuardService]
-},
-  {
-    path: 'Admin/Products',
-    component: ProductComponent,
-    canActivate: [AuthGuardService]
-  },
-  { path: 'Admin/AddProduct',
-   component: AddProductComponent,
-    canActivate: [AuthGuardService]
-   },
-   { path: 'Admin/EditProduct/:id',
-   component: EditProductComponent,
-    canActivate: [AuthGuardService]
-   },
+ 
 
 
   { path: 'Profile', component: UserProfileComponent },
