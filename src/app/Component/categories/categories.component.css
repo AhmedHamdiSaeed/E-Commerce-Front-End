@@ -79,6 +79,12 @@
   text-align: center;
 }
 
+/* image div */
+.card-img-top {
+  height: 100px;
+}
+
+/*  */
 .category-image {
   width: 50%;
   height: auto;
