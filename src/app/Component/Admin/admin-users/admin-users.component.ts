@@ -38,7 +38,7 @@ export class AdminUsersComponent implements OnInit {
   OpenDialog( Id: string ){
 
     const msgDialog =  this.confirmdialog.open(ConfirmMessageComponent , {
-       data: {message: this.message, title: "Are you sure remove this user?"},
+       data: {message:"Are you sure remove this user?", title: "Remove User"},
        panelClass: 'custom-dialog' // Apply custom CSS class
 
 

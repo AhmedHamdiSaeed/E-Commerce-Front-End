@@ -43,13 +43,13 @@ export class ContentComponent implements OnInit {
           // console.log(order.user.fname ,  order.user.lname);
           order.cartItems.forEach((p: any) => {
               // console.log(p.product);
-              
+
           });
-          
+
       });
     });
 
-    
+
   }
 
 
@@ -58,22 +58,20 @@ export class ContentComponent implements OnInit {
     this.adminService.getOrderByID(orderId)
     .subscribe((res)=>{
       console.log(res);
-      
+
     })
-    
+
   }
 
   getImgUrl(path: string): SafeUrl {
     return this.imageServices.getImageUrl(path) ;
   }
 
- 
+
 
   OpenDialog( Id: string ){
 
    const msgDialog =  this.confirmdialog.open(ConfirmMessageComponent , {
-      width:'40%',
-      height: '35%',
       data: {message: " this order will be canceled", title: "cancel order "},
       panelClass: 'custom-dialog' // Apply custom CSS class
 
@@ -86,13 +84,13 @@ export class ContentComponent implements OnInit {
         console.log('confirm');
         this.message = "this order will be canceled " ;
          this.deleteOreder(Id);
-     
+
       }
       else {
        console.log("cansle");
-        
-      }      
-      
+
+      }
+
     }))
   }
 
@@ -100,10 +98,10 @@ export class ContentComponent implements OnInit {
     console.log(orderId);
     this.adminService.cancelOrder(orderId).subscribe((res)=>{
       console.log(res);
-      
+
     },(error) => console.log(error)
     )
-    
+
   }
 
 
