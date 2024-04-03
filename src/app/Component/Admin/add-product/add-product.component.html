@@ -38,7 +38,7 @@
         </div>
         <div class="col-12">
           <label for="price" class="form-label bold-label">Price</label>
-          <input type="number" min="1" max="5000" class="form-control" id="price" ngModel name="price" #price="ngModel" required>
+          <input type="number" min="1" max="500000" class="form-control" id="price" ngModel name="price" #price="ngModel" required>
           <div class="form-text" *ngIf="!price.valid && price.touched">
             Please provide a valid price for the product
           </div>
