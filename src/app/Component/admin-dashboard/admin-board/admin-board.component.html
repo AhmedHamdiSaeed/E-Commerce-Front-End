@@ -6,29 +6,44 @@
           <li style="border-bottom: 3px solid rgb(5, 157, 13);">
             <a href="#">
               <span class="icon">
-                <mat-icon>Shopping</mat-icon>
+                <mat-icon></mat-icon>
               </span>
-              <span class="title" style="font-weight: bolder; ">Shopping SyStem</span>
+              <span class="title" style="font-weight: bolder; ">Shopping </span>
             </a>
           </li>
 
           <li>
-            <a href="#">
+            <a routerLink="Products" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">
               <span class="icon">
-                <mat-icon>home</mat-icon>
-              </span>
+                <mat-icon>dashboard</mat-icon>
+                            </span>
               <span class="title">Dashboard</span>
             </a>
           </li>
-
           <li>
-            <a href="#">
+            <a routerLink="Orders" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">
               <span class="icon">
-              </span>
-              <span class="title">Customers</span>
+                <mat-icon>shopping_cart</mat-icon>
+                            </span>
+              <span class="title" >Orders</span>
             </a>
           </li>
-
+          <li>
+            <a routerLink="Users" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">
+              <span class="icon">
+                <mat-icon>people</mat-icon>
+              </span>
+              <span class="title" >Customers</span>
+            </a>
+          </li>
+          <li>
+            <a routerLink="Products" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">
+              <span class="icon">
+                <mat-icon>store</mat-icon>
+                            </span>
+              <span class="title" >Products</span>
+            </a>
+          </li>
 
           <li>
             <a href="#">
@@ -58,23 +73,14 @@
           <!-- <mat-icon>menu</mat-icon> -->
         </button>
         <i class="fa fa-strikethrough" aria-hidden="true"></i>
-        <span style="font-size: larger;">Admin</span>
+        <span style="font-size: larger; " class="px-4">Admin</span>
       </div>
-      <!-- <div class="search">
-        <label>
-          <input type="text" placeholder="Search here">
-          <i class="fa fa-search" aria-hidden="true"></i>
-        </label>
-      </div> -->
 
-      <!-- <div class="user">
-        <img [src]="getImageUrl(users.image)" alt="">
-      </div> -->
     </mat-toolbar>
     <div class="cardBox">
       <div class="card">
         <div>
-          <div class="numbers">{{products?.views}}</div>
+          <div class="numbers">{{ count }}</div>
           <div class="cardName">Daily Views</div>
         </div>
 
@@ -114,9 +120,9 @@
     </div>
 
         <div class="tab-buttons ">
-          <button mat-button routerLink="Orders" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">Orders</button>
-          <button mat-button routerLink="Products" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">Products</button>
-          <button mat-button routerLink="Users" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">Users</button>
+          <button mat-button class="btn btn-primary fw-bold" routerLink="Orders" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">Orders</button>
+          <button mat-button class="btn btn-primary fw-bold" routerLink="Products" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">Products</button>
+          <button mat-button class="btn btn-primary fw-bold" routerLink="Users" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">Customers</button>
         </div>
 
         <div>

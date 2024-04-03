@@ -15,7 +15,7 @@
                 <th>Total price</th>
                 <th>Amount</th>
                 <th>Status</th>
-                <th>Update Status</th>
+                <th>Details</th>
                 <th>Delete</th>
               </tr>
             </thead>
@@ -40,8 +40,9 @@
                       <mat-option value="rejected">Rejected</mat-option>
                     </mat-select>
                   </mat-form-field>
-                </td>
-                <td><button class="btn btn-danger" (click)="OpenDialog(item._id)">Remove</button></td>
+                </td >
+                <td><button class="btn btn-info" (click)="getOrder(item._id)"> More info </button></td>
+                <td class="action-buttons"><button class="btn btn-danger" (click)="OpenDialog(item._id)">Remove</button></td>
               </tr>
             </tbody>
           </table>

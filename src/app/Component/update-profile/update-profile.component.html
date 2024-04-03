@@ -1,5 +1,6 @@
 <div class="container rounded bg-white mt-5 mb-5">
     <div class="row">
+        <form [formGroup]="userProfile">
         <div class="col-md-3 border-right">
             <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span class="font-weight-bold">ddddd</span><span class="text-black-50">dddddd</span><span> </span></div>
         </div>
@@ -9,23 +10,18 @@
                     <h4 class="text-right">Profile Settings</h4>
                 </div>
                 <div class="row mt-2">
-                    <div class="col-md-6"><label class="labels">First Name</label><input type="text" class="form-control" placeholder="first Name" value=""></div>
-                    <div class="col-md-6"><label class="labels">Last Name</label><input type="text" class="form-control" value="" placeholder="Last Name"></div>
+                    <div class="col-md-12"><label class="labels">First Name</label><input type="text" class="form-control" placeholder="first Name" formControlName="fname"  ></div>
+                    <div class="col-md-12"><label class="labels">Last Name</label><input type="text" class="form-control" formControlName="lname" placeholder="Last Name" ></div>
                 </div>
                 <div class="row mt-3">
-                    <div class="col-md-12"><label class="labels">Mobile Number</label><input type="text" class="form-control" placeholder="phone number" value=""></div>
-                    <div class="col-md-12"><label class="labels">Address Line 1</label><input type="text" class="form-control" placeholder="address line 1" value=""></div>
-                    <div class="col-md-12"><label class="labels">Address Line 2</label><input type="text" class="form-control" placeholder="address line 2" value=""></div>
-                    <div class="col-md-12"><label class="labels">Postcode</label><input type="text" class="form-control" placeholder="Postcode" value=""></div>
-                    <div class="col-md-12"><label class="labels">State</label><input type="text" class="form-control" placeholder="State" value=""></div>
-                    <div class="col-md-12"><label class="labels">Area</label><input type="text" class="form-control" placeholder="Area" value=""></div>
+                    <div class="col-md-12"><label class="labels">Email</label><input type="text" class="form-control" placeholder="phone number"  formControlName="Email"  ></div>
+                    <div class="col-md-12"><label class="labels">City</label><input type="text" class="form-control" placeholder="City" formControlName="City"   ></div>
+                    <div class="col-md-12"><label class="labels">postalCode</label><input type="text" class="form-control" placeholder="postalCode"  formControlName="postalCode"  ></div>
+                    <div class="col-md-12"><label class="labels">street</label><input type="text" class="form-control" placeholder="street" formControlName="street"  ></div>  
                 </div>
-                <div class="row mt-3">
-                    <div class="col-md-6"><label class="labels">Country</label><input type="text" class="form-control" placeholder="country" value=""></div>
-                    <div class="col-md-6"><label class="labels">State/Region</label><input type="text" class="form-control" value="" placeholder="state"></div>
-                </div>
-                <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Save Profile</button></div>
+                <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button" routerLink="/updateProfile">update Profile</button></div>
             </div>
         </div>
+    </form>
     </div>
 </div>

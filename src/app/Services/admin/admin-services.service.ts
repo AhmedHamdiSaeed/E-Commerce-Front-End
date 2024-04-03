@@ -39,6 +39,15 @@ export class AdminServices {
       })
     );
   }
+
+  getOrderByID(orderId: string){
+    return this.http.get<any>(`${baseURL}/orders/${orderId}`) ;
+    
+  }
+  cancelOrder(orderId: string){
+    return this.http.get<any>(`${baseURL}/orders/${orderId}`) ; /// this is rrong  correct it later 
+
+  }
 // not emplimented in the back end yet ! 
 
   // deleteOrders(orderId: string){
