@@ -4,7 +4,7 @@
         "Shoping":"التسوق",
         "Home": "الصفحة الرئسية ",
         "About Us": "عن موقعنا",
-       "Register": "اشتراك",
+       "Register": "انشاء حساب ",
         "Login": "تسجيل الدخول",
        "Products": "المنتجات",
        "Your Account": "حسابك",
@@ -15,7 +15,7 @@
     "login":{
         "Email address":"البريد الإلكترونى ",
         "Password":"الباسورد",
-        "Submit":"قدم",
+        "Submit":"تسجيل الدخول",
         "email-message":"من فضلك ادخل ايميل صحيح",
         "pass-message":"من فضلك ادخل باسورد صحيح",
         "btn-message":"ليس لديك حساب ؟"
@@ -26,7 +26,7 @@
         "Email address":"البريد الإلكترونى ",
         "Password":"الباسورد",
         "Confirm Password":"تاكيد الباسورد",
-        "Submit":"قدم",
+        "Submit":"انشاء حساب ",
         "email-message":"من فضلك ادخل ايميل صحيح",
         "pass-message":"الباسورد ليست صحيحة من فضلك ادخل واحدة صحيحة",
         "name-message":"من فضلك ادخل اسم صحيح",

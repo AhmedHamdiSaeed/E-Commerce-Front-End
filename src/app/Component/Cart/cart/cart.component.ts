@@ -41,18 +41,22 @@ export class CartComponent {
   ngOnInit(): void {
     this.getCartProduct();
     }
-  clearCart() {
+  // clearCart() {
+  //     this.cartService.clearCart().subscribe(
+  //       () => {
+  //         this.cartService.Clear();
+  //         this.getCartProduct();
+  //       },
+  //       error => {
+  //         console.error('Failed to clear cart:', error);
+  //       }
+  //     );
+  //   }
 
-      this.cartService.clearCart().subscribe(
-        () => {
-          this.cartService.Clear();
-          this.getCartProduct();
-        },
-        error => {
-          console.error('Failed to clear cart:', error);
-        }
-      );
-    }
+  
+    //       this.cartService.Clear();
+    //       this.getCartProduct();
+    // }
   
 
  
@@ -109,7 +113,7 @@ orderNow(){
     this.router.navigate(['/login']);
     return;
   }
-  
+
   let products= this.cartProducts.map(item=>{
     return{productId: item.product._id, quantity: item.quantity}
   })
@@ -119,14 +123,15 @@ orderNow(){
       this.newCart=res;
        console.log("cart before order:",this.newCart)
       console.log("cart before order:",res)
-    
-        // this.checkoutservice.checkout(this.newCart.data._id).subscribe(
-        //   (res)=>{
-        //     this.checkoutSession=res;
-        //     window.location.href=this.checkoutSession.session.url;
-        //   },
-        //   (err)=>{console.log(" Error creating checkout: ",err)}
-        // )
+    // this.router.navigateByUrl('/paymentSuccess/660c89afbb43b63edecfc5fa')
+        this.checkoutservice.checkout(this.newCart.data._id).subscribe(
+          (res)=>{
+            this.checkoutSession=res;
+            this.isLoading=true;
+            window.location.href=this.checkoutSession.session.url;
+          },
+          (err)=>{console.log(" Error creating checkout: ",err)}
+        )
     },
     error => {
       console.error('Error creating new cart:', error);
@@ -134,8 +139,11 @@ orderNow(){
 
   );
   console.log(products);
-  this.Clear()
+ // this.Clear()
   
+
+  this.Clear();
+
 }
 
 // Load image
