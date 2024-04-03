@@ -12,6 +12,7 @@ import {ProductDetailsDialogComponent} from '../../Admin/product-details-dialog/
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit {
+  isloading = false;
   products: any;
   categories: any;
   selectedCategory: string = '';
@@ -22,7 +23,9 @@ export class ProductComponent implements OnInit {
     private sanitizer: DomSanitizer) {}
 
   ngOnInit(): void {
+    this.isloading = true ;
     this.getProducts();
+
     this.getCategories();
   }
 
@@ -31,6 +34,8 @@ export class ProductComponent implements OnInit {
       const res = await this.productService.getProducts().toPromise();
       this.products = res;
       this.displayedProducts = res;
+      this.isloading = false ;
+
     } catch (error) {
       console.error(error);
     }
