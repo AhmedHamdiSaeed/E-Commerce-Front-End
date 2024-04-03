@@ -12,10 +12,15 @@ export class CheckoutService {
   constructor(private httpclient:HttpClient,private router:Router) { }
 
 
-
+getOrderByIdWithProducts(id:any)
+{
+  return this.httpclient.get(`${baseURL}/orders/products/${id}`)
+}
   
-
-
+getPaymentById(ID:any)
+{
+  return this.httpclient.get(`${baseURL}/payment/${ID}`)
+}
 checkout(cartID:string)
 {
   return this.httpclient.get(`${baseURL}/payment/checkout/${cartID}`)
