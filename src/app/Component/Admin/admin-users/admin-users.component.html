@@ -1,29 +1,48 @@
-
-<div class="recentCustomers">
-    <div class="cardHeader">
-                <h2>Recent Customers</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <div class="panel">
+        <div class="panel-heading bg-primary text-white">
+          <div class="row">
+            <div class="col-12 col-sm-6">
+              <h4 class="title">Recent Customers</h4>
+            </div>
+          </div>
+        </div>
+        <div class="panel-body table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let user of users" class="userDiv">
+                <td>
+                  <div class="image-container">
+                    <img class="card-img product-image" [src]="getImgUrl(user.image)" [alt]="user.fname">
+                  </div>
+                </td>
+                <td>{{ user.fname }}</td>
+                <td>{{ user.email }}</td>
+                <td>
+                  <div class="action-buttons">
+                    <button class="btn btn-danger px-3" (click)="OpenDialog(user._id)" title="Remove Customer">
+                      <i class="bi bi-trash-fill"></i> Remove
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
     <div *ngIf="isloading">
       <app-loading-spinner></app-loading-spinner>
-      </div>
-    <div class="table-container" *ngIf="!isloading">
-      <table>
-        <tr *ngFor="let user of users" class="userDiv">
-          <td width="60px">
-            <div class="imgBx"><img [src]="getImgUrl(user.image)" alt=""></div>
-          </td>
-          <td>
-            <h4>{{ user.fname  }} <br> <span>{{ user.email }}</span></h4>
-          </td>
-
-           <div class="deleteContainer" >
-            <span class="deletBtn">
-              <button class="btn btn-danger"  (click)="OpenDialog(user._id) " title="Remove Customer">
-                <i class="bi bi-trash-fill"></i> Remove 
-              </button>
-            </span>
-           </div>
-        </tr>
-      </table>
     </div>
   </div>
+</div>

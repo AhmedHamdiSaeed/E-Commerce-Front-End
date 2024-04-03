@@ -32,14 +32,13 @@ export class AddProductComponent implements OnInit {
 
   confirmAddProduct(addForm: NgForm): void {
     const dialogRef = this.dialog.open(ConfirmMessageComponent, {
-      width: '300px',
       data: { message: 'Are you sure you want to add this product?' },
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result)
       {
         this.AddProduct(addForm);
-    this.router.navigate(['/Admin']) ;
+        this.router.navigateByUrl('/Admin/Products');
       }
       addForm.resetForm() ;
 
@@ -78,7 +77,7 @@ export class AddProductComponent implements OnInit {
 
     this.prductService.addProduct(formData)
     .subscribe((res)=>{
-      console.log("producte created successfuly");
+      console.log("product created successfuly");
 
 
 

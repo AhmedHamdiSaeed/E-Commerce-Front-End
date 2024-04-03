@@ -67,7 +67,7 @@ export class EditProductComponent implements OnInit {
           title: this.product.title,
           description: this.product.description,
           price: this.product.price,
-          // image: this.product.image,
+          image: this.product.image,
           quantity: this.product.quantity,
           colors: this.product.colors,
           category: this.product.category,
@@ -98,16 +98,16 @@ export class EditProductComponent implements OnInit {
   }
   confirmEditProduct(): void {
     const dialogRef = this.dialog.open(ConfirmMessageComponent, {
-      width: '300px',
       data: { message: 'Are you sure you want to Edit this product?' },
     });
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.EditProduct();
+        this.router.navigateByUrl('/Admin/Products');
+
       }
     });
-    this.router.navigateByUrl('/Admin');
   }
 
   EditProduct(): void {
@@ -120,10 +120,9 @@ export class EditProductComponent implements OnInit {
         formData.append(key, this.editProductForm.value[key]);
       });
         //  console.log(formData.get('image'));
-      this.productService.updateProducts(this.productId, formData).subscribe(() => {
-        this.router.navigateByUrl(`/Admin`);
-      });
-    }
+      this.productService.updateProducts(this.productId, formData).subscribe((res)=>{
+        console.log("product Edit successfuly")
+       })};
   }
   onFileSelected(event: any) {
     this.selectedImage = event.target.files[0];

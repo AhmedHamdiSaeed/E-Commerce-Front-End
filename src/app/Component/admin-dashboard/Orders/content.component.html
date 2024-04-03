@@ -1,61 +1,56 @@
-<div class="details">
-  <div class="recentOrders">
-    <div class="cardHeader">
-      <h2>Recent Orders</h2>
-    </div>
-
-    <div class="table-container">
-      <table>
-        <thead>
-          <tr>
-            <td>Client </td>
-            <td>Date Of Order</td>
-            <td>Shopping List</td>
-            <td>Total price</td>
-            <td>Amount</td>
-            <td>Status</td>
-            <td>Details</td>
-            <td>Delete </td>
-          </tr>
-        </thead>
-        <tbody>
-        
-          <tr *ngFor="let item of orderInfo">
-            <!-- <td>{{ item.productId?.name }}</td> -->
-            <td>{{ item.user.email }}</td>
-            <td>{{ item.createdAt | date }}</td>
-            <!-- <td>
-              <ul>
-                <li  *ngFor="let p of item.cartItems"> {{p.product.title}}</li>
-              </ul>
-            </td> -->
-            <td>{{ item.totalOrderPrice }}</td>
-            <td>{{ item.amount }}</td>
-            <td>{{ item.status }}</td>
-            <td class="list">
-              <mat-form-field appearance="fill" class="status-dropdown">
-                <mat-label>Select</mat-label>
-                <mat-select matNativeControl placeholder="Status">
-                  <mat-option value="pending">Pending</mat-option>
-                  <mat-option value="accepted">Accepted</mat-option>
-                  <mat-option value="rejected">Rejected</mat-option>
-                </mat-select>
-              </mat-form-field>
-            </td>
-            <td><button class="btn btn-info" (click)="getOrder(item._id)"> More info </button></td>
-            <td><button class="btn btn-danger" (click)="OpenDialog(item._id)"> Cancel order </button></td>
-
-
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div *ngIf="orderInfo.length == 0" >
-      <app-loading-spinner></app-loading-spinner>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel">
+        <div class="panel-heading bg-primary text-white">
+          <h4 class="title">Recent Orders</h4>
+        </div>
+        <div class="panel-body table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Client</th>
+                <th>Date Of Order</th>
+                <th>Shopping List</th>
+                <th>Total price</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th>Details</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of orderInfo">
+                <td>{{ item.user.email }}</td>
+                <td>{{ item.createdAt | date }}</td>
+                <td>
+                  <ul>
+                    <li *ngFor="let p of item.cartItems">{{ p.product.title }}</li>
+                  </ul>
+                </td>
+                <td>{{ item.totalOrderPrice }}</td>
+                <td>{{ item.amount }}</td>
+                <td>{{ item.status }}</td>
+                <td class="list">
+                  <mat-form-field appearance="fill" class="status-dropdown">
+                    <mat-label>Select</mat-label>
+                    <mat-select matNativeControl placeholder="Status">
+                      <mat-option value="pending">Pending</mat-option>
+                      <mat-option value="accepted">Accepted</mat-option>
+                      <mat-option value="rejected">Rejected</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </td >
+                <td><button class="btn btn-info" (click)="getOrder(item._id)"> More info </button></td>
+                <td class="action-buttons"><button class="btn btn-danger" (click)="OpenDialog(item._id)">Remove</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
-    <!-- <mat-spinner *ngIf="orderInfo.length == 0" class="spinner"></mat-spinner> -->
+    </div>
+    <div *ngIf="orderInfo.length == 0">
+      <app-loading-spinner></app-loading-spinner>
+    </div>
   </div>
-
 </div>
-
-

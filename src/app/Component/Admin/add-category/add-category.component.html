@@ -3,11 +3,11 @@
     <div class="col-md-4">
       <h2 class="text-center mb-4">Add New Category</h2>
       <form class="row g-3 p-4 bg-light border rounded shadow-sm" (ngSubmit)="AddCategory(addCat)" #addCat="ngForm" enctype="multipart/form-data">
-        <div class="text-center mb-4">
-          <!-- <div class="rounded-circle overflow-hidden d-inline-block" style="width: 150px; height: 150px; border: 2px solid #ccc;">
+        <!-- <div class="text-center mb-4">
+          <div class="rounded-circle overflow-hidden d-inline-block" style="width: 150px; height: 150px; border: 2px solid #ccc;">
             <img *ngIf="image.value" [src]="image.value" class="img-fluid" alt="Preview">
-          </div> -->
-        </div>
+          </div>
+        </div> -->
         <div class="col-md-12 mb-3">
           <label for="image" class="form-label">Choose image</label>
           <input type="file" class="form-control" id="image" name="image" (change)="onFileSelected($event)" ngModel #image="ngModel" required accept=".jpg, .jpeg, .png, .gif">

@@ -1,43 +1,51 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AdminServices } from '../../../Services/admin/admin-services.service';
-import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import { baseURL } from '../../../../../env';
 import { ConfirmMessageComponent } from '../../../SharedComponent/confirm-message/confirm-message.component';
 import { MatDialog } from '@angular/material/dialog';
-import {ProductDetailsDialogComponent} from '../../Admin/product-details-dialog/product-details-dialog.component';
+import { ProductDetailsDialogComponent } from '../../Admin/product-details-dialog/product-details-dialog.component';
 import { ImageService } from '../../../Services/images/image.service';
+import { CategoryService } from '../../../Services/category/category-services.service';
+
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit {
+  isloading = false;
   products: any;
   categories: any;
   selectedCategory: string = '';
   displayedProducts: any;
 
-  constructor(private router: Router, private dialog: MatDialog,
+  constructor(
+    private router: Router,
+    private dialog: MatDialog,
     private productService: AdminServices,
-    private imageService: ImageService) {}
+    private imageService: ImageService,
+    private categoryService: CategoryService
+  ) {}
 
   ngOnInit(): void {
-    this.getProducts();
-    this.getCategories();
+    this.loadProducts();
+    this.loadCategories();
   }
 
-  async getProducts() {
+  async loadProducts() {
+    this.isloading = true;
     try {
       const res = await this.productService.getProducts().toPromise();
       this.products = res;
       this.displayedProducts = res;
     } catch (error) {
       console.error(error);
+    } finally {
+      this.isloading = false;
     }
   }
 
-  async getCategories() {
+  async loadCategories() {
     try {
       const res = await this.productService.getAllCategories().toPromise();
       this.categories = res;
@@ -47,8 +55,11 @@ export class ProductComponent implements OnInit {
   }
 
   filterProductsByCategory() {
+    this.isloading = true;
+
     if (this.selectedCategory === '') {
       this.displayedProducts = this.products;
+      this.isloading = false;
     } else {
       this.productService.getProductsByCategory(this.selectedCategory).subscribe(
         (res: any) => {
@@ -60,39 +71,42 @@ export class ProductComponent implements OnInit {
         },
         (error) => {
           console.error(error);
+        },
+        () => {
+          this.isloading = false;
         }
       );
     }
   }
 
-
-
   openProductDetailsDialog(product: any): void {
     this.dialog.open(ProductDetailsDialogComponent, {
-      // width: '500px',
       data: product
     });
   }
+
   confirmRemoveProduct(productId: string): void {
     const dialogRef = this.dialog.open(ConfirmMessageComponent, {
-      width: '300px',
       data: { message: 'Are you sure you want to remove this product?' },
     });
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.deleteProduct(productId);
-        console.log("Product deleted successfully");
-        this.products = this.products.filter((p: any) => p._id !== productId);
       }
     });
   }
+
   addProduct() {
-    this.router.navigateByUrl('Admin/AddProduct');
+    this.router.navigateByUrl('/Admin/AddProduct').then(() => {
+      this.loadProducts();
+    });
   }
 
-  addCategory(){
-    this.router.navigateByUrl('/Add_Category');
+  addCategory() {
+    this.router.navigateByUrl('/Admin/AddCategory').then(() => {
+      this.loadCategories();
+    });
   }
 
   editProduct(productId: string) {
@@ -106,7 +120,7 @@ export class ProductComponent implements OnInit {
       () => {
         console.log("Product deleted successfully");
         this.products = this.products.filter((p: any) => p._id !== productId);
-        this.getProducts(); // Refresh the list of products
+        this.loadProducts();
       },
       err => {
         console.log(err);
@@ -114,10 +128,8 @@ export class ProductComponent implements OnInit {
     );
   }
 
-
-  getImageUrl(imagePath: string){
-  return  this.imageService.getImageUrl(imagePath)
+  getImageUrl(imagePath: string) {
+    return this.imageService.getImageUrl(imagePath);
   }
-
 
 }

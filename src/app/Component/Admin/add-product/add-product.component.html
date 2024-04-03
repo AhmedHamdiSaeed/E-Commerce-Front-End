@@ -1,7 +1,7 @@
-<div class="container mt-5">
+<div class="container-fluid mt-5">
   <div class="row justify-content-center">
-    <div class="mb-4">
-      <h2>Add New Product</h2>
+    <div class="md-4">
+      <h2 class="text-center mb-4">Add New Product</h2>
     </div>
     <div class="col-md-6">
       <form class="row g-3 border rounded p-4 shadow-sm" (ngSubmit)="confirmAddProduct(addForm)" #addForm="ngForm" enctype="multipart/form-data">
@@ -15,7 +15,7 @@
         </div>
         </div>
         <div class="col-12">
-          <label for="title" class="form-label">Product title</label>
+          <label for="title" class="form-label bold-label">Product title</label>
           <input type="text" class="form-control" id="title" ngModel name="title" #title="ngModel" required>
           <div class="form-text" *ngIf="!title.valid && title.touched">
             Please provide a valid title for the product
@@ -23,41 +23,41 @@
         </div>
 
         <div class="col-md-6">
-          <label for="quantity" class="form-label">Quantity</label>
+          <label for="quantity" class="form-label bold-label">Quantity</label>
           <input type="number" min="1" max="5000" class="form-control" id="quantity" ngModel name="quantity" #quantity="ngModel" required>
           <div class="form-text" *ngIf="!quantity.valid && quantity.touched">
             Please provide a valid quantity for the product
           </div>
         </div>
         <div class="col-md-6">
-          <label for="sold" class="form-label">Sold</label>
+          <label for="sold" class="form-label bold-label">Sold</label>
           <input type="number" min="0" max="5000" class="form-control" id="sold" ngModel name="sold" #sold="ngModel" required>
           <div class="form-text" *ngIf="!sold.valid && sold.touched">
             Please provide a valid sold value for the product
           </div>
         </div>
         <div class="col-12">
-          <label for="price" class="form-label">Price</label>
+          <label for="price" class="form-label bold-label">Price</label>
           <input type="number" min="1" max="5000" class="form-control" id="price" ngModel name="price" #price="ngModel" required>
           <div class="form-text" *ngIf="!price.valid && price.touched">
             Please provide a valid price for the product
           </div>
         </div>
         <div class="col-md-6">
-          <label for="category" class="form-label">Category</label>
+          <label for="category" class="form-label bold-label">Category</label>
           <select name="category" class="form-select" ngModel>
             <option *ngFor="let cat of allCategories" [value]="cat.id">{{cat.name}}</option>
           </select>
         </div>
         <div class="col-md-6">
-          <label for="company" class="form-label">Company</label>
+          <label for="company" class="form-label bold-label">Company</label>
           <input type="text" class="form-control" id="company" ngModel name="company" #company="ngModel" required>
           <div class="form-text" *ngIf="!company.valid && company.touched">
             Please provide a valid company for the product
           </div>
         </div>
         <div class="col-12">
-          <label for="colors" class="form-label">Colors</label>
+          <label for="colors" class="form-label bold-label">Colors</label>
           <div class="input-group">
             <input type="color" class="form-control" [(ngModel)]="color" name="colors" #colors="ngModel">
             <button class="btn btn-outline-secondary" type="button" (click)="addColor()">Add Color</button>
@@ -72,14 +72,14 @@
           </div>
         </div>
         <div class="col-12">
-          <label for="description" class="form-label">Description</label>
+          <label for="description" class="form-label bold-label">Description</label>
           <textarea class="form-control" id="description" ngModel name="description" #description="ngModel" rows="4" required></textarea>
           <div class="form-text" *ngIf="!description.valid && description.touched">
             Please provide a valid description for the product
           </div>
         </div>
-        <div class="col-12">
-          <button class="btn btn-primary" type="submit" [disabled]="!addForm.valid">Submit</button>
+        <div class="col-md-12 mb-3 text-center">
+         <button class="btn btn-primary" type="submit" style="background-color: #198754; border-color: #198754;" [disabled]="!addForm.valid">Add Product</button>
         </div>
       </form>
     </div>

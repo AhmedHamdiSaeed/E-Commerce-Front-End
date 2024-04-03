@@ -20,8 +20,10 @@ import { PaymentSuccessComponent } from './Component/payment-success/payment-suc
 import { UpdateProfileComponent } from './Component/update-profile/update-profile.component';
 import { ContentComponent } from './Component/admin-dashboard/Orders/content.component';
 import { AdminUsersComponent } from './Component/Admin/admin-users/admin-users.component';
+import { UserOrdersComponent } from './Component/user-orders/user-orders.component';
 
 const routes: Routes = [
+  {path:'userOrders',component:UserOrdersComponent},
   {path:'paymentSuccess/:id',component:PaymentSuccessComponent, canActivate: [AuthGuardService]},
   { path: 'Profile', component: UserProfileComponent , canActivate: [AuthGuardService]},
   {path:'updateProfile',component:UpdateProfileComponent, canActivate: [AuthGuardService]},
@@ -37,23 +39,12 @@ const routes: Routes = [
     component: AdminBoardComponent,
     canActivate: [AuthGuardService],
     children:[
-      { path: 'AddCategory',
-      component: AddCategoryComponent ,
-      canActivate: [AuthGuardService]
-       },
+
       {
         path: 'Products',
         component: ProductComponent,
         canActivate: [AuthGuardService]
       },
-      { path: 'AddProduct',
-       component: AddProductComponent,
-        canActivate: [AuthGuardService]
-       },
-       { path: 'EditProduct/:id',
-       component: EditProductComponent,
-        canActivate: [AuthGuardService]
-       },
        {
         path: 'Orders',
         component: ContentComponent,
@@ -66,8 +57,18 @@ const routes: Routes = [
        },
     ]
   },
- 
-
+  { path: 'Admin/AddProduct',
+  component: AddProductComponent,
+   canActivate: [AuthGuardService]
+  },
+  { path: 'Admin/EditProduct/:id',
+  component: EditProductComponent,
+   canActivate: [AuthGuardService]
+  },
+  { path: 'Admin/AddCategory',
+  component: AddCategoryComponent ,
+  canActivate: [AuthGuardService]
+   },
 
   { path: 'Profile', component: UserProfileComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
