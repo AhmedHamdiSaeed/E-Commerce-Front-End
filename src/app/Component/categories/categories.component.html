@@ -49,9 +49,9 @@
           <!-- end sort -->
         </div>
       </div>
-      <div class=" col-sm-3 m-auto"
+      <div class=" col-sm-3 m-auto productCard"
         *ngFor="let product of receivedProducts |paginate: {itemsPerPage:itemsPerPage,currentPage:p}">
-        <div class="card mb-3 custom-card">
+        <div class="card mb-3 custom-card h-25">
           <div>
             <img class="card-img-top product-image" [src]="getImageUrl(product.image)" [alt]="product.title">
           </div>
