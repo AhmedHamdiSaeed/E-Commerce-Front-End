@@ -15,7 +15,7 @@
 
 .card-img-top.img-fluid {
   max-width: 100%;
-  height: auto;
+  height: 350px;
 }
 
 .product_details {
@@ -81,23 +81,28 @@
 .quantity-text {
   margin-right: 60px;
 }
-.controls{
+
+.controls {
   display: flex;
   justify-content: space-around;
   font-size: 15px;
   width: 100px;
 
 }
+
 .custom-button {
   margin-top: 1rem;
   padding: 0.5rem 1rem;
   font-size: 1rem;
   width: 100%;
 }
-b, strong {
+
+b,
+strong {
   font-weight: bolder;
   margin-right: 9px;
 }
+
 .error-message {
   margin-top: 1rem;
   color: red;
