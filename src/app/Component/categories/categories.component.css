@@ -27,6 +27,16 @@
   flex-wrap: nowrap;
 }
 
+.productTitle {
+  color: #198754;
+  cursor: pointer;
+}
+
+.productTitle:hover {
+  font-size: 27px;
+  font-weight: bolder;
+}
+
 .carousel-item {
   flex: 0 0 auto;
   transition: transform 0.6s ease;
@@ -69,8 +79,31 @@
   text-align: center;
 }
 
+/* imag cat */
+.catImg {
+  width: 100px;
+  height: 100px;
+}
+
+/* image div */
+.card-img-top {
+  height: 100px;
+}
+
+/*  */
+.productCard {
+  padding: 10px;
+  width: 323px;
+  margin: 10px;
+}
+
+/*  */
+.carousel-control-prev-icon {
+  cursor: pointer;
+}
+
+/*  */
 .category-image {
-  width: 50%;
   height: auto;
 }
 
@@ -83,6 +116,10 @@
   height: 100%;
   margin-top: 10px;
   position: relative;
+}
+
+.form-select {
+  width: 25% !important;
 }
 
 .btn-details {

@@ -98,7 +98,7 @@ export class EditProductComponent implements OnInit {
   }
   confirmEditProduct(): void {
     const dialogRef = this.dialog.open(ConfirmMessageComponent, {
-      data: { message: 'Are you sure you want to Edit this product?' },
+      data: { message: 'Are you sure you want to Edit this product?',title :' Edit Product ' },
     });
 
     dialogRef.afterClosed().subscribe((result) => {
@@ -151,7 +151,7 @@ export class EditProductComponent implements OnInit {
   confirmRemoveColor(color: string): void {
     const dialogRef = this.dialog.open(ConfirmMessageComponent, {
       width: '300px',
-      data: { message: 'Are you sure you want to remove this color?' },
+      data: { message: 'Are you sure you want to remove this color?',title :' Remove Color ' },
     });
 
     dialogRef.afterClosed().subscribe((result) => {

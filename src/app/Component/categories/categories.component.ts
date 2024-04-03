@@ -10,7 +10,6 @@ import { baseURL } from '../../../../env';
 import { TranslateService } from '@ngx-translate/core';
 import { ImageService } from '../../Services/images/image.service';
 
-
 @Component({
   selector: 'app-categories',
   templateUrl: './categories.component.html',
@@ -23,8 +22,8 @@ export class CategoriesComponent implements OnInit {
     private productService: ProductService,
     private cartService: CartService,
     private auth: AuthService,
-    private imagServices: ImageService
-    , private translate: TranslateService
+    private imagServices: ImageService,
+    private translate: TranslateService
   ) {}
 
   allCategories: Category[] = [];
@@ -38,7 +37,7 @@ export class CategoriesComponent implements OnInit {
   searchTerm: string = '';
   quantity: number = 0;
   p: number = 1;
-  itemsPerPage: number = 8;
+  itemsPerPage: number = 6;
   isHovered: boolean = false;
   hoveredProduct: any | null = null;
   categoriesInSlides: any[] = [];
@@ -67,7 +66,6 @@ export class CategoriesComponent implements OnInit {
       }
     );
   }
-
 
   async getAllCategories(): Promise<void> {
     try {
@@ -108,10 +106,9 @@ export class CategoriesComponent implements OnInit {
     console.log('Category clicked:', categoryId);
     this.getProductsByCategory(categoryId);
   }
-  
 
   getImageUrl(imagePath: string) {
-  return this.imagServices.getImageUrl( imagePath) ;
+    return this.imagServices.getImageUrl(imagePath);
   }
   //filter
 

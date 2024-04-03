@@ -109,8 +109,8 @@ export class AddProductComponent implements OnInit {
   }
   confirmRemoveColor(color: string): void {
     const dialogRef = this.dialog.open(ConfirmMessageComponent, {
-      width: '300px',
-      data: { message: 'Are you sure you want to remove this color?' },
+      data: { message: 'Are you sure you want to remove this color?',title :' Remove Color '}
+
     });
 
     dialogRef.afterClosed().subscribe((result) => {
