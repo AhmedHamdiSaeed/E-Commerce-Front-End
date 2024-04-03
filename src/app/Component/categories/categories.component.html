@@ -9,7 +9,7 @@
             <div class="col-md-4 col-sm-12" *ngFor="let category of slide" (click)="getSpecificCategory(category._id)">
               <div class="card">
                 <div class="card-body cardCategory text-center rounded-2 text-capitalize d-flex">
-                  <img src="../../../assets/project images/1.png" class="w-50">
+                  <img  [src]="getImageUrl(category.image)" class="w-50">
                   <h5 class="card-title ms-4 mt-4">{{ category.name }}</h5>
                 </div>
               </div>
