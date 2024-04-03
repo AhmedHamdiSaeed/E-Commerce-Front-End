@@ -8,6 +8,7 @@ import { AdminServices } from '../../../Services/admin/admin-services.service';
 import { ConfirmMessageComponent } from '../../../SharedComponent/confirm-message/confirm-message.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { ImageService } from '../../../Services/images/image.service';
 
 @Component({
   selector: 'app-product-details-dialog',
@@ -19,7 +20,7 @@ export class ProductDetailsDialogComponent {
   allCategories: Category[] = [];
 
   constructor(
-    private sanitizer: DomSanitizer,
+    private imageServices: ImageService,
     private productService: AdminServices,
     private dialog: MatDialog,
     private router: Router,
@@ -39,9 +40,7 @@ export class ProductDetailsDialogComponent {
   }
 
   getImageUrl(imagePath: string): SafeUrl {
-    let safeurl = baseURL + imagePath;
-    console.log(safeurl);
-    return this.sanitizer.bypassSecurityTrustUrl(safeurl);
+   return this.imageServices.getImageUrl(imagePath) ;
   }
   async getAllCategories(): Promise<void> {
     try {

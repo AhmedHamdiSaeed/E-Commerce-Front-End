@@ -44,7 +44,7 @@
                                 <h5 class="card-title">{{ 'cart.card-title' | translate }}</h5>
                                 <p class="card-price">{{ 'cart.card-price' | translate }} {{ getTotalPrice() |
                                     currency:'EGP':'symbol' }} </p>
-                                <button class="btn btn-danger clear" (click)="clearCart()">{{ 'cart.clear' | translate
+                                <button class="btn btn-danger clear"  (click)="Clear()">{{ 'cart.clear' | translate
                                     }}</button>
                                 <div class="mt-4 card-item " *ngFor="let item of cartProducts; let i = index">
                                     <div class=" card_img"><img [src]="getImageUrl(item.product.image)"

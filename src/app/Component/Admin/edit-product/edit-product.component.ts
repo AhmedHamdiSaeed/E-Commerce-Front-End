@@ -9,6 +9,9 @@ import { ConfirmMessageComponent } from '../../../SharedComponent/confirm-messag
 import { ViewCat } from '../../../models/viewCat';
 import { CategoryService } from '../../../Services/category/category-services.service';
 import { NgForm } from '@angular/forms';
+import { baseURL } from '../../../../.././env';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { ImageService } from '../../../Services/images/image.service';
 
 @Component({
   selector: 'app-edit-product',
@@ -31,7 +34,8 @@ export class EditProductComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     public dialog: MatDialog,
-    private getCategories: CategoryService
+    private getCategories: CategoryService,
+    private imageServices: ImageService
   ) {
     this.editProductForm = this.fb.group({
       title: ['', Validators.required],
@@ -94,29 +98,35 @@ export class EditProductComponent implements OnInit {
   }
   confirmEditProduct(): void {
     const dialogRef = this.dialog.open(ConfirmMessageComponent, {
-      width: '300px',
       data: { message: 'Are you sure you want to Edit this product?' },
     });
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.EditProduct();
+        this.router.navigateByUrl('/Admin/Products');
+
       }
     });
-    this.router.navigateByUrl('/Admin');
   }
 
   EditProduct(): void {
     if (this.editProductForm.valid) {
       this.editProductForm.patchValue({ colors: this.chosenColors });
-      this.productService.updateProducts(this.productId, this.editProductForm.value).subscribe(() => {
-        this.router.navigateByUrl(`/product-details/${this.productId}`);
-      });
-    }
-  }
 
+      const formData = new FormData();
+      formData.append('image', this.selectedImage);
+      Object.keys(this.editProductForm.value).forEach(key => {
+        formData.append(key, this.editProductForm.value[key]);
+      });
+        //  console.log(formData.get('image'));
+      this.productService.updateProducts(this.productId, formData).subscribe((res)=>{
+        console.log("product Edit successfuly")
+       })};
+  }
   onFileSelected(event: any) {
     this.selectedImage = event.target.files[0];
+    // console.log(this.selectedImage);
   }
 
   addColor(): void {
@@ -153,4 +163,9 @@ export class EditProductComponent implements OnInit {
 
   hideRemoveIcon(chosenColor: string): void {}
   showRemoveIcon(chosenColor: string): void {}
+
+  getImageUrl(imagePath: string): SafeUrl {
+   return this.imageServices.getImageUrl(imagePath) ;
+
+  }
 }

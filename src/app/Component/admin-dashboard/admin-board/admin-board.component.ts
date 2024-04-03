@@ -2,6 +2,10 @@ import { Component, ElementRef, ViewChild , OnInit } from '@angular/core';
 import { AdminServices } from '../../../Services/admin/admin-services.service';
 import {AuthService} from "../../../Services/auth/auth.service"
 import { Router } from '@angular/router';
+import { baseURL } from '../../../../../env';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { ImageService } from '../../../Services/images/image.service';
+import { Observable, interval } from 'rxjs';
 
 @Component({
   selector: 'app-admin-board',
@@ -9,6 +13,9 @@ import { Router } from '@angular/router';
   styleUrl: './admin-board.component.css'
 })
 export class AdminBoardComponent implements OnInit {
+  count!: number ;
+  timer$!: Observable<number>;
+
   products: any;
   orderInfo = [];
   users: any;
@@ -16,27 +23,27 @@ export class AdminBoardComponent implements OnInit {
   constructor(
     private router: Router,
     private adminServices: AdminServices,
-   private auth : AuthService
+   private auth : AuthService,
+   private imageServices: ImageService
   ) {}
   ngOnInit(): void {
     this.getProducts();
     this.getUser();
     console.log(this.totalSales);
     console.log(this.orderInfo);
+    this.count = 0;
+    this.timer$ = interval(1000);
+    this.timer$.subscribe(() => {
+      this.count++; });
   }
   getUser() {
     this.adminServices.getUsers().subscribe((res) => {
+      console.log(res);
+
       this.users = res;
     });
   }
-  // getOrders() {
-  //   this.product.getOrders().subscribe((res) => {
-  //     this.orderInfo = res;
-  //     this.orderInfo.map((item) => {
-  //       this.totalSales += item;
-  //     });
-  //   });
-  // }
+
   logout() {
     this.auth.logout();
     localStorage.removeItem('token');
@@ -49,4 +56,9 @@ export class AdminBoardComponent implements OnInit {
     });
   }
 
+
+  getImageUrl(imagePath: string) :SafeUrl {
+    return this.imageServices.getImageUrl(imagePath) ;
+
+  }
 }

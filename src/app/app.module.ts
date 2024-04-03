@@ -108,11 +108,8 @@ import { AdminUsersComponent } from './Component/Admin/admin-users/admin-users.c
     MatProgressSpinnerModule,
     AppRoutingModule,
     NgxPaginationModule,
-    HttpClientModule,
     CommonModule,
-    FormsModule,
-    HttpClientModule,
-    TranslateModule.forRoot({
+        TranslateModule.forRoot({
       defaultLanguage: 'en',
       loader: {
         provide: TranslateLoader,

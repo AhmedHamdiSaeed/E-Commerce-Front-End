@@ -8,6 +8,7 @@ import { Product } from '../../models/product';
 import { Category } from '../../models/categoryModel';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ImageService } from '../../Services/images/image.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -19,7 +20,7 @@ export class HomeComponent {
      private productService: ProductService,
       private cartService: CartService,
       private auth : AuthService,
-      private sanitizer: DomSanitizer) {}
+      private imageService: ImageService) {}
 
   allCategories: Category[] = [];
   products: Product[] = [];
@@ -57,6 +58,8 @@ export class HomeComponent {
   getAllCategories(): void {
     this.productService.getAllCategories().subscribe(
       (res: any) => {
+        console.log(res);
+
         if (Array.isArray(res)) {
           this.allCategories = res;
         } else {
@@ -89,5 +92,9 @@ export class HomeComponent {
   getSpecificCategory(categoryId: string): void {
     console.log('Category clicked:', categoryId);
     this.getProductsByCategory(categoryId);
+  }
+
+  getimageurl(imagePath:string){
+   return this.imageService.getImageUrl(imagePath) ;
   }
 }

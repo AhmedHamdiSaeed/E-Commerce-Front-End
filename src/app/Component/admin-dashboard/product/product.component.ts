@@ -6,12 +6,14 @@ import { baseURL } from '../../../../../env';
 import { ConfirmMessageComponent } from '../../../SharedComponent/confirm-message/confirm-message.component';
 import { MatDialog } from '@angular/material/dialog';
 import {ProductDetailsDialogComponent} from '../../Admin/product-details-dialog/product-details-dialog.component';
+import { ImageService } from '../../../Services/images/image.service';
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit {
+  isloading = false;
   products: any;
   categories: any;
   selectedCategory: string = '';
@@ -19,10 +21,12 @@ export class ProductComponent implements OnInit {
 
   constructor(private router: Router, private dialog: MatDialog,
     private productService: AdminServices,
-    private sanitizer: DomSanitizer) {}
+    private imageService: ImageService) {}
 
   ngOnInit(): void {
+    this.isloading = true ;
     this.getProducts();
+
     this.getCategories();
   }
 
@@ -31,6 +35,8 @@ export class ProductComponent implements OnInit {
       const res = await this.productService.getProducts().toPromise();
       this.products = res;
       this.displayedProducts = res;
+      this.isloading = false ;
+
     } catch (error) {
       console.error(error);
     }
@@ -74,7 +80,6 @@ export class ProductComponent implements OnInit {
   }
   confirmRemoveProduct(productId: string): void {
     const dialogRef = this.dialog.open(ConfirmMessageComponent, {
-      width: '300px',
       data: { message: 'Are you sure you want to remove this product?' },
     });
 
@@ -87,11 +92,11 @@ export class ProductComponent implements OnInit {
     });
   }
   addProduct() {
-    this.router.navigateByUrl('Admin/AddProduct');
+    this.router.navigateByUrl('/Admin/AddProduct');
   }
 
   addCategory(){
-    this.router.navigateByUrl('/Add_Category');
+    this.router.navigateByUrl('/Admin/AddCategory');
   }
 
   editProduct(productId: string) {
@@ -105,6 +110,7 @@ export class ProductComponent implements OnInit {
       () => {
         console.log("Product deleted successfully");
         this.products = this.products.filter((p: any) => p._id !== productId);
+        this.getProducts(); // Refresh the list of products
       },
       err => {
         console.log(err);
@@ -113,15 +119,9 @@ export class ProductComponent implements OnInit {
   }
 
 
-
-  getImageUrl(imagePath: string) :SafeUrl {
-    // return `../../../assets${imagePath}`;
-    let safeurl = baseURL + imagePath ;
-
-    // console.log(safeurl);
-
-    return  this.sanitizer.bypassSecurityTrustUrl(safeurl) ;
-
+  getImageUrl(imagePath: string){
+  return  this.imageService.getImageUrl(imagePath)
   }
+
 
 }

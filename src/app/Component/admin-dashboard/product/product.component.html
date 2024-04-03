@@ -1,5 +1,11 @@
 <div class="container">
   <div class="row">
+        <div class="col-md-12 text-center">
+          <button class="btn btn-primary mb-3" (click)="addProduct()" title="Add New Product">
+            <i class="bi bi-plus"></i> Add New Product
+          </button>
+        </div>
+
     <div class="col-md-12 text-center">
       <div class="panel">
         <div class="panel-heading bg-primary text-white">
@@ -34,7 +40,7 @@
               <tr *ngFor="let product of displayedProducts">
                 <td>
                   <div class="image-container">
-                    <img [src]="getImageUrl(product.image)" alt="Product Image" class="img-fluid rounded-circle">
+                    <img class="card-img-top product-image" [src]="getImageUrl(product.image)" [alt]="product.title">
                   </div>
                 </td>
                 <td><b>{{ product.title }}</b></td>
@@ -60,5 +66,8 @@
         </div>
       </div>
     </div>
+    <div *ngIf="displayedProducts.length == 0" >
+      <app-loading-spinner></app-loading-spinner>
+      </div>
   </div>
 </div>

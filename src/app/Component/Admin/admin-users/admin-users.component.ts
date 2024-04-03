@@ -67,7 +67,7 @@ export class AdminUsersComponent implements OnInit {
 
   getImgUrl(path: string): SafeUrl {
     let imagePath = baseURL+ '/'+ path ;
-    // console.log(imagePath);
+    console.log(imagePath);
     
      return this.sanitizer.bypassSecurityTrustUrl(imagePath)
     }

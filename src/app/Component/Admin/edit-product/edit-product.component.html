@@ -1,14 +1,14 @@
-<div class="container mt-5">
+<div class="container-fluid mt-5">
   <div class="row justify-content-center">
-    <div class="mb-4">
-          <h2>Edit Product</h2>
-        </div>
+    <div class="md-4">
+      <h2 class="text-center">Edit Product</h2>
+    </div>
         <div class="col-md-6">
           <form class="row g-3 border rounded p-4 shadow-sm" [formGroup]="editProductForm" (ngSubmit)="confirmEditProduct()" enctype="multipart/form-data">
             <div class="col-12">
-            <div class="text-center mb-3">
-              <img [src]="product.image" class="rounded-circle img-thumbnail" alt="Product Image" style="width: 150px; height: 150px;">
-              <input type="file" class="form-control" id="image" name="image" (change)="onFileSelected($event)" accept="image/*">
+            <div class="text-center mt-0">
+              <img [src]="getImageUrl(product.image)" class="rounded-circle img-thumbnail" alt="Product Image" style="width:150px; height: 150px; margin-bottom: 10px;">
+              <input type="file" class="form-control" id="image" name="image" (change)="onFileSelected($event)" >
               <div class="form-text" *ngIf="editProductForm.get('image')?.invalid && (editProductForm.get('image')?.touched || editProductForm.get('image')?.dirty)">
                 Please provide a valid image (.jpg, .jpeg, .png, .gif)
               </div>
@@ -80,7 +80,7 @@
               </div>
             </div>
             <div class="col-12">
-              <button type="submit" class="btn btn-primary" [disabled]="editProductForm?.invalid">Save changes</button>
+              <button type="submit" class="btn btn-primary" >Save changes</button>
             </div>
           </form>
       </div>

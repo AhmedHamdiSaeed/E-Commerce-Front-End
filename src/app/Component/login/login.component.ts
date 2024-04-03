@@ -27,7 +27,7 @@ onSubmit(form : NgForm){
       this.isLoading = false ;
       if(data.user.role == 'admin')
       {
-        this.router.navigate(['/Admin']) ;
+        this.router.navigate(['/Admin/Products']) ;
       }
       else
       {
