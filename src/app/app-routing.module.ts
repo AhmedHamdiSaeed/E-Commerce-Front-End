@@ -20,8 +20,10 @@ import { PaymentSuccessComponent } from './Component/payment-success/payment-suc
 import { UpdateProfileComponent } from './Component/update-profile/update-profile.component';
 import { ContentComponent } from './Component/admin-dashboard/Orders/content.component';
 import { AdminUsersComponent } from './Component/Admin/admin-users/admin-users.component';
+import { UserOrdersComponent } from './Component/user-orders/user-orders.component';
 
 const routes: Routes = [
+  {path:'userOrders',component:UserOrdersComponent},
   {path:'paymentSuccess/:id',component:PaymentSuccessComponent, canActivate: [AuthGuardService]},
   { path: 'Profile', component: UserProfileComponent , canActivate: [AuthGuardService]},
   {path:'updateProfile',component:UpdateProfileComponent, canActivate: [AuthGuardService]},
