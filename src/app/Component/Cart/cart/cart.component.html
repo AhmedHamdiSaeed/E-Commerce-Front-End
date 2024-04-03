@@ -71,11 +71,11 @@
                             <button class="btn btn-primary buy" (click)="orderNow()">Buy Now </button>
 
 
-
                         </div>
 
                         <app-footer></app-footer>
                     </ng-container>
-                    <div *ngIf="isLoading " class="position-fixed top-50 start-50 translate-middle">
+           
+                    <ng-container *ngIf="isLoading " class="position-fixed top-50 start-50 translate-middle">
                         <app-loading-spinner></app-loading-spinner>
-                    </div>
+                    </ng-container>
