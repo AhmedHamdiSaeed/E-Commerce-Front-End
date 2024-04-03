@@ -8,17 +8,28 @@
       <table>
         <thead>
           <tr>
-            <td>Order</td>
+            <td>Client </td>
+            <td>Date Of Order</td>
+            <td>Shopping List</td>
             <td>Total price</td>
             <td>Amount</td>
             <td>Status</td>
             <td>Update Status</td>
+            <td>Delete </td>
           </tr>
         </thead>
         <tbody>
+        
           <tr *ngFor="let item of orderInfo">
-            <td>{{ item.productId?.name }}</td>
-            <td>{{ item.totalPrice }}</td>
+            <!-- <td>{{ item.productId?.name }}</td> -->
+            <td>{{ item.user.email }}</td>
+            <td>{{ item.createdAt | date }}</td>
+            <td>
+              <ul>
+                <li  *ngFor="let p of item.cartItems"> {{p.product.title}}</li>
+              </ul>
+            </td>
+            <td>{{ item.totalOrderPrice }}</td>
             <td>{{ item.amount }}</td>
             <td>{{ item.status }}</td>
             <td class="list">
@@ -31,6 +42,8 @@
                 </mat-select>
               </mat-form-field>
             </td>
+            <td><button class="btn btn-danger" (click)="OpenDialog(item._id)"> remove </button></td>
+
 
           </tr>
         </tbody>
@@ -42,34 +55,6 @@
     <!-- <mat-spinner *ngIf="orderInfo.length == 0" class="spinner"></mat-spinner> -->
   </div>
 
-  <div class="recentCustomers">
-    <div class="cardHeader">
-                <h2>Recent Customers</h2>
-    </div>
-    <div *ngIf="isloading">
-      <app-loading-spinner></app-loading-spinner>
-      </div>
-    <div class="table-container" *ngIf="!isloading">
-      <table>
-        <tr *ngFor="let user of users" class="userDiv">
-          <td width="60px">
-            <div class="imgBx"><img [src]="getImgUrl(user.image)" alt=""></div>
-          </td>
-          <td>
-            <h4>{{ user.fname  }} <br> <span>{{ user.email }}</span></h4>
-          </td>
-
-           <div class="deleteContainer" >
-            <span class="deletBtn">
-              <button class="btn btn-danger" (click)="OpenDialog(user._id)" title="Remove Customer">
-                <i class="bi bi-trash-fill"></i>
-              </button>
-            </span>
-           </div>
-        </tr>
-      </table>
-    </div>
-  </div>
 </div>
 
 

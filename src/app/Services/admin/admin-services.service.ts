@@ -39,6 +39,11 @@ export class AdminServices {
       })
     );
   }
+// not emplimented in the back end yet ! 
+
+  // deleteOrders(orderId: string){
+  //   return this.http.delete(`${baseURL}/orders/` + orderId)
+  // }
 
   updateProducts(id: any, product: FormData): Observable<any> {
     return this.http.patch(`${this.apiProduct}/${id}`, product);
