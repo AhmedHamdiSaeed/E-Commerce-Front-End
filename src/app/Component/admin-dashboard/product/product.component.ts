@@ -116,9 +116,9 @@ export class ProductComponent implements OnInit {
 
   getImageUrl(imagePath: string) :SafeUrl {
     // return `../../../assets${imagePath}`;
-    let safeurl = baseURL + imagePath ;
+    let safeurl = baseURL + '/' + imagePath ;
 
-    // console.log(safeurl);
+    console.log(safeurl);
 
     return  this.sanitizer.bypassSecurityTrustUrl(safeurl) ;
 
