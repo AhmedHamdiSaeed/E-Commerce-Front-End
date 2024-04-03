@@ -38,10 +38,11 @@ export class ContentComponent implements OnInit {
       this.orderInfo = res;
       // this.select = res.status;
       // console.log(res , this.orderInfo);
+      // console.log(res);
       this.orderInfo.forEach((order: any )=> {
           // console.log(order.user.fname ,  order.user.lname);
           order.cartItems.forEach((p: any) => {
-              console.log(p.product);
+              // console.log(p.product);
               
           });
           
@@ -50,21 +51,20 @@ export class ContentComponent implements OnInit {
 
     
   }
-  // getOrderInfo() {
-  //   this.serve.getOrderInfo() // Replace with your order fetching method
-  //     .subscribe(orders => this.orderInfo = orders);
-  // }
-  // updateOrderStatus(order: OrderInfo, newStatus: string) {
-  //   this.serve.updateOrderStatus(order._id, newStatus) // Replace with your order update method
-  //     .subscribe(() => {
-  //       const index = this.orderInfo.findIndex(o => o._id === order._id);
-  //       this.orderInfo[index].status = newStatus;
-  //     });
-  // }
 
+
+  getOrder(orderId :string){
+    console.log(orderId);
+    this.adminService.getOrderByID(orderId)
+    .subscribe((res)=>{
+      console.log(res);
+      
+    })
+    
+  }
 
   getImgUrl(path: string): SafeUrl {
- return this.imageServices.getImageUrl(path) ;
+    return this.imageServices.getImageUrl(path) ;
   }
 
  
@@ -74,7 +74,7 @@ export class ContentComponent implements OnInit {
    const msgDialog =  this.confirmdialog.open(ConfirmMessageComponent , {
       width:'40%',
       height: '35%',
-      data: {message: this.message, title: "Delete User"},
+      data: {message: " this order will be canceled", title: "cancel order "},
       panelClass: 'custom-dialog' // Apply custom CSS class
 
 
@@ -84,7 +84,7 @@ export class ContentComponent implements OnInit {
       // console.log('dialog closed' , result);
       if(result) {
         console.log('confirm');
-        this.message = "this order will be deleted " ;
+        this.message = "this order will be canceled " ;
          this.deleteOreder(Id);
      
       }
@@ -97,15 +97,12 @@ export class ContentComponent implements OnInit {
   }
 
   deleteOreder(orderId : string){
-    // this.adminService.deleteOrders(orderId).subscribe((res)=>{
-    // console.log(res);
-
-    // }, err =>{
-    //   console.log(err);
+    console.log(orderId);
+    this.adminService.cancelOrder(orderId).subscribe((res)=>{
+      console.log(res);
       
-    // })
-
-    console.log('not empilemented yet ');
+    },(error) => console.log(error)
+    )
     
   }
 
