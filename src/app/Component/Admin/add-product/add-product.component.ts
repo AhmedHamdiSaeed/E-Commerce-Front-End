@@ -89,6 +89,7 @@ export class AddProductComponent implements OnInit {
   }
   onFileSelected(event: any){
     this.selectedImage= event.target.files[0] ;
+    console.log(this.selectedImage);
   }
   addColor(): void {
     if (!this.chosenColors.includes(this.color)) {

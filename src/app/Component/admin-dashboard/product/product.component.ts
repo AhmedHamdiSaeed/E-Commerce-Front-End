@@ -105,12 +105,14 @@ export class ProductComponent implements OnInit {
       () => {
         console.log("Product deleted successfully");
         this.products = this.products.filter((p: any) => p._id !== productId);
+        this.getProducts(); // Refresh the list of products
       },
       err => {
         console.log(err);
       }
     );
   }
+
 
 
 

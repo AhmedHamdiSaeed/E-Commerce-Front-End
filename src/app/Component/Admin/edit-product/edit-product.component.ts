@@ -9,6 +9,8 @@ import { ConfirmMessageComponent } from '../../../SharedComponent/confirm-messag
 import { ViewCat } from '../../../models/viewCat';
 import { CategoryService } from '../../../Services/category/category-services.service';
 import { NgForm } from '@angular/forms';
+import { baseURL } from '../../../../.././env';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-edit-product',
@@ -31,7 +33,8 @@ export class EditProductComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     public dialog: MatDialog,
-    private getCategories: CategoryService
+    private getCategories: CategoryService,
+    private sanitizer: DomSanitizer
   ) {
     this.editProductForm = this.fb.group({
       title: ['', Validators.required],
@@ -109,14 +112,21 @@ export class EditProductComponent implements OnInit {
   EditProduct(): void {
     if (this.editProductForm.valid) {
       this.editProductForm.patchValue({ colors: this.chosenColors });
-      this.productService.updateProducts(this.productId, this.editProductForm.value).subscribe(() => {
-        this.router.navigateByUrl(`/product-details/${this.productId}`);
+
+      const formData = new FormData();
+      formData.append('image', this.selectedImage);
+      Object.keys(this.editProductForm.value).forEach(key => {
+        formData.append(key, this.editProductForm.value[key]);
+      });
+         console.log(formData.get('image'));
+      this.productService.updateProducts(this.productId, formData).subscribe(() => {
+        this.router.navigateByUrl(`/Admin`);
       });
     }
   }
-
   onFileSelected(event: any) {
     this.selectedImage = event.target.files[0];
+    console.log(this.selectedImage);
   }
 
   addColor(): void {
@@ -153,4 +163,11 @@ export class EditProductComponent implements OnInit {
 
   hideRemoveIcon(chosenColor: string): void {}
   showRemoveIcon(chosenColor: string): void {}
+
+  getImageUrl(imagePath: string): SafeUrl {
+    let safeurl = baseURL + imagePath ;
+
+    return  this.sanitizer.bypassSecurityTrustUrl(safeurl) ;
+
+  }
 }

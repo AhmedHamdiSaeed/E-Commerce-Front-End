@@ -7,8 +7,8 @@
           <form class="row g-3 border rounded p-4 shadow-sm" [formGroup]="editProductForm" (ngSubmit)="confirmEditProduct()" enctype="multipart/form-data">
             <div class="col-12">
             <div class="text-center mb-3">
-              <img [src]="product.image" class="rounded-circle img-thumbnail" alt="Product Image" style="width: 150px; height: 150px;">
-              <input type="file" class="form-control" id="image" name="image" (change)="onFileSelected($event)" accept="image/*">
+              <img [src]="getImageUrl(product.image)" class="rounded-circle img-thumbnail" alt="Product Image" style="width: 150px; height: 150px;">
+              <input type="file" class="form-control" id="image" name="image" (change)="onFileSelected($event)" >
               <div class="form-text" *ngIf="editProductForm.get('image')?.invalid && (editProductForm.get('image')?.touched || editProductForm.get('image')?.dirty)">
                 Please provide a valid image (.jpg, .jpeg, .png, .gif)
               </div>
