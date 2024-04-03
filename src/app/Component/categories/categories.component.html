@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="row">
-    <h3 class="text-center text-main bg-success text-light rounded-2 p-2">All Categories</h3>
+    <h3 class="text-center text-main bg-success text-light rounded-2 p-2">{{ 'category.All Categories'| translate }}</h3>
     <!-- categories slider -->
     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
@@ -32,19 +32,19 @@
 
 
     <!-- products -->
-    <div class="row mt-5">
-      <div class="d-flex justify-content-between text-center text-main  bg-success text-light rounded-2 p-2">
-        <h3 class="mt-2 ms-3 ">Products</h3>
+    <div class="row mt-5" >
+      <div class="d-flex justify-content-between text-center text-main  bg-success text-light rounded-2 p-2" [dir]="'dir' | translate">
+        <h3 class="mt-2 ms-3 ">{{ 'category.Products'| translate }}</h3>
         <div class="d-flex text-center">
           <!-- search -->
           <app-search (searchTextChanged)="onSearchTextChanged($event)"></app-search>
           <!-- sort by price and category-->
-          <select class="form-select w-25 ms-2 text-success" aria-label="Sort By" [(ngModel)]="sortBy"
+          <select class="form-select w-25 ms-2 mx-5 text-success" aria-label="Sort By" [(ngModel)]="sortBy"
             (change)="onSortChange(sortBy)">
-            <option selected value="">Sort By</option>
-            <option value="price">Price (Low to High)</option>
-            <option value="price-desc">Price (High to Low)</option>
-            <option value="category">Category (A to Z)</option>
+            <option selected value="">{{ 'category.sort'| translate }}</option>
+            <option value="price">{{ 'category.price'| translate }}</option>
+            <option value="price-desc">{{ 'category.price-desc'| translate }}</option>
+            <option value="category">{{ 'category.category'| translate }}</option>
           </select>
           <!-- end sort -->
         </div>

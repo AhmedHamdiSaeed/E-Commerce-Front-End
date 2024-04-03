@@ -111,7 +111,7 @@ export class CategoriesComponent implements OnInit {
   
 
   getImageUrl(imagePath: string) {
-  return this.imagServices.getImageUrl( imagePath) ;
+  return this.imagServices.getImageUrl(imagePath) ;
   }
   //filter
 

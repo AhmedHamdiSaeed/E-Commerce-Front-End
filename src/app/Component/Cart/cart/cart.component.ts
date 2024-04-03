@@ -108,7 +108,8 @@ decreaseQuantity(item: any): void {
 
 
 orderNow(){
-  this.isLoading=true;
+  this.isLoading = true;
+
   if (!this.auth.isAuthenticated()) {
     this.router.navigate(['/login']);
     return;
@@ -139,7 +140,9 @@ orderNow(){
 
   );
   console.log(products);
- // this.Clear()
+setTimeout(() => {
+      this.isLoading = false;
+    }, 2000); 
   
 
   this.Clear();
