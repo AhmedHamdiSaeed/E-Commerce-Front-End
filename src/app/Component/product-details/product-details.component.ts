@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../../../Services/product/product.service';
-import { Category } from '../../../models/categoryModel';
-import { Product } from '../../../models/product';
-import {baseURL} from '../../../../../env'
+import { ProductService } from '../../Services/product/product.service';
+import { Category } from '../../models/categoryModel';
+import { Product } from '../../models/product';
+import {baseURL} from '../../../../env'
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 import { ActivatedRoute, Router } from '@angular/router';
-import { CartService } from '../../../Services/Cart/cart.service';
-import { AuthService } from '../../../Services/auth/auth.service';
-import { ImageService } from '../../../Services/images/image.service';
+import { CartService } from '../../Services/Cart/cart.service';
+import { AuthService } from '../../Services/auth/auth.service';
+import { ImageService } from '../../Services/images/image.service';
 
 
 @Component({
