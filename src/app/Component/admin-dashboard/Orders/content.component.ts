@@ -18,12 +18,12 @@ import { ConfirmMessageComponent } from '../../../SharedComponent/confirm-messag
 export class ContentComponent implements OnInit {
   modeSelect: any;
  orderInfo:any = [];
-  users!: appUser[];
+  // users!: appUser[];
   orders: any;
   select: any;
   isloading = false;
   showDelet = false ;
-  message = "this user will be deleted ";
+  message!: string ;
 
   constructor(
     private adminService: AdminServices,
@@ -37,13 +37,17 @@ export class ContentComponent implements OnInit {
       this.orderInfo = res;
       // this.select = res.status;
       // console.log(res , this.orderInfo);
+      this.orderInfo.forEach((order: any )=> {
+          // console.log(order.user.fname ,  order.user.lname);
+          order.cartItems.forEach((p: any) => {
+              console.log(p.product);
+              
+          });
+          
+      });
     });
-    this.adminService.getUsers().subscribe((res) => {
-      this.users = res;
-      this.isloading = false ;
-      // console.log(this.users);
-    });  // 1- todo handle error if req failde to get users data 
-        // 2- conect the user with the link of the profile 
+
+    
   }
   // getOrderInfo() {
   //   this.serve.getOrderInfo() // Replace with your order fetching method
@@ -65,22 +69,9 @@ export class ContentComponent implements OnInit {
    return this.sanitizer.bypassSecurityTrustUrl(imagePath)
   }
 
-  deleteUser(userId: string){
-    return this.adminService.deleteUser(userId)
-    .subscribe((res)=>{
-      console.log(res);
-      this.users = this.users.filter((user) => user._id !== userId);
-      
-    }, error =>{
-      console.log(error);
-      
-    })
-    // todo handle the error 
-    // console.log(user._id);
-    
-  }
+ 
 
-  OpenDialog(userId: string){
+  OpenDialog( Id: string ){
 
    const msgDialog =  this.confirmdialog.open(ConfirmMessageComponent , {
       width:'40%',
@@ -95,7 +86,9 @@ export class ContentComponent implements OnInit {
       // console.log('dialog closed' , result);
       if(result) {
         console.log('confirm');
-        this.deleteUser(userId) ;
+        this.message = "this order will be deleted " ;
+         this.deleteOreder(Id);
+     
       }
       else {
        console.log("cansle");
@@ -103,6 +96,19 @@ export class ContentComponent implements OnInit {
       }      
       
     }))
+  }
+
+  deleteOreder(orderId : string){
+    // this.adminService.deleteOrders(orderId).subscribe((res)=>{
+    // console.log(res);
+
+    // }, err =>{
+    //   console.log(err);
+      
+    // })
+
+    console.log('not empilemented yet ');
+    
   }
 
 
