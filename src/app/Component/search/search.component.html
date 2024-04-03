@@ -1,11 +1,8 @@
-
 <div class="navbar bg-body-tertiary rounded-2">
   <div class="container-fluid">
     <div class="d-flex">
-      <input class="form-control mx-5" type="text" [(ngModel)]="searchTerm" (input)="onSearchChange()">
+      <input class="form-control me-2" type="text" [(ngModel)]="searchTerm" (input)="onSearchChange()">
       <button class="btn btn-outline-success" (click)="onSearchChange()">{{'category.Search'| translate }}</button>
     </div>
   </div>
 </div>
-
-

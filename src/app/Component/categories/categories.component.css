@@ -27,14 +27,6 @@
   flex-wrap: nowrap;
 }
 
-/* .divImg {
-  width: 100px
-} */
-
-/* .product-image {
-  height: 100%;
-} */
-
 .productTitle {
   color: #198754;
   cursor: pointer;
@@ -101,6 +93,10 @@
   height: 100%;
   margin-top: 10px;
   position: relative;
+}
+
+.form-select {
+  width: 25% !important;
 }
 
 .btn-details {

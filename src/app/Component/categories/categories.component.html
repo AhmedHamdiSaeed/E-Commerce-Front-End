@@ -39,7 +39,7 @@
           <!-- search -->
           <app-search (searchTextChanged)="onSearchTextChanged($event)"></app-search>
           <!-- sort by price and category-->
-          <select class="form-select w-25 ms-2 text-success" aria-label="Sort By" [(ngModel)]="sortBy"
+          <select class="form-select ms-2 text-success" aria-label="Sort By" [(ngModel)]="sortBy"
             (change)="onSortChange(sortBy)">
             <option selected value="">Sort By</option>
             <option value="price">Price (Low to High)</option>
