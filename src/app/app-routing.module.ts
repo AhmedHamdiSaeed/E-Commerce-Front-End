@@ -23,7 +23,7 @@ import { AdminUsersComponent } from './Component/Admin/admin-users/admin-users.c
 import { UserOrdersComponent } from './Component/user-orders/user-orders.component';
 
 const routes: Routes = [
-  {path:'userOrders',component:UserOrdersComponent},
+  {path:'userOrders',component:UserOrdersComponent, canActivate: [AuthGuardService]},
   {path:'paymentSuccess/:id',component:PaymentSuccessComponent, canActivate: [AuthGuardService]},
   { path: 'Profile', component: UserProfileComponent , canActivate: [AuthGuardService]},
   {path:'updateProfile',component:UpdateProfileComponent, canActivate: [AuthGuardService]},

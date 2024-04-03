@@ -10,6 +10,6 @@ export class UserProfileService {
   { }
   getUserUpdate()
   {
-    return this.http.get(`${baseURL}/userProfile/update`)
+    return this.http.get(`${baseURL}/userProfile/forUpdate`)
   }
 }
