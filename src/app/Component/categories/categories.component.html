@@ -20,12 +20,12 @@
       <!-- Navigation buttons -->
       <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
         data-bs-slide="prev">
-        <span class="carousel-control-prev-icon bg-success" aria-hidden="true"></span>
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>
       </button>
       <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
         data-bs-slide="next">
-        <span class="carousel-control-next-icon bg-success" aria-hidden="true"></span>
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>
       </button>
     </div>
@@ -49,7 +49,7 @@
           <!-- end sort -->
         </div>
       </div>
-      <div class=" col-sm-3 m-auto productCard"
+      <div class=" col-sm-4 m-auto productCard"
         *ngFor="let product of receivedProducts |paginate: {itemsPerPage:itemsPerPage,currentPage:p}">
         <div class="card mb-3 custom-card h-25">
           <div>
@@ -58,8 +58,9 @@
           <div class="card-body text-center">
             <h5 class="card-title productTitle" [routerLink]="['/products', product._id]">{{ product.title }}</h5>
             <p class="card-text">{{ product.description }}</p>
-            <p class="card-text">Price : {{ product.price | currency:'EGP':'symbol' }}</p>
-            <button class="btn btn-success mb-2 cart-btn" (mouseenter)="hoveredProduct = product; isHovered = true"
+            <p class="card-text fw-bold">Price : {{ product.price | currency:'EGP':'symbol' }}</p>
+            <button class="btn btn-success mb-2 cart-btn m-auto"
+              (mouseenter)="hoveredProduct = product; isHovered = true"
               (mouseleave)="hoveredProduct = null; isHovered = false">
               <i style="font-size: 30px; color: white;" class="bi bi-cart-plus m-auto"></i>
               <span class="badge badge-primary" *ngIf="getHoveredProductQuantity(product) !== 0">

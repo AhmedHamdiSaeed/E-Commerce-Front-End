@@ -98,6 +98,11 @@
 }
 
 /*  */
+.carousel-control-prev-icon {
+  cursor: pointer;
+}
+
+/*  */
 .category-image {
   height: auto;
 }
