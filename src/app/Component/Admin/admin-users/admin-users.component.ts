@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { baseURL } from '../../../../env';
+import { baseURL } from '../../../../../env';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import { AdminServices } from '../../Services/admin/admin-services.service';
-import { appUser } from '../../models/applicationUser';
+import { AdminServices } from '../../../Services/admin/admin-services.service';
+import { appUser } from '../../../models/applicationUser';
 import { MatDialog } from '@angular/material/dialog';
-import { ConfirmMessageComponent } from '../../SharedComponent/confirm-message/confirm-message.component';
+import { ConfirmMessageComponent } from '../../../SharedComponent/confirm-message/confirm-message.component';
 
 
 @Component({

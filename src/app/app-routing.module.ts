@@ -19,7 +19,7 @@ import { EditProductComponent } from './Component/Admin/edit-product/edit-produc
 import { PaymentSuccessComponent } from './Component/payment-success/payment-success.component';
 import { UpdateProfileComponent } from './Component/update-profile/update-profile.component';
 import { ContentComponent } from './Component/admin-dashboard/Orders/content.component';
-import { AdminUsersComponent } from './Component/admin-users/admin-users.component';
+import { AdminUsersComponent } from './Component/Admin/admin-users/admin-users.component';
 
 const routes: Routes = [
   {path:'paymentSuccess/:id',component:PaymentSuccessComponent, canActivate: [AuthGuardService]},

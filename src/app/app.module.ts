@@ -59,7 +59,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ProductDetailsDialogComponent } from './Component/Admin/product-details-dialog/product-details-dialog.component';
 import { UpdateProfileComponent } from './Component/update-profile/update-profile.component';
 import { UserOrdersComponent } from './Component/user-orders/user-orders.component';
-import { AdminUsersComponent } from './Component/admin-users/admin-users.component';
+import { AdminUsersComponent } from './Component/Admin/admin-users/admin-users.component';
 
 @NgModule({
   declarations: [
