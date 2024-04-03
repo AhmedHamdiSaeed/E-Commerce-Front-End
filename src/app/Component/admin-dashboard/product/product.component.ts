@@ -80,7 +80,6 @@ export class ProductComponent implements OnInit {
   }
   confirmRemoveProduct(productId: string): void {
     const dialogRef = this.dialog.open(ConfirmMessageComponent, {
-      width: '300px',
       data: { message: 'Are you sure you want to remove this product?' },
     });
 

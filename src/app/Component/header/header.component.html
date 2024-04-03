@@ -40,14 +40,6 @@
               <li><a class="nav-link" (click)="onLogout()" >{{'header.Logout'|translate}}</a>
               </li>
             </ul>
-            <!-- dropdown for admin -->
-            <ul class="dropdown-menu dropdown-content" aria-labelledby="dropdownMenuButton1" *ngIf="isAuthed && user?.role == 'admin'">
-              <!-- <li><a class="dropdown-item" routerLink="/Profile" (click)="getUser()">{{'header.Your Account'|translate}}</a></li>
-              <li><a class="dropdown-item" routerLink="/updateProfile">update Profile</a></li> -->
-              <li><a class="dropdown-item" routerLink="Admin/Products">Settings</a></li>
-              <li><a class="nav-link" (click)="onLogout()" >{{'header.Logout'|translate}}</a>
-              </li>
-            </ul>
           </div>
           <!-- todo add user image -->
           <!-- <span>

@@ -1,12 +1,13 @@
-<!-- confirm-message.component.html -->
-<div class="dialog-container">
-    <h1 mat-dialog-title class="custom-dialog-title">{{data.title}}</h1>
-<div mat-dialog-content class="custom-dialog-content">
-  <p>{{ data.message }}</p>
-</div>
-<div mat-dialog-actions class="custom-dialog-actions">
-  <button class="btn btn-danger" (click)="closeDialog()">Cancel</button>
-  <button class="btn btn-primary" color="warn" (click)="confirm()">Confirm</button>
-</div>
-
+<div class="modal-content dialog-container">
+  <div class="modal-header">
+      <h5 class="modal-title custom-dialog-title">{{ data.title }}</h5>
+      <button type="button" class="btn-close mr-0" (click)="closeDialog()" aria-label="Close"></button>
+  </div>
+  <div class="modal-body custom-dialog-content">
+      <p>{{ data.message }}</p>
+  </div>
+  <div class="modal-footer custom-dialog-actions">
+      <button type="button" class="btn btn-secondary" (click)="closeDialog()">Cancel</button>
+      <button type="button" class="btn btn-primary" (click)="confirm()">Confirm</button>
+  </div>
 </div>

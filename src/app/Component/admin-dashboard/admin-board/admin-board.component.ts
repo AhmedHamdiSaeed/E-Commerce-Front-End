@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { baseURL } from '../../../../../env';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { ImageService } from '../../../Services/images/image.service';
+import { Observable, interval } from 'rxjs';
 
 @Component({
   selector: 'app-admin-board',
@@ -12,6 +13,9 @@ import { ImageService } from '../../../Services/images/image.service';
   styleUrl: './admin-board.component.css'
 })
 export class AdminBoardComponent implements OnInit {
+  count!: number ;
+  timer$!: Observable<number>;
+
   products: any;
   orderInfo = [];
   users: any;
@@ -27,11 +31,15 @@ export class AdminBoardComponent implements OnInit {
     this.getUser();
     console.log(this.totalSales);
     console.log(this.orderInfo);
+    this.count = 0;
+    this.timer$ = interval(1000);
+    this.timer$.subscribe(() => {
+      this.count++; });
   }
   getUser() {
     this.adminServices.getUsers().subscribe((res) => {
       console.log(res);
-      
+
       this.users = res;
     });
   }

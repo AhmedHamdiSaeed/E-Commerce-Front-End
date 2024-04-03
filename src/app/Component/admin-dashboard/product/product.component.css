@@ -21,6 +21,11 @@
   border-radius: 50px;
   transition: all 0.3s ease;
 }
+.action-buttons,.image-container
+{
+  justify-content:center ;
+
+}
 .btn-primary:hover {
   color: #fff;
   background-color: #146c43;
