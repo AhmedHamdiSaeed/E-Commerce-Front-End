@@ -107,21 +107,11 @@ export class CategoriesComponent implements OnInit {
     console.log('Category clicked:', categoryId);
     this.getProductsByCategory(categoryId);
   }
-  //load imge
-  // getImageUrl(imagePath: string) :SafeUrl {
-  //   // return `../../../assets${imagePath}`;
-  //   let safeurl = baseURL + '/' + imagePath ;
-
-  //   console.log(safeurl);
-
-  //   // return "http://localhost:3000/api/v1/uploads/image-1711636730983.jpg"
-  //   return  this.sanitizer.bypassSecurityTrustUrl(safeurl) ;
-
-  // }
+  
 
   getImageUrl(imagePath: string): SafeUrl {
     // return `../../../assets${imagePath}`;
-    let safeurl = baseURL + imagePath;
+    let safeurl = baseURL +'/' + imagePath;
 
     // console.log(safeurl);
 

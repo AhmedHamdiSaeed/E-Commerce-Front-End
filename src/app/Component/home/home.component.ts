@@ -57,6 +57,8 @@ export class HomeComponent {
   getAllCategories(): void {
     this.productService.getAllCategories().subscribe(
       (res: any) => {
+        console.log(res);
+
         if (Array.isArray(res)) {
           this.allCategories = res;
         } else {
