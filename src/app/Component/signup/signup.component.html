@@ -1,4 +1,4 @@
-<div class="container-sm"[dir]="'dir' | translate">
+<div class="container-sm md-4 "[dir]="'dir' | translate">
 
   <div class="row justify-content-center align-items-center" style="height: 80vh;">
 
@@ -51,10 +51,11 @@
              {{'register.passConfirm-message'|translate}}</div>
 
         </div>
-
-        <button type="submit" class="btn btn-primary" [disabled]="!registerForm.valid">{{'register.Submit'|translate}}</button>
+        <div class="mb-3">
+        <a routerLink="/login">{{'register.btn-message'|translate}}</a>
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="!registerForm.valid">{{'Register'|translate}} </button>
       </form>
-    <a routerLink="/login">{{'register.btn-message'|translate}}</a>
 
     </div>
   </div>

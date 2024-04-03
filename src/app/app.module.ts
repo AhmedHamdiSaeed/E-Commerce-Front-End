@@ -52,17 +52,12 @@ import { AddCategoryComponent } from './Component/Admin/add-category/add-categor
 import { ContactUsComponent } from './Component/contact-us/contact-us.component';
 import { PaymentSuccessComponent } from './Component/payment-success/payment-success.component';
 // import ngx-translate and the http loader
-<<<<<<< HEAD
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-=======
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { ProductDetailsDialogComponent } from './Component/Admin/product-details-dialog/product-details-dialog.component';
 import { UpdateProfileComponent } from './Component/update-profile/update-profile.component';
 import { UserOrdersComponent } from './Component/user-orders/user-orders.component';
->>>>>>> fbbc1d4cd1f5787c66ca9cc6050a6c99608c0bcf
 
 @NgModule({
   declarations: [
@@ -110,11 +105,8 @@ import { UserOrdersComponent } from './Component/user-orders/user-orders.compone
     MatProgressSpinnerModule,
     AppRoutingModule,
     NgxPaginationModule,
-    HttpClientModule,
     CommonModule,
-    FormsModule,
-    HttpClientModule,
-    TranslateModule.forRoot({
+        TranslateModule.forRoot({
       defaultLanguage: 'en',
       loader: {
         provide: TranslateLoader,

@@ -29,14 +29,7 @@ export class AdminBoardComponent implements OnInit {
       this.users = res;
     });
   }
-  // getOrders() {
-  //   this.product.getOrders().subscribe((res) => {
-  //     this.orderInfo = res;
-  //     this.orderInfo.map((item) => {
-  //       this.totalSales += item;
-  //     });
-  //   });
-  // }
+
   logout() {
     this.auth.logout();
     localStorage.removeItem('token');

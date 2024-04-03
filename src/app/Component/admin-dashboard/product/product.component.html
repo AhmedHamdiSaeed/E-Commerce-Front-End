@@ -34,7 +34,7 @@
               <tr *ngFor="let product of displayedProducts">
                 <td>
                   <div class="image-container">
-                    <img [src]="getImageUrl(product.image)" alt="Product Image" class="img-fluid rounded-circle">
+                    <img class="card-img-top product-image" [src]="getImageUrl(product.image)" [alt]="product.title">
                   </div>
                 </td>
                 <td><b>{{ product.title }}</b></td>
