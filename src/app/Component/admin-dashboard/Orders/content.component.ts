@@ -5,6 +5,7 @@ import { baseURL } from '../../../../../env';
 import { appUser } from '../../../models/applicationUser';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmMessageComponent } from '../../../SharedComponent/confirm-message/confirm-message.component';
+import { ImageService } from '../../../Services/images/image.service';
 
 @Component({
   selector: 'app-content',
@@ -27,7 +28,7 @@ export class ContentComponent implements OnInit {
 
   constructor(
     private adminService: AdminServices,
-    private sanitizer: DomSanitizer,
+    private imageServices: ImageService,
     private confirmdialog: MatDialog
   ) {}
   ngOnInit(): void {
@@ -63,10 +64,7 @@ export class ContentComponent implements OnInit {
 
 
   getImgUrl(path: string): SafeUrl {
-  let imagePath = baseURL+ '/'+ path ;
-  // console.log(imagePath);
-  
-   return this.sanitizer.bypassSecurityTrustUrl(imagePath)
+ return this.imageServices.getImageUrl(path) ;
   }
 
  

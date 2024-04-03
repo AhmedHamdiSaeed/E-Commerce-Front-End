@@ -2,6 +2,9 @@ import { Component, ElementRef, ViewChild , OnInit } from '@angular/core';
 import { AdminServices } from '../../../Services/admin/admin-services.service';
 import {AuthService} from "../../../Services/auth/auth.service"
 import { Router } from '@angular/router';
+import { baseURL } from '../../../../../env';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { ImageService } from '../../../Services/images/image.service';
 
 @Component({
   selector: 'app-admin-board',
@@ -16,7 +19,8 @@ export class AdminBoardComponent implements OnInit {
   constructor(
     private router: Router,
     private adminServices: AdminServices,
-   private auth : AuthService
+   private auth : AuthService,
+   private imageServices: ImageService
   ) {}
   ngOnInit(): void {
     this.getProducts();
@@ -26,6 +30,8 @@ export class AdminBoardComponent implements OnInit {
   }
   getUser() {
     this.adminServices.getUsers().subscribe((res) => {
+      console.log(res);
+      
       this.users = res;
     });
   }
@@ -42,4 +48,9 @@ export class AdminBoardComponent implements OnInit {
     });
   }
 
+
+  getImageUrl(imagePath: string) :SafeUrl {
+    return this.imageServices.getImageUrl(imagePath) ;
+
+  }
 }

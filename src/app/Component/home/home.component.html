@@ -74,8 +74,8 @@
           <div class="col-md-4 mb-4">
             <div class="category-border border text-center text-uppercase border-2 rounded-2">
               <a [routerLink]="['/products/category']">
-                <img (click)="getSpecificCategory(category._id)" height="150" class="w-75 d-block mx-auto py-2"
-                  src="../../../assets/project images/images (1).jpg" [alt]="category.name">
+                <img *ngIf="category.image" (click)="getSpecificCategory(category._id)" height="150" class="w-75 d-block mx-auto py-2"
+                  [src]="getimageurl(category.image)" [alt]="category.name">
                 <h1 class="h4 py-3 text-main">{{category.name}}</h1>
               </a>
             </div>
