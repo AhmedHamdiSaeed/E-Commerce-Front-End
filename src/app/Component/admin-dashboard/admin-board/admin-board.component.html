@@ -112,29 +112,14 @@
         </div>
       </div>
     </div>
-    <button class="btn btn-info"  routerLink="Orders"  >Orders</button>
-        <button class="btn btn-info" routerLink="Products" >Products</button>
-        <button class="btn btn-info" routerLink="Users" >Users</button>
+
+        <div class="tab-buttons ">
+          <button mat-button routerLink="Orders" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">Orders</button>
+          <button mat-button routerLink="Products" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">Products</button>
+          <button mat-button routerLink="Users" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">Users</button>
+        </div>
+
         <div>
           <router-outlet></router-outlet>
         </div>
-    <!-- <div>
-      <mat-tab-group class=" d-block mb-3">
-        <mat-tab label="Orders State">
-          <ng-template mat-tab-label class="c1">
-            <span style="font-weight: bolder; font-size: large;">User Data</span>
-          </ng-template>
-          <br>
-          <app-content></app-content>
-        </mat-tab>
-        <mat-tab label="Products">
-          <ng-template mat-tab-label class="c1" >
-            <span style="font-weight: bolder; font-size: large;"> Products </span>
-          </ng-template>
-          <br>
-          <app-product ></app-product>
-        </mat-tab>
-      </mat-tab-group>
-    </div> -->
-
   </mat-sidenav-content>

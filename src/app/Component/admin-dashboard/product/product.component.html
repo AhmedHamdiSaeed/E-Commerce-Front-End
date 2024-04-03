@@ -66,5 +66,8 @@
         </div>
       </div>
     </div>
+    <div *ngIf="displayedProducts.length == 0" >
+      <app-loading-spinner></app-loading-spinner>
+      </div>
   </div>
 </div>

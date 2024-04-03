@@ -37,23 +37,12 @@ const routes: Routes = [
     component: AdminBoardComponent,
     canActivate: [AuthGuardService],
     children:[
-      { path: 'AddCategory',
-      component: AddCategoryComponent ,
-      canActivate: [AuthGuardService]
-       },
+
       {
         path: 'Products',
         component: ProductComponent,
         canActivate: [AuthGuardService]
       },
-      { path: 'AddProduct',
-       component: AddProductComponent,
-        canActivate: [AuthGuardService]
-       },
-       { path: 'EditProduct/:id',
-       component: EditProductComponent,
-        canActivate: [AuthGuardService]
-       },
        {
         path: 'Orders',
         component: ContentComponent,
@@ -66,8 +55,18 @@ const routes: Routes = [
        },
     ]
   },
- 
-
+  { path: 'Admin/AddProduct',
+  component: AddProductComponent,
+   canActivate: [AuthGuardService]
+  },
+  { path: 'EditProduct/:id',
+  component: EditProductComponent,
+   canActivate: [AuthGuardService]
+  },
+  { path: 'Admin/AddCategory',
+  component: AddCategoryComponent ,
+  canActivate: [AuthGuardService]
+   },
 
   { path: 'Profile', component: UserProfileComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },

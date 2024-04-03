@@ -13,6 +13,7 @@ import { ImageService } from '../../../Services/images/image.service';
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit {
+  isloading = false;
   products: any;
   categories: any;
   selectedCategory: string = '';
@@ -23,7 +24,9 @@ export class ProductComponent implements OnInit {
     private imageService: ImageService) {}
 
   ngOnInit(): void {
+    this.isloading = true ;
     this.getProducts();
+
     this.getCategories();
   }
 
@@ -32,6 +35,8 @@ export class ProductComponent implements OnInit {
       const res = await this.productService.getProducts().toPromise();
       this.products = res;
       this.displayedProducts = res;
+      this.isloading = false ;
+
     } catch (error) {
       console.error(error);
     }
@@ -88,11 +93,11 @@ export class ProductComponent implements OnInit {
     });
   }
   addProduct() {
-    this.router.navigateByUrl('Admin/AddProduct');
+    this.router.navigateByUrl('/Admin/AddProduct');
   }
 
   addCategory(){
-    this.router.navigateByUrl('/Add_Category');
+    this.router.navigateByUrl('/Admin/AddCategory');
   }
 
   editProduct(productId: string) {
