@@ -9,7 +9,7 @@
             <div class="col-md-4 col-sm-12" *ngFor="let category of slide" (click)="getSpecificCategory(category._id)">
               <div class="card">
                 <div class="card-body cardCategory text-center rounded-2 text-capitalize d-flex">
-                  <img  [src]="getImageUrl(category.image)" class="w-50">
+                  <img [src]="getImageUrl(category.image)" class="w-50">
                   <h5 class="card-title ms-4 mt-4">{{ category.name }}</h5>
                 </div>
               </div>
@@ -39,11 +39,12 @@
           <!-- search -->
           <app-search (searchTextChanged)="onSearchTextChanged($event)"></app-search>
           <!-- sort by price and category-->
-          <select class="form-select w-25 ms-2 mx-5 text-success" aria-label="Sort By" [(ngModel)]="sortBy"
+
+          <select class="form-select ms-2 text-success" aria-label="Sort By" [(ngModel)]="sortBy"
             (change)="onSortChange(sortBy)">
             <option selected value="">{{ 'category.sort'| translate }}</option>
-            <option value="price">{{ 'category.price'| translate }}</option>
-            <option value="price-desc">{{ 'category.price-desc'| translate }}</option>
+            <option value="price">{{ 'category.price'| translate }} <span class="bi bi-caret-down-fill"></span></option>
+            <option value="price-desc">{{ 'category.price-desc'| translate }}  <i class="bi bi-caret-down-fill"></i></option>
             <option value="category">{{ 'category.category'| translate }}</option>
           </select>
           <!-- end sort -->
@@ -52,17 +53,17 @@
       <div class=" col-sm-3 m-auto"
         *ngFor="let product of receivedProducts |paginate: {itemsPerPage:itemsPerPage,currentPage:p}">
         <div class="card mb-3 custom-card">
-          <div>
+          <div class="divImg">
             <img class="card-img-top product-image" [src]="getImageUrl(product.image)" [alt]="product.title">
           </div>
-          <div class="card-body">
-            <h5 class="card-title">{{ product.title }}</h5>
+          <div class="card-body text-center">
+            <h5 class="card-title productTitle" [routerLink]="['/products', product._id]">{{ product.title }}</h5>
             <p class="card-text">{{ product.description }}</p>
             <p class="card-text">Price : {{ product.price | currency:'EGP':'symbol' }}</p>
 
-            <button class="btn btn-outline-success  btn-details" [routerLink]="['/products', product._id]">
+            <!-- <button class="btn btn-outline-success  btn-details" [routerLink]="['/products', product._id]">
               <i class="bi bi-eye-fill"></i>
-            </button>
+            </button> -->
 
             <button class="btn btn-success mb-2 cart-btn" (mouseenter)="hoveredProduct = product; isHovered = true"
               (mouseleave)="hoveredProduct = null; isHovered = false">

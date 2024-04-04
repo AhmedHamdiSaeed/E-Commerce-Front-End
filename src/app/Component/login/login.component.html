@@ -1,31 +1,33 @@
+<div class="container  w-100 m-auto" [dir]="'dir' | translate">
+  <div class="row justify-content-center align-items-center">
+    <div class="col">
 
-<div class="container-sm" [dir]="'dir' | translate">
-<div class="row justify-content-center align-items-center" style="height: 70vh;">
-  <div class="col-6">
+      <div class="alert alert-danger" *ngIf="error.length > 0">
+        {{error}}
+      </div>
 
-  <div class="alert alert-danger" *ngIf="error.length > 0">
-    {{error}}
-  </div>
+      <div *ngIf="isLoading">
+        <app-loading-spinner></app-loading-spinner>
+      </div>
+      <form (ngSubmit)="onSubmit(form)" #form="ngForm" *ngIf="!isLoading" class="col-sm-12 col-md-4 w-100">
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">{{'login.Email address'|translate}}</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" name="email" required email ngModel
+            #email="ngModel">
+          <div id="emailHelp" class="form-text" *ngIf="!email.valid && email.touched">
+            {{'login.email-message'|translate}}</div>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">{{'login.Password'|translate}}</label>
+          <input type="password" class="form-control" id="exampleInputPassword1" name="password" #password="ngModel"
+            ngModel required>
+          <p class="form-text" *ngIf="!password.valid && password.touched"> {{'login.pass-message'|translate}}</p>
+        </div>
 
-<div *ngIf="isLoading">
-<app-loading-spinner></app-loading-spinner>
-</div>
-  <form (ngSubmit)="onSubmit(form)" #form="ngForm" *ngIf="!isLoading" >
-    <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label">{{'login.Email address'|translate}}</label>
-      <input type="email" class="form-control" id="exampleInputEmail1" name="email" required email ngModel #email="ngModel" >
-      <div id="emailHelp" class="form-text" *ngIf="!email.valid && email.touched">{{'login.email-message'|translate}}</div>
+        <button type="submit" class="btn btn-primary " [disabled]="!form.valid">{{'login.Submit'|translate}}</button>
+      </form>
+
+      <a routerLink="/register">{{'login.btn-message'|translate}}</a>
     </div>
-    <div class="mb-3">
-      <label for="exampleInputPassword1" class="form-label">{{'login.Password'|translate}}</label>
-      <input type="password" class="form-control" id="exampleInputPassword1"  name="password" #password="ngModel" ngModel required>
-      <p class="form-text" *ngIf="!password.valid && password.touched"> {{'login.pass-message'|translate}}</p>
-    </div>
-
-    <button type="submit" class="btn btn-primary " [disabled]="!form.valid">{{'login.Submit'|translate}}</button>
-  </form>
-
-  <a  routerLink="/register">{{'login.btn-message'|translate}}</a>
   </div>
-</div>
 </div>

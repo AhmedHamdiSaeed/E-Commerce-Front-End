@@ -9,7 +9,6 @@ form {
   padding: 30px;
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  width: 45%;
 
 }
 
@@ -37,7 +36,7 @@ form h1 {
 }
 
 .form-control {
-  width: 100%;
+  /* width: 100%; */
   padding: 8px;
   border-radius: 5px;
   border: 1px solid #ced4da;
@@ -68,7 +67,18 @@ form h1 {
 }
 
 
-input[type="email"].ng-invalid.ng-touched ,
-input[type="password"].ng-invalid.ng-touched  {
+input[type="email"].ng-invalid.ng-touched,
+input[type="password"].ng-invalid.ng-touched {
   border: 1px solid red;
+}
+
+@media screen and (min-width: 780px) {
+  .container {
+    width: 50% !important;
+    margin-top: -50px !important;
+  }
+
+  form {
+    margin: 20px;
+  }
 }

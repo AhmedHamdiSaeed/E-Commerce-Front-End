@@ -27,6 +27,16 @@
   flex-wrap: nowrap;
 }
 
+.productTitle {
+  color: #198754;
+  cursor: pointer;
+}
+
+.productTitle:hover {
+  font-size: 27px;
+  font-weight: bolder;
+}
+
 .carousel-item {
   flex: 0 0 auto;
   transition: transform 0.6s ease;
@@ -85,6 +95,10 @@
   position: relative;
 }
 
+.form-select {
+  width: 25% !important;
+}
+
 .btn-details {
   position: absolute;
   top: 0;
@@ -94,6 +108,7 @@
 .card-body {
   height: 100%;
 }
+
 
 .card-title {
   font-size: 1.25rem;
