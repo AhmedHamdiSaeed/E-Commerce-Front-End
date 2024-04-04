@@ -10,7 +10,8 @@ import { baseURL } from '../../../../../env';
 import { CheckoutService } from '../../../Services/checkout/checkout.service';
 import { TranslateService } from '@ngx-translate/core';
 import { ConfirmMessageComponent } from '../../../SharedComponent/confirm-message/confirm-message.component';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { ImageService } from '../../../Services/images/image.service';
 
 @Component({
   selector: 'app-cart',
@@ -30,9 +31,11 @@ export class CartComponent {
   constructor(private router: Router ,private sanitizer: DomSanitizer,
     private cartService: CartService ,
     private auth: AuthService,
+    private imagServices: ImageService,
     private translate: TranslateService,
     private checkoutservice:CheckoutService,
-    private dialog: MatDialog) { }
+    public dialog: MatDialog,
+    ) { }
   
 
   setItem(){
@@ -58,8 +61,21 @@ export class CartComponent {
     //       this.getCartProduct();
     // }
   
-
- 
+    openConfirmationDialog(): void {
+      const dialogRef = this.dialog.open(ConfirmMessageComponent, {
+     
+        data: { message: 'Are you sure you want to clear the cart?' },
+      });
+    
+      dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          this.Clear();
+        }
+      });
+    }
+    
+    
+  
  
   getCartProduct(){
     if("cart" in localStorage){
@@ -108,7 +124,8 @@ decreaseQuantity(item: any): void {
 
 
 orderNow(){
-  this.isLoading=true;
+  this.isLoading = true;
+
   if (!this.auth.isAuthenticated()) {
     this.router.navigate(['/login']);
     return;
@@ -125,12 +142,14 @@ orderNow(){
       console.log("cart before order:",res)
     // this.router.navigateByUrl('/paymentSuccess/660c89afbb43b63edecfc5fa')
         this.checkoutservice.checkout(this.newCart.data._id).subscribe(
+         
           (res)=>{
             this.checkoutSession=res;
-            this.isLoading=true;
+            this.isLoading=false;
+            
             window.location.href=this.checkoutSession.session.url;
           },
-          (err)=>{console.log(" Error creating checkout: ",err)}
+          (err)=>{console.log(" Error creating checkout: ",err,this.newCart.data._id)}
         )
     },
     error => {
@@ -138,20 +157,12 @@ orderNow(){
     }    
 
   );
-  console.log(products);
- // this.Clear()
-  
-
-  this.Clear();
 
 }
 
 // Load image
-getImageUrl(imagePath: string): SafeUrl {
- 
-  let safeurl = baseURL + imagePath ;
-  return  this.sanitizer.bypassSecurityTrustUrl(safeurl) ;
-
-}
+getImageUrl(imagePath: string) {
+  return this.imagServices.getImageUrl(imagePath) ;
+  }
 }
 

@@ -70,9 +70,9 @@
         "submit":"Submit"
     },
     "category":{
-        "price":"Price (Low to High)",
-        "price-desc":"Price (High to Low)",
-        "category":"Category (A to Z)",
+        "price":"Price ",
+        "price-desc":"Price ",
+        "category":"Category ",
         "sort":"Sort By" ,
         "Search":"Search",
         "Products":"Products" ,

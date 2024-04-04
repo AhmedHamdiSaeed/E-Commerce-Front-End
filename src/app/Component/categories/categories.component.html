@@ -1,6 +1,7 @@
 <div class="container-fluid">
   <div class="row">
-    <h3 class="text-center text-main bg-success text-light rounded-2 p-2">All Categories</h3>
+
+    <h3 class="text-center text-main bg-success text-light rounded-2 p-2 fw-bold fs-4">{{ 'category.All Categories'| translate }}</h3>
     <!-- categories slider -->
     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
@@ -32,21 +33,26 @@
 
 
     <!-- products -->
+
     <div class="row mt-5">
       <div class="d-flex justify-content-between text-center text-main  bg-success text-light rounded-2 p-2">
-        <h3 class="mt-2 ms-3 ">Products</h3>
+        <h3 class="mt-2 ms-3 fw-bold fs-4">{{ 'category.Products'| translate }}</h3>
+
         <div class="d-flex text-center">
           <!-- search -->
           <app-search (searchTextChanged)="onSearchTextChanged($event)"></app-search>
           <!-- sort by price and category-->
-          <select class="form-select ms-2 text-success" aria-label="Sort By" [(ngModel)]="sortBy"
-            (change)="onSortChange(sortBy)">
-            <option selected value="">Sort By</option>
-            <option value="price">Price ⬆️</option>
-            <option value="price-desc">Price ⬇️</option>
-            <option value="category">Category ⬆️</option>
+          <select class="form-select ms-2 text-success" aria-label="Sort By" [(ngModel)]="sortBy" (change)="onSortChange(sortBy)" style="padding: 8px 12px; border-radius: 5px; border: 1px solid #ccc; background-color: #fff; color: #333; font-size: 14px; outline: none;">
+            <option selected value="">{{ 'category.sort' | translate }}</option> 
+            <option value="price" >
+              {{ 'category.price' | translate }} &#x2B06;&#xFE0E;
+             
+            </option>
+            <option value="price-desc">{{ 'category.price-desc' | translate }} &#x2B07;&#xFE0E;</option>
+            <option value="category" >{{ 'category.category' | translate }} &#x2B06;&#xFE0E;</option>
           </select>
-          <!-- end sort -->
+          
+          <!-- end sort    -->
         </div>
       </div>
       <div class=" col-sm-4 m-auto productCard"

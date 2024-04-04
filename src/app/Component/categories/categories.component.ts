@@ -1,4 +1,10 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  HostListener,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../../Services/product/product.service';
 import { Product } from '../../models/product';
@@ -22,8 +28,10 @@ export class CategoriesComponent implements OnInit {
     private productService: ProductService,
     private cartService: CartService,
     private auth: AuthService,
+
     private imagServices: ImageService,
     private translate: TranslateService
+
   ) {}
 
   allCategories: Category[] = [];
@@ -41,9 +49,11 @@ export class CategoriesComponent implements OnInit {
   isHovered: boolean = false;
   hoveredProduct: any | null = null;
   categoriesInSlides: any[] = [];
+  iterationIncrement: number = 0;
   ngOnInit(): void {
     this.getAllCategories();
     this.getAllProducts();
+    this.onResize(null);
     this.route.paramMap.subscribe((params) => {
       this.categoryId = params.get('id');
       if (this.categoryId) {
@@ -66,7 +76,16 @@ export class CategoriesComponent implements OnInit {
       }
     );
   }
-
+  //for knowing size of window
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    if (window.innerWidth < 500) {
+      this.iterationIncrement = 1;
+    } else {
+      this.iterationIncrement = 3;
+    }
+  }
+  //
   async getAllCategories(): Promise<void> {
     try {
       const res: any = await this.productService.getAllCategories().toPromise();
@@ -81,8 +100,12 @@ export class CategoriesComponent implements OnInit {
       this.error = err.error.message;
     }
     ///////for slider
-    for (let i = 0; i < this.allCategories.length; i += 3) {
-      const slice = this.allCategories.slice(i, i + 3);
+    for (
+      let i = 0;
+      i < this.allCategories.length;
+      i += this.iterationIncrement
+    ) {
+      const slice = this.allCategories.slice(i, i + this.iterationIncrement);
       console.log('Slice:', slice);
       this.categoriesInSlides.push(slice);
     }
@@ -108,8 +131,12 @@ export class CategoriesComponent implements OnInit {
   }
 
   getImageUrl(imagePath: string) {
+
     return this.imagServices.getImageUrl(imagePath);
+
   }
+
+  
   //filter
 
   onSearchTextChanged(searchValue: string) {
