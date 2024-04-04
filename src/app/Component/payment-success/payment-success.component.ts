@@ -4,6 +4,7 @@ import { CheckoutService } from '../../Services/checkout/checkout.service';
 import { ActivatedRoute } from '@angular/router';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { baseURL } from '../../../../env';
+import { ImageService } from '../../Services/images/image.service';
 
 @Component({
   selector: 'app-payment-success',
@@ -16,7 +17,7 @@ payment:any
 paymentId:string=''
 isLoading: boolean = false ;
 
-constructor(private cartservice:CartService,private route:ActivatedRoute,private checkoutService:CheckoutService,private sanitizer: DomSanitizer) 
+constructor(private cartservice:CartService,private imagServices: ImageService,private route:ActivatedRoute,private checkoutService:CheckoutService,private sanitizer: DomSanitizer) 
 {
 this.isLoading=true;
 this.route.params.subscribe((params)=>{
@@ -36,9 +37,10 @@ ngOnInit():void
 
  
 }
-getImageUrl(imagePath: string) :SafeUrl {
-  let safeurl = baseURL + imagePath ;
-  return  this.sanitizer.bypassSecurityTrustUrl(safeurl) ;
-}
+
+// Load image
+getImageUrl(imagePath: string) {
+  return this.imagServices.getImageUrl(imagePath) ;
+  }
 
 }

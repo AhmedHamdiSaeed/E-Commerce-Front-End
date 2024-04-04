@@ -28,8 +28,10 @@ export class CategoriesComponent implements OnInit {
     private productService: ProductService,
     private cartService: CartService,
     private auth: AuthService,
+
     private imagServices: ImageService,
     private translate: TranslateService
+
   ) {}
 
   allCategories: Category[] = [];
@@ -129,8 +131,12 @@ export class CategoriesComponent implements OnInit {
   }
 
   getImageUrl(imagePath: string) {
+
     return this.imagServices.getImageUrl(imagePath);
+
   }
+
+  
   //filter
 
   onSearchTextChanged(searchValue: string) {

@@ -8,7 +8,7 @@ import { UserProfileService } from '../../Services/UserProfile/user-profile.serv
   styleUrl: './update-profile.component.css'
 })
 export class UpdateProfileComponent{
-  // userProfile:FormGroup
+  userProfile!: FormGroup;
   // constructor(private userProfileService:UserProfileService,private fb:FormBuilder) {
   //   this.userProfileService.getCurrentUser().subscribe(user=>{
   //     console.log("user",user)
