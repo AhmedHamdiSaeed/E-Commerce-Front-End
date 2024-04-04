@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Sanitizer } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { UserProfileService } from '../../Services/UserProfile/user-profile.service';
+import { baseURL } from '../../../../env';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { ImageService } from '../../Services/images/image.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -8,23 +11,20 @@ import { UserProfileService } from '../../Services/UserProfile/user-profile.serv
   styleUrl: './user-profile.component.css'
 })
 export class UserProfileComponent {
-userProfile:FormGroup
+userProfile:any;
 
-constructor(private userProfileService:UserProfileService) {
-  this.userProfile=new FormGroup({
-    fname:new FormControl(''),
-  lname:new FormControl(''),
-  email:new FormControl(''),
-  image:new FormControl(''),
-  address:new FormGroup({
-    city:new FormControl(''),
-    postalCode:new FormControl(''),
-    street:new FormControl(''),
-  }),
-  })
+constructor(
+  private userProfileService:UserProfileService,
+  private imageServices:ImageService) {
   this.userProfileService.getUserUpdate().subscribe(user=>{
     console.log("user",user)
+    this.userProfile=user;
+    console.log("userProfile",this.getImageUrl(this.userProfile.image))
+
   })
 
+}
+getImageUrl(imagePath: string) :SafeUrl {
+  return this.imageServices.getImageUrl(imagePath) ;
 }
 }

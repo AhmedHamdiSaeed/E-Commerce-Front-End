@@ -1,3 +1,7 @@
+.container {
+  margin-top: 20% !important;
+}
+
 .cart {
   display: flex;
   flex-direction: column;
@@ -72,7 +76,7 @@ input[type="password"] .ng-invalid.ng-touched {
 @media screen and (min-width: 780px) {
   .container {
     width: 45% !important;
-    margin-top: -50px !important;
+    margin-top: 4% !important;
   }
 
   form {

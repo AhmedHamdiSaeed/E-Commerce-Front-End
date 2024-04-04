@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="row">
-    <h3 class="text-center text-main bg-success text-light rounded-2 p-2">All Categories</h3>
+    <h3 class="text-center text-main bg-success text-light rounded-2 p-2 fw-bold fs-4">All Categories</h3>
     <!-- categories slider -->
     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
@@ -20,12 +20,12 @@
       <!-- Navigation buttons -->
       <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
         data-bs-slide="prev">
-        <span class="carousel-control-prev-icon bg-success" aria-hidden="true"></span>
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>
       </button>
       <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
         data-bs-slide="next">
-        <span class="carousel-control-next-icon bg-success" aria-hidden="true"></span>
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>
       </button>
     </div>
@@ -34,7 +34,7 @@
     <!-- products -->
     <div class="row mt-5">
       <div class="d-flex justify-content-between text-center text-main  bg-success text-light rounded-2 p-2">
-        <h3 class="mt-2 ms-3 ">Products</h3>
+        <h3 class="mt-2 ms-3 fw-bold fs-4">Products</h3>
         <div class="d-flex text-center">
           <!-- search -->
           <app-search (searchTextChanged)="onSearchTextChanged($event)"></app-search>
@@ -49,7 +49,7 @@
           <!-- end sort -->
         </div>
       </div>
-      <div class=" col-sm-3 m-auto productCard"
+      <div class=" col-sm-4 m-auto productCard"
         *ngFor="let product of receivedProducts |paginate: {itemsPerPage:itemsPerPage,currentPage:p}">
         <div class="card mb-3 custom-card h-25">
           <div>
@@ -57,11 +57,11 @@
           </div>
           <div class="card-body text-center">
             <h5 class="card-title productTitle" [routerLink]="['/products', product._id]">{{ product.title }}</h5>
-            <p class="card-text">{{ product.description }}</p>
-            <p class="card-text">Price : {{ product.price | currency:'EGP':'symbol' }}</p>
-            <button class="btn btn-success mb-2 cart-btn" (mouseenter)="hoveredProduct = product; isHovered = true"
+            <p class="card-text fw-bold">Price : {{ product.price | currency:'EGP':'symbol' }}</p>
+            <button class="btn btn-success mb-2 cart-btn m-auto"
+              (mouseenter)="hoveredProduct = product; isHovered = true"
               (mouseleave)="hoveredProduct = null; isHovered = false">
-              <i style="font-size: 30px; color: white;" class="bi bi-cart-plus"></i>
+              <i style="font-size: 30px; color: white;" class="bi bi-cart-plus m-auto"></i>
               <span class="badge badge-primary" *ngIf="getHoveredProductQuantity(product) !== 0">
                 {{ getHoveredProductQuantity(product) }}
               </span>

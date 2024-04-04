@@ -135,4 +135,7 @@ export class ProductComponent implements OnInit {
     return this.imageService.getImageUrl(imagePath);
   }
 
+  handelimageError(event: any){
+    event.target.src = "../../../../assets/project images/4.png"
+  }
 }

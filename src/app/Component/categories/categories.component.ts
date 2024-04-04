@@ -37,7 +37,7 @@ export class CategoriesComponent implements OnInit {
   searchTerm: string = '';
   quantity: number = 0;
   p: number = 1;
-  itemsPerPage: number = 6;
+  itemsPerPage: number = 9;
   isHovered: boolean = false;
   hoveredProduct: any | null = null;
   categoriesInSlides: any[] = [];

@@ -33,7 +33,8 @@
 }
 
 .productTitle:hover {
-  font-size: 27px;
+  font-size: 22px;
+  line-height: 1;
   font-weight: bolder;
 }
 
@@ -93,8 +94,13 @@
 /*  */
 .productCard {
   padding: 10px;
-  width: 323px;
+  width: 370px;
   margin: 10px;
+}
+
+/*  */
+.carousel-control-prev-icon {
+  cursor: pointer;
 }
 
 /*  */
@@ -128,7 +134,7 @@
 }
 
 .card-title {
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   font-weight: bold;
 }
 
