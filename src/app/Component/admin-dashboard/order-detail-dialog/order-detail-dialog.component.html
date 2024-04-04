@@ -1,139 +1,73 @@
 <div class="modal-header justify-content-end">
   <button type="button" class="btn-close" aria-label="Close" (click)="closeDialog()"></button>
 </div>
+
 <br>
 <br>
+
 <div class="container mt-2">
   <ng-container *ngIf="data">
-      <div class="row custom-row">
-          <div class="col-md-6 user_info">
-              <div class="d-flex flex-column align-items-center">
-                  <img class="card-img-top img-fluid" style="width: 150px;" [src]="getImageUrl(data.user.image)" alt="user image">
-                  <h2>{{data.user.fname}} {{data.user.lname}}</h2>
-                  <h4>{{data.user.email}}</h4>
-              </div>
-          </div>
-          <div class="col-md-6 order_detail">
-              <div class="row">
-                  <div class="col-sm-6">
-                      <p class="Category">Status: {{ data.status }}</p>
-                  </div>
-                  <div class="col-sm-6">
-                      <p class="Price">Price: {{ data.totalOrderPrice | currency:'EGP':'symbol' }}</p>
-                  </div>
-              </div>
-              <hr>
-              <div class="description">
-                  <div class="description-controls">
-                      <p class="desc-title">Order Items:</p>
-                      <div class="card" style="width: 18rem;">
-                          <ul class="list-group list-group-flush">
-                              <li class="list-group-item" *ngFor="let p of data.cartItems">
-                                 title: {{ p.product.title }}  
-                                 quantity: {{p.quantity}}</li>
-                          </ul>
-                      </div>
-                  </div>
-              </div>
-          </div>
+    <div class="row custom-row">
+      <div class="col-md-3 user_info">
+        <div class="d-flex flex-column align-items-center">
+          <img class="card-img-top img-fluid" style="width: 80px; height: 80px;" [src]="getImageUrl(data.user.image)" alt="user image">
+          <h2>{{data.user.fname}} {{data.user.lname}}</h2>
+          <h5>{{data.user.email}}</h5>
+        </div>
       </div>
+      <div class="col-md-9 order_detail">
+        <div class="row">
+          <div class="col-sm-6">
+            <p class="Category">Status: {{ data.status }}</p>
+          </div>
+         
+          <div class="col-sm-6">
+            <p class="Price">date: {{ data.orderAt | date }}</p>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-sm-6">
+            <p class="Price">Price: {{ data.totalOrderPrice | currency:'EGP':'symbol' }}</p>
+          </div>
+          <div class="col-sm-6">
+            <p class="Price">shippingAddress: {{ data.shippingAddress.city }}{{ data.shippingAddress.postalCode }}{{ data.shippingAddress.street }}</p>
+          </div>
+        </div>
+       
+      </div>
+      <div class="col-md-12" style="overflow-y: auto;">
+        <div class="description">
+          <div class="description-controls">
+            <!-- <p class="desc-title">Order Items:</p> -->
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>product</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let p of data.cartItems">
+                    <td>
+                      <div class="image-container">
+                        <img class="card-img-top product-image" style="width: 60px;" [src]="getImageUrl(p.product.image)" [alt]="p.product.title">
+                      </div>
+                    </td>
+                    <td><b>{{p.product.title}}</b></td>
+                    <td>{{p.product.price}}</td>
+                    <td>{{p.quantity}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </ng-container>
 </div>
 <br>
-
-
-<table class="table table-striped">
-            <thead>
-              <tr>
-                <th>Image</th>
-                <th>Title</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                <th>Sold</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <!-- <tbody *ngIf="displayedProducts.length > 0; else noProductsFound">
-              <tr *ngFor="let product of displayedProducts; let i = index">
-                <td>
-                  <div class="image-container">
-                    <img class="card-img-top product-image" width="80%"  [src]="getImageUrl(product.image)" [alt]="product.title"  (error)="handelimageError($event)">
-                  </div>
-                </td>
-                <td><b>{{ product.title }}</b></td>
-                <td>{{ product.price }}</td>
-                <td>{{ product.quantity }}</td>
-                <td><b>{{ product.sold }}</b></td>
-                <td>
-                  <div class="action-buttons">
-                    <button class="btn btn-primary" (click)="editProduct(product._id, i)" title="Edit">
-                      <i class="bi bi-pencil-fill"></i>
-                    </button>
-                    <button class="btn btn-danger" (click)="confirmRemoveProduct(product._id)" title="Remove">
-                      <i class="bi bi-trash-fill"></i>
-                    </button>
-                    <button class="btn btn-info" (click)="openProductDetailsDialog(product)" title="Details">
-                      <i class="bi bi-info-circle-fill"></i>
-                    </button>
-                  </div>
-                </td>
-              </tr>
-            </tbody> -->
-          </table>
-
-          <!-- {
-            "_id": "660e7e43766c0afce37efe47",
-            "user": {
-                "address": {
-                    "city": "",
-                    "postalCode": "",
-                    "street": ""
-                },
-                "image": "uploads/user.png",
-                "_id": "65da37766c07fe4abe9cafad",
-                "fname": "ali",
-                "lname": "mohammed",
-                "email": "ali@gmail.com",
-                "role": "user",
-                "__v": 0
-            },
-            "cartItems": [
-                {
-                    "product": {
-                        "rattingsQuantity": 0,
-                        "rattingsAverage": 0,
-                        "_id": "66047f1cffac53557cf1821b",
-                        "title": "Hp Victus 15-fa1093dx Gaming Laptop",
-                        "quantity": 9,
-                        "price": 41999,
-                        "description": "13th Intel i5-13420H 8-Cores, 6GB GDDR6 NVIDIA GeForce RTX 3050 Graphics, 8GB RAM, 512GB SSD, 15.6\" FHD (1920x1080) 144 Hz IPS, Backlit Keyboard, Windows 11",
-                        "image": "uploads\\image-1712187045406.jpg",
-                        "colors": [
-                            "#bf7b1d",
-                            "#000000",
-                            "#d02525"
-                        ],
-                        "category": "660dbda8f40667a50ed5af70",
-                        "company": "HP",
-                        "priceAfterDiscount": 949,
-                        "sold": 19,
-                        "__v": 0,
-                        "updatedAt": "2024-04-04T10:17:39.987Z",
-                        "id": "66047f1cffac53557cf1821b"
-                    },
-                    "quantity": 1,
-                    "price": 41999,
-                    "_id": "660e7e21766c0afce37efe3e"
-                }
-            ],
-            "taxPrice": 0,
-            "shippingPrice": 0,
-            "totalOrderPrice": 41999,
-            "isDelivred": false,
-            "status": "pending",
-            "shippingAddress": "{ city: '', postalCode: '', street: '' }",
-            "orderAt": "2024-04-04T09:43:23.360Z",
-            "createdAt": "2024-04-04T10:17:39.819Z",
-            "updatedAt": "2024-04-04T10:17:39.819Z",
-            "__v": 0
-        } -->
