@@ -8,11 +8,11 @@
     </div>
     <div *ngFor="let order of orders; let i = index">
         <div class="col-12 text-center bg-success p-2 m-2 fs-4 fw-bold text-white rounded">{{i+1}}</div>
-        <div class="col-12  col-md-8 bg-white p-3 rounded mt-3 scrollable-container">
+        <div class="col-12  col-md-7 bg-white p-3 rounded mt-3 scrollable-container">
             <div *ngFor="let item of orders[i].cartItems; let j = index">
                 <div class="row">
                     <div class=" col m-4 p-3 ">
-                        <img class="w-75" [src]="getImageUrl(orders[i].cartItems[j].product.image)">
+                        <img class="w-75" [src]="getImageUrl(item.product.image)">
                     </div>
                     <div class="col-12 col-md-8   m-4 p-3">
                         <div class="fw-bold col-12">{{item.product.title}}</div>
