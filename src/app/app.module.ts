@@ -52,7 +52,7 @@ import { AddCategoryComponent } from './Component/Admin/add-category/add-categor
 import { ContactUsComponent } from './Component/contact-us/contact-us.component';
 import { PaymentSuccessComponent } from './Component/payment-success/payment-success.component';
 // import ngx-translate and the http loader
-
+import { UserProfileComponent } from './Component/user-profile/user-profile.component';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -91,6 +91,7 @@ import { OrderDetailDialogComponent } from './Component/admin-dashboard/order-de
     UpdateProfileComponent,
     UserOrdersComponent,
     AdminUsersComponent,
+    UserProfileComponent
     OrderDetailDialogComponent,
   ],
   imports: [
