@@ -9,29 +9,28 @@
           <table class="table table-striped">
             <thead>
               <tr>
-                <th>Client</th>
+                <th >Client</th>
                 <th>Date Of Order</th>
-                <th>Shopping List</th>
+                <!-- <th>Shopping List</th> -->
                 <th>Total price</th>
-                <th>Amount</th>
                 <th>Status</th>
-                <th>Details</th>
-                <th>Delete</th>
+                <th class="text-center">Actions</th>
+
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let item of orderInfo">
-                <td>{{ item.user.email }}</td>
+                <td><b>{{ item.user.email }}</b></td>
                 <td>{{ item.createdAt | date }}</td>
-                <td>
+                <!-- <td>
+                  shopping list goes here
                   <ul>
                     <li *ngFor="let p of item.cartItems">{{ p.product.title }}</li>
                   </ul>
-                </td>
+                </td> -->
                 <td>{{ item.totalOrderPrice }}</td>
-                <td>{{ item.amount }}</td>
-                <td>{{ item.status }}</td>
-                <td class="list">
+                <td><b>{{ item.status }}</b></td>
+                <!-- <td class="list">
                   <mat-form-field appearance="fill" class="status-dropdown">
                     <mat-label>Select</mat-label>
                     <mat-select matNativeControl placeholder="Status">
@@ -40,9 +39,19 @@
                       <mat-option value="rejected">Rejected</mat-option>
                     </mat-select>
                   </mat-form-field>
-                </td >
-                <td><button class="btn btn-info" (click)="getOrder(item._id)"> More info </button></td>
-                <td class="action-buttons"><button class="btn btn-danger" (click)="OpenDialog(item._id)">Remove</button></td>
+                </td > -->
+                <!-- <td><button class="btn btn-info" (click)="getOrder(item._id)"> More info </button></td>
+                <td class="action-buttons"><button class="btn btn-danger" (click)="OpenDialog(item._id)">cancel</button></td> -->
+                <td>
+                  <div class="action-buttons">
+                    <button class="btn btn-info" (click)="getOrder(item._id)" title="More info">
+                      <i class="bi bi-info-circle-fill"></i>
+                    </button>
+                    <button class="btn btn-danger" (click)="OpenDialog(item._id)" title="Cancel order">
+                      <i class="bi bi-x-circle-fill"></i>
+                    </button>
+                  </div>
+                </td>
               </tr>
             </tbody>
           </table>

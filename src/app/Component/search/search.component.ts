@@ -7,7 +7,7 @@ import { Product } from '../../models/product';
   styleUrls: ['./search.component.css'],
 })
 export class SearchComponent implements OnInit {
-  @Input() products: Product[] = []; // Define receivedProducts as an input property
+  @Input() products: Product[] = [];
 
   searchTerm: string = '';
 

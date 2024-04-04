@@ -39,3 +39,8 @@
 .list h2 {
   color: #198754;
 }
+
+.col-md-5 img {
+  height: 150px;
+  width: 150px;
+}

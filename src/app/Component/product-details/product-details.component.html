@@ -11,18 +11,18 @@
 
       <div class="col-md-6 product_details">
         <div class="row">
-        <h2 class="title">{{ product.title }}</h2>
+          <h2 class="title">{{ product.title }}</h2>
           <div class="col-sm-6">
-            <p class="Category">{{ categoryName }}</p>
+            <p class="Category fw-bold">{{ categoryName }}</p>
           </div>
           <div class="col-sm-6">
-            <p class="Price">Price : {{ product.price |currency:'EGP':'symbol'}}</p>
+            <p class="Price text-primary fw-bold fs-5">Price : {{ product.price |currency:'EGP':'symbol'}}</p>
           </div>
         </div>
         <hr>
         <div class="description">
           <div class="description-controls">
-            <p class="desc-titel">About This Item :</p>
+            <p class="desc-titel fw-bold fs-5">About This Item :</p>
             <p class="desc">{{ product.description }}</p>
           </div>
         </div>
@@ -31,28 +31,28 @@
         <div class="row custom-row">
           <div class="col-sm-5">
             <div class="Color">
-              <div class="color-container">  <strong>Colors : </strong>
+              <div class="color-container fw-bold fs-5"> <strong>Colors : </strong>
                 <div *ngFor="let color of product.colors" class="color-circle" [style.background-color]="color"></div>
               </div>
             </div>
           </div>
           <div class="col-sm-7">
             <div class="quantity">
-              <div class="quantity-controls">  
-             
-                <div class="quantity-text">
+              <div class="quantity-controls">
+
+                <div class="quantity-text fw-bold fs-5">
                   <strong>Quantity : </strong>
                   {{product.quantity}}
-                  </div>
-                  <div class="controls">
-                   <button class="btn btn-sm btn-outline-success" (click)="addToCart(product)">
-                      <i class="bi bi-plus"></i>
-                    </button>
-                    <span>{{ getHoveredProductQuantity(product) }}</span>
-                    <button class="btn btn-sm btn-outline-success" (click)="removeFromCart(product)">
-                      <i class="bi bi-dash"></i>
-                    </button>
-                  </div>
+                </div>
+                <div class="controls">
+                  <button class="btn btn-sm btn-outline-success" (click)="addToCart(product)">
+                    <i class="bi bi-plus"></i>
+                  </button>
+                  <span>{{ getHoveredProductQuantity(product) }}</span>
+                  <button class="btn btn-sm btn-outline-success" (click)="removeFromCart(product)">
+                    <i class="bi bi-dash"></i>
+                  </button>
+                </div>
               </div>
             </div>
           </div>

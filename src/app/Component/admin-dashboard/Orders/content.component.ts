@@ -1,4 +1,4 @@
-import { Component ,OnInit} from '@angular/core';
+import { Component ,OnChanges,OnInit, SimpleChanges} from '@angular/core';
 import { AdminServices } from '../../../Services/admin/admin-services.service';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { baseURL } from '../../../../../env';
@@ -16,7 +16,7 @@ import { ImageService } from '../../../Services/images/image.service';
 //   status: string; // Order status property
 // }
 
-export class ContentComponent implements OnInit {
+export class ContentComponent implements OnInit  {
   modeSelect: any;
  orderInfo:any = [];
   // users!: appUser[];
@@ -35,6 +35,8 @@ export class ContentComponent implements OnInit {
     this.isloading = true ;
     // this.getOrderInfo();
     this.orders = this.adminService.getOrders().subscribe((res) => {
+      console.log( res);
+
       this.orderInfo = res;
       // this.select = res.status;
       // console.log(res , this.orderInfo);
@@ -43,13 +45,13 @@ export class ContentComponent implements OnInit {
           // console.log(order.user.fname ,  order.user.lname);
           order.cartItems.forEach((p: any) => {
               // console.log(p.product);
-              
+
           });
-          
+
       });
     });
 
-    
+
   }
 
 
@@ -58,22 +60,20 @@ export class ContentComponent implements OnInit {
     this.adminService.getOrderByID(orderId)
     .subscribe((res)=>{
       console.log(res);
-      
+
     })
-    
+
   }
 
   getImgUrl(path: string): SafeUrl {
     return this.imageServices.getImageUrl(path) ;
   }
 
- 
+
 
   OpenDialog( Id: string ){
 
    const msgDialog =  this.confirmdialog.open(ConfirmMessageComponent , {
-      width:'40%',
-      height: '35%',
       data: {message: " this order will be canceled", title: "cancel order "},
       panelClass: 'custom-dialog' // Apply custom CSS class
 
@@ -85,25 +85,25 @@ export class ContentComponent implements OnInit {
       if(result) {
         console.log('confirm');
         this.message = "this order will be canceled " ;
-         this.deleteOreder(Id);
-     
+         this.cancelOreder(Id);
+
       }
       else {
        console.log("cansle");
-        
-      }      
-      
+
+      }
+
     }))
   }
 
-  deleteOreder(orderId : string){
+  cancelOreder(orderId : string){
     console.log(orderId);
     this.adminService.cancelOrder(orderId).subscribe((res)=>{
       console.log(res);
-      
+
     },(error) => console.log(error)
     )
-    
+
   }
 
 

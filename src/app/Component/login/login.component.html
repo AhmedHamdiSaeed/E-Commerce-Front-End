@@ -1,4 +1,4 @@
-<div class="container  w-100 m-auto" [dir]="'dir' | translate">
+<div class="container w-100 m-auto" [dir]="'dir' | translate">
   <div class="row justify-content-center align-items-center">
     <div class="col">
 
@@ -9,7 +9,7 @@
       <div *ngIf="isLoading">
         <app-loading-spinner></app-loading-spinner>
       </div>
-      <form (ngSubmit)="onSubmit(form)" #form="ngForm" *ngIf="!isLoading" class="col-sm-12 col-md-4 w-100">
+      <form (ngSubmit)="onSubmit(form)" #form="ngForm" *ngIf="!isLoading" class="col-sm-12 col-md-4 w-100 ">
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">{{'login.Email address'|translate}}</label>
           <input type="email" class="form-control" id="exampleInputEmail1" name="email" required email ngModel
@@ -22,12 +22,12 @@
           <input type="password" class="form-control" id="exampleInputPassword1" name="password" #password="ngModel"
             ngModel required>
           <p class="form-text" *ngIf="!password.valid && password.touched"> {{'login.pass-message'|translate}}</p>
+          <a class="d-block mt-3" routerLink="/register">{{'login.btn-message'|translate}}</a>
         </div>
-
-        <button type="submit" class="btn btn-primary " [disabled]="!form.valid">{{'login.Submit'|translate}}</button>
+        <div class="d-flex justify-content-end">
+          <button type="submit" class="btn btn-primary" [disabled]="!form.valid">{{'login.Submit'|translate}}</button>
+        </div>
       </form>
-
-      <a routerLink="/register">{{'login.btn-message'|translate}}</a>
     </div>
   </div>
 </div>

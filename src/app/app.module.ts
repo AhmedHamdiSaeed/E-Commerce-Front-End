@@ -35,7 +35,7 @@ import { LoadingSpinnerComponent } from './SharedComponent/loading-spinner/loadi
 import { AuthInterceptorService } from './Services/auth/auth-interceptor.service';
 import { AdminBoardComponent } from './Component/admin-dashboard/admin-board/admin-board.component';
 import { ProductComponent } from './Component/admin-dashboard/product/product.component';
-import { ProductDetailsComponent } from './Component/Admin/product-details/product-details.component';
+import { ProductDetailsComponent } from './Component/product-details/product-details.component';
 import { CartComponent } from './Component/Cart/cart/cart.component';
 import { ContentComponent } from './Component/admin-dashboard/Orders/content.component';
 import { AboutUsComponent } from './Component/about-us/about-us.component';
@@ -109,7 +109,7 @@ import { AdminUsersComponent } from './Component/Admin/admin-users/admin-users.c
     AppRoutingModule,
     NgxPaginationModule,
     CommonModule,
-        TranslateModule.forRoot({
+    TranslateModule.forRoot({
       defaultLanguage: 'en',
       loader: {
         provide: TranslateLoader,

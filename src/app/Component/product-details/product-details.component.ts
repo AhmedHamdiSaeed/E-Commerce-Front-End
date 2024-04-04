@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../../../Services/product/product.service';
-import { Category } from '../../../models/categoryModel';
-import { Product } from '../../../models/product';
-import {baseURL} from '../../../../../env'
+import { ProductService } from '../../Services/product/product.service';
+import { Category } from '../../models/categoryModel';
+import { Product } from '../../models/product';
+import {baseURL} from '../../../../env'
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 import { ActivatedRoute, Router } from '@angular/router';
-import { CartService } from '../../../Services/Cart/cart.service';
-import { AuthService } from '../../../Services/auth/auth.service';
-import { ImageService } from '../../../Services/images/image.service';
+import { CartService } from '../../Services/Cart/cart.service';
+import { AuthService } from '../../Services/auth/auth.service';
+import { ImageService } from '../../Services/images/image.service';
+import { CheckoutService } from '../../Services/checkout/checkout.service';
 
 
 @Component({
@@ -27,12 +28,13 @@ export class ProductDetailsComponent implements OnInit {
   quantity: number = 0;
   success:boolean = false;
   cartProducts: any[] = [];
-
-
+  newCart:any;
+  checkoutSession:any={}
   constructor(
     private route: ActivatedRoute,
     private imageServices: ImageService,
-    private router: Router, private productService: ProductService, private cartService: CartService,private auth : AuthService
+    private router: Router, private productService: ProductService,
+     private cartService: CartService,private auth : AuthService,private checkoutservice:CheckoutService,
   ) {}
 
 
@@ -89,19 +91,9 @@ export class ProductDetailsComponent implements OnInit {
   return this.imageServices.getImageUrl(imagePath) ;
 
   }
-  // increaseQuantity(product: Product) {
-  //   const maxQuantity = product.quantity;
-  //   if (this.quantity <= maxQuantity) {
-  //     this.quantity++;
-  //   }
-  // }
+  
 
 
-  // decreaseQuantity(product: Product) {
-  //   if (this.quantity > 1) {
-  //     this.quantity--;
-  //   }
-  // }
 
    //add to cart
    addToCart(product: Product) {
@@ -123,28 +115,40 @@ export class ProductDetailsComponent implements OnInit {
     return this.cartService.getTotalQuantityInCart(product); // Convert
   }
   orderNow(){
+    this.isLoading = true;
+  
     if (!this.auth.isAuthenticated()) {
       this.router.navigate(['/login']);
       return;
     }
-    const quantity = this.getHoveredProductQuantity(this.product);
-    const products = [{
-      productId: this.product._id,
-      quantity: quantity
-    }];
-
+  
+    let products= this.cartProducts.map(item=>{
+      return{productId: item.product._id, quantity: item.quantity}
+    })
     this.cartService.createNewCart(products).subscribe(
       res => {
-        console.log(' creating new cart:', res);
-
+        this.success = true;
+        this.newCart=res;
+         console.log("cart before order:",this.newCart)
+        console.log("cart before order:",res)
+      // this.router.navigateByUrl('/paymentSuccess/660c89afbb43b63edecfc5fa')
+          this.checkoutservice.checkout(this.newCart.data._id).subscribe(
+           
+            (res)=>{
+              this.checkoutSession=res;
+              this.isLoading=false;
+              
+              window.location.href=this.checkoutSession.session.url;
+            },
+            (err)=>{console.log(" Error creating checkout: ",err,this.newCart.data._id)}
+          )
       },
       error => {
         console.error('Error creating new cart:', error);
-      }
+      }    
+  
     );
-    this.clearCart();
-    console.log(products);
-
+  
   }
   clearCart() {
     this.cartService.clearCart().subscribe(

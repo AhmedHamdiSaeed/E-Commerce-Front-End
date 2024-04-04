@@ -6,7 +6,7 @@ import { LoginComponent } from './Component/login/login.component';
 import { NotFoundComponent } from './Component/not-found/not-found.component';
 import { CategoriesComponent } from './Component/categories/categories.component';
 import { ProductComponent } from './Component/admin-dashboard/product/product.component';
-import { ProductDetailsComponent } from './Component/Admin/product-details/product-details.component';
+import { ProductDetailsComponent } from './Component/product-details/product-details.component';
 import { CartComponent } from './Component/Cart/cart/cart.component';
 import { HeaderComponent } from './Component/header/header.component';
 import { AboutUsComponent } from './Component/about-us/about-us.component';
@@ -23,7 +23,7 @@ import { AdminUsersComponent } from './Component/Admin/admin-users/admin-users.c
 import { UserOrdersComponent } from './Component/user-orders/user-orders.component';
 
 const routes: Routes = [
-  {path:'userOrders',component:UserOrdersComponent},
+  {path:'userOrders',component:UserOrdersComponent, canActivate: [AuthGuardService]},
   {path:'paymentSuccess/:id',component:PaymentSuccessComponent, canActivate: [AuthGuardService]},
   { path: 'Profile', component: UserProfileComponent , canActivate: [AuthGuardService]},
   {path:'updateProfile',component:UpdateProfileComponent, canActivate: [AuthGuardService]},

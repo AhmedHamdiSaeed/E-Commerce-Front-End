@@ -66,13 +66,15 @@ export class AddProductComponent implements OnInit {
     formData.append('quantity' , form.value.quantity);
     formData.append('price' , form.value.price);
     formData.append('description' , form.value.description);
-    formData.append('colors' , this.color);
+    // formData.append('colors' , this.color);
     formData.append('category' , form.value.category);
     formData.append('company' , form.value.company);
     formData.append('sold' , form.value.sold);
     formData.append('image' , this.selectedImage);
 
-    console.log(formData.get('image'));
+    this.colors.forEach(color => {
+      formData.append('colors', color);
+    });
 
 
     this.prductService.addProduct(formData)
@@ -94,6 +96,7 @@ export class AddProductComponent implements OnInit {
     if (!this.chosenColors.includes(this.color)) {
       this.chosenColors.push(this.color);
       this.colors.push(this.color);
+      console.log(this.colors);
     }
     this.color =  '#008000';
   }
@@ -109,8 +112,8 @@ export class AddProductComponent implements OnInit {
   }
   confirmRemoveColor(color: string): void {
     const dialogRef = this.dialog.open(ConfirmMessageComponent, {
-      width: '300px',
-      data: { message: 'Are you sure you want to remove this color?' },
+      data: { message: 'Are you sure you want to remove this color?',title :' Remove Color '}
+
     });
 
     dialogRef.afterClosed().subscribe((result) => {
