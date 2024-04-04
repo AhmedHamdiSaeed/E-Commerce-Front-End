@@ -45,7 +45,7 @@ export class AdminServices {
     
   }
   cancelOrder(orderId: string){
-    return this.http.get<any>(`${baseURL}/orders/${orderId}`) ; /// this is rrong  correct it later 
+    return this.http.patch<any>(`${baseURL}/orders/${orderId}/cancel`, null) ; /// this is rrong  correct it later 
 
   }
 // not emplimented in the back end yet ! 

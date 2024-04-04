@@ -40,7 +40,7 @@
               <tr *ngFor="let product of displayedProducts">
                 <td>
                   <div class="image-container">
-                    <img class="card-img-top product-image" [src]="getImageUrl(product.image)" [alt]="product.title">
+                    <img class="card-img-top product-image"  [src]="getImageUrl(product.image)" [alt]="product.title"  (error)="handelimageError($event)">
                   </div>
                 </td>
                 <td><b>{{ product.title }}</b></td>

@@ -16,7 +16,7 @@
                 <th>Amount</th>
                 <th>Status</th>
                 <th>Details</th>
-                <th>Delete</th>
+                <th>cancel</th>
               </tr>
             </thead>
             <tbody>
@@ -24,14 +24,15 @@
                 <td>{{ item.user.email }}</td>
                 <td>{{ item.createdAt | date }}</td>
                 <td>
-                  <ul>
+                  shopping list goes here 
+                  <!-- <ul>
                     <li *ngFor="let p of item.cartItems">{{ p.product.title }}</li>
-                  </ul>
+                  </ul> -->
                 </td>
                 <td>{{ item.totalOrderPrice }}</td>
                 <td>{{ item.amount }}</td>
                 <td>{{ item.status }}</td>
-                <td class="list">
+                <!-- <td class="list">
                   <mat-form-field appearance="fill" class="status-dropdown">
                     <mat-label>Select</mat-label>
                     <mat-select matNativeControl placeholder="Status">
@@ -40,9 +41,9 @@
                       <mat-option value="rejected">Rejected</mat-option>
                     </mat-select>
                   </mat-form-field>
-                </td >
+                </td > -->
                 <td><button class="btn btn-info" (click)="getOrder(item._id)"> More info </button></td>
-                <td class="action-buttons"><button class="btn btn-danger" (click)="OpenDialog(item._id)">Remove</button></td>
+                <td class="action-buttons"><button class="btn btn-danger" (click)="OpenDialog(item._id)">cancel</button></td>
               </tr>
             </tbody>
           </table>
