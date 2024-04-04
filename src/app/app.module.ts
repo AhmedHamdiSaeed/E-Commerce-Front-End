@@ -60,6 +60,7 @@ import { ProductDetailsDialogComponent } from './Component/Admin/product-details
 import { UpdateProfileComponent } from './Component/update-profile/update-profile.component';
 import { UserOrdersComponent } from './Component/user-orders/user-orders.component';
 import { AdminUsersComponent } from './Component/Admin/admin-users/admin-users.component';
+import { OrderDetailDialogComponent } from './Component/admin-dashboard/order-detail-dialog/order-detail-dialog.component';
 
 @NgModule({
   declarations: [
@@ -90,7 +91,8 @@ import { AdminUsersComponent } from './Component/Admin/admin-users/admin-users.c
     UpdateProfileComponent,
     UserOrdersComponent,
     AdminUsersComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    OrderDetailDialogComponent,
   ],
   imports: [
     CarouselModule.forRoot(),

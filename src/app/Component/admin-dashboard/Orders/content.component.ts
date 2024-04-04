@@ -6,6 +6,7 @@ import { appUser } from '../../../models/applicationUser';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmMessageComponent } from '../../../SharedComponent/confirm-message/confirm-message.component';
 import { ImageService } from '../../../Services/images/image.service';
+import { OrderDetailDialogComponent } from '../order-detail-dialog/order-detail-dialog.component';
 
 @Component({
   selector: 'app-content',
@@ -54,12 +55,19 @@ export class ContentComponent implements OnInit  {
 
   }
 
+  openOrderDetail(order:any){
+    const orderDialog = this.confirmdialog.open(OrderDetailDialogComponent, {
+      data: order 
+    })
+  }
+
 
   getOrder(orderId :string){
     console.log(orderId);
     this.adminService.getOrderByID(orderId)
     .subscribe((res)=>{
       console.log(res);
+      this.openOrderDetail(res);
 
     })
 
