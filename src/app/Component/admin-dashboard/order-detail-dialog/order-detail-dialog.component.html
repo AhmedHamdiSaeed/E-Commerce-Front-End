@@ -8,32 +8,44 @@
 <div class="container mt-2">
   <ng-container *ngIf="data">
     <div class="row custom-row">
-      <div class="col-md-6 user_info">
+      <div class="col-md-3 user_info">
         <div class="d-flex flex-column align-items-center">
-          <img class="card-img-top img-fluid" style="width: 150px;" [src]="getImageUrl(data.user.image)" alt="user image">
+          <img class="card-img-top img-fluid" style="width: 80px; height: 80px;" [src]="getImageUrl(data.user.image)" alt="user image">
           <h2>{{data.user.fname}} {{data.user.lname}}</h2>
-          <h4>{{data.user.email}}</h4>
+          <h5>{{data.user.email}}</h5>
         </div>
       </div>
-      <div class="col-md-6 order_detail">
+      <div class="col-md-9 order_detail">
         <div class="row">
           <div class="col-sm-6">
             <p class="Category">Status: {{ data.status }}</p>
           </div>
+         
           <div class="col-sm-6">
-            <p class="Price">Price: {{ data.totalOrderPrice | currency:'EGP':'symbol' }}</p>
+            <p class="Price">date: {{ data.orderAt | date }}</p>
           </div>
         </div>
         <hr>
+        <div class="row">
+          <div class="col-sm-6">
+            <p class="Price">Price: {{ data.totalOrderPrice | currency:'EGP':'symbol' }}</p>
+          </div>
+          <div class="col-sm-6">
+            <p class="Price">shippingAddress: {{ data.shippingAddress.city }}{{ data.shippingAddress.postalCode }}{{ data.shippingAddress.street }}</p>
+          </div>
+        </div>
+       
+      </div>
+      <div class="col-md-12" style="overflow-y: auto;">
         <div class="description">
           <div class="description-controls">
-            <p class="desc-title">Order Items:</p>
+            <!-- <p class="desc-title">Order Items:</p> -->
             <div class="table-responsive">
               <table class="table table-striped">
                 <thead>
                   <tr>
-                    <th>Image</th>
-                    <th>Title</th>
+                    <th></th>
+                    <th>product</th>
                     <th>Price</th>
                     <th>Quantity</th>
                   </tr>
