@@ -16,28 +16,28 @@
             </div>
               <div class="col-12">
                 <label for="title" class="form-label bold-label">Product title</label>
-              <input type="text" formControlName="title" class="form-control">
+              <input type="text" formControlName="title" class="form-control" required>
               <div class="form-text" *ngIf="editProductForm.get('title')?.invalid && (editProductForm.get('title')?.touched)">
                 Please provide a valid title for the product
               </div>
             </div>
             <div class="col-md-6">
               <label for="quantity" class="form-label bold-label">Quantity</label>
-              <input type="number" min="1" max="5000" formControlName="quantity" class="form-control">
+              <input type="number" min="1" max="5000" formControlName="quantity" class="form-control" required>
               <div class="form-text" *ngIf="editProductForm.get('quantity')?.invalid && (editProductForm.get('quantity')?.touched)">
                 Please provide a valid quantity for the product
               </div>
             </div>
             <div class="col-md-6">
               <label for="sold" class="form-label bold-label">Sold</label>
-              <input type="number"  min="0" max="5000" formControlName="sold" class="form-control">
+              <input type="number"  min="0" max="5000" formControlName="sold" class="form-control" required>
               <div class="form-text" *ngIf="editProductForm.get('sold')?.invalid && (editProductForm.get('sold')?.touched)">
                 Please provide a valid sold value for the product
               </div>
             </div>
             <div class="col-12">
               <label for="price" class="form-label bold-label">Price</label>
-              <input type="number" formControlName="price" class="form-control">
+              <input type="number" formControlName="price" class="form-control" required>
               <div class="form-text" *ngIf="editProductForm.get('price')?.invalid && (editProductForm.get('price')?.touched)">
                 Please provide a valid price for the product
               </div>
@@ -45,13 +45,13 @@
 
             <div class="col-md-6">
               <label for="category" class="form-label bold-label">Category</label>
-              <select formControlName="category" class="form-select">
+              <select formControlName="category" class="form-select" required>
                 <option *ngFor="let cat of allCategories" [value]="cat.id">{{ cat.name }}</option>
               </select>
             </div>
             <div class="col-md-6">
               <label for="company" class="form-label bold-label">Company</label>
-              <input type="text" formControlName="company" class="form-control">
+              <input type="text" formControlName="company" class="form-control" required>
               <div class="form-text" *ngIf="editProductForm.get('company')?.invalid && (editProductForm.get('company')?.touched)">
                 Please provide a valid company for the product
               </div>
@@ -59,13 +59,13 @@
             <div class="col-12">
               <label for="Allcolors" class="form-label bold-label">Colors</label>
               <div class="input-group">
-                <input id="colorInput" type="color" class="form-control" name="Allcolors">
-                <button class="btn btn-outline-secondary" type="button" (click)="addColor()">Add Color</button>
+                  <input id="colorInput" type="color" class="form-control" name="Allcolors" value="transparent">
+                  <button class="btn btn-outline-secondary" type="button" (click)="addColor()">Add Color</button>
               </div>
               <div class="form-text" *ngIf="editProductForm.get('colors')?.invalid && (editProductForm.get('colors')?.touched || editProductForm.get('colors')?.dirty)">
-                Please provide valid colors for the product
+                  Please provide valid colors for the product
               </div>
-            </div>
+          </div>
               <div class="color-circles">
                 <span *ngFor="let chosenColor of chosenColors" class="color-circle" [style.background-color]="chosenColor" (mouseenter)="showRemoveIcon(chosenColor)" (mouseleave)="hideRemoveIcon(chosenColor)">
                   <span class="remove-icon" (click)="confirmRemoveColor(chosenColor)">X</span>
