@@ -43,7 +43,7 @@ export class EditProductComponent implements OnInit {
       price: ['', Validators.required],
       image: ['', Validators.required],
       quantity: ['', Validators.required],
-      colors: [[]],
+      // colors: [[]],
       category: ['', Validators.required],
       company: ['', Validators.required],
       sold: ['', Validators.required]
@@ -73,16 +73,19 @@ export class EditProductComponent implements OnInit {
           category: this.product.category,
           company: this.product.company,
           sold: this.product.sold
-
         });
-        this.chosenColors = [...this.product.colors];
-        this.color = this.product.colors[this.product.colors.length - 1];
+        this.Allcolors = this.product.colors.slice();
+        this.chosenColors = this.product.colors.slice();
+        // this.color = this.chosenColors[this.chosenColors.length - ];
       },
       (error) => {
         console.error("Error fetching product:", error);
       }
     );
   }
+
+
+
   getAllCategories(): void {
     this.getCategories.getCategories().subscribe(
       (res: Category[]) => {
@@ -111,19 +114,33 @@ export class EditProductComponent implements OnInit {
   }
 
   EditProduct(): void {
+    console.log(this.Allcolors);
+    console.log(this.chosenColors)
     if (this.editProductForm.valid) {
-      this.editProductForm.patchValue({ colors: this.chosenColors });
 
       const formData = new FormData();
-      formData.append('image', this.selectedImage);
+
+      if (this.selectedImage) {
+        formData.append('image', this.selectedImage);
+      }
+      this.chosenColors.forEach(color => {
+        formData.append('colors', color);
+      });
       Object.keys(this.editProductForm.value).forEach(key => {
         formData.append(key, this.editProductForm.value[key]);
       });
-        //  console.log(formData.get('image'));
-      this.productService.updateProducts(this.productId, formData).subscribe((res)=>{
-        console.log("product Edit successfuly")
-       })};
+      this.productService.updateProducts(this.productId, formData).subscribe(
+        (res) => {
+          console.log("Product edited successfully");
+          this.router.navigateByUrl('/Admin/Products');
+        },
+        (error) => {
+          console.error("Error editing product:", error);
+        }
+      );
+    }
   }
+
   onFileSelected(event: any) {
     this.selectedImage = event.target.files[0];
     // console.log(this.selectedImage);
@@ -136,7 +153,7 @@ export class EditProductComponent implements OnInit {
        this.chosenColors.push(this.color);
        this.Allcolors.push(this.color);
     }
-    colorInput.value = '#008000';
+    colorInput.value = '';
   }
   removeColor(chosenColor: string): void {
     const index = this.chosenColors.indexOf(chosenColor);
@@ -150,7 +167,6 @@ export class EditProductComponent implements OnInit {
   }
   confirmRemoveColor(color: string): void {
     const dialogRef = this.dialog.open(ConfirmMessageComponent, {
-      width: '300px',
       data: { message: 'Are you sure you want to remove this color?',title :' Remove Color ' },
     });
 
