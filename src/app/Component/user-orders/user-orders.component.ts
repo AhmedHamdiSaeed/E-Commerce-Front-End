@@ -8,28 +8,28 @@ import { CartService } from '../../Services/Cart/cart.service';
 @Component({
   selector: 'app-user-orders',
   templateUrl: './user-orders.component.html',
-  styleUrl: './user-orders.component.css'
+  styleUrls: ['./user-orders.component.css']
 })
 export class UserOrdersComponent {
-orders:any
-isLoading:boolean=false;
-constructor(private orderService:OrderService,private sanitizer:DomSanitizer,private cartService: CartService)
-{
-  this.isLoading=true;
-  this.orderService.getUserOrders().subscribe(
-    (res)=>{
-      this.orders=res
-      this.isLoading=false;
-      
-      console.log("order qty",this.orders);
-    }
-  )
-}
+  orders: any;
+  isLoading: boolean = false;
+  cartlength: number = 0;
 
-getImageUrl(imagePath: string) :SafeUrl {
-  let safeurl = baseURL + imagePath ;
-  return  this.sanitizer.bypassSecurityTrustUrl(safeurl) ;
-}
-}
+  constructor(private orderService: OrderService, private sanitizer: DomSanitizer) {
+    this.isLoading=true;
+    this.orderService.getUserOrders().subscribe(
+      (res)=>{
+        this.orders=res
+        this.isLoading=false;
+        
+        console.log("order qty",this.orders);
+      }
+    )
+   }
 
-    
+ 
+  getImageUrl(imagePath: string): SafeUrl {
+    let safeurl = baseURL + imagePath;
+    return this.sanitizer.bypassSecurityTrustUrl(safeurl);
+  }
+}

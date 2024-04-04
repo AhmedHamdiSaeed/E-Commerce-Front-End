@@ -17,9 +17,10 @@ payment:any
 paymentId:string=''
 isLoading: boolean = false ;
 
-constructor(private cartservice:CartService,private imagServices: ImageService,private route:ActivatedRoute,private checkoutService:CheckoutService,private sanitizer: DomSanitizer) 
+constructor(private cartservice:CartService, private cartService: CartService,private imagServices: ImageService,private route:ActivatedRoute,private checkoutService:CheckoutService,private sanitizer: DomSanitizer) 
 {
-  localStorage.removeItem('cart');
+//  localStorage.removeItem('cart');
+this.cartService.Clear();
 this.isLoading=true;
 this.route.params.subscribe((params)=>{
   this.paymentId=params['id'];

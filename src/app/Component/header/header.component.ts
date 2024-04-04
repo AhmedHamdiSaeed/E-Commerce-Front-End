@@ -18,6 +18,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   userSub !: Subscription ;
   user !: User | null ;
   lang:any = 'en';
+  
   constructor(private auth: AuthService ,private cartService: CartService ,private translate: TranslateService){
    console.log(this.lang= this.translate.currentLang)
     this.lang= this.translate.currentLang;
@@ -42,14 +43,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.getCartProductLength();
   }
   getCartProductLength(){
-    this.cartService.getCartLength().subscribe((length) => {
+  this.cartService.getCartLength().subscribe(length => {
       this.cartlength = length;
-      console.log(length)
     });
   }
 
+
+  
   ngOnDestroy(): void {
     this.userSub.unsubscribe() ;
+   
   }
 
   onLogout(){
