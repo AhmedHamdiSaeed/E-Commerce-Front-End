@@ -36,7 +36,7 @@
             <ul class="dropdown-menu dropdown-content" aria-labelledby="dropdownMenuButton1" *ngIf="isAuthed && user?.role == 'user'">
               <li><a class="dropdown-item" routerLink="/Profile" (click)="getUser()">{{'header.Your Account'|translate}}</a></li>
               <li><a class="dropdown-item" routerLink="/updateProfile">update Profile</a></li>
-              <li><a class="dropdown-item" href="#">{{'header.Your Order'|translate}}</a></li>
+              <li><a class="dropdown-item" routerLink="/userOrders">{{'header.Your Order'|translate}}</a></li>
               <li><a class="nav-link" (click)="onLogout()" >{{'header.Logout'|translate}}</a>
               </li>
             </ul>

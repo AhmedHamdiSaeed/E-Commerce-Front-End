@@ -87,8 +87,8 @@ export class ProductComponent implements OnInit {
 
   confirmRemoveProduct(productId: string): void {
     const dialogRef = this.dialog.open(ConfirmMessageComponent, {
-      data: { message: 'Are you sure you want to remove this product?' },
-      
+      data: { message: 'Are you sure you want to remove this product?' ,title :' Remove Product '},
+
     });
 
     dialogRef.afterClosed().subscribe((result) => {
@@ -111,7 +111,9 @@ export class ProductComponent implements OnInit {
   }
 
   editProduct(productId: string) {
-    this.router.navigateByUrl(`/Admin/EditProduct/${productId}`);
+    this.router.navigateByUrl(`/Admin/EditProduct/${productId}`).then(() => {
+      this.loadProducts();
+  });
   }
 
   deleteProduct(productId: string) {

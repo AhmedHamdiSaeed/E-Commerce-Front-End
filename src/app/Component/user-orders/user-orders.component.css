@@ -1,0 +1,6 @@
+@media (min-width: 768px) {
+    .scrollable-container {
+      max-height: 300px; 
+      overflow-y: auto; 
+    }
+  }
