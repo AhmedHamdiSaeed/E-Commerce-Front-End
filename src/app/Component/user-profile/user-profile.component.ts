@@ -11,14 +11,22 @@ import { ImageService } from '../../Services/images/image.service';
   styleUrl: './user-profile.component.css'
 })
 export class UserProfileComponent {
-userProfile:any;
+   userProfile:any = {
+    fname: '',
+    lname: '',
+    email: '',
+    city: '',
+    postalCode: '',
+    street: ''
+  };
 
 constructor(
   private userProfileService:UserProfileService,
   private imageServices:ImageService) {
-  this.userProfileService.getUserUpdate().subscribe(user=>{
+  this.userProfileService.getCurrentUser().subscribe(user=>{
     console.log("user",user)
     this.userProfile=user;
+
     console.log("userProfile",this.getImageUrl(this.userProfile.image))
 
   })

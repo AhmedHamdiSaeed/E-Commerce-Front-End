@@ -8,7 +8,11 @@ export class UserProfileService {
 
   constructor(private http: HttpClient) 
   { }
-  getUserUpdate()
+  updateUser(userData:any)
+  {
+    return this.http.patch(`${baseURL}`,userData);
+  }
+  getCurrentUser()
   {
     return this.http.get(`${baseURL}/userProfile/forUpdate`)
   }
