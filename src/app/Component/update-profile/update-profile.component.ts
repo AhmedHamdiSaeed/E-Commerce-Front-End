@@ -1,34 +1,51 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserProfileService } from '../../Services/UserProfile/user-profile.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-update-profile',
   templateUrl: './update-profile.component.html',
   styleUrl: './update-profile.component.css'
 })
-export class UpdateProfileComponent{
- oldUser:any
-  userProfile!: FormGroup;
+export class UpdateProfileComponent implements OnDestroy{
+ userDb:any
+  userProfile: FormGroup;
   
-  constructor(private userProfileService:UserProfileService,private fb:FormBuilder) {
-
+  constructor(private userProfileService:UserProfileService,private formBuilder:FormBuilder,private subscription:Subscription,private fb:FormBuilder) {
+    this.userProfile= fb.group({
+     
+        fname: [''],
+        lname: [''],
+        email: [''],
+        address:formBuilder.group({
+          city: [''],
+          postalCode: [''],
+          street: ['']
+        }),
+        image:['']
+    
+    })
     this.userProfileService.getCurrentUser().subscribe(user=>{
       console.log("user",user)
-      this.oldUser=user;
-      const{fname, lname,email,address,image}=this.oldUser;
-      this.userProfile= fb.group({
-        fname:new FormControl(fname,[Validators.required,Validators.pattern('[A-Za-z]{3,}')]),
-      lname:[lname|| '',Validators.required,Validators.pattern('[A-Za-z]{3,}')],
-      email:[email || '',],
-      image:[image || '',],
-      address:fb.group({
-        city:[address.city || '',],
-        postalCode:[address.postalCode || '',],
-        street:[address.street || '',],
-      }),
-      })
-    })}
+      this.userDb=user;
+      const{fname, lname,email,address,image}=this.userDb;
+})    
+this.userProfile.patchValue({
+  fname:this.userDb.fname,
+  lname:this.userDb.lname.value,
+  email:this.userDb.email,
+  image:this.userDb.image,
+  address:{
+    city:this.userDb.city,
+    postalCode:this.userDb.postalCode,
+    street:this.userDb.street,
+  }})
+  };
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
    
 
 get fname()
@@ -61,7 +78,10 @@ get street()
 }
 updateUser()
 {
-
+  this.subscription=this.userProfileService.updateUser(this.userProfile).subscribe(newUser=>{
+    console.log("new User",newUser)
+  }
+  ,err=>{console.log("err : ",err)})
 }
  
 }

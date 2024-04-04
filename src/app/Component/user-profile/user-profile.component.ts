@@ -41,7 +41,7 @@ constructor(
       this.isLoading=false;
       this.userProfile.patchValue({
         fname:this.userDb.fname,
-        lname:this.userDb.lname.value,
+        lname:this.userDb.lname,
         email:this.userDb.email,
         image:this.userDb.image,
         address:{
@@ -49,6 +49,9 @@ constructor(
           postalCode:this.userDb.postalCode,
           street:this.userDb.street,
         }})
+        console.log("userProfile :",)
+        // console.log("url",this.getImageUrl(this.userProfile.))
+
   })}
      
 

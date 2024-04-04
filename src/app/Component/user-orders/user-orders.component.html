@@ -8,29 +8,35 @@
     </div>
     <div *ngFor="let order of orders; let i = index">
         <div class="col-12 text-center bg-success p-2 m-2 fs-4 fw-bold text-white rounded">{{i+1}}</div>
-        <div class="col-12  col-md-7 bg-white p-3 rounded mt-3 scrollable-container">
-            <div *ngFor="let item of orders[i].cartItems; let j = index">
-                <div class="row">
-                    <div class=" col m-4 p-3 ">
-                        <img class="w-75" [src]="getImageUrl(item.product.image)">
-                    </div>
-                    <div class="col-12 col-md-8   m-4 p-3">
-                        <div class="fw-bold col-12">{{item.product.title}}</div>
-                        <div><span class="fw-bold">QTY :</span> {{item.quantity}}</div>
-                        <div><span class="fw-bold">Price:</span> $ {{item.price}}</div>
-                    </div>
+        <div class="row">
+            <div class="col-12  col-md-8 bg-white p-3 rounded mt-3 scrollable-container">
+                <div *ngFor="let item of orders[i].cartItems; let j = index">
+                    <div class="row">
+                        <div class=" col m-4 p-3 ">
+                            <img class="w-75" [src]="getImageUrl(orders[i].cartItems[j].product.image)">
+                        </div>
+                        <div class="col-12 col-md-8   m-4 p-3">
+                            <div class="fw-bold col-12">{{item.product.title}}</div>
+                            <div><span class="fw-bold">QTY :</span> {{item.quantity}}</div>
+                            <div><span class="fw-bold">Price:</span> $ {{item.price}}</div>
+                        </div>
+                    </div> 
                 </div> 
-            </div>     
         </div>
+       
         <div class="col-12 col-md-4 p-3">
-            <div class="fw-bold col-12 text-center p-3">Details</div>
-            <div class="fw-bold col-12 bg-white p-3 rounded mt-1 ">date<span class="text-green">{{order.orderAt | date:'medium'}}</span></div>
-            <div class="fw-bold col-12 p-2">address</div>
-            <!-- <div class="fw-bold col-12 bg-white p-3 rounded mt-1 "><span>city :</span>{{order.address.city}}</div>
-            <div class="fw-bold col-12 bg-white p-3 rounded mt-1 "><span>postalCode :</span>{{order.address.postalCode}}</div>
-            <div class="fw-bold col-12 bg-white p-3 rounded mt-1 "><span>street :</span>{{order.address.street}}</div>
-            <div class="fw-bold col-12 bg-white p-3 rounded mt-1 "><span>Total Order Price</span>  : $ {{order.totalOrderPrice}}</div>     
-          -->
+            <div class="fw-bold  text-center p-3">Details</div>
+            <div class="fw-bold  bg-white p-3 rounded mt-1 ">date<span class="text-green">{{order.orderAt | date:'medium'}}</span></div>
+            <div class="fw-bold  p-2">address</div>
+            <div class="fw-bold  bg-white p-3 rounded mt-1 "><span>city :</span>{{order.user.address.city}}</div>
+            <div class="fw-bold  bg-white p-3 rounded mt-1 "><span>postalCode :</span>{{order.user.address.postalCode}}</div>
+            <div class="fw-bold  bg-white p-3 rounded mt-1 "><span>street :</span>{{order.user.address.street}}</div>
+            <div class="fw-bold  bg-white p-3 rounded mt-1 "><span>Total Order Price</span>  : $ {{order.totalOrderPrice}}</div>     
+         
+        </div>  
+        </div>
+    
+       
         </div>
     </div>
 
@@ -40,8 +46,7 @@
 
     
 </div>
-<div *ngIf></div>
-</div>
+
 <div *ngIf="isLoading"  class="position-fixed top-50 start-50 translate-middle">
     <app-loading-spinner></app-loading-spinner>
     </div>
