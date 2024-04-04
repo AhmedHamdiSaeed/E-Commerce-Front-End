@@ -1,38 +1,67 @@
-import { Component, Sanitizer } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Component, OnDestroy, Sanitizer } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { UserProfileService } from '../../Services/UserProfile/user-profile.service';
 import { baseURL } from '../../../../env';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { ImageService } from '../../Services/images/image.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
   styleUrl: './user-profile.component.css'
 })
-export class UserProfileComponent {
-   userProfile:any = {
-    fname: '',
-    lname: '',
-    email: '',
-    city: '',
-    postalCode: '',
-    street: ''
-  };
-
+export class UserProfileComponent implements OnDestroy{
+   userProfile:FormGroup
+   userDb:any
+   url:any
+   isLoading:boolean=false
+subscription:Subscription
 constructor(
   private userProfileService:UserProfileService,
-  private imageServices:ImageService) {
-  this.userProfileService.getCurrentUser().subscribe(user=>{
-    console.log("user",user)
-    this.userProfile=user;
+  private imageServices:ImageService,private formBuilder:FormBuilder) {
+    this.isLoading=true;
+    this.userProfile=this.formBuilder.group({
+        fname: [''],
+        lname: [''],
+        email: [''],
+        address:formBuilder.group({
+          city: [''],
+          postalCode: [''],
+          street: ['']
+        }),
+        image:['']
+    
+    });
 
-    console.log("userProfile",this.getImageUrl(this.userProfile.image))
+    this.subscription=this.userProfileService.getCurrentUser().subscribe((user)=>{
+      this.userDb=user;
+      console.log("user",this.userDb.fname)
+      this.url=this,this.userDb.image;
+      this.isLoading=false;
+      this.userProfile.patchValue({
+        fname:this.userDb.fname,
+        lname:this.userDb.lname.value,
+        email:this.userDb.email,
+        image:this.userDb.image,
+        address:{
+          city:this.userDb.city,
+          postalCode:this.userDb.postalCode,
+          street:this.userDb.street,
+        }})
+  })}
+     
 
-  })
 
-}
+  ngOnDestroy(): void {
+    if(this.subscription)
+    this.subscription.unsubscribe() }
+
 getImageUrl(imagePath: string) :SafeUrl {
   return this.imageServices.getImageUrl(imagePath) ;
 }
-}
+
+
+  }
+
+      
