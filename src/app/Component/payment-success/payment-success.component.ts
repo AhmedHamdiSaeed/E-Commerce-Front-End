@@ -19,6 +19,7 @@ isLoading: boolean = false ;
 
 constructor(private cartservice:CartService,private imagServices: ImageService,private route:ActivatedRoute,private checkoutService:CheckoutService,private sanitizer: DomSanitizer) 
 {
+  localStorage.removeItem('cart');
 this.isLoading=true;
 this.route.params.subscribe((params)=>{
   this.paymentId=params['id'];
