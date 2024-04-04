@@ -1,4 +1,4 @@
-import { Component ,OnInit} from '@angular/core';
+import { Component ,OnChanges,OnInit, SimpleChanges} from '@angular/core';
 import { AdminServices } from '../../../Services/admin/admin-services.service';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { baseURL } from '../../../../../env';
@@ -16,7 +16,7 @@ import { ImageService } from '../../../Services/images/image.service';
 //   status: string; // Order status property
 // }
 
-export class ContentComponent implements OnInit {
+export class ContentComponent implements OnInit  {
   modeSelect: any;
  orderInfo:any = [];
   // users!: appUser[];
@@ -35,6 +35,8 @@ export class ContentComponent implements OnInit {
     this.isloading = true ;
     // this.getOrderInfo();
     this.orders = this.adminService.getOrders().subscribe((res) => {
+      console.log( res);
+      
       this.orderInfo = res;
       // this.select = res.status;
       // console.log(res , this.orderInfo);
@@ -83,7 +85,7 @@ export class ContentComponent implements OnInit {
       if(result) {
         console.log('confirm');
         this.message = "this order will be canceled " ;
-         this.deleteOreder(Id);
+         this.cancelOreder(Id);
 
       }
       else {
@@ -94,7 +96,7 @@ export class ContentComponent implements OnInit {
     }))
   }
 
-  deleteOreder(orderId : string){
+  cancelOreder(orderId : string){
     console.log(orderId);
     this.adminService.cancelOrder(orderId).subscribe((res)=>{
       console.log(res);

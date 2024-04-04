@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { UserProfileService } from '../../Services/UserProfile/user-profile.service';
 import { baseURL } from '../../../../env';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { ImageService } from '../../Services/images/image.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -12,7 +13,9 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 export class UserProfileComponent {
 userProfile:any;
 
-constructor(private userProfileService:UserProfileService,private sanitizer:DomSanitizer) {
+constructor(
+  private userProfileService:UserProfileService,
+  private imageServices:ImageService) {
   this.userProfileService.getUserUpdate().subscribe(user=>{
     console.log("user",user)
     this.userProfile=user;
@@ -22,7 +25,6 @@ constructor(private userProfileService:UserProfileService,private sanitizer:DomS
 
 }
 getImageUrl(imagePath: string) :SafeUrl {
-  let safeurl = baseURL + imagePath ;
-  return  this.sanitizer.bypassSecurityTrustUrl(safeurl) ;
+  return this.imageServices.getImageUrl(imagePath) ;
 }
 }
