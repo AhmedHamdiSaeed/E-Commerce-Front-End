@@ -36,7 +36,7 @@ export class ContentComponent implements OnInit  {
     // this.getOrderInfo();
     this.orders = this.adminService.getOrders().subscribe((res) => {
       console.log( res);
-      
+
       this.orderInfo = res;
       // this.select = res.status;
       // console.log(res , this.orderInfo);
