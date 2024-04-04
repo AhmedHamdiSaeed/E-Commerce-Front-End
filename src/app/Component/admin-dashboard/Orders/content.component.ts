@@ -71,7 +71,7 @@ export class ContentComponent implements OnInit  {
 
 
 
-  OpenDialog( Id: string ){
+  OpenDialog( Id: string , i:number ){
 
    const msgDialog =  this.confirmdialog.open(ConfirmMessageComponent , {
       data: {message: " this order will be canceled", title: "cancel order "},
@@ -85,7 +85,7 @@ export class ContentComponent implements OnInit  {
       if(result) {
         console.log('confirm');
         this.message = "this order will be canceled " ;
-         this.cancelOreder(Id);
+         this.cancelOreder(Id  , i);
 
       }
       else {
@@ -96,11 +96,11 @@ export class ContentComponent implements OnInit  {
     }))
   }
 
-  cancelOreder(orderId : string){
-    console.log(orderId);
+  cancelOreder(orderId : string , index: number){
+    console.log(orderId , );
     this.adminService.cancelOrder(orderId).subscribe((res)=>{
-      console.log(res);
-
+      // console.log(res);
+      this.orderInfo[index] = res.data ;
     },(error) => console.log(error)
     )
 

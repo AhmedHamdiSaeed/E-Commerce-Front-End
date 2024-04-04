@@ -66,6 +66,8 @@ export class AuthService {
 
       if(newUser.Token){
         this.userSubject.next(newUser);
+      }else{
+        this.router.navigateByUrl('/login');
       }
     }
   }

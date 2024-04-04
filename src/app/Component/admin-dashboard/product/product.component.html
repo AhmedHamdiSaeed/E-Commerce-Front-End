@@ -37,7 +37,7 @@
               </tr>
             </thead>
             <tbody *ngIf="displayedProducts.length > 0; else noProductsFound">
-              <tr *ngFor="let product of displayedProducts">
+              <tr *ngFor="let product of displayedProducts; let i = index">
                 <td>
                   <div class="image-container">
                     <img class="card-img-top product-image"  [src]="getImageUrl(product.image)" [alt]="product.title"  (error)="handelimageError($event)">
@@ -49,7 +49,7 @@
                 <td><b>{{ product.sold }}</b></td>
                 <td>
                   <div class="action-buttons">
-                    <button class="btn btn-primary" (click)="editProduct(product._id)" title="Edit">
+                    <button class="btn btn-primary" (click)="editProduct(product._id, i)" title="Edit">
                       <i class="bi bi-pencil-fill"></i>
                     </button>
                     <button class="btn btn-danger" (click)="confirmRemoveProduct(product._id)" title="Remove">

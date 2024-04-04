@@ -110,7 +110,7 @@ export class ProductComponent implements OnInit {
     });
   }
 
-  editProduct(productId: string) {
+  editProduct(productId: string, index: number) {
     this.router.navigateByUrl(`/Admin/EditProduct/${productId}`).then(() => {
       this.loadProducts();
   });

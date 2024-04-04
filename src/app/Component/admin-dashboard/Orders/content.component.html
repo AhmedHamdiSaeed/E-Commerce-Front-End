@@ -20,7 +20,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let item of orderInfo">
+              <tr *ngFor="let item of orderInfo; let i= index">
                 <td>{{ item.user.email }}</td>
                 <td>{{ item.createdAt | date }}</td>
                 <td>
@@ -43,7 +43,7 @@
                   </mat-form-field>
                 </td > -->
                 <td><button class="btn btn-info" (click)="getOrder(item._id)"> More info </button></td>
-                <td class="action-buttons"><button class="btn btn-danger" (click)="OpenDialog(item._id)">cancel</button></td>
+                <td class="action-buttons"><button class="btn btn-danger" (click)="OpenDialog(item._id, i)">cancel</button></td>
               </tr>
             </tbody>
           </table>
