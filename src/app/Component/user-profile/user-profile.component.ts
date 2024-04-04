@@ -37,11 +37,11 @@ constructor(
     this.subscription=this.userProfileService.getCurrentUser().subscribe((user)=>{
       this.userDb=user;
       console.log("user",this.userDb.fname)
-      this.url=this,this.userDb.image;
+      this.url=this.getImageUrl(this.userDb.image);
       this.isLoading=false;
       this.userProfile.patchValue({
         fname:this.userDb.fname,
-        lname:this.userDb.lname.value,
+        lname:this.userDb.lname,
         email:this.userDb.email,
         image:this.userDb.image,
         address:{
@@ -49,6 +49,9 @@ constructor(
           postalCode:this.userDb.postalCode,
           street:this.userDb.street,
         }})
+        console.log("userProfile :",)
+        // console.log("url",this.getImageUrl(this.userProfile.))
+
   })}
      
 
