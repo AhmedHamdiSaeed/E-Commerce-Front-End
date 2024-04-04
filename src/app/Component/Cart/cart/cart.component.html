@@ -1,5 +1,5 @@
-<ng-container *ngIf="!isLoading">
-    <ng-container *ngIf=" cartProducts.length > 0">
+<ng-container *ngIf="!isLoading; else loadingSpinner">
+    <ng-container *ngIf="cartProducts.length > 0">
         <div class="container d-flex justify-content-center align-items-center">
             <div class="card ">
                 <h5 class="card-title">Shop Cart</h5>
@@ -26,30 +26,28 @@
             </div>
         </div>
     </ng-container>
-<!-- Success message -->
-<div class="alert alert-success" role="alert" *ngIf="success">
-    <strong>Well done!</strong> Your order has been successfully placed.
-  </div>
-
-  <!-- Loading spinner -->
-  <ng-container *ngIf="isLoading">
+    <ng-container *ngIf="success">
+      <div class="alert alert-success" role="alert">
+        <strong>Well done!</strong> Your order has been successfully placed.
+      </div>
+    </ng-container>
+    <ng-container *ngIf="cartProducts.length === 0">
+        <div class="container d-flex justify-content-center align-items-center" style="height: 60vh;">
+            <div class="card">
+              <div class="text-center mt-4">
+                <img src="../../../assets/project images/cart.png" alt="">
+                <h4>Your cart is empty!</h4>
+                <p>Add items to it now</p>
+                <button routerLink="/products/category" class="btn btn-outline-success">Shop Now</button>
+              </div>
+            </div>
+          </div>
+    </ng-container>
+  </ng-container>
+  
+  <ng-template #loadingSpinner>
     <div class="position-fixed top-50 start-50 translate-middle">
       <app-loading-spinner></app-loading-spinner>
     </div>
-  </ng-container>
-</ng-container>
-
-<!-- Display empty cart message -->
-<ng-container *ngIf="cartProducts.length === 0">
-  <div class="container d-flex justify-content-center align-items-center" style="height: 60vh;">
-    <div class="card">
-      <div class="text-center mt-4">
-        <img src="../../../assets/project images/cart.png" alt="">
-        <h4>Your cart is empty!</h4>
-        <p>Add items to it now</p>
-        <button routerLink="/products/category" class="btn btn-outline-success">Shop Now</button>
-      </div>
-    </div>
-  </div>
-</ng-container>
-
+  </ng-template>
+  

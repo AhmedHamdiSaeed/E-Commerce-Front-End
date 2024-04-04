@@ -142,12 +142,14 @@ orderNow(){
       console.log("cart before order:",res)
     // this.router.navigateByUrl('/paymentSuccess/660c89afbb43b63edecfc5fa')
         this.checkoutservice.checkout(this.newCart.data._id).subscribe(
+         
           (res)=>{
             this.checkoutSession=res;
-            this.isLoading=true;
+            this.isLoading=false;
+            
             window.location.href=this.checkoutSession.session.url;
           },
-          (err)=>{console.log(" Error creating checkout: ",err)}
+          (err)=>{console.log(" Error creating checkout: ",err,this.newCart.data._id)}
         )
     },
     error => {
