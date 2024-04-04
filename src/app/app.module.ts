@@ -109,7 +109,7 @@ import { AdminUsersComponent } from './Component/Admin/admin-users/admin-users.c
     AppRoutingModule,
     NgxPaginationModule,
     CommonModule,
-        TranslateModule.forRoot({
+    TranslateModule.forRoot({
       defaultLanguage: 'en',
       loader: {
         provide: TranslateLoader,
