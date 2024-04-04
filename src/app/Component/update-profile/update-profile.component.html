@@ -1,5 +1,5 @@
 
-<div class="container mt-5 mb-5">
+<div class="container mt-5 mb-5" *ngIf='!isLoading'>
     <div class="row justify-content-center"> 
         <div class="col-md-9 col-lg-8">
             <div class="card border-success">
@@ -9,8 +9,10 @@
                         <div class="row">
                             
                             <div class="col-8 d-flex flex-column align-items-center text-center mb-4 text-center">
-                                <img class="col-8  mt-5 " src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReTzAnN4CAJcD2VRaFxTVqHfK-UpYZfEbQDEgGXKeW3A&s">
-                        
+                                <div class="col-6  p-2 mb-4 text-center">
+                                    <img class="col-4 mt-5 w-90 " [src]="url" >
+                                    <input type="file" (change)="setURL($event)">
+                                </div>                                
                             </div>
                         <div class="row mt-3 p-5">
                             <div class="col-md-6 p-3">
@@ -29,7 +31,7 @@
 
                                 <div class="col-md-6 p-3">
                                     <label class="form-label">City</label>
-                                    <input type="text" name="city" class="form-control" placeholder="City" formControlName="city" >
+                                    <input type="text" name="city" class="form-control" placeholder="city" formControlName="city" >
                                 </div>
                                 <div class="col-md-6 p-3">
                                     <label class="form-label">Postal Code</label>
@@ -43,35 +45,10 @@
                             </div>
                         
                         <div class="mt-5 text-center">
-                            <button class="btn btn-success" type="button" routerLink="/updateProfile">Update Profile</button>
+                            <button class="btn btn-success" type="button"  (click)="update()">Update Profile</button>
                         </div>
                       </div>
                      </form>
-
-<!-- <div class="container rounded bg-white mt-5 mb-5">
-    <div class="row">
-        <form [formGroup]="userProfile">
-        <div class="col-md-3 border-right">
-            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src=""><span class="font-weight-bold">ddddd</span><span class="text-black-50">dddddd</span><span> </span></div>
-        </div>
-        <div class="col-md-5 border-right">
-            <div class="p-3 py-5">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h4 class="text-right">Profile Settings</h4>
-                </div>
-                <div class="row mt-2">
-                    <div class="col-md-12"><label class="labels">First Name</label><input type="text" class="form-control" placeholder="first Name" formControlName="fname"  ></div>
-                    <div class="col-md-12"><label class="labels">Last Name</label><input type="text" class="form-control" formControlName="lname" placeholder="Last Name" ></div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-md-12"><label class="labels">Email</label><input type="text" class="form-control" placeholder="phone number"  formControlName="Email"  ></div>
-                    <div class="col-md-12"><label class="labels">City</label><input type="text" class="form-control" placeholder="City" formControlName="City"   ></div>
-                    <div class="col-md-12"><label class="labels">postalCode</label><input type="text" class="form-control" placeholder="postalCode"  formControlName="postalCode"  ></div>
-                    <div class="col-md-12"><label class="labels">street</label><input type="text" class="form-control" placeholder="street" formControlName="street"  ></div>  
-                </div>
-                <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button" routerLink="/updateProfile">update Profile</button></div>
-
-            </div>
-    </div>
-
-</div> -->
+                     <div *ngIf="isLoading"  class="position-fixed top-50 start-50 translate-middle">
+                        <app-loading-spinner></app-loading-spinner>
+                        </div>

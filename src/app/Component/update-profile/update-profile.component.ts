@@ -11,8 +11,10 @@ import { Subscription } from 'rxjs';
 export class UpdateProfileComponent implements OnDestroy{
  userDb:any
   userProfile: FormGroup;
-  
+  isLoading:boolean=false
+  url:any;
   constructor(private userProfileService:UserProfileService,private formBuilder:FormBuilder,private subscription:Subscription,private fb:FormBuilder) {
+    this.isLoading=true;
     this.userProfile= fb.group({
      
         fname: [''],
@@ -30,19 +32,28 @@ export class UpdateProfileComponent implements OnDestroy{
       console.log("user",user)
       this.userDb=user;
       const{fname, lname,email,address,image}=this.userDb;
-})    
-this.userProfile.patchValue({
-  fname:this.userDb.fname,
-  lname:this.userDb.lname.value,
-  email:this.userDb.email,
-  image:this.userDb.image,
-  address:{
-    city:this.userDb.city,
-    postalCode:this.userDb.postalCode,
-    street:this.userDb.street,
-  }})
-  };
+      this.userProfile.patchValue({
+        fname:this.userDb.fname,
+        lname:this.userDb.lname.value,
+        email:this.userDb.email,
+        image:this.userDb.image,
+        address:{
+          city:this.userDb.city,
+          postalCode:this.userDb.postalCode,
+          street:this.userDb.street,
+        }})
 
+        this.isLoading=false
+
+})    
+
+  };
+  setURL(e:any)
+  {
+    const reader=new FileReader();
+    reader.readAsDataURL(e.target.files[0]);
+    reader.onload=(p)=>{this.url=p};
+  }
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
@@ -76,10 +87,10 @@ get street()
 {
   return this.userProfile.get('street');
 }
-updateUser()
+update()
 {
   this.subscription=this.userProfileService.updateUser(this.userProfile).subscribe(newUser=>{
-    console.log("new User",newUser)
+    console.log("new User updated",newUser)
   }
   ,err=>{console.log("err : ",err)})
 }
