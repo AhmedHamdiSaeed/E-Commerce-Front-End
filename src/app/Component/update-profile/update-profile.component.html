@@ -5,41 +5,43 @@
             <div class="card border-success">
                
                 <div class="card-body">
-                    <form [formGroup]="userProfile" class="w-100">
+                    <form  class="w-100">
                         <div class="row">
                             
-                        <div class="d-flex flex-column align-items-center text-center mb-4">
-                            <img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
-                            <span class="font-weight-bold">ddddd</span>
-                            <span class="text-black-50">dddddd</span>
-                       
-                        </div>
+                            <div class="col-8 d-flex flex-column align-items-center text-center mb-4 text-center">
+                                <img class="col-8  mt-5 " src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReTzAnN4CAJcD2VRaFxTVqHfK-UpYZfEbQDEgGXKeW3A&s">
+                        
+                            </div>
                         <div class="row mt-3 p-5">
                             <div class="col-md-6 p-3">
                                 <label class="form-label">First Name</label>
-                                <input type="text" class="form-control" placeholder="First Name" formControlName="fname" >
+                                <input type="text" name="fname" class="form-control" placeholder="First Name" formControlName="fname" >
                             </div>
                             <div class="col-md-6 p-3">
                                 <label class="form-label">Last Name</label>
-                                <input type="text" class="form-control" placeholder="Last Name" formControlName="lname" >
+                                <input type="text" name="lname" class="form-control" placeholder="Last Name" formControlName="lname" >
                             </div>
                             <div class="col-md-6 p-3">
                                 <label class="form-label">Email</label>
-                                <input type="text" class="form-control" placeholder="Email" formControlName="Email" >
+                                <input type="text" name="email" class="form-control" placeholder="Email" formControlName="email" >
                             </div>
-                            <div class="col-md-6 p-3">
-                                <label class="form-label">City</label>
-                                <input type="text" class="form-control" placeholder="City" formControlName="City" >
+                            <div formGroupName="address">
+
+                                <div class="col-md-6 p-3">
+                                    <label class="form-label">City</label>
+                                    <input type="text" name="city" class="form-control" placeholder="City" formControlName="city" >
+                                </div>
+                                <div class="col-md-6 p-3">
+                                    <label class="form-label">Postal Code</label>
+                                    <input type="text" name="postalCode" class="form-control" placeholder="Postal Code" formControlName="postalCode" >
+                                </div>
+                                <div class="col-md-6 p-3">
+                                    <label class="form-label">Street</label>
+                                    <input type="text" class="form-control" name="street" placeholder="Street" formControlName="street" >
+                                </div>
                             </div>
-                            <div class="col-md-6 p-3">
-                                <label class="form-label">Postal Code</label>
-                                <input type="text" class="form-control" placeholder="Postal Code" formControlName="postalCode" >
                             </div>
-                            <div class="col-md-6 p-3">
-                                <label class="form-label">Street</label>
-                                <input type="text" class="form-control" placeholder="Street" formControlName="street" >
-                            </div>
-                        </div>
+                        
                         <div class="mt-5 text-center">
                             <button class="btn btn-success" type="button" routerLink="/updateProfile">Update Profile</button>
                         </div>

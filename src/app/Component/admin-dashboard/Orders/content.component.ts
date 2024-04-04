@@ -6,6 +6,7 @@ import { appUser } from '../../../models/applicationUser';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmMessageComponent } from '../../../SharedComponent/confirm-message/confirm-message.component';
 import { ImageService } from '../../../Services/images/image.service';
+import { OrderDetailDialogComponent } from '../order-detail-dialog/order-detail-dialog.component';
 
 @Component({
   selector: 'app-content',
@@ -54,12 +55,19 @@ export class ContentComponent implements OnInit  {
 
   }
 
+  openOrderDetail(order:any){
+    const orderDialog = this.confirmdialog.open(OrderDetailDialogComponent, {
+      data: order 
+    })
+  }
+
 
   getOrder(orderId :string){
     console.log(orderId);
     this.adminService.getOrderByID(orderId)
     .subscribe((res)=>{
       console.log(res);
+      this.openOrderDetail(res);
 
     })
 
@@ -71,7 +79,7 @@ export class ContentComponent implements OnInit  {
 
 
 
-  OpenDialog( Id: string ){
+  OpenDialog( Id: string , i:number ){
 
    const msgDialog =  this.confirmdialog.open(ConfirmMessageComponent , {
       data: {message: " this order will be canceled", title: "cancel order "},
@@ -85,7 +93,7 @@ export class ContentComponent implements OnInit  {
       if(result) {
         console.log('confirm');
         this.message = "this order will be canceled " ;
-         this.cancelOreder(Id);
+         this.cancelOreder(Id  , i);
 
       }
       else {
@@ -96,11 +104,11 @@ export class ContentComponent implements OnInit  {
     }))
   }
 
-  cancelOreder(orderId : string){
-    console.log(orderId);
+  cancelOreder(orderId : string , index: number){
+    console.log(orderId , );
     this.adminService.cancelOrder(orderId).subscribe((res)=>{
-      console.log(res);
-
+      // console.log(res);
+      this.orderInfo[index] = res.data ;
     },(error) => console.log(error)
     )
 
