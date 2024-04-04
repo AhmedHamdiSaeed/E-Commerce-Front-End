@@ -1,7 +1,8 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, inject } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserProfileService } from '../../Services/UserProfile/user-profile.service';
 import { Subscription } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-update-profile',
@@ -13,7 +14,9 @@ export class UpdateProfileComponent implements OnDestroy{
   userProfile: FormGroup;
   isLoading:boolean=false
   url:any;
-  constructor(private userProfileService:UserProfileService,private formBuilder:FormBuilder,private subscription:Subscription,private fb:FormBuilder) {
+  toastr=inject(ToastrService)
+  constructor(private userProfileService:UserProfileService,private formBuilder:FormBuilder,private subscription:Subscription,private fb:FormBuilder) 
+  {
     this.isLoading=true;
     this.userProfile= fb.group({
      
@@ -45,9 +48,7 @@ export class UpdateProfileComponent implements OnDestroy{
 
         this.isLoading=false
 
-})    
-
-  };
+})    }
   setURL(e:any)
   {
     const reader=new FileReader();
@@ -91,8 +92,11 @@ update()
 {
   this.subscription=this.userProfileService.updateUser(this.userProfile).subscribe(newUser=>{
     console.log("new User updated",newUser)
+    this.toastr.success('User Updated')
+
   }
   ,err=>{console.log("err : ",err)})
+  
 }
  
 }

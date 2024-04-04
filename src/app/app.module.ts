@@ -62,6 +62,7 @@ import { UserOrdersComponent } from './Component/user-orders/user-orders.compone
 import { AdminUsersComponent } from './Component/Admin/admin-users/admin-users.component';
 import { OrderDetailDialogComponent } from './Component/admin-dashboard/order-detail-dialog/order-detail-dialog.component';
 
+import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   declarations: [
     ContactUsComponent,
@@ -119,7 +120,10 @@ import { OrderDetailDialogComponent } from './Component/admin-dashboard/order-de
         useFactory: HttpLoaderFactory,
         deps: [HttpClient],
       },
-    }),
+    }),   
+       ToastrModule.forRoot() // ToastrModule added
+
+
   ],
   providers: [
     {
