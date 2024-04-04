@@ -91,7 +91,7 @@ import { OrderDetailDialogComponent } from './Component/admin-dashboard/order-de
     UpdateProfileComponent,
     UserOrdersComponent,
     AdminUsersComponent,
-    UserProfileComponent
+    UserProfileComponent,
     OrderDetailDialogComponent,
   ],
   imports: [
