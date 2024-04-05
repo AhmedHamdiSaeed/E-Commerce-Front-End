@@ -8,7 +8,7 @@
   margin-top: -50px;
   margin-left: -10px;
   margin-right: -10px;
-  height: 533px;
+  /* height: 533px; */
 }
 
 .c {
@@ -17,6 +17,7 @@
   position: relative;
   width: 80%;
   margin: 87px auto;
+  z-index: 999;
 }
 
 ._404 {
@@ -24,7 +25,7 @@
   position: relative;
   display: inline-block;
   z-index: 2;
-  height: 235px;
+  height: 250px;
   letter-spacing: 15px;
 }
 
@@ -186,10 +187,10 @@ hr:after {
 
 @keyframes moveclouds {
   0% {
-    margin-left: 1000px;
+    margin-left: 500px;
   }
 
   100% {
-    margin-left: -1000px;
+    margin-left: -500px;
   }
 }
