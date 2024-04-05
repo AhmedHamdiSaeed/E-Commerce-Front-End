@@ -120,10 +120,8 @@ import { ToastrModule } from 'ngx-toastr';
         useFactory: HttpLoaderFactory,
         deps: [HttpClient],
       },
-    }),   
-       ToastrModule.forRoot() // ToastrModule added
-
-
+    }),
+    ToastrModule.forRoot(), // ToastrModule added
   ],
   providers: [
     {

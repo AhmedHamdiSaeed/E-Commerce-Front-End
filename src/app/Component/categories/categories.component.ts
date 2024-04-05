@@ -31,7 +31,6 @@ export class CategoriesComponent implements OnInit {
 
     private imagServices: ImageService,
     private translate: TranslateService
-
   ) {}
 
   allCategories: Category[] = [];
@@ -131,12 +130,9 @@ export class CategoriesComponent implements OnInit {
   }
 
   getImageUrl(imagePath: string) {
-
     return this.imagServices.getImageUrl(imagePath);
-
   }
 
-  
   //filter
 
   onSearchTextChanged(searchValue: string) {
