@@ -187,10 +187,10 @@ hr:after {
 
 @keyframes moveclouds {
   0% {
-    margin-left: 500px;
+    margin-left: 45%;
   }
 
   100% {
-    margin-left: -500px;
+    margin-left: -45%;
   }
 }
