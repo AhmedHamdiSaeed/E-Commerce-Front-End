@@ -6,9 +6,9 @@
   font-family: 'Open Sans', sans-serif;
   overflow: hidden;
   margin-top: -50px;
-  margin-left: -10px;
-  margin-right: -10px;
-  /* height: 533px; */
+  margin-left: -11px;
+  margin-right: -11px;
+  height: calc(100vh - 77px);
 }
 
 .c {
@@ -16,7 +16,7 @@
   display: block;
   position: relative;
   width: 80%;
-  margin: 87px auto;
+  margin: 187px auto 0 auto;
   z-index: 999;
 }
 
@@ -25,7 +25,7 @@
   position: relative;
   display: inline-block;
   z-index: 2;
-  height: 250px;
+  /* height: 250px; */
   letter-spacing: 15px;
 }
 
