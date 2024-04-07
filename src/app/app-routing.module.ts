@@ -22,6 +22,7 @@ import { ContentComponent } from './Component/admin-dashboard/Orders/content.com
 import { AdminUsersComponent } from './Component/Admin/admin-users/admin-users.component';
 import { UserOrdersComponent } from './Component/user-orders/user-orders.component';
 
+
 const routes: Routes = [
   {path:'userOrders',component:UserOrdersComponent, canActivate: [AuthGuardService]},
   {path:'paymentSuccess/:id',component:PaymentSuccessComponent, canActivate: [AuthGuardService]},
@@ -34,6 +35,7 @@ const routes: Routes = [
   { path: 'about-us', component: AboutUsComponent },
   { path: 'products/:id', component: ProductDetailsComponent },
   { path: 'cart', component: CartComponent },
+
   {
     path: 'Admin',
     component: AdminBoardComponent,

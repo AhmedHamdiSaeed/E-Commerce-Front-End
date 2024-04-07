@@ -107,3 +107,58 @@ strong {
   margin-top: 1rem;
   color: red;
 }
+.star-rating {
+  font-size: 30px;
+}
+
+.star {
+  cursor: pointer;
+}
+
+.star.selected {
+  color: gold;
+}
+.review-item {
+  margin-bottom: 20px;
+}
+
+.rating {
+  font-size: 24px;
+}
+
+
+button.liked {
+  color: blue;
+}
+
+button.disliked {
+  color: red;
+}
+.review-item {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+.rating {
+  color: gold;
+}
+
+.star {
+  font-size: 20px;
+}
+
+.liked, .disliked {
+  color: blue; 
+}
+
+.liked:hover, .disliked:hover {
+  color: darkblue; 
+}
+.review{
+  font-size: larger;
+}
+.modal-backdrop {
+  backdrop-filter: none; 
+  background-color: rgba(0, 0, 0, 0.5); 
+}
