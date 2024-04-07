@@ -8,7 +8,7 @@ export class UserProfileService {
 
   constructor(private http: HttpClient) 
   { }
-  updateUser(userData:any)
+  updateUser(userData: FormData)
   {
     return this.http.patch(`${baseURL}`,userData);
   }

@@ -27,7 +27,7 @@ const routes: Routes = [
   {path:'userOrders',component:UserOrdersComponent, canActivate: [AuthGuardService]},
   {path:'paymentSuccess/:id',component:PaymentSuccessComponent, canActivate: [AuthGuardService]},
   { path: 'Profile', component: UserProfileComponent , canActivate: [AuthGuardService]},
-  {path:'updateProfile',component:UpdateProfileComponent, canActivate: [AuthGuardService]},
+  {path:'update_Profile',component:UpdateProfileComponent, canActivate: [AuthGuardService]},
   { path: 'home', component: HomeComponent },
   { path: 'register', component: SignupComponent },
   { path: 'login', component: LoginComponent },

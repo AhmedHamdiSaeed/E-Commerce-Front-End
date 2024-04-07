@@ -125,10 +125,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
         useFactory: HttpLoaderFactory,
         deps: [HttpClient],
       },
-    }),   
-       ToastrModule.forRoot() // ToastrModule added
-
-
+    }),
+    ToastrModule.forRoot(), // ToastrModule added
   ],
   providers: [
     {

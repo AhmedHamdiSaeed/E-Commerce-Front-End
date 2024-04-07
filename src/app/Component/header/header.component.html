@@ -2,7 +2,9 @@
   <div class="container-fluid">
     <div class="logo">
       <i style="font-size: 25px;" class="bi bi-bag-heart"></i>
+      <a routerLink="home" style="text-decoration: none; color: rgb(12, 12, 12);">
       <strong style="font-size: 30px;">{{'header.Shoping'|translate}}</strong>
+      </a>
     </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,7 +38,7 @@
           <!-- //dropdown for user  -->
             <ul class="dropdown-menu dropdown-content" aria-labelledby="dropdownMenuButton1" *ngIf="isAuthed && user?.role == 'user'">
               <li><a class="dropdown-item" routerLink="/Profile" (click)="getUser()">{{'header.Your Account'|translate}}</a></li>
-              <li><a class="dropdown-item" routerLink="/updateProfile">update Profile</a></li>
+              <li><a class="dropdown-item" routerLink="/update_Profile">update Profile</a></li>
 
               <li><a class="dropdown-item" routerLink="/userOrders">{{'header.Your Order'|translate}}</a></li>
               <li><a class="nav-link" (click)="onLogout()" >{{'header.Logout'|translate}}</a>
