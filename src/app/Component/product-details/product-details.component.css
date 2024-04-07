@@ -158,7 +158,4 @@ button.disliked {
 .review{
   font-size: larger;
 }
-.modal-backdrop {
-  backdrop-filter: none; 
-  background-color: rgba(0, 0, 0, 0.5); 
-}
+

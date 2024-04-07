@@ -14,7 +14,6 @@ import { ReviewService } from '../../Services/Review/review.service';
 import { Review } from '../../models/Review';
 import { User } from '../../models/user';
 import { OrderService } from '../../Services/order/order.service';
-import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 
 
@@ -203,19 +202,19 @@ export class ProductDetailsComponent implements OnInit {
   }
   userData:any;
   hasAccess:boolean=false;
-  reviewAdded: boolean = false;
-  showForm: boolean = false; 
-  submitReview(data: string): void {
+  reviewAdded: boolean = Boolean(JSON.parse(localStorage.getItem('reviewAdded') ?? 'false'));showForm: boolean = false; 
+  submitReview(): void {
    
     if (this.productId !== null) {
-      this.newReview.description=data;
+    
       this.newReview.product = this.productId;
       console.log('review:', this.newReview);
    
      this.reviewService.createReview(this.newReview).subscribe(
                 response => {
                     console.log('Review submitted successfully:', response);
-                    this.reviewAdded = true; 
+                    this.reviewAdded = true;
+                    localStorage.setItem('reviewAdded', JSON.stringify(true)); // Store the status in localStorage
                     this.showForm = false;
                     this.fetchReviews(this.newReview.product);
                 },
@@ -276,7 +275,7 @@ export class ProductDetailsComponent implements OnInit {
     this.reviewToUpdate = review;
     this.newReview.ratting = review.ratting;
     this.newReview.description =review.description;
-    console.log("HII",this.newReview)
+    
   }
 
   updateReview() {
@@ -294,8 +293,7 @@ export class ProductDetailsComponent implements OnInit {
         }
       );
     }}
-  
-  
+
 
 
   

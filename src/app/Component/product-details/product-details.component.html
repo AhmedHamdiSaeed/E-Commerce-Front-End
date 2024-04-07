@@ -93,7 +93,7 @@
         <button (click)="checkAccessToWriteReview(product._id)" class="btn btn-primary">Add Review</button>
 
           <!-- Review form -->
-          <form *ngIf="showForm" (ngSubmit)="submitReview(dataInput.value)">
+          <form *ngIf="showForm" (ngSubmit)="submitReview()">
             <div class="mb-3">
               <div class="form-group">
                 <div class="star-rating">
@@ -108,7 +108,7 @@
             <div class="mb-3">
               <div class="form-group">
                 <label for="comment">Comment:</label>
-                <textarea id="comment" class="form-control" #dataInput required></textarea>
+                <textarea id="comment" class="form-control" #dataInput [(ngModel)]="newReview.description" name="description" required></textarea>
               </div>
             </div>
             <div class="modal-footer">
