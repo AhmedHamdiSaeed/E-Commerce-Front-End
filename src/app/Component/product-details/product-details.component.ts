@@ -200,9 +200,12 @@ export class ProductDetailsComponent implements OnInit {
   getStarsArray(ratting: number): number[] {
     return Array(ratting).fill(0);
   }
+ 
+  
   userData:any;
   hasAccess:boolean=false;
-  reviewAdded: boolean = Boolean(JSON.parse(localStorage.getItem('reviewAdded') ?? 'false'));showForm: boolean = false; 
+  reviewAdded: boolean = Boolean(JSON.parse(localStorage.getItem('reviewAdded') ?? 'false'));
+  showForm: boolean = false; 
   submitReview(): void {
    
     if (this.productId !== null) {
@@ -213,10 +216,18 @@ export class ProductDetailsComponent implements OnInit {
      this.reviewService.createReview(this.newReview).subscribe(
                 response => {
                     console.log('Review submitted successfully:', response);
-                    this.reviewAdded = true;
-                    localStorage.setItem('reviewAdded', JSON.stringify(true)); // Store the status in localStorage
-                    this.showForm = false;
-                    this.fetchReviews(this.newReview.product);
+                    
+                    if(this.newReview.user._id != this.userData._id){
+                      this.reviewAdded = false;
+                      localStorage.setItem('reviewAdded', JSON.stringify( this.reviewAdded)); // Store the status in localStorage
+                    }
+                    
+                      this.reviewAdded = true;
+                      localStorage.setItem('reviewAdded', JSON.stringify( this.reviewAdded)); // Store the status in localStorage
+                      this.showForm = false;
+                      this.fetchReviews(this.newReview.product);
+                    
+                  
                 },
                 error => {
                     console.error('Error submitting review:', error);
@@ -262,6 +273,9 @@ export class ProductDetailsComponent implements OnInit {
       response => {
         console.log('Review deleted successfully:', response);
         this.fetchReviews(review.product);
+        this.reviewAdded = false;
+        localStorage.setItem('reviewAdded', JSON.stringify( this.reviewAdded));    
+        
       },
       error => {
         console.error('Error deleting review:', error);

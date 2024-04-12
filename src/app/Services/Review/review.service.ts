@@ -29,4 +29,8 @@ export class ReviewService {
   getReviewById(reviewId:string){
     return this.http.get<Review>(`${this.apiUrl}/${reviewId}`);
   }
+  getStarsArray(ratting: number): number[] {
+    return Array(ratting).fill(0);
+  }
+ 
 }

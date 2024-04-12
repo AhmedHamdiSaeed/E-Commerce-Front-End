@@ -73,7 +73,7 @@ export class CartComponent {
   //remove one product from cart
   removeItem(i: number) {
   this.cartProducts .splice(i, 1);
-  // this. setItem();
+  this. setItem();
   this.cartService.updateCartLengthFromLocalStorage();
   
   }

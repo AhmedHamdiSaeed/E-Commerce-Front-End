@@ -64,6 +64,9 @@
           <div class="card-body text-center">
             <h5 class="card-title productTitle" [routerLink]="['/products', product._id]">{{ product.title }}</h5>
             <p class="card-text fw-bold">Price : {{ product.price | currency:'EGP':'symbol' }}</p>
+            <div class="rating">
+              <span class="star" *ngFor="let star of getStarsArray(product.rattingsAverage)">&#9733;</span>
+            </div>
             <button class="btn btn-success mb-2 cart-btn m-auto"
               (mouseenter)="hoveredProduct = product; isHovered = true"
               (mouseleave)="hoveredProduct = null; isHovered = false">
