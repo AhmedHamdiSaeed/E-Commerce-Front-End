@@ -1,82 +1,58 @@
 
-<div class="container mt-5 mb-5" >
+<div class="container mt-5 mb-5" *ngIf="!isLoading">
     <div class="row justify-content-center"> 
-        <div class="col-md-9 col-lg-8">
+        <div class="col-md-9 col-lg-8" >
             <div class="card border-success">
                
-                <div class="card-body">
-                    <form class="w-100" [formGroup]="userProfile">
-                        <div class="col-6  p-2 mb-4 text-center">
-                            <img class="col-4 mt-5 w-90 " [src]="url" >
+                <div class="card-body p-3">
+                        <div class="row" [formGroup]="userProfile">
+                            <div class="row ">
+                                    <div class="col-12 text-center">
+                                        <img class="col-2 mt-5  " [src]="getImageUrl(userDb?.image)" >
+                                    </div>
+                                                         
+                            <div class="col-12 p-3">
+                                <label class="form-label">First Name</label>
+                                <input type="text"  class="form-control"   formControlName="fname" >
+                            </div>
+                            <div class="col-12 p-3">
+                                <label class="form-label">Last Name</label>
+                                <input type="text"  class="form-control" formControlName="lname" >
+                            </div>
+                            <div class="col-12 p-3">
+                                <label class="form-label">Email</label>
+                                <input type="text"  class="form-control" formControlName="email" >
+                            </div>
+                            <div formGroupName="address">
+                                <div class="col-12 p-3">
+                                        <label class="form-label">City</label>
+                                        <input type="text" class="form-control"   formControlName="city" >
+                                </div>
+                                        <div class="col-12 p-3">
+                                            <label class="form-label">Postal Code</label>
+                                            <input type="text" class="form-control"  formControlName="postalCode" >
+                                        </div>
+                                
+                                    <div class="col-12 p-3">
+                                        <label class="form-label">Street</label>
+                                        <input type="text" class="form-control"  formControlName="street" >
+                                    </div>
+                              
+                                </div>
+                                <div class="mt-3 text-center">
+                                    <button class="col-4 btn btn-success " routerLink="/update_Profile">Update Profile</button>
+                                </div>
                         </div>
-               
-                <div class="row mt-3 p-3">
-                    <div class="col col-md-6 p-3">
-                        <label class="form-label">First Name</label>
-                        <input type="text" class="form-control" placeholder="First Name" readonly formControlName="fname" >
+                 
+                      </div>
+             
                     </div>
-                    <div class="col col-md-6 p-3">
-                        <label class="form-label">Last Name</label>
-                        <input type="text" class="form-control" placeholder="Last Name" readonly formControlName="lname" >
-                    </div>
-                    <div class="col col-md-6 p-3">
-                        <label class="form-label">Email</label>
-                        <input type="text" class="form-control" placeholder="Email"readonly formControlName="email" >
-                    </div>
-                    <div formGroupName="address">
-                        <div class="col-md-6 p-3">
-                            <label class="form-label">City</label>
-                            <input type="text" class="form-control" placeholder="City" readonly formControlName="city" >
-                        </div>
-                        <div class="col-md-6 p-3">
-                            <label class="form-label">Postal Code</label>
-                            <input type="text" class="form-control" placeholder="Postal Code"readonly formControlName="postalCode" >
-                        </div>
-                        <div class="col-md-6 p-3">
-                            <label class="form-label">Street</label>
-                            <input type="text" class="form-control" placeholder="street" readonly formControlName="street" >
-                        </div>
-                    </div>
-                    
                 </div>
-                <div class="mt-5 text-center">
-                    <button class="btn btn-success" type="button" routerLink="/updateProfile">Update Profile</button>
-                </div>
-            </form>
 
             </div>
-            </div>
+
         </div>
-    </div>
-
 </div>
-
-<!-- <div *ngIf="isLoading"  class="position-fixed top-50 start-50 translate-middle">
+<div *ngIf="isLoading"  class="position-fixed top-50 start-50 translate-middle">
     <app-loading-spinner></app-loading-spinner>
-  </div> -->
- <!-- <div class="container rounded bg-white mt-5 mb-5">
-    <div class="row">
-        <div class="col-md-3 border-right">
-            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" [src]="getImageUrl(userProfile.image)"><span class="font-weight-bold mt-2">{{userProfile.fname}} {{userProfile.lname}}</span><span class="text-black-50"></span><span> </span></div>
-        </div>
-        <div class="col-md-5 border-right">
-            <div class="p-3 py-5">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h4 class="text-right">Profile Settings</h4>
-                </div>
-                <div class="row mt-2">
-                    <div class="col-md-12"><label class="labels">First Name</label><input type="text" class="form-control" placeholder="first Name" [value]="userProfile?.fname??''" disabled ></div>
-                    <div class="col-md-12"><label class="labels">Last Name</label><input type="text" class="form-control"  placeholder="Last Name"disabled [value]="userProfile?.lname??''"></div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-md-12"><label class="labels">Email</label><input type="text" class="form-control" placeholder="phone number"  [value]="userProfile?.email ?? ''" disabled ></div>
-                    <div class="col-md-12" ><label class="labels">City</label><input type="text" class="form-control"  placeholder="City" [value]="userProfile.address?.city ?? ''" disabled ></div>
-                    <div class="col-md-12"><label class="labels">postalCode</label><input type="text" class="form-control" placeholder="postalCode"  [value]="userProfile.address?.postalCode?? ''" disabled ></div>
-                    <div class="col-md-12"><label class="labels">street</label><input type="text" class="form-control" placeholder="street" [value]="userProfile.address?.street??''" disabled ></div>  
-                </div>
-                <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button"  routerLink="/updateProfile">update Profile</button></div>
-            </div>
-        </div>
     </div>
-</div>  -->
-
