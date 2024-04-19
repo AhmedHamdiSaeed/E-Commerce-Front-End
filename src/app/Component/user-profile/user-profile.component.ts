@@ -22,7 +22,7 @@ constructor(
   private imageServices:ImageService,private formBuilder:FormBuilder) {
     this.isLoading=true;
     this.userProfile=this.formBuilder.group({
-        fname: [''],
+        fname: [{ value: '', disabled: false }],
         lname: [''],
         email: [''],
         address:formBuilder.group({
@@ -33,7 +33,10 @@ constructor(
         image:['']
     
     });
-
+    this.userProfile.get('fname')?.disable();
+    this.userProfile.get('lname')?.disable();
+    this.userProfile.get('email')?.disable();
+    this.userProfile.get('address')?.disable();
     this.subscription=this.userProfileService.getCurrentUser().subscribe((user)=>{
       this.userDb=user;
       this.url=this.getImageUrl(this.userDb.image);

@@ -16,4 +16,8 @@ export class UserProfileService {
   {
     return this.http.get(`${baseURL}/userProfile/forUpdate`)
   }
+  checkEmail(email:FormData)
+  {
+    return this.http.post(`${baseURL}/check-email`,email);
+  }
 }

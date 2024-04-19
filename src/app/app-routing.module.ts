@@ -21,9 +21,13 @@ import { UpdateProfileComponent } from './Component/update-profile/update-profil
 import { ContentComponent } from './Component/admin-dashboard/Orders/content.component';
 import { AdminUsersComponent } from './Component/Admin/admin-users/admin-users.component';
 import { UserOrdersComponent } from './Component/user-orders/user-orders.component';
+import { AddressInputComponent } from './Component/address-input/address-input.component';
+import { ChangePasswordComponent } from './Component/change-password/change-password.component';
 
 
 const routes: Routes = [
+  {path:'changePassword',component:ChangePasswordComponent,canActivate:[AuthGuardService]},
+  {path:'addressInput',component:AddressInputComponent,canActivate:[AuthGuardService]},
   {path:'userOrders',component:UserOrdersComponent, canActivate: [AuthGuardService]},
   {path:'paymentSuccess/:id',component:PaymentSuccessComponent, canActivate: [AuthGuardService]},
   { path: 'Profile', component: UserProfileComponent , canActivate: [AuthGuardService]},

@@ -64,6 +64,8 @@ import { OrderDetailDialogComponent } from './Component/admin-dashboard/order-de
 
 import { ToastrModule } from 'ngx-toastr';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AddressInputComponent } from './Component/address-input/address-input.component';
+import { ChangePasswordComponent } from './Component/change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -96,6 +98,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AdminUsersComponent,
     UserProfileComponent,
     OrderDetailDialogComponent,
+    AddressInputComponent,
+    ChangePasswordComponent,
 
     
   ],

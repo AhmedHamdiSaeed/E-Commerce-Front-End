@@ -24,6 +24,7 @@ export class UpdateProfileComponent implements OnInit,OnDestroy{
   initValues:any
   selectedImageFile!: File;
   imageURL:any;
+  newEmail:any;
   subscriptions:Subscription[]=[]
   // url: any;
   toastr = inject(ToastrService);
@@ -109,17 +110,32 @@ export class UpdateProfileComponent implements OnInit,OnDestroy{
     userData.append('address[street]',this.userProfile.get('address.street')?.value);
     if(this.selectedImageFile)
     userData.append('image',this.selectedImageFile);
-    this.subscriptions.push(this.userService
-    .updateUser(userData)
-    .subscribe(
-      (newUser) => {
-        this.toastr.success('User Updated');
-        this.initValues=this.userProfile.value;
-      },
-      (err) => {
-        console.log('err : ', err);
-      }
-    ));
+    const emailData=new FormData();
+    emailData.append('email',this.userProfile.value.email)
+  
+      this.subscriptions.push(this.userService.checkEmail(emailData).subscribe(res=>{
+       this.newEmail=res;
+      if(this.newEmail.message==='found')
+        {
+          this.toastr.warning("This email already exists")
+        }
+        else
+        {
+          this.subscriptions.push(this.userService
+            .updateUser(userData)
+            .subscribe(
+              (newUser) => {
+                this.toastr.success('User Updated');
+                this.initValues=this.userProfile.value;
+              },
+              (err) => {
+                console.log('err : ', err);
+              }
+            ));
+        }
+  }));
+    
+
 
   }
   get fname()
