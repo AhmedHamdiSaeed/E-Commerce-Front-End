@@ -206,37 +206,33 @@ export class ProductDetailsComponent implements OnInit {
   hasAccess:boolean=false;
   reviewAdded: boolean = Boolean(JSON.parse(localStorage.getItem('reviewAdded') ?? 'false'));
   showForm: boolean = false; 
-  submitReview(): void {
+
+submitReview(): void {
+  if (this.productId !== null) {
    
-    if (this.productId !== null) {
-    
       this.newReview.product = this.productId;
       console.log('review:', this.newReview);
-   
-     this.reviewService.createReview(this.newReview).subscribe(
-                response => {
-                    console.log('Review submitted successfully:', response);
-                    
-                    if(this.newReview.user._id != this.userData._id){
-                      this.reviewAdded = false;
-                      localStorage.setItem('reviewAdded', JSON.stringify( this.reviewAdded)); // Store the status in localStorage
-                    }
-                    
-                      this.reviewAdded = true;
-                      localStorage.setItem('reviewAdded', JSON.stringify( this.reviewAdded)); // Store the status in localStorage
-                      this.showForm = false;
-                      this.fetchReviews(this.newReview.product);
-                    
-                  
-                },
-                error => {
-                    console.error('Error submitting review:', error);
-                }
-            );
-        } else {
-            console.error('Description or rating is missing.');
-        }
-    
+
+     
+      this.reviewService.createReview(this.newReview).subscribe(
+          response => {
+              console.log('Review submitted successfully:', response);
+
+              // Remove the flag from local storage
+              localStorage.removeItem('reviewAdded');
+
+              // Update the reviewAdded status and fetch reviews for the selected product
+              this.reviewAdded = true;
+              this.showForm = false;
+              this.fetchReviews(this.newReview.product);
+          },
+          error => {
+              console.error('Error submitting review:', error);
+          }
+      );
+  } else {
+      console.error('Description or rating is missing.');
+  }
 }
 
   setRating(ratting: number): void {
