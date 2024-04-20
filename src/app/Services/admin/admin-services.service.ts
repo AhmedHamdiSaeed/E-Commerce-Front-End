@@ -40,6 +40,11 @@ export class AdminServices {
     );
   }
 
+  getordersofUser(userId: string){
+    return this.http.post(`${baseURL}/orders/userOrders` , {userId: userId}) 
+
+   }
+
   getOrderByID(orderId: string){
     return this.http.get<any>(`${baseURL}/orders/${orderId}`) ;
     

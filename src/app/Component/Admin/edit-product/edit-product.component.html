@@ -23,7 +23,7 @@
             </div>
             <div class="col-md-6">
               <label for="quantity" class="form-label bold-label">Quantity</label>
-              <input type="number" min="1" max="5000" formControlName="quantity" class="form-control" required>
+              <input type="number" min="0" max="5000" formControlName="quantity" class="form-control" required>
               <div class="form-text" *ngIf="editProductForm.get('quantity')?.invalid && (editProductForm.get('quantity')?.touched)">
                 Please provide a valid quantity for the product
               </div>
