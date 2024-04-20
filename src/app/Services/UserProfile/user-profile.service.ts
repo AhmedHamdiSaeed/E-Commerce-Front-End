@@ -8,12 +8,16 @@ export class UserProfileService {
 
   constructor(private http: HttpClient) 
   { }
-  updateUser(userData: FormData)
+  updateUser(userData:FormData)
   {
-    return this.http.patch(`${baseURL}`,userData);
+    return this.http.patch(`${baseURL}/userProfile`,userData);
   }
   getCurrentUser()
   {
     return this.http.get(`${baseURL}/userProfile/forUpdate`)
+  }
+  checkEmail(email:FormData)
+  {
+    return this.http.post(`${baseURL}/check-email`,email);
   }
 }

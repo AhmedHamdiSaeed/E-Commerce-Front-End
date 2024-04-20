@@ -7,6 +7,17 @@
   transition: background-color 0.3s, border-color 0.3s, color 0.3s;
 }
 
+.quantity-status {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 20px;
+  height: 20px;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-bottom: 15px solid babyblue;
+  z-index: 1;
+}
 .cardCategory:hover {
   background-color: #198754;
   border-color: #198754;
@@ -235,4 +246,14 @@
     flex-basis: calc(50% - 20px);
     margin: 0 10px;
   }
+}
+
+.rating {
+  color: gold;
+  margin-bottom: 10px;
+}
+
+.star {
+  font-size: 20px;
+
 }

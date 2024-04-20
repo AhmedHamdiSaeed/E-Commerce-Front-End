@@ -63,6 +63,10 @@ import { AdminUsersComponent } from './Component/Admin/admin-users/admin-users.c
 import { OrderDetailDialogComponent } from './Component/admin-dashboard/order-detail-dialog/order-detail-dialog.component';
 
 import { ToastrModule } from 'ngx-toastr';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AddressInputComponent } from './Component/address-input/address-input.component';
+import { ChangePasswordComponent } from './Component/change-password/change-password.component';
+
 @NgModule({
   declarations: [
     ContactUsComponent,
@@ -94,13 +98,18 @@ import { ToastrModule } from 'ngx-toastr';
     AdminUsersComponent,
     UserProfileComponent,
     OrderDetailDialogComponent,
+    AddressInputComponent,
+    ChangePasswordComponent,
+
+    
   ],
   imports: [
     CarouselModule.forRoot(),
     BrowserModule,
+    NgbModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    FormsModule,
+    FormsModule ,
     ReactiveFormsModule,
     MatPaginatorModule,
     MatFormFieldModule,

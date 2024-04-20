@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="row border m-4 p-3 bg-light">
+        <div class="col-12 text-center">
+            <h1 class="text-success fw-bold fs-3">Shipping Address</h1>
+        </div>
+        <form [formGroup]="address">
+            <div class="col-12">
+                <label class="form-label">City</label>
+                <input type="text" class="form-control" formControlName="city">
+            </div>
+            <div class="col-12">
+                <label class="form-label">PostalCode</label>
+                <input type="text" class="form-control" formControlName="postalCode">
+            </div>   
+               <div class="col-12">
+                <label class="form-label">Street</label>
+                <input type="text" class="form-control" formControlName="street">
+            </div>
+           
+        </form>
+    </div>
+</div>

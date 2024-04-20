@@ -11,9 +11,7 @@ export class CartService {
   private apiUrl =  `${baseURL}/cart/add`;
   private apiUrlClear =  `${baseURL}/cart/clare`;
   quantity: number= 0;
-  private productHoverQuantity: { [productId: string]: number } = {};
-  private clearProductHoverQuantitySubject = new Subject<void>();
-
+  
   constructor(private http: HttpClient ) {   this.updateCartLengthFromLocalStorage();}
   createNewCart(products:any) {
     console.log("cart inside createcartservice :",products)
@@ -99,6 +97,12 @@ export class CartService {
     return totalQuantity;
   }
 
+  getCartProduct(){
+    if("cart" in localStorage){
+      this.cartProducts = JSON.parse(localStorage.getItem("cart")!);
+      console.log("cart :",this.cartProducts)
 
+    } 
+  }
  
 }

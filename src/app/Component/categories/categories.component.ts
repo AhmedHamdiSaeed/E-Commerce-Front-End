@@ -15,6 +15,7 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { baseURL } from '../../../../env';
 import { TranslateService } from '@ngx-translate/core';
 import { ImageService } from '../../Services/images/image.service';
+import { ReviewService } from '../../Services/Review/review.service';
 
 @Component({
   selector: 'app-categories',
@@ -28,7 +29,7 @@ export class CategoriesComponent implements OnInit {
     private productService: ProductService,
     private cartService: CartService,
     private auth: AuthService,
-
+    private reviewService: ReviewService,
     private imagServices: ImageService,
     private translate: TranslateService
   ) {}
@@ -132,7 +133,10 @@ export class CategoriesComponent implements OnInit {
   getImageUrl(imagePath: string) {
     return this.imagServices.getImageUrl(imagePath);
   }
-
+  ratting: number=0;
+  getStarsArray(ratting: number): number[] {
+    return Array(ratting).fill(0);
+  }
   //filter
 
   onSearchTextChanged(searchValue: string) {

@@ -1,3 +1,9 @@
+.container {
+  margin: -70px 0px;
+  padding: 0px;
+  margin-bottom: 20px;
+}
+
 .card {
   padding: 20px;
   border-radius: 10px;
@@ -6,7 +12,8 @@
   margin-top: 50px;
 }
 
-.clear, .buy {
+.clear,
+.buy {
   width: 15%;
 }
 
@@ -15,30 +22,30 @@ h5 {
 }
 
 .card-price {
-  font-size: 25px;
+  font-size: 30px; /* Increased font size */
   color: #28a745;
 }
 
-.card_img img {
-  width: 150px;
+.card-img img {
+  max-width: 100%;
+  height: auto; /* Maintain aspect ratio */
   margin-bottom: 20px;
 }
 
-.card_img h4,
-.card_img p {
+.card-text h2 {
   margin-bottom: 10px;
 }
 
-.btn-outline-success {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  color: #28a745;
-  border-color: #28a745;
+.quantity {
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
 }
 
-.btn-outline-success:hover {
-  background-color: #28a745;
-  color: #fff;
+.quantity button,
+.quantity span {
+  font-size: 20px;
+  margin: 5px 5px;
 }
 
 .remove {
@@ -57,18 +64,7 @@ h5 {
 
 .card-text p,
 h4 {
-  padding: 10px 0px 0px 10px;
-}
-
-.quantity {
-  display: flex;
-  align-items: center;
-  width: 200px;
-}
-
-.quantity button,
-.quantity input {
-  margin: 0 5px;
+  padding: 10px 0px;
 }
 
 @media screen and (max-width: 768px) {
@@ -76,12 +72,12 @@ h4 {
     padding: 10px;
   }
 
-  .card_img img {
+  .card-img img {
     width: 100px;
   }
 
-  .card_img h4,
-  .card_img p {
+  .card-text h2,
+  .card-text p {
     font-size: 14px;
   }
 
@@ -96,7 +92,7 @@ h4 {
 }
 
 @media screen and (max-width: 576px) {
-  .card_img img {
+  .card-img img {
     width: 80px;
   }
 

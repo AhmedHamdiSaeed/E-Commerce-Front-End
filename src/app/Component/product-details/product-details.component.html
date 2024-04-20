@@ -14,6 +14,9 @@
           <h2 class="title">{{ product.title }}</h2>
           <div class="col-sm-6">
             <p class="Category fw-bold">{{ categoryName }}</p>
+            <div class="rating">
+              <span class="star" *ngFor="let star of getStarsArray(product.rattingsAverage)">&#9733;</span>
+            </div>
           </div>
           <div class="col-sm-6">
             <p class="Price text-primary fw-bold fs-5">Price : {{ product.price |currency:'EGP':'symbol'}}</p>
@@ -72,5 +75,113 @@
   <div *ngIf="error" class="error-message text-center">
     <p>Error: {{ error }}</p>
   </div>
+
+
 </div>
+<div class="container p-4">
+  <div class="row">
+  <hr>
+  
+  <div class="col-md-5">
+    <div class="d-flex align-items-center flex-column">
+      <div class="review">
+        <h3>Customer reviews</h3>
+      </div>
+      <div class="review-text">
+        <h4>Review this product</h4> 
+        <p>Share your thoughts with other customers</p>
+      </div>
+      <div>
+        <div>
+         <!-- Button to trigger the form -->
+        <button (click)="checkAccessToWriteReview(product._id)" class="btn btn-success">Add Review</button>
+
+          <!-- Review form -->
+          <form *ngIf="showForm" (ngSubmit)="submitReview()">
+            <div class="mb-3">
+              <div class="form-group">
+                <div class="star-rating">
+                  <span class="star" [class.selected]="newReview.ratting >= 1" (click)="setRating(1)">&#9733;</span>
+                  <span class="star" [class.selected]="newReview.ratting >= 2" (click)="setRating(2)">&#9733;</span>
+                  <span class="star" [class.selected]="newReview.ratting >= 3" (click)="setRating(3)">&#9733;</span>
+                  <span class="star" [class.selected]="newReview.ratting >= 4" (click)="setRating(4)">&#9733;</span>
+                  <span class="star" [class.selected]="newReview.ratting >= 5" (click)="setRating(5)">&#9733;</span>
+                </div>
+              </div>
+            </div>
+            <div class="mb-3">
+              <div class="form-group">
+                <label for="comment">Comment:</label>
+                <textarea id="comment" class="form-control textarea" #dataInput [(ngModel)]="newReview.description" name="description" required></textarea> </div>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-success">Submit Review</button>
+            </div>
+          </form>
+
+          
+        </div>
+      </div>
+    </div>
+  </div>
+   <div class="col-md-7">
+  <div *ngFor="let review of reviews" class=" review-item ">
+      <div class="d-flex align-items-center justify-content-start">
+        <img src="../../../assets/project images/profile.png" style="width: 70px;" class="p-2 rounded-circle">
+        <p class="m-0">{{ review.user.fname }} {{ review.user.lname }}</p>
+      </div>
+      <div class="rating">
+        <span class="star" *ngFor="let star of getStarsArray(review.ratting)">&#9733;</span>
+      </div>
+      <p class="mb-4">{{ review.description }}</p>
+      <div *ngIf="review.user._id === userData._id">
+       
+        <!-- <button  class="btn btn-sm btn-primary m-2" (click)="updateReview()"><i class="bi bi-pencil"></i></button> -->
+       
+        <button  class="btn btn-sm btn-danger m-2" (click)="deleteReview(review)"> <i class="bi bi-trash"></i> </button>
+       <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="openUpdateModal(review)"><i class="bi bi-pencil"></i></button>
+      
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Update Review</h5>
+                <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+              </div>
+              <div class="modal-body">
+                <form (ngSubmit)="updateReview()">
+                  <div class="mb-3">
+                    
+                      <div class="star-rating">
+                        <span class="star" [class.selected]="newReview.ratting >= 1" (click)="setRating(1)">&#9733;</span>
+                        <span class="star" [class.selected]="newReview.ratting >= 2" (click)="setRating(2)">&#9733;</span>
+                        <span class="star" [class.selected]="newReview.ratting >= 3" (click)="setRating(3)">&#9733;</span>
+                        <span class="star" [class.selected]="newReview.ratting >= 4" (click)="setRating(4)">&#9733;</span>
+                        <span class="star" [class.selected]="newReview.ratting >= 5" (click)="setRating(5)">&#9733;</span>
+                      </div>
+                    </div>
+                 
+                  <div class="mb-3">
+                   
+                      <label for="comment">Comment:</label>
+                      <textarea id="comment" class="form-control" #dataInput [(ngModel)]="newReview.description" name="description" required>{{newReview.description}}</textarea>
+                    </div>
+                    <button type="button" class="btn btn-secondary m-2" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Update Review</button>
+
+                  
+                </form>
+      
+              </div>
+             
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
 <app-footer></app-footer>

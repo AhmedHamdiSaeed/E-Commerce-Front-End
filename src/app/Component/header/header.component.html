@@ -24,6 +24,7 @@
         <li class="nav-item">
           <a class="nav-link" routerLinkActive="active" routerLink="/login" *ngIf="!isAuthed">{{'header.Login'|translate}}</a>
         </li>
+   
         <li class="nav-item">
           <a class="nav-link" routerLinkActive="active" *ngIf="!isAuthed || user?.role == 'user'"    routerLink="/products/category">{{'header.Products'|translate}}</a>
           </li>
@@ -36,10 +37,21 @@
           </button>
           <!-- //dropdown for user  -->
             <ul class="dropdown-menu dropdown-content" aria-labelledby="dropdownMenuButton1" *ngIf="isAuthed && user?.role == 'user'">
-              <li><a class="dropdown-item" routerLink="/Profile" (click)="getUser()">{{'header.Your Account'|translate}}</a></li>
-              <li><a class="dropdown-item" routerLink="/update_Profile">update Profile</a></li>
+              <li><a class="dropdown-item" routerLink="/Profile" (click)="getUser()">
+                <i class="bi bi-person"></i>
+                {{'header.Your Account'|translate}}</a></li>
+              <li><a class="dropdown-item" routerLink="/update_Profile">
+                <i class="bi bi-pencil-square"></i> update Profile</a></li>
 
-              <li><a class="dropdown-item" routerLink="/userOrders">{{'header.Your Order'|translate}}</a></li>
+              <li><a class="dropdown-item" routerLink="/userOrders">
+                <i class="bi bi-bag"></i>
+                {{'header.Your Order'|translate}}</a></li>
+
+                <li><a class="dropdown-item" routerLink="/changePassword">
+                  <i class="bi bi-shield-lock-fill"></i>
+                  change password
+                </a></li>
+           
               <li><a class="nav-link" (click)="onLogout()" >{{'header.Logout'|translate}}</a>
               </li>
             </ul>

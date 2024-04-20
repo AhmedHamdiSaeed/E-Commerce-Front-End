@@ -22,7 +22,7 @@ constructor(
   private imageServices:ImageService,private formBuilder:FormBuilder) {
     this.isLoading=true;
     this.userProfile=this.formBuilder.group({
-        fname: [''],
+        fname: [{ value: '', disabled: false }],
         lname: [''],
         email: [''],
         address:formBuilder.group({
@@ -33,24 +33,24 @@ constructor(
         image:['']
     
     });
-
+    this.userProfile.get('fname')?.disable();
+    this.userProfile.get('lname')?.disable();
+    this.userProfile.get('email')?.disable();
+    this.userProfile.get('address')?.disable();
     this.subscription=this.userProfileService.getCurrentUser().subscribe((user)=>{
       this.userDb=user;
-      console.log("user",this.userDb.fname)
       this.url=this.getImageUrl(this.userDb.image);
-      this.isLoading=false;
       this.userProfile.patchValue({
         fname:this.userDb.fname,
         lname:this.userDb.lname,
         email:this.userDb.email,
         image:this.userDb.image,
         address:{
-          city:this.userDb.city,
-          postalCode:this.userDb.postalCode,
-          street:this.userDb.street,
+          city:this.userDb.address.city,
+          postalCode:this.userDb.address.postalCode,
+          street:this.userDb.address.street,
         }})
-        console.log("userProfile :",)
-        // console.log("url",this.getImageUrl(this.userProfile.))
+        this.isLoading=false;
 
   })}
      

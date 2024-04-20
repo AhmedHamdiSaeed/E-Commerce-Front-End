@@ -44,23 +44,8 @@ export class CartComponent {
   ngOnInit(): void {
     this.getCartProduct();
     }
-  // clearCart() {
-  //     this.cartService.clearCart().subscribe(
-  //       () => {
-  //         this.cartService.Clear();
-  //         this.getCartProduct();
-  //       },
-  //       error => {
-  //         console.error('Failed to clear cart:', error);
-  //       }
-  //     );
-  //   }
 
-  
-    //       this.cartService.Clear();
-    //       this.getCartProduct();
-    // }
-  
+  //confirmation dialog
     openConfirmationDialog(): void {
       const dialogRef = this.dialog.open(ConfirmMessageComponent, {
      
@@ -76,7 +61,7 @@ export class CartComponent {
     
     
   
- 
+ //load product to cart
   getCartProduct(){
     if("cart" in localStorage){
       this.cartProducts = JSON.parse(localStorage.getItem("cart")!);
@@ -85,6 +70,7 @@ export class CartComponent {
     } 
   }
   
+  //remove one product from cart
   removeItem(i: number) {
   this.cartProducts .splice(i, 1);
   this. setItem();
@@ -92,10 +78,10 @@ export class CartComponent {
   
   }
   
-
+//clear all cart
 Clear(){
   this.cartProducts = [];
-  this.setItem();
+ this.setItem();
   this.getTotalPrice();
   this.cartService.updateCartLengthFromLocalStorage();
 }
@@ -115,7 +101,7 @@ increaseQuantity(item: any): void {
 decreaseQuantity(item: any): void {
   if (item.quantity > 1) {
     item.quantity--;
-    this.setItem();
+   this.setItem();
     this.cartService.updateCartLengthFromLocalStorage();
   }
 }
