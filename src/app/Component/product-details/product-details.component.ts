@@ -61,7 +61,7 @@ export class ProductDetailsComponent implements OnInit {
    productId = this.route.snapshot.paramMap.get('id');
   async ngOnInit(): Promise<void> {
     await this.getAllCategories();
-
+     this.getCartProduct();
     if (this.productId) {
       this.isLoading = true;
       this.fetchReviews(this.productId)
@@ -114,6 +114,13 @@ export class ProductDetailsComponent implements OnInit {
 
   }
   
+  getCartProduct(){
+    if("cart" in localStorage){
+      this.cartProducts = JSON.parse(localStorage.getItem("cart")!);
+      console.log("cart :",this.cartProducts)
+
+    } 
+  }
 
 
 
@@ -136,6 +143,7 @@ export class ProductDetailsComponent implements OnInit {
  getHoveredProductQuantity(product: Product): number {
     return this.cartService.getTotalQuantityInCart(product); // Convert
   }
+  
   orderNow(){
     this.isLoading = true;
   
@@ -143,15 +151,16 @@ export class ProductDetailsComponent implements OnInit {
       this.router.navigate(['/login']);
       return;
     }
-  
+    console.log(this.cartProducts);
     let products= this.cartProducts.map(item=>{
       return{productId: item.product._id, quantity: item.quantity}
     })
+    console.log(products);
     this.cartService.createNewCart(products).subscribe(
       res => {
         this.success = true;
         this.newCart=res;
-         console.log("cart before order:",this.newCart)
+         console.log("newCart",this.newCart)
         console.log("cart before order:",res)
       // this.router.navigateByUrl('/paymentSuccess/660c89afbb43b63edecfc5fa')
           this.checkoutservice.checkout(this.newCart.data._id).subscribe(
