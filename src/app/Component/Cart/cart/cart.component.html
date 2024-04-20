@@ -1,53 +1,48 @@
-<ng-container *ngIf="!isLoading; else loadingSpinner">
-    <ng-container *ngIf="cartProducts.length > 0">
-        <div class="container d-flex justify-content-center align-items-center">
-            <div class="card ">
-                <h5 class="card-title">Shop Cart</h5>
-                <p class="card-price">Total Price : EGP {{ getTotalPrice() }}</p>
-                <button class="btn btn-danger clear" (click)="openConfirmationDialog()">Clear Cart</button>
-                <div class="mt-4 card-item " *ngFor="let item of cartProducts; let i = index">
-                    <div class=" card_img"><img [src]="getImageUrl(item.product.image)" [alt]="item.product.title">
-                    </div>
-
-                    <div class="card-text">
-                        <h4>{{item.product.title}}</h4>
-                        <p>{{item.product.price}}</p>
-                        <button (click)="removeItem(i)" class="btn remove"><i class="bi bi-trash3"></i>Remove</button>
-                    </div>
-
-                    <div class="quantity">
-                        <button class="btn btn-outline-success" (click)="increaseQuantity(item)">+</button>
-                        <span>{{ item.quantity }}</span>
-                        <button class="btn btn-outline-success" (click)="decreaseQuantity(item)">-</button>
-                    </div>
-                </div>
-                <hr>
-                <button class="btn btn-primary buy" (click)="orderNow()">Buy Now</button>
-            </div>
-        </div>
-    </ng-container>
-    <ng-container *ngIf="success">
-      <div class="alert alert-success" role="alert">
-        <strong>Well done!</strong> Your order has been successfully placed.
-      </div>
-    </ng-container>
-    <ng-container *ngIf="cartProducts.length === 0">
-        <div class="container d-flex justify-content-center align-items-center" style="height: 60vh;">
-            <div class="card">
-              <div class="text-center mt-4">
-                <img src="../../../assets/project images/cart.png" alt="">
-                <h4>Your cart is empty!</h4>
-                <p>Add items to it now</p>
-                <button routerLink="/products/category" class="btn btn-outline-success">Shop Now</button>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <h5 class="card-title text-center">Shop Cart</h5>
+        <br>
+        <p class="card-price text-center">Total Price: {{ getTotalPrice() }} EGP </p>
+<hr>
+        <div class="card-item" *ngFor="let item of cartProducts; let i = index">
+          <div class="row align-items-center">
+            <div class="col-md-3">
+              <div class="card-img">
+                <img [src]="getImageUrl(item.product.image)" [alt]="item.product.title" class="img-fluid">
               </div>
             </div>
+            <div class="col-md-6">
+              <div class="card-text">
+                <h2 class="mb-3">{{ item.product.title }}</h2>
+                <div class="d-flex align-items-center mb-4">
+                  <h4 class="mb-8 mr-8"><b>Price : </b> {{ item.product.price }} EGP</h4>
+                  <div class="quantity d-flex align-items-center">
+                    <button class="btn btn-sm btn-outline-success mr-4 " (click)="decreaseQuantity(item)">-</button>
+                    <span>{{ item.quantity }}</span>
+                    <button class="btn btn-sm btn-outline-success ml-4" (click)="increaseQuantity(item)">+</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3 text-right">
+              <button (click)="removeItem(i)" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash3"></i> Remove</button>
+            </div>
           </div>
-    </ng-container>
-  </ng-container>
-  
-  <ng-template #loadingSpinner>
-    <div class="position-fixed top-50 start-50 translate-middle">
-      <app-loading-spinner></app-loading-spinner>
+        </div>
+
+        <hr>
+
+        <div class="row">
+          <div class="col-md-10">
+            <button class="btn btn-primary btn-block buy" (click)="orderNow()">Buy Now</button>
+          </div>
+          <div class="col-md-2">
+            <button class="btn btn-danger btn-block " (click)="openConfirmationDialog()">Clear Cart</button>
+          </div>
+        </div>
+      </div>
     </div>
-  </ng-template>
-  
+  </div>
+</div>
