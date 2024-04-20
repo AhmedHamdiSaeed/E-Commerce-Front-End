@@ -51,7 +51,8 @@ export class ContentComponent implements OnInit {
   openOrderDetail(order: any) {
     const orderDialog = this.confirmdialog.open(OrderDetailDialogComponent, {
       data: order,
-      height: '100vh'
+      height: '100vh',
+      
     })
   }
 
