@@ -20,14 +20,14 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let user of users" class="userDiv">
+              <tr *ngFor="let user of users; let i = index" class="userDiv">
                 <td>
                   <div class="image-container">
                     <img class="card-img product-image" [src]="getImgUrl(user.image)" [alt]="user.fname">
                   </div>
                 </td>
                 <td>{{ user.fname }}</td>
-                <td><b>{{ user.email }}</b></td>
+                <td (click)="getUserData(i)"><b>{{ user.email }}</b></td>
                 <td>
                   <div class="action-buttons">
                     <button class="btn btn-danger px-3" (click)="OpenDialog(user._id)" title="Remove Customer">
