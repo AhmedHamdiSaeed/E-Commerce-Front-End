@@ -52,7 +52,7 @@ export class ContentComponent implements OnInit {
     const orderDialog = this.confirmdialog.open(OrderDetailDialogComponent, {
       data: order,
       height: '100vh',
-      
+
     })
   }
 
@@ -78,8 +78,7 @@ export class ContentComponent implements OnInit {
 
     const msgDialog = this.confirmdialog.open(ConfirmMessageComponent, {
       data: { message: " this order will be canceled", title: "cancel order " },
-      panelClass: 'custom-dialog' // Apply custom CSS class
-
+      // panelClass: 'custom-dialog'
 
     })
 

@@ -38,7 +38,6 @@ export class AddProductComponent implements OnInit {
       if (result)
       {
         this.AddProduct(addForm);
-        this.router.navigateByUrl('/Admin/Products');
       }
       addForm.resetForm() ;
 
@@ -79,6 +78,7 @@ export class AddProductComponent implements OnInit {
 
     this.prductService.addProduct(formData)
     .subscribe((res)=>{
+      this.router.navigateByUrl('/Admin/Products');
       console.log("product created successfuly");
 
 
