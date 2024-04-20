@@ -1,5 +1,6 @@
 <div class="container">
   <div class="row justify-content-center">
+    <ng-container *ngIf="cartProducts.length > 0">
     <div class="col-md-8">
       <div class="card">
         <h5 class="card-title text-center">Shop Cart</h5>
@@ -44,5 +45,24 @@
         </div>
       </div>
     </div>
-  </div>
-</div>
+</ng-container>
+  <ng-container *ngIf="success">
+    <div class="alert alert-success" role="alert">
+      <strong>Well done!</strong> Your order has been successfully placed.
+    </div>
+  </ng-container>
+  <ng-container *ngIf="cartProducts.length === 0">
+      <div class="col-md-8">
+        <div class="card">
+          <div class="text-center mt-4">
+            <img src="../../../assets/project images/cart.png" alt="">
+            <h4>Your cart is empty!</h4>
+            <p>Add items to it now</p>
+            <button routerLink="/products/category" class="btn btn-outline-success">Shop Now</button>
+          </div>
+          </div>
+        </div>
+          
+           
+          </ng-container>
+          </div>

@@ -81,6 +81,7 @@ export class CartService {
 
   updateCartLength(length: number) {
     this.cartLengthSubject.next(length);
+    
   }
 
   getCartLength() {
@@ -97,12 +98,6 @@ export class CartService {
     return totalQuantity;
   }
 
-  getCartProduct(){
-    if("cart" in localStorage){
-      this.cartProducts = JSON.parse(localStorage.getItem("cart")!);
-      console.log("cart :",this.cartProducts)
-
-    } 
-  }
+  
  
 }

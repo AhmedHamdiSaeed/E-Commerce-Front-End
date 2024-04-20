@@ -64,7 +64,7 @@
       </ul>
       <button routerLink="/cart" class="btn " *ngIf=" user?.role !== 'admin'">
         <i style="font-size: 30px;" class="bi bi-cart-plus"></i>
-        <span class="badge bg-danger" style="font-size: 10px;">{{cartlength}}</span>
+        <span class="badge bg-danger" style="font-size: 10px;">{{ cartlength  }}</span>
       </button>
       <a class="nav-link lang" (click)= "changeLanguage()"> {{lang == "en" ? "عربى" :"English"}}  </a>
     </div>

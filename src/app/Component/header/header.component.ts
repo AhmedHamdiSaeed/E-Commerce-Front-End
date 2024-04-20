@@ -45,6 +45,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   getCartProductLength(){
   this.cartService.getCartLength().subscribe(length => {
       this.cartlength = length;
+      console.log(length);
     });
   }
 

@@ -141,6 +141,7 @@ export class ProductDetailsComponent implements OnInit {
   }
 
  getHoveredProductQuantity(product: Product): number {
+  console.log(this.cartService.getTotalQuantityInCart(product))
     return this.cartService.getTotalQuantityInCart(product); // Convert
   }
   
