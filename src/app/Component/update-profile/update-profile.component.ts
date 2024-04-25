@@ -19,6 +19,7 @@ import { formatDate } from '@angular/common';
 })
 export class UpdateProfileComponent implements OnInit,OnDestroy{
   user: any;
+  NEWuser:any;
   userProfile!: FormGroup;
   isLoading: boolean = false;
   initValues:any
@@ -26,6 +27,9 @@ export class UpdateProfileComponent implements OnInit,OnDestroy{
   imageURL:any;
   newEmail:any;
   subscriptions:Subscription[]=[]
+  responce:any
+  localStorage:any
+  emailExists:boolean=false;
   // url: any;
   toastr = inject(ToastrService);
   constructor(
@@ -102,42 +106,57 @@ export class UpdateProfileComponent implements OnInit,OnDestroy{
   
   updateUser() {
     const userData=new FormData();
+    if(this.initValues.email!=this.userProfile.value.email)
+      userData.append('email',this.userProfile.value.email);
     userData.append('fname',this.userProfile.value.fname);
     userData.append('lname',this.userProfile.value.lname);
-    userData.append('email',this.userProfile.value.email);
     userData.append('address[city]',this.userProfile.get('address.city')?.value);
     userData.append('address[postalCode]',this.userProfile.get('address.postalCode')?.value==undefined ? '': this.userProfile.get('address.postalCode')?.value);
     userData.append('address[street]',this.userProfile.get('address.street')?.value);
     if(this.selectedImageFile)
     userData.append('image',this.selectedImageFile);
-    const emailData=new FormData();
-    emailData.append('email',this.userProfile.value.email)
-  
-      this.subscriptions.push(this.userService.checkEmail(emailData).subscribe(res=>{
-       this.newEmail=res;
-      if(this.newEmail.message==='found')
-        {
-          this.toastr.warning("This email already exists")
-        }
-        else
-        {
+
+
           this.subscriptions.push(this.userService
             .updateUser(userData)
             .subscribe(
-              (newUser) => {
-                this.toastr.success('User Updated');
+              (res) => {
+                 this.responce=res;
+                if(this.responce.message==="email exists")
+                  {
+                    this.toastr.warning("this email is already exists")
+                    this.emailExists=true;
+                  }
+                else
+                {
+                  this.emailExists=false;
+                 this.toastr.success('User Updated');
                 this.initValues=this.userProfile.value;
+                const JsonObject=localStorage.getItem("userData");
+                var obj;
+                this.responce=res;
+                if(JsonObject)
+                  {                 
+
+                    obj=JSON.parse(JsonObject);
+                    obj.email=this.userProfile.value.email;
+                    obj.fname=this.userProfile.value.fname;
+                    obj.lname=this.userProfile.value.lname;
+                    if(this.responce.data.token)
+                    obj._token=this.responce.data.token;
+                    localStorage.setItem("userData",JSON.stringify(obj));
+                  }
+                }   
               },
               (err) => {
                 console.log('err : ', err);
               }
             ));
         }
-  }));
     
 
 
-  }
+  
   get fname()
   {
     return this.userProfile.get('fname');
